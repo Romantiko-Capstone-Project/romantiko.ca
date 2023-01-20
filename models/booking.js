@@ -1,0 +1,33 @@
+const mongoose = require("mongoose");
+
+const bookingSchema = new mongoose.Schema(
+  {
+    barber: {
+      type: String,
+      required: true,
+      maxlength: 60,
+    },
+    customer: {
+      type: String,
+      required: true,
+    },
+    typeOfHairCut: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    notes: {
+      type: String,
+    },
+    status: {
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Booking", bookingSchema);
