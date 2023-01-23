@@ -1,2 +1,2 @@
 import dbConnect from "../../../util/mongo";
-import Account from "../../../";
+import Account from "../../../models/Account";
