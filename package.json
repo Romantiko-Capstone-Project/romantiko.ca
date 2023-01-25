@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.1.1",
+    "mongoose": "^6.9.0",
     "next": "13.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -16,5 +19,17 @@
   "devDependencies": {
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.3"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romantiko-Capstone-Project/romantiko.ca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Romantiko-Capstone-Project/romantiko.ca/issues"
+  },
+  "homepage": "https://github.com/Romantiko-Capstone-Project/romantiko.ca#readme"
 }
