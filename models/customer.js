@@ -17,6 +17,10 @@ const customerSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Account',
         required: true
+    },
+    booking: {
+        type: Schema.Types.ObjectId,
+        ref: 'Booking'
     }
 });
 

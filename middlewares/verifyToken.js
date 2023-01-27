@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 
+// verify access token
 const verifyToken = (req, res, next) => {
   if (authHeader) {
     const token = req.headers.cookie.split("=")[1];
@@ -14,6 +15,7 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+// verify user account
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.account.id === req.params.id || req.account.role === "admin") {
@@ -24,6 +26,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
   });
 };
 
+// verify admin access
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req?.account?.role === "admin") {

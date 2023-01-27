@@ -1,5 +1,5 @@
-import AccessToken from "../../../config/jwt.config";
 import Account from "../../../models/account";
+const jwt = require("jsonwebtoken");
 
 export default async function handleLoginUser(req, res) {
   try {
@@ -17,7 +17,14 @@ export default async function handleLoginUser(req, res) {
     const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     // assign access token to account
-    AccessToken(account);
+    const AccessToken = jwt.sign(
+      {
+        username: username,
+        role: role,
+      },
+      process.env.JWT_SEC,
+      { expiresIn: "30d" }
+    );
 
     // compare password
     OriginalPassword !== password && res.status(401).json("invalid Password!");

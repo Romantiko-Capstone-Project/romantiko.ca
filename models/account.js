@@ -16,6 +16,10 @@ const AccountSchema = new Schema(
       type: String,
       required: true,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
     role: {
       type: String,
       enum: ["admin", "staff", "customer"],
