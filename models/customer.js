@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema as _Schema, model } from 'mongoose';
 
-const customerSchema = new mongoose.Schema({
+const customerSchema = new _Schema({
     firstName: {
         type: String,
         required: true
@@ -14,16 +14,15 @@ const customerSchema = new mongoose.Schema({
         required: true
     },
     account: {
-        type: Schema.Types.ObjectId,
+        type: _Schema.Types.ObjectId,
         ref: 'Account',
         required: true
     },
     booking: {
-        type: Schema.Types.ObjectId,
+        type: _Schema.Types.ObjectId,
         ref: 'Booking'
     }
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
-
-module.exports = Customer;
+const Customer = model('Customer', customerSchema);
+export default Customer;

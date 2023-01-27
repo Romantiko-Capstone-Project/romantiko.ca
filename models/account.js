@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema as _Schema, model } from "mongoose";
+const Schema = _Schema;
 
 const AccountSchema = new Schema(
   {
@@ -30,4 +30,4 @@ const AccountSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Account", AccountSchema);
+export default model("Account", AccountSchema);
