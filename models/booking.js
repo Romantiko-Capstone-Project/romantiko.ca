@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
 
-const bookingSchema = new mongoose.Schema(
+import { Schema, model } from "mongoose";
+
+const bookingSchema = new Schema(
   {
     barberName: {
       type: String,
@@ -30,4 +31,4 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Booking", bookingSchema);
+export default model("Booking", bookingSchema);
