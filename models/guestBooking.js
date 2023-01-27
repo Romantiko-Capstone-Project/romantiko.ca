@@ -7,13 +7,12 @@ const GuestBookingSchema = new mongoose.Schema(
       required: true,
       maxlength: 60,
     },
-    // customer: {
-    //   type: String,
-    //   required: true,
-    // },
-    guestName:{
-      type:String,
-      required:true,
+    customer: {
+      type: String,
+    },
+    guestName: {
+      type: String,
+      required: true,
     },
     guestEmail: {
       type: String,
