@@ -1336,7 +1336,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@13.1.3":
+"next@^13.1.3":
   "integrity" "sha512-ig7m7Po/F+Wp0xl+9RKYZq+PYfgVmONH6hBPVT2+jrdUmZkrqsN5ioSe4oQbCAb9tMtVr07agVdK2HFjD15Yug=="
   "resolved" "https://registry.npmjs.org/next/-/next-13.1.3.tgz"
   "version" "13.1.3"
