@@ -10,6 +10,7 @@ const handler = async (req, res) => {
     try {
       const booking = await Booking.find();
       res.status(200).json(booking);
+      
     } catch (err) {
       const booking = await Booking.create(req.body);
       res.status(500).json(err);
