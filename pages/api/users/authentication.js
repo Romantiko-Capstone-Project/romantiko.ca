@@ -30,7 +30,7 @@ export default async function handleLoginUser(req, res) {
     OriginalPassword !== password && res.status(401).json("invalid Password!");
 
     // set token to cookie
-    // res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/`);
+    res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/`);
 
     if (account.role === "customer") {
       res.status(200).json({ message: "Customer logged in" });

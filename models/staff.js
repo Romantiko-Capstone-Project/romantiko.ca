@@ -22,25 +22,24 @@ const Staff = new Schema({
         type: Boolean,
         default: true,
     },
-    availability: [{
-        day: {
-            type: String,
-            enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            required: false
-        },
-        startTime: {
-            type: String,
-            required: false
-        },
-        endTime: {
-            type: String,
-            required: false
-        }
-    }],
+    // availability: [{
+    //     day: {
+    //         type: String,
+    //         enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    //         required: false
+    //     },
+    //     startTime: {
+    //         type: String,
+    //         required: false
+    //     },
+    //     endTime: {
+    //         type: String,
+    //         required: false
+    //     }
+    // }],
     account: {
         type: Schema.Types.ObjectId,
         ref: 'Account',
-        required: true
     }
 });
 
