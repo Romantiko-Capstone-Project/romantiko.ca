@@ -1,13 +1,16 @@
 import React from 'react'
-import Image from 'next/image';
-import Img1 from '../../../public/img/login/stuff.PNG'
-
+import style from '../../../styles/Home.module.css'
 function LoginPage() {
   return (
-    <>
-    <input typ    
-    <Image src={Img1}/>
-    </>
+    
+    <div classname = {style.loginpage}>
+    <form id={style.login}>
+        <label for="fname">Username: </label> <input type="text" id="username" name="username"/><br/><br/>
+        <label for="lname">Password: </label> <input type="text" id="psswd" name="password"/><br/><br/>
+        <input type="submit" value="Login"/>
+    </form>    
+    </div>
+
   )
 }
 
