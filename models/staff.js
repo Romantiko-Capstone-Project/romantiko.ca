@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Account = require('./Account');
 
-const StaffSchema = new Schema({
+const Staff = new Schema({
     firstName: {
         type: String,
         required: true
@@ -22,21 +21,20 @@ const StaffSchema = new Schema({
     isActive: {
         type: Boolean,
         default: true,
-        required: true
     },
     availability: [{
         day: {
             type: String,
             enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            required: true
+            required: false
         },
         startTime: {
             type: String,
-            required: true
+            required: false
         },
         endTime: {
             type: String,
-            required: true
+            required: false
         }
     }],
     account: {
@@ -46,4 +44,4 @@ const StaffSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Staff', StaffSchema);
+module.exports = mongoose.models.Staff || mongoose.model('Staff', Staff)

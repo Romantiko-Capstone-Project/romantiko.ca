@@ -1,10 +1,23 @@
 const CryptoJS = require("crypto-js");
-const Account = require("../../../models/account");
-const Customer = require("../../../models/customer");
+const Account = require("../../../models/Account");
+const Staff = require("../../../models/Staff");
 
 export default async function handleRegisterUser(req, res) {
-  const { firstName, lastName, phoneNumber, username, email, password } =
-    req.body;
+  const {
+    firstName,
+    lastName,
+    address,
+    phoneNumber,
+    username,
+    email,
+    password,
+  } = req.body;
+
+  // // check if username or email already exists
+  // const existingAccount = await Account.findOne({ $or: [{ username }, { email }] });
+  // if (existingAccount) {
+  //   return res.status(400).send({ error: 'Username or email already in use' });
+  // }
 
   // encrypt password
   const hashedPassword = CryptoJS.AES.encrypt(
@@ -12,33 +25,39 @@ export default async function handleRegisterUser(req, res) {
     process.env.PASS_SEC
   ).toString();
 
-  try {
-    // create new user user
-    const account = new Account({
-      username,
-      email,
-      hashedPassword,
-      //confirmationCode: accessToken,
-    });
-    await account.save();
+  // create new user account
+  const account = new Account({
+    username,
+    email,
+    password: hashedPassword,
+    role: "staff",
+  });
 
-    // create customer information with account
-    const customer = new Customer({
-      firstName,
-      lastName,
-      phoneNumber,
-      account: account._id
-    });
+  try {
 
     // save new account
-    const savedCustomer = await customer.save();
-    res.status(201).json(savedCustomer);
+    const savedAccount = await account.save();
+    res.status(201).json(savedAccount);
 
-    console.log("User is registered >>");
+    console.log(firstName,
+      lastName,
+      address,
+      phoneNumber);
+
+    // create staff information with account
+    const staff = new Staff({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      account: account._id,
+    });
+
+    // save new staff
+    const savedStaff = await staff.save();
+    res.status(201).json(savedStaff);
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
+    res.status(500).json({ error: 'Failed to register staff' });
   }
-
-  // send confirmation email to user
-  // code here
 }
