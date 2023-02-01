@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Booking = new mongoose.Schema(
   {
-    barberName: {
+    barbeName: {
       type: String,
       required: true,
       maxlength: 60,
@@ -37,5 +37,6 @@ const Booking = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 
 module.exports = mongoose.models.Booking || mongoose.model('Booking', Booking)
