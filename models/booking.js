@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Booking = new mongoose.Schema(
   {
-    barbeName: {
+    barberName: {
       type: String,
       required: true,
       maxlength: 60,
