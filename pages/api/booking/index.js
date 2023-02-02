@@ -11,7 +11,12 @@ const handler = async (req, res) => {
       const bookings = await Booking.find();
       res.status(200).json(bookings);
     } catch (err) {
-      res.status(500).json(err);
+      res
+        .status(500)
+        .json({
+          message: "An error occurred while retrieving bookings.",
+          error: err,
+        });
     }
   }
 
@@ -20,7 +25,12 @@ const handler = async (req, res) => {
       const booking = await Booking.create(req.body);
       res.status(201).json(booking);
     } catch (err) {
-      res.status(500).json(err);
+      res
+        .status(500)
+        .json({
+          message: "An error occurred while creating a booking.",
+          error: err,
+        });
     }
   }
 };
