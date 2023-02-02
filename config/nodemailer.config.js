@@ -11,6 +11,7 @@ const transport = nodemailer.createTransport({
   },
 });
 
+// Email Veirfication
 const sendConfirmationEmail = (name, email, id, confirmationCode) => {
   transport
     .sendMail({
@@ -26,6 +27,32 @@ const sendConfirmationEmail = (name, email, id, confirmationCode) => {
     .catch((err) => console.log(err));
 };
 
+// Booking Verification
+const sendBookingConfirmation = (
+  customerName,
+  customerEmail,
+  bookingId,
+  bookingTime,
+  barberName
+) => {
+  transport
+    .sendMail({
+      from: user,
+      to: customerEmail,
+      subject: "Romantiko Appointment Confirmation",
+      html: `
+          <h1>Your transportation booking is confirmed!</h1>
+          <p>Customer Name: ${customerName}</p>
+          <p>Booking ID: ${bookingId}</p>
+          <p>Booking Time: ${bookingTime}</p>
+          <p>Barber Name: ${barberName}</p>
+          <p>Location: <Romantiko barbershop address here...></p>
+        `,
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   sendConfirmationEmail,
+  sendBookingConfirmation,
 };

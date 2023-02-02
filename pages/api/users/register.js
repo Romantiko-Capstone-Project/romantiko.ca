@@ -2,8 +2,8 @@ import dbConnect from "../../../util/mongo";
 import Account from "../../../models/Account";
 import Staff from "../../../models/Staff";
 const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
 const {sendConfirmationEmail} = require("../../../config/nodemailer.config")
+const {EmailToken} = require("../../../config/jwt.config")
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -54,18 +54,11 @@ const handler = async (req, res) => {
       });
       res.status(201).json(staff);
 
-      // generate email token
-      const emailToken = jwt.sign(
-        {
-          id: req.body.id,
-          isAdmin: req.body.isAdmin,
-        },
-        process.env.JWT_SEC,
-        { expiresIn: "3d" }
-      );
+      // generate confirmation code
+      const confirmationCode = EmailToken(account._id)
 
       // send email verification
-      sendConfirmationEmail(firstName, email, account._id, emailToken);
+      sendConfirmationEmail(firstName, email, account._id, confirmationCode);
     } catch (err) {
       console.error(err);
       res.status(500).json(err);
