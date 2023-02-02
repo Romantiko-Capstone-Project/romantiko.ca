@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const AccessToken = (username, role) = jwt.sign(
+const AccessToken = (username, role) => jwt.sign(
   {
     username: username,
     role: role,
