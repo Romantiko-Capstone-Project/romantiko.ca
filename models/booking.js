@@ -1,14 +1,21 @@
+const mongoose = require("mongoose");
 
-import { Schema, model } from "mongoose";
-
-const bookingSchema = new Schema(
+const Booking = new mongoose.Schema(
   {
     barberName: {
       type: String,
       required: true,
       maxlength: 60,
     },
-    customer: {
+    customerName: {
+      type: String,
+      required: true,
+    },
+    customerEmail: {
+      type: String,
+      required: true,
+    },
+    customerPhone: {
       type: String,
       required: true,
     },
@@ -16,7 +23,7 @@ const bookingSchema = new Schema(
       type: String,
       required: true,
     },
-    date: {
+    appointmentDate: {
       type: Date,
       required: false,
     },
@@ -31,4 +38,4 @@ const bookingSchema = new Schema(
   { timestamps: true }
 );
 
-export default model("Booking", bookingSchema);
+module.exports = mongoose.models.Booking || mongoose.model("Booking", Booking);

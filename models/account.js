@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AccountSchema = new Schema(
+const Account = new Schema(
   {
     username: {
       type: String,
@@ -22,12 +22,12 @@ const AccountSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "staff", "customer"],
+      enum: ["admin", "staff"],
       required: true,
-      default: "customer",
+      default: "staff",
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Account", AccountSchema);
+module.exports = mongoose.models.Account || mongoose.model('Account', Account)
