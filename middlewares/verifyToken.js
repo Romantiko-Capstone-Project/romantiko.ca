@@ -2,16 +2,20 @@ import jwt from "jsonwebtoken";
 
 // verify access token
 const verifyToken = (req, res, next) => {
-  if (authHeader) {
-    const token = req.headers.cookie.split("=")[1];
+  const token = req.headers.cookie.split("=")[1];
 
+  if (!token) {
+    return res.status(401).send({ error: "Access Denied. No token provided." });
+  }
+
+  try {
     jwt.verify(token, process.env.JWT_SEC, (err, account) => {
       if (err) res.status(403).json("Token is not valid!");
       req.account = account;
       next();
     });
-  } else {
-    return res.status(401).json("Unauthorized");
+  } catch (error) {
+    return res.status(400).send({ error: "Invalid token." });
   }
 };
 

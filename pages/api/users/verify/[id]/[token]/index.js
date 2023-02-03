@@ -19,7 +19,6 @@ const handler = async (req, res) => {
         return res.status(400).send({ error: "Invalid confirmation code" });
       }
 
-      console.log(id);
       // update isVerified to true
       const account = await Account.findOneAndUpdate(
         { _id: id },

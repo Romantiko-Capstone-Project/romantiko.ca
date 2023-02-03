@@ -27,15 +27,16 @@ const handler = async (req, res) => {
         account.password,
         process.env.PASS_SEC
       );
+      
       const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-
-      // assign access token to account
-      const token = AccessToken(account.username, account.role);
 
       // compare password
       if (OriginalPassword !== password) {
         return res.status(401).json("Invalid Password!");
       }
+
+      // assign access token to account
+      const token = AccessToken(account.username, account.role);
 
       // set token to cookie
       res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/`);
