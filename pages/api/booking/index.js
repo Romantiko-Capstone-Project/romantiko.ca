@@ -24,6 +24,7 @@ const handler = async (req, res) => {
       // send email confirmation after an appointment has been booked
       sendBookingConfirmation(booking.customerName, booking.customerEmail, booking._id, new Date(),
       booking.barberName)
+      
     } catch (err) {
       res.status(500).json(err);
     }

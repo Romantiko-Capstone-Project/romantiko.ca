@@ -38,6 +38,7 @@ const handler = async (req, res) => {
         process.env.PASS_SEC
       ).toString();
 
+      // create new account
       const account = await Account.create({
         username,
         email,
@@ -59,6 +60,7 @@ const handler = async (req, res) => {
 
       // send email verification
       sendConfirmationEmail(firstName, email, account._id, confirmationCode);
+
     } catch (err) {
       console.error(err);
       res.status(500).json(err);

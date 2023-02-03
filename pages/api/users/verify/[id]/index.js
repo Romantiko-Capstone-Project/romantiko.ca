@@ -1,5 +1,5 @@
-import dbConnect from "../../../util/mongo";
-import Account from "../../../models/Account";
+import dbConnect from "../../../../../util/mongo";
+import Account from "../../../../../models/Account";
 
 const handler = async (req, res) => {
     const {
@@ -15,14 +15,6 @@ const handler = async (req, res) => {
       res.status(200).json(accounts);
     } catch (err) {
       res.status(500).json(err);
-    }
-  }
-
-  if (method == "PUT")  {
-    try {
-      
-    } catch (error) {
-      
     }
   }
 
