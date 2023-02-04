@@ -1,14 +1,15 @@
 import React from 'react'
 import style from '../../../styles/Home.module.css'
+
 function LoginPage() {
   return (
     
-    <div classname = {style.loginpage}>
-    <form id={style.login}>
-        <label for="fname">Username: </label> <input type="text" id="username" name="username"/><br/><br/>
-        <label for="lname">Password: </label> <input type="text" id="psswd" name="password"/><br/><br/>
+    <div>
+    <form classname={style.mainstuff}>
+        <input type="email" id="username" name="username" placeholder="Enter Email"/><br/><br/>
+        <input type="text" id="psswd" name="password" placeHolder="Enter Password"/><br/><br/>
         <input type="submit" value="Login"/>
-    </form>    
+    </form>
     </div>
 
   )
