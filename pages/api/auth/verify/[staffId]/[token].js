@@ -1,12 +1,12 @@
-import dbConnect from "../../../../../../util/mongo";
+import dbConnect from "../../../../../util/mongo";
 import jwt from "jsonwebtoken";
-import Account from "../../../../../../models/Account";
+import Account from "../../../../../models/Account";
 
 const handler = async (req, res) => {
 
   const {
     method,
-    query: { id, token },
+    query: { staffId, token },
   } = req;
 
   await dbConnect();
@@ -15,13 +15,13 @@ const handler = async (req, res) => {
     try {
       // Verify the confirmation code
       const decoded = jwt.verify(token, process.env.JWT_SEC);
-      if (decoded.userId !== id) {
+      if (decoded.userId !== staffId) {
         return res.status(400).send({ error: "Invalid confirmation code" });
       }
 
       // update isVerified to true
       const account = await Account.findOneAndUpdate(
-        { _id: id },
+        { _id: staffId },
         { $set: { isVerified: true } },
         { new: true }
       );

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Booking = new mongoose.Schema(
   {
@@ -38,4 +38,4 @@ const Booking = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.models.Booking || mongoose.model("Booking", Booking);
+module.exports = mongoose.models.Booking || mongoose.model('Booking', Booking)
