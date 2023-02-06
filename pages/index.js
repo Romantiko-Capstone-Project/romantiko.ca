@@ -18,7 +18,7 @@ export default function Home() {
           Hello World - Lenard
         </h1>
 
-        <p className={styles.description}>
+        <p className={styles.description}> 
           This is the Home page -----------
         </p>
 
