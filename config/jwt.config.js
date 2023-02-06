@@ -9,4 +9,12 @@ const AccessToken = (username, role) => jwt.sign(
   { expiresIn: "30d" }
 );
 
-module.exports = AccessToken;
+const EmailToken = (id) => jwt.sign(
+  {
+    userId: id
+  },
+  process.env.JWT_SEC,
+  { expiresIn: "3d" }
+)
+
+module.exports = {AccessToken, EmailToken};
