@@ -5,7 +5,7 @@ import ServiceList from './component/ServiceList'
 import BarberList from './component/BarberList'
 
 export default function Home() {
-
+ return (
     <div className={styles.container}>
       <Head>
         <title>Romantiko Barbershop</title>
@@ -67,4 +67,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
+    );
 }
