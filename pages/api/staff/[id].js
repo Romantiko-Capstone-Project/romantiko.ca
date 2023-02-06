@@ -1,8 +1,8 @@
-import dbConnect from "../../../../../util/mongo";
-import Staff from "../../../../../models/Staff";
+import dbConnect from "../../../util/mongo";
+import Staff from "../../../models/Staff";
 const {
   verifyTokenAndAdmin,
-} = require("../../../../../middlewares/verifyToken");
+} = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const {

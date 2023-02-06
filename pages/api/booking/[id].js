@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       res.status(500).json(err);
     }
   }
-  if (method === "DELETE") {
+  if (method == "DELETE") {
     try {
       await Booking.findByIdAndDelete(id);
       res.status(200).json({ message: "Successfully deleted the booking" });
