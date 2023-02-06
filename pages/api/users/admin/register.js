@@ -1,12 +1,11 @@
-import dbConnect from "../../../util/mongo";
-import Account from "../../../models/Account";
-import Staff from "../../../models/Staff";
+import dbConnect from "../../../../util/mongo";
+import Account from "../../../../models/Account";
+import Staff from "../../../../models/Staff";
 const CryptoJS = require("crypto-js");
 const {
   sendConfirmationEmail,
-} = require("../../../config/nodemailer.config");
-const { EmailToken } = require("../../../config/jwt.config");
-const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+} = require("../../../../config/nodemailer.config");
+const { EmailToken } = require("../../../../config/jwt.config");
 
 const handler = async (req, res) => {
   const { method } = req;

@@ -31,7 +31,7 @@ const handler = async (req, res) => {
         .json({ message: "An error occurred while updating the booking." });
     }
   }
-  if (method == "DELETE") {
+  if (method === "DELETE") {
     try {
       const booking = await Booking.findById(id);
       if (!booking) {
