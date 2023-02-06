@@ -16,11 +16,11 @@ function Footer() {
 
 
           <div className="mt-4" >
-            <a type="button" className="btn btn-floating btn-primary btn-lg" style={{"backgroundColor": "#3b5998"}}><i className="fab fa-facebook-f"></i></a>
-            <a type="button" className="btn btn-floating btn-primary btn-lg" style={{"backgroundColor": "#ac2bac"}}><i className="fab fa-instagram"></i></a>
-            <a type="button" className="btn btn-floating btn-primary btn-lg" style={{"backgroundColor": "#dd4b39"}}><i className="fab fa-google"></i></a>
-            
+            <a href = "#" type="button" class="btn btn-lg"  style={{"backgroundColor": "#808080","margin-right":"10px"}}><span className="fa fa-facebook-f"></span></a>
+            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","margin-right":"10px"}}><i className="fa fa-instagram"></i></a>
+            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","margin-right":"10px"}}><i className="fa fa-google"></i></a>
           </div>
+          
         </div>
 
         <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
@@ -29,13 +29,13 @@ function Footer() {
       
           <ul className="fa-ul" style={{"margin-left": "1.65em"}}>
             <li className="mb-3">
-              <span className="fa-li"><i className="fas fa-home"></i></span><span className="ms-2">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
+              <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-2">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
             </li>
             <li className="mb-3">
-              <span className="fa-li"><i className="fas fa-envelope"></i></span><span className="ms-2">!! email here !!</span>
+              <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-2">!! email here !!</span>
             </li>
             <li className="mb-3">
-              <span className="fa-li"><i className="fas fa-phone"></i></span><span className="ms-2">(403) 980 - 2686</span>
+              <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-2">(403) 980 - 2686</span>
             </li>
           </ul>
         </div>
