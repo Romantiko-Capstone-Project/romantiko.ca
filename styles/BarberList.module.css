@@ -1,0 +1,34 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+.dropdown{
+    height: 2rem;
+}
+
+.dropdownMenu{
+    width: 20rem;
+    text-align: center;
+    color: black;
+    background: lightgray;
+    position: relative;
+    cursor: pointer;
+    padding: 2rem;
+}
+
+.dropdownMenu:hover{
+    background:rgb(220, 220, 220);
+}
+
+.dropdownList{
+    list-style-type: none;
+    position: absolute;
+    left:0;
+    width: 100%;
+}
+
+.dropdownList>li{
+    border: 1px solid transparent;
+}
+
+.dropdownList:hover>li{
+    border: 1px solid white;
+}

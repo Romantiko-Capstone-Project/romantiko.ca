@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@syncfusion/ej2-react-dropdowns": "^20.4.48",
     "next": "13.1.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-dropdown": "^1.11.0"
   },
   "devDependencies": {
     "eslint": "8.32.0",
