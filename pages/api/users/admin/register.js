@@ -6,7 +6,6 @@ const {
   sendConfirmationEmail,
 } = require("../../../../config/nodemailer.config");
 const { EmailToken } = require("../../../../config/jwt.config");
-const { verifyTokenAndAdmin } = require("../../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const { method } = req;
