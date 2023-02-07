@@ -2,22 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Schedule = Schema(
-  { 
-    availability: [{
-        day: {
-            type: String,
-            enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            required: false
-        },
-        startTime: {
-            type: String,
-            required: false
-        },
-        endTime: {
-            type: String,
-            required: false
-        }
-    }],
+  {
+    day: {
+      type: String,
+      enum: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      required: false,
+    },
     startTime: {
       type: Date,
       required: false,
@@ -35,4 +33,5 @@ const Schedule = Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.models.Schedule || mongoose.model("Schedule", Schedule);
+module.exports =
+  mongoose.models.Schedule || mongoose.model("Schedule", Schedule);

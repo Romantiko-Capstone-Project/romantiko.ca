@@ -27,11 +27,17 @@ const handler = async (req, res) => {
     const {startTime, endTime, service, barber, customerName, customerEmail, customerPhone, notes} = req.body
 
     try {
+      
       const booking = await Booking.create(req.body);
+      await Schedule.create({
+        startTime, endTime, staffId: barber
+      })
       res.status(201).json(booking);
 
+      console.log(booking.customerEmail)
+
       // send email confirmation after an appointment has been booked
-      sendBookingConfirmation(booking.customerName, booking.customerEmail, booking._id, new Date(),
+      sendBookingConfirmation(booking.customerName, booking.customerEmail, booking._id, booking.startTime,
       booking.barberName)
       
     } catch (err) {
