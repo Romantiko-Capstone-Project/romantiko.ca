@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
 import styles from "/styles/BarberList.module.css"
 import {DropDownListComponent} from "@syncfusion/ej2-react-dropdowns"
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
-
-const BarberList = () => {
-    const [state, setState] = useState(false);
-    const showDropdown=()=>{
-        setState(true);
-    }
-    const hideDropdown=()=>{
-        setState(false);
-    }
+function BarberList() {
+    
     return (
-        <div className={styles.dropdown} >
-            <div className={styles.dropdownMenu} onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
-                Dropdown
-                {state ?(<ul className={styles.dropdownList} onMouseEnter={showDropdown}>
-                    <li>1st Value</li>
-                    <li>2nd Value</li>
-                    <li>3rd Value</li>
-                    <li>4th Value</li>
-                    <li>5th Value</li>
-                </ul>):
-                null}
-                
-            </div>
-        </div>
+        <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dropdown Button
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Staff Member (All)</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Elvert</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Jasmine</Dropdown.Item>
+                <Dropdown.Item href="#/action-4">Jay</Dropdown.Item>
+                <Dropdown.Item href="#/action-5">Sarah</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
     );
 }
 
