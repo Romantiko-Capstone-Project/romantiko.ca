@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongo";
-import Account from "../../../models/Account";
+import Staff from "../../../models/Staff";
 const {verifyTokenAndAdmin} = require("../../../middlewares/verifyToken")
 
 const handler = async (req, res) => {
@@ -9,8 +9,8 @@ const handler = async (req, res) => {
 
   if (method == "GET") {
     try {
-      const accounts = await Account.find();
-      res.status(200).json(accounts);
+      const staffs = await Staff.find();
+      res.status(200).json(staffs);
     } catch (err) {
       res.status(500).json(err);
     }
