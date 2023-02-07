@@ -1,7 +1,8 @@
 import dbConnect from "../../../util/mongo";
-import Account from "../../../models/Account";
 import Staff from "../../../models/Staff";
-const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+const {
+  verifyTokenAndAdmin,
+} = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const {
@@ -14,8 +15,8 @@ const handler = async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const account = await Account.findById(id);
-        return res.status(200).json(account);
+        const staff = await Staff.findById(id);
+        return res.status(200).json(staff);
       } catch (err) {
         res.status(500).json(err);
       }
@@ -23,30 +24,18 @@ const handler = async (req, res) => {
 
     case "PUT":
       try {
-        const account = await Account.findByIdAndUpdate(
+        const staff = await Staff.findByIdAndUpdate(
           id,
           {
             $set: req.body,
           },
           { new: true }
         );
-        return res.status(200).json(account);
+        return res.status(200).json(staff);
       } catch (error) {
         res.status(500).json(err);
       }
 
-      break;
-    
-    case "DELETE":
-      try {
-
-        await Account.findByIdAndDelete(id);
-        await Staff.findOneAndDelete({account: id})
-
-        res.status(200).json("User has been deleted");
-      } catch (error) {
-        res.status(500).json(err);
-      }
       break;
   }
 };
