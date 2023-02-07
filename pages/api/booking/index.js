@@ -1,5 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
+import Schedule from "../../../models/Schedule";
 const {sendBookingConfirmation} = require("../../../config/nodemailer.config")
 
 const handler = async (req, res) => {
@@ -22,6 +23,9 @@ const handler = async (req, res) => {
   }
 
   if (method == "POST") {
+    
+    const {startTime, endTime, service, barber, customerName, customerEmail, customerPhone, notes} = req.body
+
     try {
       const booking = await Booking.create(req.body);
       res.status(201).json(booking);
