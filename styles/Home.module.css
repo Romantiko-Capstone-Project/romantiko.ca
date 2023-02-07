@@ -2,6 +2,10 @@
   padding: 0 2rem;
 }
 
+.loggingin {
+  margin-bottom: 8px;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -128,3 +132,4 @@
     filter: invert(1);
   }
 }
+
