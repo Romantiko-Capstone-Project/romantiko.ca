@@ -1,0 +1,22 @@
+/*.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}*/
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 5px;
+  
+}
+
+.button {
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
