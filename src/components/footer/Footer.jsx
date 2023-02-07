@@ -16,9 +16,9 @@ function Footer() {
 
 
           <div className="mt-4" >
-            <a href = "#" type="button" class="btn btn-lg"  style={{"backgroundColor": "#808080","margin-right":"10px"}}><span className="fa fa-facebook-f"></span></a>
-            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","margin-right":"10px"}}><i className="fa fa-instagram"></i></a>
-            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","margin-right":"10px"}}><i className="fa fa-google"></i></a>
+            <a href = "#" type="button" class="btn btn-lg"  style={{"backgroundColor": "#808080","marginRight":"10px"}}><span className="fa fa-facebook-f"></span></a>
+            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-instagram"></i></a>
+            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-google"></i></a>
           </div>
           
         </div>
@@ -27,15 +27,15 @@ function Footer() {
           <h5 className="text-uppercase mb-4 pb-1">Contact Us</h5>
 
       
-          <ul className="fa-ul" style={{"margin-left": "1.65em"}}>
+          <ul className="fa-ul" style={{"marginLeft": "1.65em"}}>
             <li className="mb-3">
-              <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-2">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
+              <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
             </li>
             <li className="mb-3">
-              <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-2">!! email here !!</span>
+              <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">!! email here !!</span>
             </li>
             <li className="mb-3">
-              <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-2">(403) 980 - 2686</span>
+              <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-1">(403) 980 - 2686</span>
             </li>
           </ul>
         </div>
