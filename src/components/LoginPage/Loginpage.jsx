@@ -15,7 +15,7 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    consol.log(username, password);
+    console.log(username, password);
     setUsername("");
     setPassword("");
     setSuccess(true);
