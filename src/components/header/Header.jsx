@@ -27,7 +27,7 @@ function Header() {
             <a className="nav-link mx-2" href="#">Booking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mx-2" href="#">About Us</a>
+            <a className="nav-link mx-2" href="/AboutUs">About Us</a>
           </li>
 
         </ul>
