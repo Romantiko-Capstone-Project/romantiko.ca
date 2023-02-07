@@ -1,18 +1,57 @@
-import React from 'react'
-import style from '../../../styles/Home.module.css'
+import { useRef, useEffect, useState } from "react";
+import axios from "axios";
+import style from "../../../styles/Home.module.css";
 
 function LoginPage() {
-  return (
-    
-    <div>
-    <form classname={style.mainStuff}>
-        <input type="email" id="username" name="username" placeholder="Enter Email"/><br/><br/>
-        <input type="password" id="psswd" name="password" placeHolder="Enter Password"/><br/><br/>
-        <input type="submit" value="Login"/>
-    </form>
-    </div>
 
-  )
+  const userRef = useRef()
+  const errRef = useRef()
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false)
+
+  useEffect(() => {
+    userRef.currrent.focus()
+  }, [])
+
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/auth/login", {
+        username,
+        password,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div classname={style.loggingin}>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Email"
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <br />
+        <br />
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+  );
 }
 
 export default LoginPage;
