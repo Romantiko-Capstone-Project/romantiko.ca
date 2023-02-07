@@ -5,9 +5,9 @@ function LoginPage() {
   return (
     
     <div>
-    <form classname={style.mainstuff}>
+    <form classname={style.mainStuff}>
         <input type="email" id="username" name="username" placeholder="Enter Email"/><br/><br/>
-        <input type="text" id="psswd" name="password" placeHolder="Enter Password"/><br/><br/>
+        <input type="password" id="psswd" name="password" placeHolder="Enter Password"/><br/><br/>
         <input type="submit" value="Login"/>
     </form>
     </div>
