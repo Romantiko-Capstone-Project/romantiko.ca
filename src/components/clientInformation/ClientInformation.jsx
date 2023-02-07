@@ -1,4 +1,4 @@
-import { styles } from '@material-ui/pickers/views/Calendar/Calendar';
+import styles from "/styles/MuiPicker.module.css";
 import React from 'react';
 
 const ClientInformation = () => {

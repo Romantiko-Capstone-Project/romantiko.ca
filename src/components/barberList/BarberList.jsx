@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from "/styles/BarberList.module.css"
-import {DropDownListComponent} from "@syncfusion/ej2-react-dropdowns"
+//import {DropDownListComponent} from "@syncfusion/ej2-react-dropdowns"
 import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton';
+//import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function BarberList() {
     

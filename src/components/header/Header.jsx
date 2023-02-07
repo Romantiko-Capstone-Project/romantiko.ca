@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from 'react'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.css'
+
 function Header() {
   return (
     <>
@@ -34,7 +36,7 @@ function Header() {
             <a className="nav-link mx-2" href="#">Shop</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mx-2" href="#">Booking</a>
+            <a className="nav-link mx-2" href="/booking">Booking</a>
           </li>
           <li className="nav-item">
             <a className="nav-link mx-2" href="/AboutUs">About Us</a>
