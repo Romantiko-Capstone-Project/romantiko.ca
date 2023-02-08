@@ -16,9 +16,9 @@ function Footer() {
 
 
           <div className="mt-4" >
-            <a href = "#" type="button" class="btn btn-lg"  style={{"backgroundColor": "#808080","marginRight":"10px"}}><span className="fa fa-facebook-f"></span></a>
-            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-instagram"></i></a>
-            <a href = "#" type="button" class="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-google"></i></a>
+            <a href = "#" type="button" className="btn btn-lg"  style={{"backgroundColor": "#808080","marginRight":"10px"}}><span className="fa fa-facebook-f"></span></a>
+            <a href = "#" type="button" className="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-instagram"></i></a>
+            <a href = "#" type="button" className="btn btn-lg" style={{"backgroundColor": "#808080","marginRight":"10px"}}><i className="fa fa-google"></i></a>
           </div>
           
         </div>

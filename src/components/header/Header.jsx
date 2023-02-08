@@ -14,10 +14,10 @@ function Header() {
       <div className=" collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav ms-auto ">
           <li className="nav-item">
-            <a className="nav-link mx-2 active" aria-current="page" href="/">Home</a>
+            <a className="nav-link mx-2" aria-current="page" href="/">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mx-2" href="#">Services</a>
+            <a className="nav-link mx-2"  href="#">Services</a>
           </li>
           <li className="nav-item">
             <a className="nav-link mx-2" href="#">Gallery</a>
@@ -29,7 +29,7 @@ function Header() {
             <a className="nav-link mx-2" href="#">Booking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mx-2" href="/AboutUs">About Us</a>
+            <a className="nav-link mx2"  href="/AboutUs">About Us</a>
           </li>
 
         </ul>

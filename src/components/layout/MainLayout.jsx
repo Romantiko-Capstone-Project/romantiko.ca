@@ -16,7 +16,7 @@ function MainLayout({children}) {
       
       </Head>
         <Header/>
-        <main className={styles.main}>
+        <main>
         {children}
         </main>
         <Footer/>
