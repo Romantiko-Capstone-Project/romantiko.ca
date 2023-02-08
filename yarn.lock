@@ -1136,6 +1136,17 @@
   dependencies:
     "@syncfusion/ej2-base" "~20.4.48"
 
+"@syncfusion/ej2-calendars@20.4.48":
+  "integrity" "sha512-V0AaRttmab/ZBfNuhfxILtJhkbE2uj/xdQlk3pDylUQ5DFdTBnK4SFxy5uFOEMiWPSycakgdLlkuhyd7u3LeJQ=="
+  "resolved" "https://registry.npmjs.org/@syncfusion/ej2-calendars/-/ej2-calendars-20.4.48.tgz"
+  "version" "20.4.48"
+  dependencies:
+    "@syncfusion/ej2-base" "~20.4.48"
+    "@syncfusion/ej2-buttons" "~20.4.48"
+    "@syncfusion/ej2-inputs" "~20.4.48"
+    "@syncfusion/ej2-lists" "~20.4.48"
+    "@syncfusion/ej2-popups" "~20.4.48"
+
 "@syncfusion/ej2-data@~20.4.48":
   "integrity" "sha512-RQ0bplZ20GmmBuJYXSMKVGUGpap0Sx7Zls4tL7+IBIIq+jdGNat80b6pemJAKxyZfy3iCB0+L4L2LVAlfN+KTw=="
   "resolved" "https://registry.npmjs.org/@syncfusion/ej2-data/-/ej2-data-20.4.48.tgz"
@@ -1205,6 +1216,15 @@
   "version" "20.4.48"
   dependencies:
     "@syncfusion/ej2-base" "~20.4.48"
+
+"@syncfusion/ej2-react-calendars@^20.4.48":
+  "integrity" "sha512-yz957Bb0SsQpPEPvNhJhfuYPZiG/vOwMfiF3C7sJ6B5X4/kTC0gvjp84jynLstvtF+msBHxI6LkT5EJvtf8rlQ=="
+  "resolved" "https://registry.npmjs.org/@syncfusion/ej2-react-calendars/-/ej2-react-calendars-20.4.48.tgz"
+  "version" "20.4.48"
+  dependencies:
+    "@syncfusion/ej2-base" "~20.4.48"
+    "@syncfusion/ej2-calendars" "20.4.48"
+    "@syncfusion/ej2-react-base" "~20.4.48"
 
 "@syncfusion/ej2-react-dropdowns@^20.4.49":
   "integrity" "sha512-lfwlGtHJG5zOwUrUPF4naOTiGzjzynJCS8bPcDfUUXXr/H3zRBS38uaELWAJOKfBufx/hb3TUff84f4tSEwRdw=="
@@ -3162,6 +3182,13 @@
   "integrity" "sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA=="
   "resolved" "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   "version" "3.2.0"
+
+"react-image-crop@^10.0.9":
+  "integrity" "sha512-fqn6a811cx/sE7jtu8txL4lBTwgZYuEVNvy7UPKMNMWeRcZa6v0ja11+Gd9nZQiBfaxDal3PBcKhGBLQ956UNg=="
+  "resolved" "https://registry.npmjs.org/react-image-crop/-/react-image-crop-10.0.9.tgz"
+  "version" "10.0.9"
+  dependencies:
+    "clsx" "^1.2.1"
 
 "react-is@^16.13.1", "react-is@^16.3.2", "react-is@^16.7.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="

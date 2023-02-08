@@ -7,9 +7,7 @@ function MainLayout({children}) {
   return (
     <>
         <Header/>
-        <main className={styles.main}>
         {children}
-        </main>
         <Footer/>
     </>
   );
