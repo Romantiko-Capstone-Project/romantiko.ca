@@ -1,4 +1,4 @@
-@import url("https://cdn.syncfusion.com/ej2/material.css");
+/*@import url("https://cdn.syncfusion.com/ej2/material.css");*/
 
 .container{
     padding: 50px;
@@ -11,4 +11,6 @@
 .right{
     padding: 30px;
 }
+
+
 

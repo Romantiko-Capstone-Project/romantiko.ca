@@ -18,4 +18,6 @@
     justify-content: center;
     width: 100%;
     flex-wrap: wrap;
+    padding-right: 10%;
+    padding-left: 10%;
 }
