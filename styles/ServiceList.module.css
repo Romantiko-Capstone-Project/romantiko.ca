@@ -18,6 +18,10 @@
     justify-content: center;
     width: 100%;
     flex-wrap: wrap;
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.trial{
+    padding: 10px;
 }
