@@ -36,6 +36,7 @@
     "react-dropdown": "^1.11.0",
     "react-image-crop": "^10.0.9",
     "react-localization": "^1.0.19",
+    "react-router-dom": "^6.8.1",
     "react-time-picker": "^5.2.0"
   },
   "devDependencies": {

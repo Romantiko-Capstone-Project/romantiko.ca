@@ -1,12 +1,17 @@
-@import url("https://cdn.syncfusion.com/ej2/material.css");
+/*@import url("https://cdn.syncfusion.com/ej2/material.css");*/
 
 .container{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10pc;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
 }
 
-.containerFluid{
-    margin: 10px auto;
-    height: 200px;
+.description{
+    margin: 20px;
 }
+
+.text{
+    margin: 10px;
+}
+

@@ -18,7 +18,7 @@ const MuiPicker = () => {
     <div className={styles.container}>
         <div className={styles.left}>
             <h3>Date and Time</h3>
-            <p className={styles.desc}>Choose a date and time</p>
+            <p className={styles.desc}>Book a date and time</p>
         
             {/* <div>
                 <TimePickerComponent placeholder="Select a time"></TimePickerComponent>

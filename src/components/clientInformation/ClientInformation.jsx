@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import styles from "/styles/ClientInformation.module.css";
 import React from 'react';
 
@@ -26,7 +27,13 @@ const ClientInformation = () => {
                         Notes...
                     </textarea>
                 </label>
-                
+                <a href="/">
+                    <button type="button">
+                        Cancel
+                    </button>
+                </a>
+                    
+                <input type="submit" value="Book Now" />
             </form>
             </div>
         </div>
