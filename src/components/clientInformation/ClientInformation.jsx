@@ -1,4 +1,4 @@
-import styles from "/styles/MuiPicker.module.css";
+import styles from "/styles/ClientInformation.module.css";
 import React from 'react';
 
 const ClientInformation = () => {
@@ -8,19 +8,19 @@ const ClientInformation = () => {
             <p className={styles.desc}>Tell us a bit about yourself</p>
             <div className={styles.form}>
             <form className={styles.form}>
-                <label>
+                <label className={styles.label}>
                     Name <br />
                     <input type="text" name="name"></input>
                 </label> <br />
-                <label> 
+                <label className={styles.label}> 
                     Email <br />
                     <input type="email" name="email"></input>
                 </label> <br />
-                <label>
+                <label className={styles.label}>
                     Phone Number <br />
                     <input type="tel" name="phonenumber"></input>
                 </label> <br />
-                <label>
+                <label className={styles.label}>
                     Add a message <br />
                     <textarea>
                         Notes...
