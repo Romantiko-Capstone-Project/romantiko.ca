@@ -16,9 +16,9 @@ function MainLayout({children}) {
       
       </Head>
         <Header/>
-        <main>
+
         {children}
-        </main>
+
         <Footer/>
     </>
   );
