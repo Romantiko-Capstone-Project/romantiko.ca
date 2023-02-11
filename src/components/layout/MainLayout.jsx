@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import styles from '../../../styles/Home.module.css';
 import Head from 'next/head';
 
 function MainLayout({children}) {
