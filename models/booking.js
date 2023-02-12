@@ -1,11 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Booking = new mongoose.Schema(
   {
-    barberName: {
+    startTime: {
       type: String,
       required: true,
-      maxlength: 60,
+    },
+    endTime: {
+      type: String,
+      required: true,
+    },
+    service: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
+      required: true,
+    },
+    barber: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Staff",
+      required: true,
     },
     customerName: {
       type: String,
@@ -19,14 +32,6 @@ const Booking = new mongoose.Schema(
       type: String,
       required: true,
     },
-    typeOfHairCut: {
-      type: String,
-      required: true,
-    },
-    appointmentDate: {
-      type: Date,
-      required: false,
-    },
     notes: {
       type: String,
     },
@@ -38,4 +43,4 @@ const Booking = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.models.Booking || mongoose.model('Booking', Booking)
+module.exports = mongoose.models.Booking || mongoose.model("Booking", Booking);
