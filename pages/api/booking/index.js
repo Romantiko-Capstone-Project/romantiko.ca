@@ -59,6 +59,7 @@ const handler = async (req, res) => {
 
       console.log(timeStart, timeEnd, dayOfWeek);
 
+      // find free time slot based on start time and end time
       const slotsToBook = await TimeSlot.find({
         day: dayOfWeek,
         startTime: { $gte: timeStart, $lt: timeEnd },
@@ -71,20 +72,12 @@ const handler = async (req, res) => {
         return res.status(201).json("unavailable slot");
       }
 
-      // const booking = await Booking.create(req.body);
-      // const result = await slotsToBook.updateMany(
-      //   {
-      //     $set: {
-      //       isBooked: true,
-      //       bookingId: booking._id,
-      //     },
-      //   },
-      //   { limit: 2 } // limit the number of slots that can be modified to 2
-      // );
-      // res.status(201).json(booking);
-      // console.log(result);
+      let numBookings = 0;
 
       for (const slot of slotsToBook) {
+        if (numBookings >= 2) {
+          return res.status(400).json("maximum number of bookings reached");
+        }
         if (slot.isBooked) {
           return res.status(201).json("unavailable slot");
         } else {
@@ -95,7 +88,14 @@ const handler = async (req, res) => {
               bookingId: booking._id,
             },
           });
+          await Schedule.create({
+            day: slot.day,
+            staffId: booking.barber,
+            startTime: booking.startTime,
+            endTime: booking.endTime,
+          });
           res.status(201).json(booking);
+          numBookings++;
         }
       }
 
