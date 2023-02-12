@@ -19,13 +19,13 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-// verify user account
+// verify staff access
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.account.id === req.params.id || req.account.role === "admin") {
       next();
     } else {
-      res.status(403).json("You are not alowed to do that!");
+      res.status(403).json("Uauthorized Access Denied.");
     }
   });
 };
@@ -36,7 +36,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
     if (req?.account?.role === "admin") {
       next();
     } else {
-      res.status(403).json("You are not alowed to do that!");
+      res.status(403).json("Uauthorized Access Denied.");
     }
   });
 };

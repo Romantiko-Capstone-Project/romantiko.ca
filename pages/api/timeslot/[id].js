@@ -28,21 +28,21 @@ const handler = async (req, res) => {
     } catch (err) {
       res
         .status(500)
-        .json({ message: "An error occurred while updating the service." });
+        .json({ message: "An error occurred while updating the time slot." });
     }
   }
   if (method === "DELETE") {
     try {
       const slot = await TimeSlot.findById(id);
       if (!slot) {
-        return res.status(404).json({ message: "Service not found." });
+        return res.status(404).json({ message: "Time slot not found." });
       }
       await slot.findByIdAndDelete(id);
-      res.status(200).json({ message: "Successfully deleted the service" });
+      res.status(200).json({ message: "Successfully deleted the time slot" });
     } catch (err) {
       res
         .status(500)
-        .json(err, { message: "The desired service wasn't found." });
+        .json(err, { message: "The desired time slot wasn't found." });
     }
   }
 };

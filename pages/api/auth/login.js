@@ -22,7 +22,7 @@ const handler = async (req, res) => {
         return res.status(401).json("Please confirm your email to login");
       }
 
-      // decrypt password
+      // decode password
       const hashedPassword = CryptoJS.AES.decrypt(
         account.password,
         process.env.PASS_SEC

@@ -18,9 +18,10 @@ const handler = async (req, res) => {
 
   if (method === "POST") {
     try {
-      const slot = await TimeSlot.create(req.body);
+      const slot = await TimeSlot.insertMany(req.body);
       res.status(201).json(slot);
     } catch (err) {
+      console.error(err);
       res.status(500).json({
         message: "An error occurred while creating a time slot.",
         error: err,
