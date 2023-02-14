@@ -6,8 +6,8 @@ const Homepage = () => {
     return (
     <div>
      
-      <Featured></Featured>
-       
+      
+     <Featured></Featured>
       
 
       
