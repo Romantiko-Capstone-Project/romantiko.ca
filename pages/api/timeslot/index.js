@@ -1,6 +1,5 @@
 import dbConnect from "../../../util/mongo";
 import TimeSlot from "../../../models/TimeSlot";
-const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -30,10 +29,4 @@ const handler = async (req, res) => {
   }
 };
 
-const handlerWrapper = (req, res) => {
-  verifyTokenAndAdmin(req, res, () => {
-    handler(req, res);
-  });
-};
-
-export default handlerWrapper;
+export default handler;

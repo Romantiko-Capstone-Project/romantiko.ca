@@ -1,0 +1,56 @@
+.container {
+    width: 22%;
+    display: flex;
+}
+
+.wrapper_left {
+    padding: 10px;
+}
+
+/* .wrapper_right {
+    margin: 0;
+    padding: 10px 30px;
+    background-color: black;
+} */
+
+.service_header {
+    text-align: center;
+    padding: 10px 30px;
+    background-color: black;
+}
+
+.service_title {
+    font-size: 14px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.service_details {
+    flex-direction: column;
+    display: flex;
+    padding-bottom: 40px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    padding: 20px 50px;
+}
+
+.service_price {
+    font-size: 16px;
+    color: black;
+}
+
+.button {
+    background-color: #363636;
+    color: white;
+    font-size: 16px;
+    padding: 5px 30px;
+    margin: 10px 0px;
+    cursor: pointer;
+    border-color: #363636;
+}
+
+.button:hover {
+    opacity: 0.6;
+    transition: 0.4s;
+}
