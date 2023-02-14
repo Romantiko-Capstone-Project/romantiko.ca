@@ -1,11 +1,10 @@
 import React from 'react';
-import banner from '../../../public/img/aboutus/banner-aboutus.jpg';
-
+import Image from 'next/image';
 const AboutUs = () => {
     return (
         <section className="py-5">
             <div className="text-center my-5">
-            <img className="img-fluid rounded-circle mb-4" src={banner} alt="..." />
+            <Image className="img-fluid rounded-circle mb-4" src="/img/aboutus/banner.png" layout='responsive' alt="..." />
                 
 
             </div>

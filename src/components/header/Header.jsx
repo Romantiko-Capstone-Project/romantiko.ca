@@ -29,7 +29,7 @@ function Header() {
             <a className="nav-link mx-2" href="#">Booking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mx2"  href="/AboutUs">About Us</a>
+            <a className="nav-link mx2"  href="/about-us">About Us</a>
           </li>
 
         </ul>
