@@ -19,8 +19,5 @@ const TimeSlot = new mongoose.Schema({
   bookingId: { type: mongoose.Schema.Types.ObjectId, ref: "Booking" },
 });
 
-// Remove unique index on `startTime`
-// TimeSlot.index({ startTime: 1 }, { unique: false });
-
 module.exports =
   mongoose.models.TimeSlot || mongoose.model("TimeSlot", TimeSlot);

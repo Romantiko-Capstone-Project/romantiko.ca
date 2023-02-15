@@ -16,7 +16,6 @@ const TimeSlotTable = () => {
 
   const [date, setDate] = useState(moment().startOf("week"));
   const [timeSlotsData, setTimeSlotsData] = useState([]);
-  const [time, setTime] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,23 +26,22 @@ const TimeSlotTable = () => {
     fetchData();
   }, []);
 
-  const handleClick = (timeSlot) => {
-    setTime(timeSlot.startTime);
-    // Book the time slot
+  const getTimeSlotsForDay = (day) => {
+    return timeSlotsData.filter((timeSlot) => timeSlot.day === day);
   };
+
+  const allStartTimes = timeSlotsData.flatMap((timeSlot) => timeSlot.startTime);
 
   return (
     <div>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th></th>
             {daysOfWeek.map((day) => {
               return <th key={day}>{day}</th>;
             })}
           </tr>
           <tr>
-            <th></th>
             {daysOfWeek.map((day) => {
               const currentDate = date.clone().day(day);
               return (
@@ -56,40 +54,38 @@ const TimeSlotTable = () => {
         </thead>
 
         <tbody>
-          {timeSlotsData.map((timeSlot) => {
-            return (
-              <tr key={`${timeSlot.day}-${timeSlot.startTime}`}>
-                {daysOfWeek.map((day) => {
-                  const currentDate = date.clone().day(day);
+          {allStartTimes.map((time) => (
+            <tr key={time}>
+              {daysOfWeek.map((day) => {
+                const timeSlotsForDay = getTimeSlotsForDay(day);
+                const timeSlot = timeSlotsForDay.find(
+                  (timeSlot) => timeSlot.startTime === time
+                );
 
-                  if (day === timeSlot.day) {
-                    return (
-                      <td
-                        key={`${currentDate.format("MM/DD/YYYY")}-${
-                          timeSlot.startTime
-                        }`}
+                if (timeSlot) {
+                  return (
+                    <td key={`${day}-${time}`}>
+                      <button
+                        disabled={timeSlot.isBooked}
+                        onClick={() => {
+                          // Book the time slot
+                        }}
                       >
-                        <button
-                          disabled={timeSlot.isBooked}
-                          onClick={() => handleClick(timeSlot)}
-                        >
-                          {timeSlot.startTime}
-                        </button>
-                      </td>
-                    );
-                  } else {
-                    return <td key={`${day}-${timeSlot.startTime}`}></td>;
-                  }
-                })}
-              </tr>
-            );
-          })}
+                        {timeSlot.startTime}
+                      </button>
+                    </td>
+                  );
+                } else {
+                  return <td key={`${day}-${time}`}></td>;
+                }
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
       <button onClick={() => setDate(date.clone().subtract(7, "days"))}>
         Previous Week
       </button>
-
       <button onClick={() => setDate(date.clone().add(7, "days"))}>
         Next Week
       </button>
