@@ -4,8 +4,11 @@ const AboutUs = () => {
     return (
         <section className="py-5">
             <div className="text-center my-5">
-            <Image className="img-fluid rounded-circle mb-4" src="/img/aboutus/banner.png" layout='responsive' alt="..." />
-                
+
+            <div className="py-5 bg-image-full" style={{"backgroundImage": "url(../../../public/img/aboutus/banner.png)"}}>
+
+
+        </div>  
 
             </div>
             <div className="container my-5">

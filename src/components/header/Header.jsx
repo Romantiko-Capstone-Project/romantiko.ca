@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 function Header() {
   return (
     <>
@@ -13,8 +13,11 @@ function Header() {
      
       <div className=" collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav ms-auto ">
+          
           <li className="nav-item">
-            <a className="nav-link mx-2" aria-current="page" href="/">Home</a>
+            <Link href="/" aria-current="page">
+            <a className="nav-link mx-2">Home</a>
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link mx-2"  href="#">Services</a>
