@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_component {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px 10px 0px;
+}
+
+.form_field {
+    background-color: rgb(83, 82, 82);
+    color: rgb(51, 50, 50);
+    border: none;
+    border-radius: 3px;
+    padding: 5px 100px 10px 5px;
+    margin-top: 3px;
+}

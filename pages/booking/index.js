@@ -8,6 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import axios from "axios";
 import { format } from "date-fns";
+import dayjs from "dayjs";
 
 const Booking = () => {
   const [services, setServices] = useState([]);
@@ -45,15 +46,42 @@ const Booking = () => {
   }, [selectedDate]);
 
   const handleGetTime = (selectedStartTime) => {
+    setSelectedStartTime(selectedStartTime);
     setSelectedEndTime(selectedStartTime + 30);
-
+  
     if (selectedDate instanceof Date && !isNaN(selectedDate)) {
       const formattedDate = format(selectedDate, "yyyy-MM-dd");
-      const startTime = `${formattedDate}T${selectedStartTime}:00:00Z`;
-      const endTime = `${formattedDate}T${selectedStartTime + 30}:00:00Z`;
-      setBookingTime([startTime, endTime]);
+      const startTime = new Date().setHours(
+        Math.floor(selectedStartTime / 100),
+        selectedStartTime % 100,
+        0,
+        0
+      );
+      const endTime = new Date().setHours(
+        Math.floor((selectedStartTime + 30) / 100),
+        (selectedStartTime + 30) % 100,
+        0,
+        0
+      );
+      const formattedStartTime = formatDate(startTime);
+      const formattedEndTime = formatDate(endTime);
+      setBookingTime([formattedStartTime, formattedEndTime]);
     }
   };
+  
+
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    return formattedDate;
+  };
+  
 
   return (
     <div className={styles.main}>
@@ -70,10 +98,9 @@ const Booking = () => {
           ))}
         </div>
       </div>
+      <h3 className={styles.title}>Select Time</h3>
       <div className={styles.booking_container}>
         <div className={styles.date_wrapper}>
-          <h3>Select Time</h3>
-          
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDatePicker
               orientation="landscape"
@@ -113,17 +140,15 @@ const Booking = () => {
             </div>
           </div>
         </div>
-
-       
       </div>
-
+      <h3 className={styles.title}>Add your details</h3>
       <div className={styles.booking_card}>
-          <BookingCard
-            startTime={bookingTime[0]}
-            endTime={bookingTime[1]}
-            selectedService={selectedService}
-          />
-        </div>
+        <BookingCard
+          startTime={bookingTime[0]}
+          endTime={bookingTime[1]}
+          selectedService={selectedService}
+        />
+      </div>
     </div>
   );
 };

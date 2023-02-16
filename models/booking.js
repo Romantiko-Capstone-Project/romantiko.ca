@@ -18,6 +18,7 @@ const Booking = new mongoose.Schema(
     barber: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Staff",
+      default: "63e18181c33b9e146c8e521b",
       required: true,
     },
     customerName: {
