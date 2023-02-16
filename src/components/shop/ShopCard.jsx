@@ -13,8 +13,6 @@ const ShopCard = () => {
                     <span className={styles.time}>30 minutes</span>
                     <span className={styles.price}>$20+gst</span>
                 </div>
-                <button 
-                className={styles.button}>Book Now</button>
             </div>
         </div>
     );
