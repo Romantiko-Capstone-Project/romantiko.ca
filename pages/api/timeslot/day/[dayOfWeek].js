@@ -12,7 +12,7 @@ const handler = async (req, res) => {
 
   if (method == "GET") {
     try {
-      const slots = await TimeSlot.find({day: dayOfWeek});
+      const slots = await TimeSlot.find({ day: dayOfWeek });
       res.status(200).json(slots);
     } catch (err) {
       res
@@ -22,10 +22,4 @@ const handler = async (req, res) => {
   }
 };
 
-const handlerWrapper = (req, res) => {
-  verifyTokenAndAdmin(req, res, () => {
-    handler(req, res);
-  });
-};
-
-export default handlerWrapper;
+export default handler;

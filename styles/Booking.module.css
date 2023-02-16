@@ -1,28 +1,57 @@
+.main {
+    background-color: rgba(255, 255, 255, 0.924);
+}
 .container {
     padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    background-color: #e0d9d995;
 }
 
-.desc {
-    font-size: 24px;
-    color: #444;
-    width: 70%
-}
-
-.wrapper {
+.service_wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     flex-wrap: wrap;
-    padding-right: 5%;
-    padding-left: 5%;
 }
 
-.trial {
-    padding: 10px;
+.booking_container {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 65px;
+    margin-right: 65px;
+    border-radius: 5px;
+}
+
+.date_wrapper {
+    margin: 15px 30px 15px 5px;
+}
+
+.time_wrapper {
+    margin: 15px 10px 15px 30px;
+    padding-right: 14px;
+}
+
+.time_button {
+    background-color: rgba(216, 238, 254, 0.94);
+    color: black;
+    font-size: 14px;
+    width: 15%;
+    padding: auto;
+    margin: 10px 10px 10px 10px;
+    border-radius: 2px;
+    border: none;
+}
+
+.time_button:disabled,
+.time_button[disabled]{
+  background-color: #e3cfcf;
+  color: black;
+  border: none;
+}
+
+.title {
+    color: black;
+    margin: 15px 10px 15px 65px;
+    padding-right: 14px;
 }

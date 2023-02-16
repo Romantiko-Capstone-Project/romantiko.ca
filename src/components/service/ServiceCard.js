@@ -1,27 +1,24 @@
 import styles from "/styles/ServiceCard.module.css";
 import React from "react";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, onSelectService }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper_left}>
-        <div className={styles.service_header}>
-          <h1 className={styles.service_title}>{service.serviceName}</h1>
-        </div>
-
-        <div className={styles.service_details}>
-          <span className={styles.service_description}>
-            {service.description}
-          </span>
-          <span className={styles.service_price}>$ {service.price}</span>
-          <button className={styles.button}>Add Service</button>
-          <button className={styles.button}>Remove Service</button>
-        </div>
+      <div className={styles.radio_buttons}>
+        <label>
+          <input
+            type="radio"
+            name="service"
+            value={service._id}
+            onChange={() => onSelectService(service)}
+          />
+        </label>
       </div>
-
-      <div className={styles.wrapper_right}>
-        <img className={styles.service_img} src={service.img} alt="" />
-      </div>
+      <div className={styles.service_container}>
+          <span className={styles.service_details}>{service.serviceName}</span>
+          <span className={styles.service_details}>${service.price}</span>
+          <span className={styles.service_details}>Duration: 30 mins</span>
+        </div>
     </div>
   );
 };
