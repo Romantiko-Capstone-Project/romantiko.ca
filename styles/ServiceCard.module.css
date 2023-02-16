@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    border-radius: 5px;
+    margin: 10px 10px 20px 20px;
+    padding: 10px 0px 10px 0px;
+    background-color: black;
+    width: 20rem;
+}
+.service_container {
+    font-size: 14px;
+    color: rgb(206, 205, 205);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.radio_buttons {
+    padding-left: 7px;
+}
+
+.service_details {
+    padding-left: 20px;
+}

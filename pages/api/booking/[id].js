@@ -1,5 +1,7 @@
 import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
+import TimeSlot from "../../../models/TimeSlot";
+import Schedule from "../../../models/Schedule";
 
 const handler = async (req, res) => {
   const {
@@ -38,6 +40,15 @@ const handler = async (req, res) => {
         return res.status(404).json({ message: "Booking not found." });
       }
       await Booking.findByIdAndDelete(id);
+      // update time slot
+      await TimeSlot.updateMany(
+        {
+          bookingId: id,
+        },
+        { $set: { isBooked: false, bookingId: null } }
+      );
+      // delete scheduled booking
+      await Schedule.findOneAndDelete({staffId: booking.barber})
       res.status(200).json({ message: "Successfully deleted the booking" });
     } catch (err) {
       res
