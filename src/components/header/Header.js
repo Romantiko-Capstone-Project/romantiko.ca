@@ -44,9 +44,9 @@ function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link mx-2" href="#">
-                  Booking
-                </a>
+                <Link href="/booking">
+                  <a className="nav-link mx-2">Booking</a>
+                </Link>
               </li>
               <li className="nav-item">
                 <Link href="/about-us">
