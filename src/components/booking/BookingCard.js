@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserForm from "./UserForm";
 import styles from "/styles/BookingCard.module.css";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const BookingCard = ({ startTime, endTime, selectedService }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+
+  const router = useRouter();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -25,8 +28,9 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
     setNote(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const bookingData = {
       startTime: startTime.toString(),
       endTime: endTime.toString(),
@@ -36,15 +40,33 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
       customerPhone: phone,
       notes: note,
     };
-    axios
-      .post("http://localhost:3000/api/booking/", bookingData)
-      .then((response) => {
-        console.log(response.data); // handle response
-      })
-      .catch((error) => {
-        console.error(error); // handle error
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/booking/",
+        bookingData
+      );
+      const booking = response.data;
+
+      // Redirect to ConfirmBooking page with the booking details
+      router.push({
+        pathname: "/booking/confirm-booking",
+        query: {
+          bookingId: booking._id,
+          startTime,
+          endTime,
+          serviceName: selectedService.serviceName,
+          name,
+          email,
+          phone,
+          note,
+        },
       });
+    } catch (error) {
+      console.error(error); // handle error
+    }
   };
+
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
@@ -60,17 +82,21 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
             onNoteChange={handleNoteChange}
           />
         </div>
+        {startTime && endTime ? (
+          <div className={styles.booking_section}>
+            <div className={styles.booking_info}>
+              <div>
+                <h2>Booking Info</h2>
+                <div>Start Time: {startTime}</div>
+                <div>End Time: {endTime}</div>
+              </div>
 
-        <div className={styles.booking_section}>
-          <div className={styles.booking_info}>
-            <h2>Booking Info</h2>
-            <div>Start Time: {startTime}</div>
-            <div>End Time: {endTime}</div>
-            {selectedService && (
-              <div>Service Type: {selectedService.serviceName}</div>
-            )}
+              {selectedService && (
+                <div>Service Type: {selectedService.serviceName}</div>
+              )}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       <button className={styles.submit_button} type="submit">

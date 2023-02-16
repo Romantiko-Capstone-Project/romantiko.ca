@@ -48,16 +48,16 @@ const Booking = () => {
   const handleGetTime = (selectedStartTime) => {
     setSelectedStartTime(selectedStartTime);
     setSelectedEndTime(selectedStartTime + 30);
-  
+
     if (selectedDate instanceof Date && !isNaN(selectedDate)) {
       const formattedDate = format(selectedDate, "yyyy-MM-dd");
-      const startTime = new Date().setHours(
+      const startTime = selectedDate.setHours(
         Math.floor(selectedStartTime / 100),
         selectedStartTime % 100,
         0,
         0
       );
-      const endTime = new Date().setHours(
+      const endTime = selectedDate.setHours(
         Math.floor((selectedStartTime + 30) / 100),
         (selectedStartTime + 30) % 100,
         0,
@@ -65,10 +65,10 @@ const Booking = () => {
       );
       const formattedStartTime = formatDate(startTime);
       const formattedEndTime = formatDate(endTime);
+
       setBookingTime([formattedStartTime, formattedEndTime]);
     }
   };
-  
 
   const formatDate = (date) => {
     const formattedDate = new Date(date).toLocaleString("en-US", {
@@ -79,9 +79,8 @@ const Booking = () => {
       minute: "numeric",
       hour12: true,
     });
-    return formattedDate;
+    return formattedDate.replace(" at", "");
   };
-  
 
   return (
     <div className={styles.main}>

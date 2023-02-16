@@ -49,6 +49,12 @@
   border: none;
 }
 
+.time_button:focus {
+    background-color: #b4efc4;
+  color: black;
+  border: none;
+}
+
 .title {
     color: black;
     margin: 15px 10px 15px 65px;

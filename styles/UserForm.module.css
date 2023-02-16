@@ -10,8 +10,8 @@
 }
 
 .form_field {
-    background-color: rgb(83, 82, 82);
-    color: rgb(51, 50, 50);
+    background-color: rgba(19, 19, 22, 0.919);
+    color: rgb(145, 142, 142);
     border: none;
     border-radius: 3px;
     padding: 5px 100px 10px 5px;
