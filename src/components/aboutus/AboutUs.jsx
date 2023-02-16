@@ -5,10 +5,10 @@ const AboutUs = () => {
         <section className="py-5">
             <div className="text-center my-5">
 
-            <div className="py-5 bg-image-full" style={{"backgroundImage": "url(../../../public/img/aboutus/banner.png)"}}>
+                <div className="py-5 bg-image-full" style={{ "backgroundImage": "url(../../../public/img/aboutus/banner.png)" }}>
 
 
-        </div>  
+                </div>
 
             </div>
             <div className="container my-5">
