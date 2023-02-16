@@ -21,3 +21,70 @@
     padding-right: 5%;
     padding-left: 5%;
 }
+
+.title{
+    font-size: 100px;
+}
+
+
+/*
+BREAK 
+*/
+
+.cardContainer{
+    width: 90%;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 100px;
+    border-style: solid; /*button color: #363636*/
+    border: 1px solid #d7d7d7;
+    margin: 15px;
+    cursor: pointer;
+    align-items: center;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cardLeft{
+    flex: 2;
+}
+
+.cardRight{
+    flex: 1;
+}
+
+.cardImgContainer{
+    float: right;
+}
+
+.cardTitle{
+    font-size: 40px;
+    font-weight: 400;
+    color: #000000;
+    padding-bottom: 10px;
+    line-height: 48px;
+}
+
+.cardPrice, .cardDescription{
+    font-size: 20px;
+    color: #353535;
+}
+
+.cardDescription{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cardInfo{
+    flex-direction: column;
+    display: flex;
+    padding-bottom: 40px;
+}
+
+.cardWrapper{
+    padding: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: white;
+}
