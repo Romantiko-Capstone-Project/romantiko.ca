@@ -1,41 +1,80 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
+import {
+  Facebook,
+  Instagram,
+  Google,
+  HouseFill,
+  EnvelopeFill,
+  Phone,
+} from "react-bootstrap-icons";
 function Footer() {
   return (
-    <footer className="text-white text-center text-lg-start" style={{ "backgroundColor": "#23242a" }}>
-
+    <footer
+      className="text-white text-center text-lg-start"
+      style={{ backgroundColor: "#23242a" }}
+    >
       <div className="container p-4">
         <div className="row mt-4">
           <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 className="text-uppercase mb-4">About company</h5>
 
             <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-              voluptatum deleniti atque corrupti.
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui
+              blanditiis praesentium voluptatum deleniti atque corrupti.
             </p>
 
-
-            <div className="mt-4" >
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><span className="fa fa-facebook-f"></span></a>
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><i className="fa fa-instagram"></i></a>
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><i className="fa fa-google"></i></a>
+            <div className="mt-4">
+              <a
+                href="#"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <Facebook />
+              </a>
+              <a
+                href="#"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <Instagram />
+              </a>
+              <a
+                href="#"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <Google />
+              </a>
             </div>
-
           </div>
 
           <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
             <h5 className="text-uppercase mb-4 pb-1">Contact Us</h5>
 
-
-            <ul className="fa-ul" style={{ "marginLeft": "1.65em" }}>
+            <ul className="fa-ul" style={{ marginLeft: "1.65em" }}>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
+                <span className="fa-li">
+                  <HouseFill />
+                </span>
+                <span className="ms-1">
+                  513 Centre Ave E #125, Airdrie, AB T4B 1P9
+                </span>
               </li>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">!! email here !!</span>
+                <span className="fa-li">
+                  <EnvelopeFill />
+                </span>
+                <span className="ms-1">!! email here !!</span>
               </li>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-1">(403) 980 - 2686</span>
+                <span className="fa-li">
+                  <Phone />
+                </span>
+                <span className="ms-1">(403) 980 - 2686</span>
               </li>
             </ul>
           </div>
@@ -63,14 +102,14 @@ function Footer() {
         </div>
       </div>
 
-      <div className="text-center p-3" style={{ "backgroundColor": "#191919" }}>
+      <div className="text-center p-3" style={{ backgroundColor: "#191919" }}>
         © 2023 Copyright:
         <Link href="/">
           <a className="text-white">Romantiko.ca</a>
         </Link>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

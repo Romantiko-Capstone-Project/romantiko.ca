@@ -29,14 +29,14 @@
 
 .submit_button {
     margin-left: 45%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     margin-top: 5%;
     width: 7%;
     border: none;
     padding: 5px;
     border-radius: 3px;
     opacity: 0.7;
-    background-color: rgb(47, 51, 54);
+    background-color: rgb(0, 145, 255);
 }
 
 .submit_button:hover {
