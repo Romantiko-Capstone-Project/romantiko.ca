@@ -1,0 +1,43 @@
+.date_wrapper {
+    margin: 15px 30px 15px 15px;
+    display: flex;
+}
+
+.time_wrapper {
+    margin: 30px 10px 15px 30px;
+    padding-right: 14px;
+}
+
+.barber {
+    margin: 30px 10px 15px 12px;
+}
+
+.time_button {
+    background-color: rgba(216, 238, 254, 0.94);
+    color: black;
+    font-size: 14px;
+    width: 15%;
+    padding: auto;
+    margin: 10px 10px 10px 10px;
+    border-radius: 2px;
+    border: none;
+}
+
+.time_button:disabled,
+.time_button[disabled] {
+    background-color: #e3cfcf;
+    color: black;
+    border: none;
+}
+
+.time_button:focus {
+    background-color: #b4efc4;
+    color: black;
+    border: none;
+}
+
+.time_button:active {
+    background-color: #b4efc4;
+    color: black;
+    border: none;
+}

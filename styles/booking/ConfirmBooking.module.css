@@ -1,3 +1,7 @@
+.main {
+  background-color: black;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -18,6 +22,7 @@
   font-weight: bold;
   margin-left: 9%;
   margin-right: 10%;
+
 }
 
 .booking_details {
@@ -31,6 +36,7 @@
 .booking_message1 {
   padding-top: 10px;
   color: rgb(85, 136, 180);
+
 }
 
 .booking_message2 {

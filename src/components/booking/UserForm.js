@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "/styles/UserForm.module.css";
+import styles from "/styles/booking/UserForm.module.css";
 
 const UserForm = ({
   name,
