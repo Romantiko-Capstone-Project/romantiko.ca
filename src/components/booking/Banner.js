@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "/styles/Banner.module.css";
+import styles from "/styles/booking/Banner.module.css";
 
 const Banner = () => {
   return (

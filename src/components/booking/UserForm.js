@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "/styles/UserForm.module.css";
+import styles from "/styles/booking/UserForm.module.css";
 
 const UserForm = ({name, email, phone, note, onNameChange, onEmailChange, onPhoneChange, onNoteChange}) => {
 
   return (
-    <form className={styles.form}>
+    <div className={styles.form}>
       <h2>Contact Information</h2>
       <div className={styles.form_component}>
         <span>Full Name</span>
@@ -48,7 +48,7 @@ const UserForm = ({name, email, phone, note, onNameChange, onEmailChange, onPhon
           placeholder="Additional details..."
         />
       </div>
-    </form>
+    </div>
   );
 };
 

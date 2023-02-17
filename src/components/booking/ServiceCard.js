@@ -1,4 +1,4 @@
-import styles from "/styles/ServiceCard.module.css";
+import styles from "/styles/booking/ServiceCard.module.css";
 import React from "react";
 
 const ServiceCard = ({ service, onSelectService }) => {

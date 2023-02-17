@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import Banner from "../../src/components/banner/Banner";
-import ServiceCard from "../../src/components/service/ServiceCard";
+import Banner from "../../src/components/booking/Banner";
+import ServiceCard from "../../src/components/booking/ServiceCard";
 import BookingCard from "../../src/components/booking/BookingCard";
-import styles from "/styles/Booking.module.css";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+import TimeSlot from "../../src/components/booking/TimeSlot";
+import styles from "/styles/booking/Booking.module.css";
 import axios from "axios";
 import { format } from "date-fns";
-import dayjs from "dayjs";
 
 const Booking = () => {
   const [services, setServices] = useState([]);
@@ -50,7 +47,6 @@ const Booking = () => {
     setSelectedEndTime(selectedStartTime + 30);
 
     if (selectedDate instanceof Date && !isNaN(selectedDate)) {
-      const formattedDate = format(selectedDate, "yyyy-MM-dd");
       const startTime = selectedDate.setHours(
         Math.floor(selectedStartTime / 100),
         selectedStartTime % 100,
@@ -85,7 +81,7 @@ const Booking = () => {
   return (
     <div className={styles.main}>
       <Banner />
-      <div className={styles.container}>
+      <div className={styles.service_container}>
         <h3 className={styles.title}>Select Service</h3>
         <div className={styles.service_wrapper}>
           {services.map((service) => (
@@ -97,48 +93,15 @@ const Booking = () => {
           ))}
         </div>
       </div>
+
       <h3 className={styles.title}>Select Time</h3>
       <div className={styles.booking_container}>
-        <div className={styles.date_wrapper}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <StaticDatePicker
-              orientation="landscape"
-              className={styles.date_picker}
-              onChange={(newDate) => setSelectedDate(newDate.$d)}
-            />
-          </LocalizationProvider>
-        </div>
-
-        <div className={styles.time_wrapper}>
-          <h4>Availability</h4>
-          {selectedDate instanceof Date && (
-            <p>Selected date: {selectedDate.toDateString()}</p>
-          )}
-
-          <div className={styles.timeSlot}>
-            <div>
-              {timeSlots.map((slot) => (
-                <button
-                  className={styles.time_button}
-                  key={slot.startTime}
-                  disabled={slot.isBooked}
-                  onClick={() => {
-                    setSelectedStartTime(slot.startTime);
-                    handleGetTime(slot.startTime);
-                  }}
-                >
-                  {format(
-                    new Date().setHours(
-                      Math.floor(slot.startTime / 100),
-                      slot.startTime % 100
-                    ),
-                    "h:mma"
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <TimeSlot
+          setSelectedDate={setSelectedDate}
+          timeSlots={timeSlots}
+          setSelectedStartTime={setSelectedStartTime}
+          handleGetTime={handleGetTime}
+        />
       </div>
       <h3 className={styles.title}>Add your details</h3>
       <div className={styles.booking_card}>

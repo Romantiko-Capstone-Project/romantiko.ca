@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UserForm from "./UserForm";
-import styles from "/styles/BookingCard.module.css";
+import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -68,6 +68,7 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
   };
 
   return (
+    
     <form className={styles.container} onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
         <div className={styles.booking_section}>
