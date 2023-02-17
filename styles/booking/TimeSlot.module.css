@@ -35,9 +35,3 @@
     color: black;
     border: none;
 }
-
-.time_button:active {
-    background-color: #b4efc4;
-    color: black;
-    border: none;
-}
