@@ -79,21 +79,22 @@ const handler = async (req, res) => {
         endTime: booking.endTime,
       });
 
-      // const staff = await Staff.findById(booking.barber);
-      // const myService = await Service.findById(booking.service);
-      // const barberName = staff.firstName + " " + staff.lastName;
-      // const serviceName = myService.serviceName;
+      const staff = await Staff.findById(booking.barber);
+      const myService = await Service.findById(booking.service);
+      const barberName = staff.firstName + " " + staff.lastName;
+      const serviceName = myService.serviceName;
 
-      // send email confirmation after an appointment has been booked
-      // sendBookingConfirmation(
-      //   booking.customerName,
-      //   booking.customerEmail,
-      //   booking._id,
-      //   booking.startTime,
-      //   booking.endTime,
-      //   serviceName,
-      //   barberName
-      // );
+      //send email confirmation after an appointment has been booked
+      sendBookingConfirmation(
+        booking.customerName,
+        booking.customerEmail,
+        booking._id,
+        booking.startTime,
+        booking.endTime,
+        serviceName,
+        barberName
+      );
+
       res.status(201).json(booking);
     } catch (err) {
       console.error(err);

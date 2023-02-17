@@ -47,7 +47,7 @@ const TimeSlot = ({
         </div>
 
         <div className={styles.barber}>
-          <span>Choose a barber</span>
+          <span></span>
         </div>
       </div>
     </>
