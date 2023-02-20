@@ -1,4 +1,6 @@
 .container {
+  background-color: grey;
+  color: black;
   height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
@@ -43,7 +45,6 @@
 }
 .titleContainer {
   height: 75px; /* set a fixed height */
-  background-color: #fff;
   position: sticky;
   top: 0;
   margin-top: 10px;
@@ -57,11 +58,12 @@
   padding: 0px 15px;
   padding-bottom: 15px;
   border-radius: 15px;
-  
 }
 .staffInfo {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding-top: 15px;
 }
 .staffSelector {
   display: flex;
@@ -74,8 +76,8 @@
 .buttonSelector {
   border: 1px solid rgb(52, 49, 255);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -93,115 +95,23 @@
   display: flex;
   flex-direction: column;
 }
-.top {
-  flex: 2;
+
+.recordTabMenu {
   display: flex;
   flex-direction: row;
-}
-.photo {
+  gap: 10px;
   /* border: 1px solid black; */
-  flex: 1;
-}
-.imageContainer {
-  /* border: 1px solid black; */
-  width: auto;
-  height: 200px;
-  position: relative;
+  padding: 5px 10px;
 }
 
-
-.buttons {
-  margin-top: 20px;
+.recordTabButton {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.titleRecord {
-  margin-left: 10px;
-}
-.info {
   border: 1px solid black;
-  flex: 3;
-  display: flex;
-  margin-left: 30px;
-}
-.infoList {
-  /* border: 1px solid black; */
-  display: flex;
-  flex-direction: column;
-  width: 40vw;
-  padding: 20px;
-  padding-left: 50px;
-  border-radius: 50px;
-}
-.infoItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.infoLabel {
-  width: 200px;
-}
-.actions {
-  /* border: 1px solid black; */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  
-}
-.actionButton {
-  width: 80px;
-  padding: 20px 10px;
-  border-radius: 5px;
-  background-color: rgb(43, 43, 43);
-  color: rgba(255, 255, 255, 0.853);
-  border: none;
-  font-size: 13px;
-  
-}
-.bottom {
-  flex: 3;
-}
-
-.itemList{
-  display: flex;
-  flex-direction: row;
-}
-
-.itemTitle {
-  margin-left: 10px;
-}
-.itemContainer {
-  margin: 20px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-}
-.item {
-  margin: 0px 5px;
-  border: 1px solid black;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-  justify-content:space-evenly;
-  padding: 5px 20px;
-}
-
-.itemLabel {
-  width: 100px;
-}
-
-.itemInfo {
-  width: 200px;
+.recordTabButton:hover {
+  background-color: #ffffff7f;
 }
