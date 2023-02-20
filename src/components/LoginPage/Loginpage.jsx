@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
-
+import { useRouter } from "next/router";
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMess, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +16,13 @@ function LoginPage() {
         "http://localhost:3000/api/auth/login",
         { username, password }
       );
+      
+        if (response.data.message.includes("Admin")) {
+          router.push("/"); // Replace with the actual URL of the admin page
+        } else if (response.data.message.includes("Staff")) {
+          router.push("/dashboard"); // Replace with the actual URL of the staff page
+        }
+      
       console.log(response.data);
     } catch (error) {
       setError(true);
