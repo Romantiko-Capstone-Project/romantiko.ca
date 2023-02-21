@@ -1,10 +1,16 @@
 import styles from "../../styles/Admin.module.css";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import axios from "axios";
+
 import PersonalInformation from "../../src/components/admin/PersonalInformation";
 import PersonalBookings from "../../src/components/admin/PersonalBookings";
+import { TiBusinessCard } from "react-icons/ti";
+import { BsShop } from "react-icons/bs";
+import { VscCalendar } from "react-icons/vsc";
 
-const Index = () => {
+const Index = ({ staffs }) => {
+  const [staffsList, setStaffList] = useState(staffs);
   const [activeTab, setActiveTab] = useState("tab1");
 
   const handleTabClick = (tab) => {
@@ -14,27 +20,43 @@ const Index = () => {
   return (
     <div className={styles.container}>
       <div className={styles.tabMenu}>
-        <a className={styles.tabButton}>Staff</a>
-        <a className={styles.tabButton}>Shop</a>
-        <a className={styles.tabButton}>Booking</a>
+        <div className={styles.tabButtonContainer}>
+          <div className={styles.tabButton}>
+            <TiBusinessCard size={30} />
+            <a>Staff</a>
+          </div>
+        </div>
+        <div className={styles.tabButtonContainer}>
+          <div className={styles.tabButton}>
+            <BsShop size={30} />
+            <a>Shop</a>
+          </div>
+        </div>
+        <div className={styles.tabButtonContainer}>
+          <div className={styles.tabButton}>
+            <VscCalendar size={30} />
+            <a>Booking</a>
+          </div>
+        </div>
       </div>
 
       <div className={styles.staffList}>
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>List of Staff</h1>
         </div>
-
-        <div className={styles.staffCard}>
-          <div className={styles.staffInfo}>
-            <h3 className={styles.name}>Joe Doe</h3>
-            <h6>February 14, 2023 4:00 PM</h6>
-          </div>
-          <div className={styles.staffSelector}>
-            <div className={styles.buttonSelector}>
-              <span className={styles.select}>X</span>
+        {staffsList.map((staff) => (
+          <div key={staff._id} className={styles.staffCard}>
+            <div className={styles.staffInfo}>
+              <h3 className={styles.name}>{staff.firstName} {staff.lastName}</h3>
+              <h6>{staff.isActive ? "Currently Working" : "No longer Active"}</h6>
+            </div>
+            <div className={styles.staffSelector}>
+              <div className={styles.buttonSelector}>
+                <span className={styles.select}>X</span>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
       <div className={styles.record}>
@@ -43,13 +65,13 @@ const Index = () => {
             onClick={() => handleTabClick("tab1")}
             className={styles.recordTabButton}
           >
-            <h1 className={styles.titleRecord}>Personal Information</h1>
+            <h3 className={styles.titleRecord}>Personal Information</h3>
           </div>
           <div
             onClick={() => handleTabClick("tab2")}
             className={styles.recordTabButton}
           >
-            <h1 className={styles.titleRecord}>Bookings</h1>
+            <h3 className={styles.titleRecord}>Bookings</h3>
           </div>
         </div>
         <div className={styles.content}>
@@ -61,5 +83,12 @@ const Index = () => {
     </div>
   );
 };
-
+export const getServerSideProps = async () => {
+  const staff = await axios.get("http://localhost:3000/api/staff");
+  return {
+    props: {
+      staffs: staff.data,
+    },
+  };
+};
 export default Index;
