@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/Admin.module.css";
-import { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 
@@ -9,13 +9,25 @@ import { TiBusinessCard } from "react-icons/ti";
 import { BsShop } from "react-icons/bs";
 import { VscCalendar } from "react-icons/vsc";
 
-const Index = ({ staffs }) => {
-  const [staffsList, setStaffList] = useState(staffs);
+const Index = () => {
+  const [staffs, setStaffs] = useState([]);
   const [activeTab, setActiveTab] = useState("tab1");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  useEffect(() => {
+    const fetchStaffs = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3000/api/staff");
+        setStaffs(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchStaffs();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -44,11 +56,15 @@ const Index = ({ staffs }) => {
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>List of Staff</h1>
         </div>
-        {staffsList.map((staff) => (
+        {staffs.map((staff) => (
           <div key={staff._id} className={styles.staffCard}>
             <div className={styles.staffInfo}>
-              <h3 className={styles.name}>{staff.firstName} {staff.lastName}</h3>
-              <h6>{staff.isActive ? "Currently Working" : "No longer Active"}</h6>
+              <h3 className={styles.name}>
+                {staff.firstName} {staff.lastName}
+              </h3>
+              <h6>
+                {staff.isActive ? "Currently Working" : "No longer Active"}
+              </h6>
             </div>
             <div className={styles.staffSelector}>
               <div className={styles.buttonSelector}>
@@ -75,20 +91,13 @@ const Index = ({ staffs }) => {
           </div>
         </div>
         <div className={styles.content}>
-          {activeTab === "tab1" && <PersonalInformation />}
-          {activeTab === "tab2" && <PersonalBookings />}
+          {activeTab === "tab1" && <PersonalInformation staffs={staffs} />}
+          {activeTab === "tab2" && <PersonalBookings staffs={staffs} />}
           {activeTab === "tab3" && <div>Content for Tab 3</div>}
         </div>
       </div>
     </div>
   );
 };
-export const getServerSideProps = async () => {
-  const staff = await axios.get("http://localhost:3000/api/staff");
-  return {
-    props: {
-      staffs: staff.data,
-    },
-  };
-};
+
 export default Index;
