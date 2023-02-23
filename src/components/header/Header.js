@@ -46,7 +46,7 @@ const Header = () => {
                 </li>
                 <li className="nav-item">
                   
-                    <button className="nav-link mx-2" onClick={handleLogout}>Logout</button>
+                    <button className="nav-link mx-2" onClick={handleLogout} style={{background:"none",border:"none"}}>Logout</button>
                   
                 </li>
                 
