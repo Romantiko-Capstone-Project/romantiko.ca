@@ -1,13 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from "../../redux/authSlice";
 
-function Header() {
-  const [loggedIn, setLoggedIn] = useState(false);
+
+const Header = () => {
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
+  
 
   const handleLogout = () => {
-    // Handle logout logic
-    setLoggedIn(false);
+    dispatch(logout());
   };
 
   return (
@@ -31,6 +35,26 @@ function Header() {
           </button>
 
           {loggedIn ? (
+
+            <div className=" collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav ms-auto ">
+
+                <li className="nav-item">
+                  <Link href="/booking">
+                    <a className="nav-link mx-2">Dashboard</a>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  
+                    <button className="nav-link mx-2" onClick={handleLogout}>Logout</button>
+                  
+                </li>
+                
+              </ul>
+            </div>
+
+
+          ) : (
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
                 <li className="nav-item">
@@ -62,22 +86,6 @@ function Header() {
                   <Link href="/about-us">
                     <a className="nav-link mx2">About Us</a>
                   </Link>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <div className=" collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav ms-auto ">
-                
-                <li className="nav-item">
-                  <Link href="/booking">
-                    <a className="nav-link mx-2">Dashboard</a>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  
-                    <button className="nav-link mx2" onClick={handleLogout} style={{background:"none",border:"none"}}>Logout</button>
-                  
                 </li>
               </ul>
             </div>

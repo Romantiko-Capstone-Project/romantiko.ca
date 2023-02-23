@@ -1,9 +1,11 @@
-import React from "react";
+import {React} from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Head from "next/head";
 
+
 function MainLayout({ children }) {
+  
   return (
     <>
 
@@ -15,12 +17,12 @@ function MainLayout({ children }) {
 
       </Head>
 
-      
-      <Header />
+
+      <Header/>
 
       {children}
 
-      <Footer />
+      <Footer/>
 
 
 
