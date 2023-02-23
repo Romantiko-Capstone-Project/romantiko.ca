@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ServiceSchema = new Schema({
+const Service = new Schema({
   serviceName: {
     type: String,
     required: true,
@@ -17,4 +17,4 @@ const ServiceSchema = new Schema({
   img: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Service", ServiceSchema);
+module.exports = mongoose.models.Service || mongoose.model("Service", Service);

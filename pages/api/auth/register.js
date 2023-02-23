@@ -34,7 +34,7 @@ const handler = async (req, res) => {
           .send({ error: "Username or email already in use" });
       }
 
-      // encrypt password
+      // encode password
       const hashedPassword = CryptoJS.AES.encrypt(
         password,
         process.env.PASS_SEC
