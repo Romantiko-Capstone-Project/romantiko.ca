@@ -27,7 +27,7 @@ const handler = async (req, res) => {
         account.password,
         process.env.PASS_SEC
       );
-      
+
       const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
       // compare password
@@ -49,7 +49,6 @@ const handler = async (req, res) => {
       }
 
       return res.status(200).json({ account, token });
-
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Error logging in" });

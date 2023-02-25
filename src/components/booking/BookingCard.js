@@ -81,6 +81,7 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
             onEmailChange={handleEmailChange}
             onPhoneChange={handlePhoneChange}
             onNoteChange={handleNoteChange}
+            
           />
         </div>
         {startTime && endTime ? (

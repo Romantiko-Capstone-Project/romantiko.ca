@@ -1,6 +1,7 @@
 .form {
     display: flex;
     flex-direction: column;
+    height: 55vh;
 }
 
 .form_component {
@@ -14,6 +15,12 @@
     color: rgb(145, 142, 142);
     border: none;
     border-radius: 3px;
-    padding: 5px 100px 10px 5px;
+    padding: 10px 30px;
     margin-top: 3px;
+    width: 50vw;
+}
+
+.text_area {
+    max-height: 200px;
+    min-height: 200px;
 }

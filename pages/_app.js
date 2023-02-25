@@ -1,22 +1,25 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import '../styles/globals.css'
-import MainLayout from '../src/components/layout/MainLayout'
-import {useEffect} from 'react';
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
+import "../styles/globals.css";
+import MainLayout from "../src/components/layout/MainLayout";
+import { useEffect } from "react";
+import { Provider } from "react-redux";
+import store from "../src/redux/store";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    typeof document !== undefined 
-    ? require('bootstrap/dist/js/bootstrap') 
-    : null
-  }, [])
+    typeof document !== undefined
+      ? require("bootstrap/dist/js/bootstrap")
+      : null;
+  }, []);
+
   return (
-
-  <MainLayout>
-    <Component {...pageProps} />
-  </MainLayout>
-
-  )
-  
+    <Provider store={store}>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </Provider>
+  );
 }
 
-export default MyApp
+export default MyApp;

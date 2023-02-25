@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import styles from "/styles/booking/UserForm.module.css";
 
-const UserForm = ({name, email, phone, note, onNameChange, onEmailChange, onPhoneChange, onNoteChange}) => {
-
+const UserForm = ({
+  name,
+  email,
+  phone,
+  note,
+  onNameChange,
+  onEmailChange,
+  onPhoneChange,
+  onNoteChange,
+}) => {
   return (
     <div className={styles.form}>
       <h2>Contact Information</h2>
@@ -42,7 +50,7 @@ const UserForm = ({name, email, phone, note, onNameChange, onEmailChange, onPhon
       <div className={styles.form_component}>
         <span>Note</span>
         <textarea
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.text_area}`}
           value={note}
           onChange={onNoteChange}
           placeholder="Additional details..."

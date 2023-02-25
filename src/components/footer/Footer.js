@@ -32,7 +32,7 @@ function Footer() {
                 <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
               </li>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">!! email here !!</span>
+                <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">contact@romantiko.ca</span>
               </li>
               <li className="mb-3">
                 <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-1">(403) 980 - 2686</span>
@@ -57,6 +57,14 @@ function Footer() {
                   <td>Sunday:</td>
                   <td>10:00am - 5:00pm</td>
                 </tr>
+                <tr>
+                <td colSpan={2}>
+                <Link href="/Login">
+                <a className="btn btn-lg" style={{"width":"100%","backgroundColor": "#808080"}} type="button">Staff Login</a>
+                </Link>
+                </td>
+                
+                </tr>
               </tbody>
             </table>
           </div>
@@ -66,8 +74,9 @@ function Footer() {
       <div className="text-center p-3" style={{ "backgroundColor": "#191919" }}>
         © 2023 Copyright:
         <Link href="/">
-          <a className="text-white">Romantiko.ca</a>
+          <a className="text-white m-2">Romantiko.ca</a>
         </Link>
+        
       </div>
     </footer>
   )
