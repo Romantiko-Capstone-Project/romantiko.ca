@@ -40,8 +40,8 @@ const LoginPage = () => {
         router.push("/dashboard"); // Replace with the actual URL of the staff page
 
       }
-
-      console.log(response.data);
+      
+      console.log(response.data.username);
 
     } catch (error) {
       setError(true);
