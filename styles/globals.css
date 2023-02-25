@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #191919;
   color: white;
   min-height: 100vh;
   min-width: 100vw;
   overflow-x: hidden;
-  overflow-y: scroll;
   font-size: 1em;
 }
 

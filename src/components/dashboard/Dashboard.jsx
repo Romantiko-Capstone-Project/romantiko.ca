@@ -1,9 +1,16 @@
 import React from 'react';
+import CalendarView from './CalendarView';
+
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="cont">
+            
+
+            
             <h1>Dashboard</h1>
+            <CalendarView/>
+            
         </div>
     );
 }
