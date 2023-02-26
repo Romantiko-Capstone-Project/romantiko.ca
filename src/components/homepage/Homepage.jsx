@@ -6,16 +6,7 @@ const Homepage = () => {
   return (
     <>
 
-      <video loop muted autoPlay style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        left: 0,
-        top: 0,
-        zIndex: "0",
-        margin: "0"
-      }}>
+      <video loop muted autoPlay className="vidBG">
         <source src="/videos/bgloop.mp4" type="video/mp4" />
       </video>
 
