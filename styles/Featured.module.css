@@ -39,6 +39,9 @@
 
 }
 
+.hero{
+  position: absolute;
+}
 
 @media screen and (max-width: 580px) {
     .container{
