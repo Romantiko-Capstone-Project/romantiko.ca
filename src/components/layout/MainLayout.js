@@ -19,9 +19,9 @@ function MainLayout({ children }) {
 
 
       <Header/>
-
+      <div id="mainContainer">
       {children}
-
+      </div>
       <Footer/>
 
 

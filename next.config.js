@@ -4,4 +4,17 @@ const nextConfig = {
   swcMinify: true,
 };
 
-module.exports = nextConfig;
+module.exports = {
+  webpack: (config, { isServer }) => {
+    // Add support for mp4 files
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|mp4)$/i,
+      use: {
+        loader: 'url-loader',
+        
+      }
+    });
+
+    return config;
+  },
+};
