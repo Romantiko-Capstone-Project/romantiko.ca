@@ -11,12 +11,18 @@
   border: 1px solid black;
   margin-left: 10px;
   padding: 20px 10px;
+  border-radius: 20px;
 }
 .imageContainer {
   /* border: 1px solid black; */
   width: auto;
   height: 200px;
   position: relative;
+  padding: 0px 10px;
+}
+
+.image {
+  border-radius: 20px;
 }
 
 .buttons {
@@ -110,7 +116,7 @@
 }
 
 .itemLabel {
-  width: 100px;
+  width: 50px;
 }
 
 .itemInfo {

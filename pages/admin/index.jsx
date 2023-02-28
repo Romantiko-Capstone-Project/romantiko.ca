@@ -79,15 +79,15 @@ const Index = () => {
         <div className={styles.recordTabMenu}>
           <div
             onClick={() => handleTabClick("tab1")}
-            className={styles.recordTabButton}
+            className={styles.recordTabItem}
           >
-            <h3 className={styles.titleRecord}>Personal Information</h3>
+            Personal Information
           </div>
           <div
             onClick={() => handleTabClick("tab2")}
-            className={styles.recordTabButton}
+            className={styles.recordTabItem}
           >
-            <h3 className={styles.titleRecord}>Bookings</h3>
+            Bookings
           </div>
         </div>
         <div className={styles.content}>

@@ -1,9 +1,8 @@
 import Image from "next/image";
-import styles from '../../../styles/PersonalInformation.module.css'
+import styles from "../../../styles/PersonalInformation.module.css";
 const PersonalInformation = () => {
   return (
     <div>
-      
       <div className={styles.top}>
         <div className={styles.photo}>
           <div className={styles.photoContainer}>
@@ -16,7 +15,7 @@ const PersonalInformation = () => {
                 objectFit="contain"
               />
             </div>
-            
+
             <div className={styles.buttons}>
               <button className={styles.actionButton}>Change</button>
               <button className={styles.actionButton}>Remove</button>
