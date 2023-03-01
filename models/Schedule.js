@@ -14,7 +14,7 @@ const Schedule = new mongoose.Schema({
     ],
     required: true,
   },
-  staffId: {
+  staff: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Staff",
     required: true,
