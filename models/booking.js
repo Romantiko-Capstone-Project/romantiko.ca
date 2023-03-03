@@ -49,10 +49,6 @@ const Booking = new mongoose.Schema(
     notes: {
       type: String,
     },
-    status: {
-      type: Number,
-      required: true,
-    },
   },
   { timestamps: true }
 );

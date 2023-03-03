@@ -28,6 +28,22 @@ const handler = async (req, res) => {
       });
     }
   }
+
+  // update all slots
+  if (method === "PUT") {
+    try {
+      const update = { $set: req.body };
+      const options = { multi: true };
+      const result = await TimeSlot.updateMany({}, update, options);
+      res.status(200).json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        message: "An error occurred while updating time slots.",
+        error: err,
+      });
+    }
+  }
 };
 
 const handlerWrapper = (req, res) => {

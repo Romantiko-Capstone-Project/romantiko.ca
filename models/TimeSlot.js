@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const TimeSlot = new mongoose.Schema(
+const TimeSlot = new Schema(
   {
     day: {
       type: String,
@@ -16,9 +17,8 @@ const TimeSlot = new mongoose.Schema(
       required: true,
     },
     startTime: { type: Number, required: true },
-    isBooked: { type: Boolean, required: true, default: false },
-    bookingId: { type: mongoose.Schema.Types.ObjectId, ref: "Booking" },
-    barber: { type: mongoose.Schema.Types.ObjectId, ref: "Staff" },
+    isFull: { type: Boolean, required: true, default: false },
+    reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
   },
   { timestamps: true }
 );

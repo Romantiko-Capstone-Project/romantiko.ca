@@ -42,10 +42,10 @@ const handler = async (req, res) => {
       res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/`);
 
       if (account.role === "admin") {
-        return res.status(200).json({ message: "Admin logged in" });
+        return res.status(200).json({ message: "Admin logged in", account });
       }
       if (account.role === "staff") {
-        return res.status(200).json({ message: "Staff logged in" });
+        return res.status(200).json({ message: "Staff logged in", account });
       }
 
       return res.status(200).json({ account, token });
