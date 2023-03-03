@@ -59,7 +59,7 @@ function Footer() {
                 </tr>
                 <tr>
                 <td colSpan={2}>
-                <Link href="/Login">
+                <Link href="/login">
                 <a className="btn btn-lg" style={{"width":"100%","backgroundColor": "#808080"}} type="button">Staff Login</a>
                 </Link>
                 </td>
