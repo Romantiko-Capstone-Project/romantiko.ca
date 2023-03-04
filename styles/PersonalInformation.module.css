@@ -95,6 +95,23 @@
   flex-direction: row;
 }
 
+.table {
+  width: 100%;
+  border-spacing: 20px;
+  text-align: left;
+  border: 1px solid black;
+  margin: 50px;
+  padding-left: 50px;
+}
+
+.tbody {
+  padding: 10px;
+}
+
+.trTitle {
+  padding: 5px;
+}
+
 .itemTitle {
   margin-left: 10px;
 }

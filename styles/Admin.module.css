@@ -5,20 +5,35 @@
   display: flex;
   flex-direction: row;
 }
-.tabMenu,
+/* .tabMenu,
 .staffList,
 .record {
   border: 1px solid #000000;
-}
+} */
 
 .tabMenu {
-  background-color: white;
+  border: 1px solid #000000;
+
+}
+.item:first-child {
+  display: flex;
   flex: 1;
+  background-color: blue;
+}
+.item:last-child {
+  display: flex;
+  flex: 8;
+  background-color: rgb(255, 255, 255);
+}
+.tabMenu {
+  /* background-color: white; */
+  /* flex: 1; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .tabButtonContainer {
+  cursor: pointer;
   width: 100%;
 }
 .tabButton {
@@ -31,96 +46,4 @@
 
 .tabButton:hover {
   background-color: red;
-}
-
-.staffList {
-  background-color: white;
-  flex: 1.5;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 0px 10px;
-  max-height: calc(100vh - 70px);
-  overflow-y: scroll;
-}
-.titleContainer {
-  height: 75px; /* set a fixed height */
-  position: sticky;
-  top: 0;
-  margin-top: 10px;
-}
-
-.staffCard {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid rgb(0, 0, 0);
-  justify-content: space-between;
-  padding: 0px 15px;
-  padding-bottom: 15px;
-  border-radius: 15px;
-  margin-bottom: 10px;
-}
-.staffInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 15px;
-}
-.staffSelector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* border-radius: 50px; */
-  /* margin-right: 5px; */
-}
-
-.buttonSelector {
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-}
-
-.select {
-  font-weight: 500;
-  font-size: 20px;
-  border: 1px;
-}
-
-.record {
-  background-color: white;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.recordTabMenu {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  border: 1px solid black;
-  padding: 5px 10px;
-}
-
-.recordTabItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  padding: 15px;
-  font-size: 20px;
-}
-.content {
-  padding-top: 20px;
-  background-color: red;
-  height: 100%;
-}
-
-.recordTabButton:hover {
-  background-color: #ffffff7f;
 }

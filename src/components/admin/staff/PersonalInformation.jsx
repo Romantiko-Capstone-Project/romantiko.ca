@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../../../styles/PersonalInformation.module.css";
+import styles from "../../../../styles/PersonalInformation.module.css";
 const PersonalInformation = () => {
   return (
     <div>
@@ -64,41 +64,45 @@ const PersonalInformation = () => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.itemList}>
-          <div className={styles.itemContainer}>
-            <h5 className={styles.itemTitle}>Most Recent Bookings: </h5>
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Booking 1:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Booking 2:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-          </div>
-          <div className={styles.itemContainer}>
-            <h5 className={styles.itemTitle}>Availability: </h5>
-
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Time 1:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Time 2:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-          </div>
-          <div className={styles.itemContainer}>
-            <h5 className={styles.itemTitle}>Statistics </h5>
-
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Number of hours:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-            <div className={styles.item}>
-              <h5 className={styles.itemLabel}>Number of bookings:</h5>
-              <div className={styles.itemInfo}> Joe Doe</div>
-            </div>
-          </div>
+          <table className={styles.table}>
+            <tbody className={styles.tbody}>
+              <tr className={styles.trTitle}>
+                <th>Most Recent Bookings:</th>
+              </tr>
+              <tr>
+                <td>Booking 1: Joe Doe</td>
+              </tr>
+              <tr>
+                <td>Booking 1: Joe Doe</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className={styles.table}>
+            <tbody className={styles.tbody}>
+              <tr className={styles.trTitle}>
+                <th>Availability:</th>
+              </tr>
+              <tr>
+                <td>Time 1: MONDAY, 10:30A.M - 5:00P.M</td>
+              </tr>
+              <tr>
+                <td>Time 2: FRIDAY, 9:30A.M - 4:00P.M</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className={styles.table}>
+            <tbody>
+              <tr>
+                <th>Statistics:</th>
+              </tr>
+              <tr>
+                <td>Number of bookings for this week: 10</td>
+              </tr>
+              <tr>
+                <td>Number of bookings for previos week: 8</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

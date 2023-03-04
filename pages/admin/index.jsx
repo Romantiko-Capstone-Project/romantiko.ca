@@ -3,18 +3,24 @@ import styles from "../../styles/Admin.module.css";
 import Image from "next/image";
 import axios from "axios";
 
-import PersonalInformation from "../../src/components/admin/PersonalInformation";
-import PersonalBookings from "../../src/components/admin/PersonalBookings";
+import StaffTab from "../../src/components/admin/StaffTab";
+import ShopTab from "../../src/components/admin/ShopTab";
+import ServicesTab from "../../src/components/admin/ServicesTab";
+import GalleryTab from "../../src/components/admin/GalleryTab";
+import BookingTab from "../../src/components/admin/BookingTab";
+
 import { TiBusinessCard } from "react-icons/ti";
 import { BsShop } from "react-icons/bs";
 import { VscCalendar } from "react-icons/vsc";
+import { ImScissors } from "react-icons/im";
+import { GrGallery } from "react-icons/gr";
 
 const Index = () => {
   const [staffs, setStaffs] = useState([]);
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [tab, setTab] = useState("tab1");
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab);
+    setTab(tab);
   };
 
   useEffect(() => {
@@ -31,70 +37,61 @@ const Index = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.tabMenu}>
-        <div className={styles.tabButtonContainer}>
-          <div className={styles.tabButton}>
-            <TiBusinessCard size={30} />
-            <a>Staff</a>
+      <div className={styles.item}>
+        <div className={styles.tabMenu}>
+          <div className={styles.tabButtonContainer}>
+            <div
+              className={styles.tabButton}
+              onClick={() => handleTabClick("tab1")}
+            >
+              <TiBusinessCard size={30} />
+              <a>Staff</a>
+            </div>
           </div>
-        </div>
-        <div className={styles.tabButtonContainer}>
-          <div className={styles.tabButton}>
-            <BsShop size={30} />
-            <a>Shop</a>
+          <div className={styles.tabButtonContainer}>
+            <div
+              className={styles.tabButton}
+              onClick={() => handleTabClick("tab2")}
+            >
+              <BsShop size={30} />
+              <a>Shop</a>
+            </div>
           </div>
-        </div>
-        <div className={styles.tabButtonContainer}>
-          <div className={styles.tabButton}>
-            <VscCalendar size={30} />
-            <a>Booking</a>
+          <div className={styles.tabButtonContainer}>
+            <div
+              className={styles.tabButton}
+              onClick={() => handleTabClick("tab3")}
+            >
+              <VscCalendar size={30} />
+              <a>Booking</a>
+            </div>
+          </div>
+          <div className={styles.tabButtonContainer}>
+            <div
+              className={styles.tabButton}
+              onClick={() => handleTabClick("tab4")}
+            >
+              <ImScissors size={30} />
+              <a>Services</a>
+            </div>
+          </div>
+          <div className={styles.tabButtonContainer}>
+            <div
+              className={styles.tabButton}
+              onClick={() => handleTabClick("tab5")}
+            >
+              <GrGallery size={30} />
+              <a>Gallery</a>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className={styles.staffList}>
-        <div className={styles.titleContainer}>
-          <h1 className={styles.title}>List of Staff</h1>
-        </div>
-        {staffs.map((staff) => (
-          <div key={staff._id} className={styles.staffCard}>
-            <div className={styles.staffInfo}>
-              <h3 className={styles.name}>
-                {staff.firstName} {staff.lastName}
-              </h3>
-              <h6>
-                {staff.isActive ? "Currently Working" : "No longer Active"}
-              </h6>
-            </div>
-            <div className={styles.staffSelector}>
-              <div className={styles.buttonSelector}>
-                <span className={styles.select}>X</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.record}>
-        <div className={styles.recordTabMenu}>
-          <div
-            onClick={() => handleTabClick("tab1")}
-            className={styles.recordTabItem}
-          >
-            Personal Information
-          </div>
-          <div
-            onClick={() => handleTabClick("tab2")}
-            className={styles.recordTabItem}
-          >
-            Bookings
-          </div>
-        </div>
-        <div className={styles.content}>
-          {activeTab === "tab1" && <PersonalInformation staffs={staffs} />}
-          {activeTab === "tab2" && <PersonalBookings staffs={staffs} />}
-          {activeTab === "tab3" && <div>Content for Tab 3</div>}
-        </div>
+      <div className={styles.item}>
+        {tab === "tab1" && <StaffTab staffs={staffs} />}
+        {tab === "tab2" && <ShopTab />}
+        {tab === "tab3" && <BookingTab />}
+        {tab === "tab4" && <ServicesTab />}
+        {tab === "tab5" && <GalleryTab />}
       </div>
     </div>
   );
