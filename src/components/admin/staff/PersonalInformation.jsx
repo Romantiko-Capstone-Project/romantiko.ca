@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../../../../styles/PersonalInformation.module.css";
-const PersonalInformation = ({ selectedStaff }) => {
-  // const [staff, setStaff] = useState(null);
+import axios from "axios";
+
+const PersonalInformation = ({ selectedStaff, data }) => {
 
   return (
     <div>
@@ -46,7 +47,7 @@ const PersonalInformation = ({ selectedStaff }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              <span className={styles.infoInput}></span>
+              <span className={styles.infoInput}>{data && data.username}</span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
@@ -57,7 +58,7 @@ const PersonalInformation = ({ selectedStaff }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Email Address:</h4>
-              <span className={styles.infoInput}></span>
+              <span className={styles.infoInput}>{data && data.email}</span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Status:</h4>
@@ -128,3 +129,28 @@ const PersonalInformation = ({ selectedStaff }) => {
 };
 
 export default PersonalInformation;
+
+
+  // const [data, setData] = useState({});
+  // const [id, setId] = useState(null);
+
+  // useEffect(() => {
+  //   if (selectedStaff) {
+  //     const { account } = selectedStaff;
+  //     setId(account);
+  //   }
+  // }, [selectedStaff]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `http://localhost:3000/api/account/${id}`
+  //       ); // pass id as a parameter in the URL
+  //       setData(data);
+  //     } catch (error) {
+  //       console.log("Error in requesting data from account schema.");
+  //     }
+  //   };
+  //   fetchData();
+  // }, [id]);

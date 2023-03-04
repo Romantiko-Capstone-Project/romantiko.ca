@@ -1,17 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../../../styles/StaffTab.module.css";
 import PersonalBookings from "./staff/PersonalBookings";
 import PersonalInformation from "./staff/PersonalInformation";
+import axios from "axios";
 
 const StaffTab = ({ staffs }) => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
 
+  const [data, setData] = useState({});
+  const [id, setId] = useState(staffs[0]?.account);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/api/account/${id}`
+        ); // pass id as a parameter in the URL
+        setData(data);
+      } catch (error) {
+        console.log("fetchData error");
+      }
+    };
+    fetchData();
+  }, [id]);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-  const handleStaffInformation = (staffMember) => {
+  const handleStaffClick = (staffMember) => {
     setSelectedStaff(staffMember);
+    const { account } = staffMember;
+    setId(account);
+  
   };
 
   return (
@@ -24,7 +45,7 @@ const StaffTab = ({ staffs }) => {
           <div
             key={staff._id}
             className={styles.staffCard}
-            onClick={() => handleStaffInformation(staff)}
+            onClick={() => handleStaffClick(staff)}
           >
             <div className={styles.staffInfo}>
               <h3 className={styles.name}>
@@ -59,9 +80,11 @@ const StaffTab = ({ staffs }) => {
         </div>
         <div className={styles.content}>
           {activeTab === "tab1" && (
-            <PersonalInformation selectedStaff={selectedStaff} />
+            <PersonalInformation selectedStaff={selectedStaff} data={data} />
           )}
-          {activeTab === "tab2" && <PersonalBookings selectedStaff={selectedStaff} />}
+          {activeTab === "tab2" && (
+            <PersonalBookings selectedStaff={selectedStaff} />
+          )}
           {activeTab === "tab3" && <div>Content for Tab 3</div>}
         </div>
       </div>
