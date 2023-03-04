@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { useState } from "react";
 import styles from "../../../../styles/PersonalInformation.module.css";
-const PersonalInformation = () => {
+const PersonalInformation = ({ selectedStaff }) => {
+  // const [staff, setStaff] = useState(null);
+
   return (
     <div>
       <div className={styles.top}>
@@ -22,31 +25,46 @@ const PersonalInformation = () => {
             </div>
           </div>
         </div>
+
         <div className={styles.info}>
           <div className={styles.infoList}>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Name:</h4>
-              <span className={styles.infoInput}> Joe Doe</span>
+              <span className={styles.infoInput}>
+                {selectedStaff
+                  ? selectedStaff.firstName + " " + selectedStaff.lastName
+                  : "empty"}
+                {/* {staff.firstName} {staff.lastName} */}
+              </span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Address:</h4>
-              <span className={styles.infoInput}>78 Ave SW, AB, Canada</span>
+              <span className={styles.infoInput}>
+                {/* {staff.address} */}
+                {selectedStaff ? selectedStaff.address : "empty"}
+              </span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              <span className={styles.infoInput}>joe_doe</span>
+              <span className={styles.infoInput}></span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
-              <span className={styles.infoInput}>+1 587-123-4567</span>
+              <span className={styles.infoInput}>
+                {/* {staff.phoneNumber} */}
+                {selectedStaff ? selectedStaff.phoneNumber : "empty"}
+              </span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Email Address:</h4>
-              <span className={styles.infoInput}>joe_doe@gmail.com</span>
+              <span className={styles.infoInput}></span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Status:</h4>
-              <span className={styles.infoInput}>Active</span>
+              <span className={styles.infoInput}>
+                {/* {staff.isActive ? "Currently Working" : "No longer Active"} */}
+                {selectedStaff ? selectedStaff.isActive.toString() : "empty"}
+              </span>
             </div>
           </div>
         </div>

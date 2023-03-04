@@ -5,11 +5,14 @@ import PersonalInformation from "./staff/PersonalInformation";
 
 const StaffTab = ({ staffs }) => {
   const [activeTab, setActiveTab] = useState("tab1");
+  const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
-  // const handleStaffInfo
+  const handleStaffInformation = (staffMember) => {
+    setSelectedStaff(staffMember);
+  };
 
   return (
     <div className={styles.container}>
@@ -18,7 +21,11 @@ const StaffTab = ({ staffs }) => {
           <h1 className={styles.title}>List of Staff</h1>
         </div>
         {staffs.map((staff) => (
-          <div key={staff._id} className={styles.staffCard}>
+          <div
+            key={staff._id}
+            className={styles.staffCard}
+            onClick={() => handleStaffInformation(staff)}
+          >
             <div className={styles.staffInfo}>
               <h3 className={styles.name}>
                 {staff.firstName} {staff.lastName}
@@ -51,8 +58,10 @@ const StaffTab = ({ staffs }) => {
           </div>
         </div>
         <div className={styles.content}>
-          {activeTab === "tab1" && <PersonalInformation />}
-          {activeTab === "tab2" && <PersonalBookings />}
+          {activeTab === "tab1" && (
+            <PersonalInformation selectedStaff={selectedStaff} />
+          )}
+          {activeTab === "tab2" && <PersonalBookings selectedStaff={selectedStaff} />}
           {activeTab === "tab3" && <div>Content for Tab 3</div>}
         </div>
       </div>
