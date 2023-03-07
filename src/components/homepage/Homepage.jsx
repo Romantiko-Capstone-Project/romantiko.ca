@@ -14,17 +14,21 @@ const Homepage = () => {
       <div className="hero">
         <h1 style={{ fontWeight: "900" }}>Airdrie's Neighborhood Barbershop: Affordable Prices, Exceptional Service</h1>
 
-        <Link href={"/booking"}>
-          <button>Book a haircut now</button>
-        </Link>
-
         <p>Local charm meets professional quality. Our expert barbers are dedicated to providing you with the finest grooming experience
           at prices that won't break the bank.
           Whether you need a classic cut or a modern style, our team will ensure you leave looking and feeling your best.
           Join our community of locals and experience the best in affordable grooming.</p>
+        <Link href={"/booking"}>
+          <button>Book a haircut now</button>
+        </Link>
+
+        
+
+
+          <CardSlide></CardSlide>
       </div>
 
-      
+     
     </>
   );
 };

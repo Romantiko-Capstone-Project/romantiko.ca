@@ -41,7 +41,7 @@ footer {
   color: white;
   position: absolute;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 8%;
   padding: 4%;
   text-align: center;
   width: 100%;
@@ -65,7 +65,7 @@ footer {
   height: 6%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0;
+  margin-top: 3%;
   margin-bottom: 1em;
   border-radius: 1em;
   background: none;
@@ -87,6 +87,35 @@ footer {
   font-size: 1.2em;
 }
 
+.reviewCards{
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 10%;
+  transition: 0.5s ease-in-out;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+.review {
+  animation: fadeIn 2s;
+}
+.review h2{
+  color: rgb(184, 184, 3);
+  font-family: Roboto;
+  font-weight: 900;
+}
+.quotationMark{
+  color: rgb(184, 184, 3);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+  font-size: larger;
+  
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 
 ::-webkit-scrollbar {
   height: 8px;
@@ -104,7 +133,7 @@ footer {
 }
 
  
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 830px){
   .vidBG{
     position: relative;
     width: 100%;
@@ -117,7 +146,7 @@ footer {
     display: block;
     
     text-align: left;
-    margin-top:10%;
+    margin-top:15%;
   
   }
   .hero h1{
@@ -135,11 +164,66 @@ footer {
   }
   
   .hero p{
-    margin-top: 1em;
+    margin-top: 8%;
     font-size: 1.2em;
   }
+
+  .reviewCards{
+
+    font-size: 0.7rem;
+    
+  }
+    
 }
 
-@media screen and (max-width: 1090px){
+@media screen and (max-height: 1030px){
+  .vidBG{
+    position: relative;
+    width: 100%;
+    height: 100vw;
+    object-fit: cover;
+    
+  }
+
+  .hero{
+    display: block;
+    
+    text-align: left;
+    margin-top:10%;
+  
+  }
+  .hero h1{
+    text-align: left;
+    font-size: 1.1em;
+  }
+  .hero button{
+    width: 50%;
+    margin-top: 1%;
+    font-size: 0.8rem;
+    height: 5%;
+  }
+  .hero button:hover{
+    background-color: whitesmoke;
+    color:black;
+    
+  }
+  
+  .hero p{
+    margin-top: 6%;
+    font-size: 0.8rem;
+  }
+
+  .reviewCards{
+    margin-top:8%;
+    
+    
+  }
+  .review p{
+    font-size: 0.7rem;
+  }
+  .reviewCards h2{
+    font-size: 0.8rem;
+  }
   
 }
+
