@@ -1,6 +1,68 @@
 .container {
   height:100%;
   position: relative;
+  background-color: white;
+
+
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.row {
+  display: -ms-flexbox; 
+  display: flex;
+  -ms-flex-wrap: wrap; 
+  flex-wrap: wrap;
+  padding: 0 4px 4px;
+}
+
+.column {
+  -ms-flex: 25%; 
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.likeButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.column img:hover .likeButton {
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 100%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 50%;
+  }
+}
+
+
+/*.container {
+  height:100%;
+  position: relative;
 
 
 }
@@ -11,14 +73,8 @@
 
 .cardsContainer {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  margin: 20px 130px;
-  gap: 10px;
-  padding-top: 25px;
-  border-radius: 2px;
 
 }
 
@@ -34,7 +90,10 @@
 
 .imageContainer {
   position: relative;
-  width: 300px;
+  width: 100px;
+  margin: 10px;
+  object-fit: cover;
+  cursor: pointer;
   min-height: 200px;
   max-height: 250px;
 }
@@ -167,4 +226,4 @@
   }
   
 
-}
+}*/

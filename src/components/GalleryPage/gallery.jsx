@@ -3,7 +3,73 @@ import Image from "next/image";
 function GalleryStuff() {
   return (
     <div className={styles.container}>
-      <div className={styles.cardsContainer}> 
+      <div className={styles.row}>
+        <div className={styles.column}>
+           <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/Haircut1.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+        </div>
+        <div className={styles.column}>
+           <img
+              src="/img/gallery/Haircut2.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+        </div>
+        <div className={styles.column}>
+           <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/Haircut3.jpg"
+              className={styles.imagestuff}
+            />
+        </div>
+        <div className={styles.column}>
+           <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+            <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+              <img
+              src="/img/gallery/haircut.jpg"
+              className={styles.imagestuff}
+            />
+        </div>
+           
+
+
+
+      </div>
+      {/*<div className={styles.cardsContainer}> 
         <div className={styles.cardContainer}>
           <div className={styles.imageContainer}>
             <Image
@@ -12,12 +78,6 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #1</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
         <div className={styles.cardContainer}>
@@ -28,12 +88,6 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #2</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
         <div className={styles.cardContainer}>
@@ -44,12 +98,6 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #3</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
         <div className={styles.cardContainer}>
@@ -60,12 +108,6 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #3</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
         <div className={styles.cardContainer}>
@@ -76,12 +118,6 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #3</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
         <div className={styles.cardContainer}>
@@ -92,19 +128,13 @@ function GalleryStuff() {
               object-fit="contain"
             ></Image>
           </div>
-          <h5>Hairstyle #3</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            mollis, nisi eu ullamcorper porttitor, urna sem sollicitudin mauris,
-            et volutpat nibh quam vel lectus.
-          </p>
         </div>
 
 
 
 
        
-      </div>
+  </div>*/}
     </div>
   );
 }
