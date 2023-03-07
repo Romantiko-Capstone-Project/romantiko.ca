@@ -19,6 +19,11 @@ const StaffTab = ({ staffs }) => {
         ); // pass id as a parameter in the URL
         setData(data);
       } catch (error) {
+        const error_ = {
+          username: "not found",
+          email: "not found",
+        };
+        setData(error_);
         console.log("fetchData error");
       }
     };
@@ -32,7 +37,6 @@ const StaffTab = ({ staffs }) => {
     setSelectedStaff(staffMember);
     const { account } = staffMember;
     setId(account);
-  
   };
 
   return (

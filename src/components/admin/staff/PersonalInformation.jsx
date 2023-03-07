@@ -130,27 +130,26 @@ const PersonalInformation = ({ selectedStaff, data }) => {
 
 export default PersonalInformation;
 
+// const [data, setData] = useState({});
+// const [id, setId] = useState(null);
 
-  // const [data, setData] = useState({});
-  // const [id, setId] = useState(null);
+// useEffect(() => {
+//   if (selectedStaff) {
+//     const { account } = selectedStaff;
+//     setId(account);
+//   }
+// }, [selectedStaff]);
 
-  // useEffect(() => {
-  //   if (selectedStaff) {
-  //     const { account } = selectedStaff;
-  //     setId(account);
-  //   }
-  // }, [selectedStaff]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         `http://localhost:3000/api/account/${id}`
-  //       ); // pass id as a parameter in the URL
-  //       setData(data);
-  //     } catch (error) {
-  //       console.log("Error in requesting data from account schema.");
-  //     }
-  //   };
-  //   fetchData();
-  // }, [id]);
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const { data } = await axios.get(
+//         `http://localhost:3000/api/account/${id}`
+//       ); // pass id as a parameter in the URL
+//       setData(data);
+//     } catch (error) {
+//       console.log("Error in requesting data from account schema.");
+//     }
+//   };
+//   fetchData();
+// }, [id]);
