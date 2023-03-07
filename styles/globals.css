@@ -41,7 +41,7 @@ footer {
   color: white;
   position: absolute;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   padding: 4%;
   text-align: center;
   width: 100%;
@@ -49,13 +49,11 @@ footer {
   display: flex;
   flex-direction: column;
   
-
 }
 .vidBG{
   position: relative;
   width: 100%;
-  height: 100%;
-  max-height: 100vh;
+  min-height: 80vh;
   object-fit: cover;
   left: 0;
   top: 0;
@@ -89,31 +87,7 @@ footer {
   font-size: 1.2em;
 }
 
-.googleSection{
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  
-}
-.map{
-  max-width: 50%;
-  padding: 1%;
-  
-}
-.map img{
-  max-width: 100%;
-  transition: 0.3s;
-  border-radius: 12px;
-}
-.map img:hover{
-  scale: 1.05;
 
-}
-.review{
-  width: 50%;
-  padding: 1%;
-  padding-right: 2%;
-}
 ::-webkit-scrollbar {
   height: 8px;
 }
@@ -128,45 +102,7 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
   background: #808080;
 }
-.containerC {
-  display: flex;
-  gap: 12px;
-  
-  width: 100%;
-  height: 100%;
-  
-  background: #a3a2a2;
-  border-radius: 12px;
-  padding: 5px;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scroll-padding: 30px;
-  box-shadow: 0 15px 25px rgba(167, 167, 167, 0.1);
-}
-.containerC .card {
-  display: flex;
-  flex: 0 0 100%;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  border-radius: 12px;
-  background: #d4d4d4;
-  scroll-snap-align: start;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-}
-.card h2 {
-  margin-top: 5%;
-  color: #3d3d3d;
-  font-size: 2.7em;
-  font-weight: 600;
-}
-.card p {
-  margin-top: 3%;
-  font-size: 1.8em;
-  font-weight: 400;
-  color: #161616;
-  text-align: center;
-}
+
  
 @media screen and (max-width: 830px) {
   .vidBG{
@@ -181,7 +117,7 @@ footer {
     display: block;
     
     text-align: left;
-    margin-top:25%;
+    margin-top:10%;
   
   }
   .hero h1{
@@ -190,7 +126,7 @@ footer {
   }
   .hero button{
     width: 50%;
-    margin-top: 15%;
+    margin-top: 5%;
   }
   .hero button:hover{
     background-color: whitesmoke;
@@ -205,37 +141,5 @@ footer {
 }
 
 @media screen and (max-width: 1090px){
-  .googleSection{
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-  }
-  .map{
   
-    max-width: 100%;
-    position: relative;
-    margin: auto;
-    text-align: center;
-    
-  }
-  .map img{
-    max-height:400px;
-    margin: auto;
-  }
-  .review{
-   width: 100%;
-   margin-top: 3%;
-  }
-  .containerC{
-    min-height: 400px;
-   position: relative;
-   
-  }
-  .containerC h2{
-    font-size: 2.5em;
-  }
-  .containerC p{
-    font-size: 1.7em;
-  }
 }
