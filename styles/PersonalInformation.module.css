@@ -1,0 +1,141 @@
+.top {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+}
+.photo {
+  /* border: 1px solid black; */
+  flex: 1;
+}
+.photoContainer {
+  border: 1px solid black;
+  margin-left: 10px;
+  padding: 20px 10px;
+  border-radius: 20px;
+}
+.imageContainer {
+  /* border: 1px solid black; */
+  width: auto;
+  height: 200px;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.image {
+  border-radius: 20px;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.titleRecord {
+  margin-left: 10px;
+}
+.info {
+  border: 1px solid black;
+  flex: 3;
+  display: flex;
+  margin-left: 30px;
+}
+.infoList {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  padding: 20px;
+  padding-left: 50px;
+  border-radius: 50px;
+}
+.infoItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0px;
+}
+.infoLabel {
+  width: 200px;
+}
+
+.infoInput {
+  font-size: 20px;
+}
+.actions {
+  /* border: 1px solid black; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.actionButton {
+  width: 80px;
+  padding: 20px 10px;
+  border-radius: 5px;
+  background-color: rgb(43, 43, 43);
+  color: rgba(255, 255, 255, 0.853);
+  border: none;
+  font-size: 13px;
+}
+.bottom {
+  flex: 3;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: row;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 20px;
+  text-align: left;
+  border: 1px solid black;
+  margin: 50px;
+  padding-left: 50px;
+}
+
+.tbody {
+  padding: 10px;
+}
+
+.trTitle {
+  padding: 5px;
+}
+
+.itemTitle {
+  margin-left: 10px;
+}
+.itemContainer {
+  margin: 20px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  margin: 0px 5px;
+  border: 1px solid black;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5px 20px;
+}
+
+.itemLabel {
+  width: 50px;
+}
+
+.itemInfo {
+  width: 200px;
+}

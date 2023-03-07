@@ -14,7 +14,7 @@ const Schedule = new mongoose.Schema({
     ],
     required: true,
   },
-  staffId: {
+  staff: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Staff",
     required: true,
@@ -27,6 +27,11 @@ const Schedule = new mongoose.Schema({
     type: String,
     required: true,
   },
+  booking: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Booking",
+    required: true,
+  }
 });
 
 module.exports =
