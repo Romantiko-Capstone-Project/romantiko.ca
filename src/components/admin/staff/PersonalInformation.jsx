@@ -4,7 +4,6 @@ import styles from "../../../../styles/PersonalInformation.module.css";
 import axios from "axios";
 
 const PersonalInformation = ({ selectedStaff, data }) => {
-
   return (
     <div>
       <div className={styles.top}>

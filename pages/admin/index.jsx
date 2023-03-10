@@ -13,7 +13,7 @@ import { TiBusinessCard } from "react-icons/ti";
 import { BsShop } from "react-icons/bs";
 import { VscCalendar } from "react-icons/vsc";
 import { ImScissors } from "react-icons/im";
-import { GrGallery } from "react-icons/gr";
+import { TfiGallery } from "react-icons/Tfi";
 
 const Index = () => {
   const [staffs, setStaffs] = useState([]);
@@ -38,50 +38,52 @@ const Index = () => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
-        <div className={styles.tabMenu}>
-          <div className={styles.tabButtonContainer}>
-            <div
-              className={styles.tabButton}
-              onClick={() => handleTabClick("tab1")}
-            >
-              <TiBusinessCard size={30} />
-              <a>Staff</a>
+        <div className={styles.border}>
+          <div className={styles.tabMenu}>
+            <div className={styles.tabButtonContainer}>
+              <div
+                className={styles.tabButton}
+                onClick={() => handleTabClick("tab1")}
+              >
+                <TiBusinessCard size={30} />
+                <a>Staff</a>
+              </div>
             </div>
-          </div>
-          <div className={styles.tabButtonContainer}>
-            <div
-              className={styles.tabButton}
-              onClick={() => handleTabClick("tab2")}
-            >
-              <BsShop size={30} />
-              <a>Shop</a>
+            <div className={styles.tabButtonContainer}>
+              <div
+                className={styles.tabButton}
+                onClick={() => handleTabClick("tab2")}
+              >
+                <BsShop size={30} />
+                <a>Shop</a>
+              </div>
             </div>
-          </div>
-          <div className={styles.tabButtonContainer}>
-            <div
-              className={styles.tabButton}
-              onClick={() => handleTabClick("tab3")}
-            >
-              <VscCalendar size={30} />
-              <a>Booking</a>
+            <div className={styles.tabButtonContainer}>
+              <div
+                className={styles.tabButton}
+                onClick={() => handleTabClick("tab3")}
+              >
+                <VscCalendar size={30} />
+                <a>Booking</a>
+              </div>
             </div>
-          </div>
-          <div className={styles.tabButtonContainer}>
-            <div
-              className={styles.tabButton}
-              onClick={() => handleTabClick("tab4")}
-            >
-              <ImScissors size={30} />
-              <a>Services</a>
+            <div className={styles.tabButtonContainer}>
+              <div
+                className={styles.tabButton}
+                onClick={() => handleTabClick("tab4")}
+              >
+                <ImScissors size={30} />
+                <a>Services</a>
+              </div>
             </div>
-          </div>
-          <div className={styles.tabButtonContainer}>
-            <div
-              className={styles.tabButton}
-              onClick={() => handleTabClick("tab5")}
-            >
-              <GrGallery size={30} />
-              <a>Gallery</a>
+            <div className={styles.tabButtonContainer}>
+              <div
+                className={styles.tabButton}
+                onClick={() => handleTabClick("tab5")}
+              >
+                <TfiGallery size={30} />
+                <a>Gallery</a>
+              </div>
             </div>
           </div>
         </div>

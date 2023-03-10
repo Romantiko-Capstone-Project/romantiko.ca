@@ -6,6 +6,7 @@ import axios from "axios";
 
 const StaffTab = ({ staffs }) => {
   const [activeTab, setActiveTab] = useState("tab1");
+  // const [selectedButton, setSelectedButton] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
 
   const [data, setData] = useState({});
@@ -42,30 +43,42 @@ const StaffTab = ({ staffs }) => {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <div className={styles.titleContainer}>
-          <h1 className={styles.title}>List of Staff</h1>
-        </div>
-        {staffs.map((staff) => (
-          <div
-            key={staff._id}
-            className={styles.staffCard}
-            onClick={() => handleStaffClick(staff)}
-          >
-            <div className={styles.staffInfo}>
-              <h3 className={styles.name}>
-                {staff.firstName} {staff.lastName}
-              </h3>
-              <h6>
-                {staff.isActive ? "Currently Working" : "No longer Active"}
-              </h6>
-            </div>
-            <div className={styles.staffSelector}>
-              <div className={styles.buttonSelector}>
-                <span className={styles.select}>X</span>
-              </div>
-            </div>
+        <div className={styles.border}>
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>List of Staff</h1>
           </div>
-        ))}
+          <div className={styles.cardsContainer}>
+            {staffs.map((staff) => (
+              <div
+                key={staff._id}
+                className={styles.staffCard}
+                onClick={() => {
+                  handleStaffClick(staff);
+                }}
+                // style={{
+                //   backgroundColor:
+                //   selectedStaff === staff ? "#00000076" : "white",
+                //   color:
+                //   selectedStaff === staff ? "white": "black",
+                // }}
+              >
+                <div className={styles.staffInfo}>
+                  <h3 className={styles.name}>
+                    {staff.firstName} {staff.lastName}
+                  </h3>
+                  <h6>
+                    {staff.isActive ? "Currently Working" : "No longer Active"}
+                  </h6>
+                </div>
+                {/* <div className={styles.staffSelector}>
+                <div className={styles.buttonSelector}>
+                  <span className={styles.select}>X</span>
+                </div>
+              </div> */}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className={styles.right}>
         <div className={styles.recordTabMenu}>
