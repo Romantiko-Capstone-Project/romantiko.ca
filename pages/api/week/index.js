@@ -1,5 +1,4 @@
 import dbConnect from "../../../util/mongo";
-import TimeSlot from "../../../models/TimeSlot";
 import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 
@@ -10,8 +9,8 @@ const handler = async (req, res) => {
 
   if (method == "GET") {
     try {
-      const slots = await TimeSlot.find();
-      res.status(200).json(slots);
+      const weeks = await Week.find();
+      res.status(200).json(weeks);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -19,27 +18,23 @@ const handler = async (req, res) => {
 
   if (method === "POST") {
     try {
-      // Get all the weeks from the database
-      const weeks = await Week.find();
+      // Creating 52 week documents
+      const weeks = [];
+      for (let i = 1; i <= 52; i++) {
+        weeks.push({ weekNumber: i });
+      }
 
-      // Create a new TimeSlot with the provided day and startTime
-      const slots = await TimeSlot.insertMany(req.body);
+      Week.insertMany(weeks)
+        .then(() => console.log("52 weeks added successfully."))
+        .catch((err) =>
+          console.error("An error occurred while creating 52 weeks.", err)
+        );
 
-      // Map over the weeks and update the week field for each TimeSlot object
-      const timeSlots = weeks.map((week) => {
-        const updatedTimeSlot = slots.toObject();
-        updatedTimeSlot.week = week._id;
-        return updatedTimeSlot;
-      });
-
-      // Insert the new TimeSlots into the database
-      await TimeSlot.insertMany(timeSlots);
-
-      res.status(201).json(timeSlots);
+      res.status(201).json(weeks);
     } catch (err) {
       console.error(err);
       res.status(500).json({
-        message: "An error occurred while creating a time slot.",
+        message: "An error occurred while creating a week slot.",
         error: err,
       });
     }
@@ -50,12 +45,12 @@ const handler = async (req, res) => {
     try {
       const update = { $set: req.body };
       const options = { multi: true };
-      const result = await TimeSlot.updateMany({}, update, options);
+      const result = await Week.updateMany({}, update, options);
       res.status(200).json(result);
     } catch (err) {
       console.error(err);
       res.status(500).json({
-        message: "An error occurred while updating time slots.",
+        message: "An error occurred while updating week slots.",
         error: err,
       });
     }
