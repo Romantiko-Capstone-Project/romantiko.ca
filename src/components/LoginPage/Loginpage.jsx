@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
 import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';
-import { login } from "../../redux/authSlice";
+import { login,adminLogin,setID } from "../../redux/authSlice";
 
 
 const LoginPage = () => {
@@ -16,9 +16,15 @@ const LoginPage = () => {
   const router = useRouter();
 
 
-  const handleLogin = () => {
+  const handleLogin = (id) => {
 
     dispatch(login());
+    dispatch(setID(id));
+
+  };
+  const handleAdminLogin = () => {
+
+    dispatch(adminLogin());
 
   };
 
@@ -30,15 +36,16 @@ const LoginPage = () => {
         { username, password }
       );
 
-      handleLogin();
+      
 
       if (response.data.message.includes("Admin")) {
+        handleAdminLogin(response.data._id);
         router.push("/"); // Replace with the actual URL of the admin page
 
       } else if (response.data.message.includes("Staff")) {
-
+        handleLogin(response.data._id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
-
+        
       }
 
       console.log(response.data);
