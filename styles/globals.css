@@ -176,7 +176,7 @@ footer {
     
 }
 
-@media screen and (max-height: 1030px){
+@media screen and (max-height: 1030px) and (max-width:900px){
   .vidBG{
     position: relative;
     width: 100%;
