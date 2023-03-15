@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 .left {
@@ -91,6 +92,7 @@
   flex: 4;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .recordTabMenu {
@@ -113,7 +115,7 @@
   font-size: 15px;
   border-radius: 50px;
   background-color: #212529;
-  color: white;
+  color: rgba(255, 255, 255, 0.756);
 }
 .recordTabItem:hover {
   text-decoration: underline;

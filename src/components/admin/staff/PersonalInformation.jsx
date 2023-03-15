@@ -5,7 +5,7 @@ import axios from "axios";
 
 const PersonalInformation = ({ selectedStaff, data }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.photo}>
           <div className={styles.photoContainer}>
@@ -81,12 +81,14 @@ const PersonalInformation = ({ selectedStaff, data }) => {
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.itemList}>
+        <div className={styles.tablesContainer}>
           <table className={styles.table}>
-            <tbody className={styles.tbody}>
+            <thead className={styles.thead}>
               <tr className={styles.trTitle}>
                 <th>Most Recent Bookings:</th>
               </tr>
+            </thead>
+            <tbody className={styles.tbody}>
               <tr>
                 <td>Booking 1: Joe Doe</td>
               </tr>
@@ -96,10 +98,12 @@ const PersonalInformation = ({ selectedStaff, data }) => {
             </tbody>
           </table>
           <table className={styles.table}>
-            <tbody className={styles.tbody}>
-              <tr className={styles.trTitle}>
+            <thead className={styles.thead}>
+              <tr>
                 <th>Availability:</th>
               </tr>
+            </thead>
+            <tbody className={styles.tbody}>
               <tr>
                 <td>Time 1: MONDAY, 10:30A.M - 5:00P.M</td>
               </tr>
@@ -108,11 +112,14 @@ const PersonalInformation = ({ selectedStaff, data }) => {
               </tr>
             </tbody>
           </table>
+
           <table className={styles.table}>
-            <tbody>
+            <thead className={styles.thead}>
               <tr>
                 <th>Statistics:</th>
               </tr>
+            </thead>
+            <tbody className={styles.tbody}>
               <tr>
                 <td>Number of bookings for this week: 10</td>
               </tr>
