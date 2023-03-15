@@ -26,6 +26,7 @@ const Account = new Schema(
       required: true,
       default: "staff",
     },
+    img: { type: String },
   },
   { timestamps: true }
 );
