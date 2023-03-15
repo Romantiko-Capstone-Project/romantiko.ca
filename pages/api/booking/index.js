@@ -4,6 +4,7 @@ import TimeSlot from "../../../models/TimeSlot";
 import Schedule from "../../../models/Schedule";
 import Staff from "../../../models/Staff";
 import Service from "../../../models/Service";
+import Reservation from "../../../models/Reservation";
 const {
   sendBookingConfirmation,
 } = require("../../../config/nodemailer.config");
@@ -54,29 +55,56 @@ const handler = async (req, res) => {
       const slotsToBook = await TimeSlot.find({
         day: dayOfWeek,
         startTime: { $gte: timeStart, $lt: timeEnd },
+      }).exec();
+
+      if (!slotsToBook) {
+        return res.status(404).json("slots not found");
+      }
+
+      console.log(req.body.barber);
+
+      const reservations = await Reservation.find({
+        staff: req.body.barber,
+        timeSlot: { $in: slotsToBook.map((slot) => slot._id) },
         isBooked: false,
       }).exec();
 
-      if (slotsToBook.length === 0) {
-        return res.status(201).json("unavailable slot");
+      if (reservations.length === 0) {
+        return res.status(404).json("Reservation not found");
       }
 
       // create new booking
       const booking = await Booking.create(req.body);
 
-      /** Update time slot */
-      await TimeSlot.updateMany(
-        { _id: { $in: slotsToBook.map((slot) => slot._id) } },
-        { $set: { isBooked: true, bookingId: booking._id } },
-        { limit: 2 }
+      // update reservation isBooked to true
+      await Reservation.updateMany(
+        { _id: { $in: reservations.map((r) => r._id) } },
+        { $set: { booking: booking._id, isBooked: true } }
       );
+
+      // check if all reservations for the time slots are booked
+      const allReservations = await Reservation.find({
+        timeSlot: { $in: slotsToBook.map((slot) => slot._id) },
+      }).exec();
+
+      const allBooked = allReservations.every((r) => r.isBooked);
+
+      if (allBooked) {
+        // update isFull field in time slots to true
+        await TimeSlot.updateMany(
+          { _id: { $in: slotsToBook.map((slot) => slot._id) } },
+          { $set: { isFull: true } },
+          { limit: 2 }
+        );
+      }
 
       // create schedule with booking
       await Schedule.create({
         day: dayOfWeek,
-        staffId: booking.barber,
+        staff: booking.barber,
         startTime: booking.startTime,
         endTime: booking.endTime,
+        booking: booking._id,
       });
 
       const staff = await Staff.findById(booking.barber);
@@ -88,7 +116,6 @@ const handler = async (req, res) => {
       sendBookingConfirmation(
         booking.customerName,
         booking.customerEmail,
-        booking._id,
         booking.startTime,
         booking.endTime,
         serviceName,
@@ -96,6 +123,7 @@ const handler = async (req, res) => {
       );
 
       res.status(201).json(booking);
+      console.log("Time slot is available!");
     } catch (err) {
       console.error(err);
       res.status(500).json({

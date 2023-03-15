@@ -61,28 +61,24 @@ const handler = async (req, res) => {
       const timeSlots = await TimeSlot.find();
 
       // create a reservation for each time slot
-      const reservationPromises = timeSlots.map(timeSlot => Reservation.create({
-        staff: staff._id,
-        timeSlot: timeSlot._id,
-      }));
-      const reservations = await Promise.all(reservationPromises);
+      for (const timeSlot of timeSlots) {
+        const reservation = await Reservation.create({
+          staff: staff._id,
+          timeSlot: timeSlot._id,
+        });
 
-      // update the time slot's reservations array with the new reservations
-      const timeSlotUpdates = timeSlots.map((timeSlot, index) => ({
-        updateOne: {
-          filter: { _id: timeSlot._id },
-          update: { $push: { reservations: reservations[index]._id } },
-        },
-      }));
-      await TimeSlot.bulkWrite(timeSlotUpdates);
+        // update the time slot's reservations array with the new reservation
+        timeSlot.reservations.push(reservation._id);
+        await timeSlot.save();
+      }
 
       res.status(201).json(staff);
 
       // generate confirmation code
-      const confirmationCode = EmailToken(account._id);
+      // const confirmationCode = EmailToken(account._id);
 
       // send email verification
-      sendConfirmationEmail(firstName, email, account._id, confirmationCode);
+      // sendConfirmationEmail(firstName, email, account._id, confirmationCode);
     } catch (err) {
       console.error(err);
       res.status(500).json(err);

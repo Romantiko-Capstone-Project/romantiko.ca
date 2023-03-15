@@ -5,20 +5,15 @@ const TimeSlot = new Schema(
   {
     day: {
       type: String,
-      enum: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
       required: true,
     },
     startTime: { type: Number, required: true },
     isFull: { type: Boolean, required: true, default: false },
     reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
+    week: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Week",
+    },
   },
   { timestamps: true }
 );
