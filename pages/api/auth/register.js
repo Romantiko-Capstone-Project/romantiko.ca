@@ -75,10 +75,10 @@ const handler = async (req, res) => {
       res.status(201).json(staff);
 
       // generate confirmation code
-      // const confirmationCode = EmailToken(account._id);
+      const confirmationCode = EmailToken(account._id);
 
       // send email verification
-      // sendConfirmationEmail(firstName, email, account._id, confirmationCode);
+      sendConfirmationEmail(firstName, email, account._id, confirmationCode);
     } catch (err) {
       console.error(err);
       res.status(500).json(err);

@@ -44,19 +44,30 @@ const handler = async (req, res) => {
       try {
         const staff = await Staff.findOne({ account: id });
 
+        // Get the staff's reservations
+        const reservations = await Reservation.find({ staff: staff._id });
+
         // Update the reservations in the time slots
         const timeSlots = await TimeSlot.find({
-          reservations: { $in: staff.reservations },
+          reservations: { $in: reservations.map((r) => r._id) },
         });
         for (const timeSlot of timeSlots) {
           timeSlot.reservations = timeSlot.reservations.filter(
-            (reservation) => !staff.reservations.includes(reservation)
+            (reservation) =>
+              !reservations.map((r) => r._id).includes(reservation)
           );
+          for (const reservation of reservations) {
+            timeSlot.reservations = timeSlot.reservations.filter(
+              (r) => r.toString() !== reservation._id.toString()
+            );
+          }
           await timeSlot.save();
         }
 
         // Delete the staff's reservations
         await Reservation.deleteMany({ staff: staff._id });
+
+        // Delete the staff's account, schedule, and staff objects
         await Account.findByIdAndDelete(id);
         await Schedule.findOneAndDelete({ staff: staff._id });
         await Staff.findOneAndDelete({ account: id });
