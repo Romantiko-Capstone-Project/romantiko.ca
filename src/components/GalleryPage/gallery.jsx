@@ -1,140 +1,39 @@
 import styles from "../../../styles/Gallery.module.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+
 function GalleryStuff() {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3000/api/gallery");
+        setImages(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchImages();
+  }, []);
+
   return (
     <div className={styles.container}>
-      <div className={styles.row}>
-        <div className={styles.column}>
-           <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
+      <div className={styles.imagesContainer}>
+        
+        {images.map((image) => (
+          <div className={styles.imgContainer} key={image._id}>
+            <Image
+              src={image.img}
+              alt="Haircut img not found"
+              width="500"
+              height="500"
             />
-            <img
-              src="/img/gallery/Haircut1.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-        </div>
-        <div className={styles.column}>
-           <img
-              src="/img/gallery/Haircut2.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-        </div>
-        <div className={styles.column}>
-           <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/Haircut3.jpg"
-              className={styles.imagestuff}
-            />
-        </div>
-        <div className={styles.column}>
-           <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-            <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-              <img
-              src="/img/gallery/haircut.jpg"
-              className={styles.imagestuff}
-            />
-        </div>
-           
-
-
-
+          </div>
+        ))}
       </div>
-      {/*<div className={styles.cardsContainer}> 
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-        <div className={styles.cardContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/img/gallery/haircut.jpg"
-              layout="fill"
-              object-fit="contain"
-            ></Image>
-          </div>
-        </div>
-
-
-
-
-       
-  </div>*/}
+      
     </div>
   );
 }
