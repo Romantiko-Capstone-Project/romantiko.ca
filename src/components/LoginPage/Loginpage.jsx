@@ -16,17 +16,22 @@ const LoginPage = () => {
   const router = useRouter();
 
 
-  const handleLogin = (id) => {
+  function handleLogin(id){
 
     dispatch(login());
-    dispatch(setID(id));
+    handleID(setID(id));
 
   };
-  const handleAdminLogin = () => {
+  function handleAdminLogin(id){
 
     dispatch(adminLogin());
-
+    handleID(setID(id));
   };
+
+  function handleID(id){
+    dispatch(setID(id));
+    console.log("dispatched id =" + id);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +48,7 @@ const LoginPage = () => {
         router.push("/"); // Replace with the actual URL of the admin page
 
       } else if (response.data.message.includes("Staff")) {
+        console.log(response.data._id);
         handleLogin(response.data._id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
         

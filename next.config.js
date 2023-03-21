@@ -5,6 +5,9 @@ const nextConfig = {
 };
 
 module.exports = {
+  images: {
+    disableStaticImages: true
+},
   webpack: (config, { isServer }) => {
     // Add support for mp4 files
     config.module.rules.push({

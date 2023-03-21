@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 export default function CardSlide() {
   const [index, setIndex] = useState(0);
-  const interval = 5000;
+  const interval = 7000;
 
   useEffect(() => {
     const timer = setInterval(() => {
