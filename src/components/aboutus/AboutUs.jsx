@@ -1,16 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
+import banner from '../../../public/img/aboutus/banner.png'
 const AboutUs = () => {
     return (
-        <section className="py-5">
-            <div className="text-center my-5">
+        <section className="mt-0">
 
-                <div className="py-5 bg-image-full" style={{ "backgroundImage": "url(../../../public/img/aboutus/banner.png)" }}>
-
-
-                </div>
-
-            </div>
+            <img src={banner} className="bannerAB"/>
             <div className="container my-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-6">
