@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
+import { useRouter } from "next/router";
+import { useDispatch } from 'react-redux';
+import { login } from "../../redux/authSlice";
 
-function LoginPage() {
+
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMess, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
+  //for loggedIn state
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+
+  const handleLogin = () => {
+
+    dispatch(login());
+
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +29,20 @@ function LoginPage() {
         "http://localhost:3000/api/auth/login",
         { username, password }
       );
+
+      handleLogin();
+
+      if (response.data.message.includes("Admin")) {
+        router.push("/"); // Replace with the actual URL of the admin page
+
+      } else if (response.data.message.includes("Staff")) {
+
+        router.push("/dashboard"); // Replace with the actual URL of the staff page
+
+      }
+
       console.log(response.data);
+
     } catch (error) {
       setError(true);
       setErrorMessage("Incorrect username or password.");
@@ -28,8 +55,8 @@ function LoginPage() {
       <div className={styles.wrapper}>
         <h4
           style={{
-            "text-align": "center",
-            "margin-top": "8px",
+            "textAlign": "center",
+            "marginTop": "8px",
             color: "black",
           }}
         >
@@ -43,7 +70,7 @@ function LoginPage() {
             id="email"
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Email"
-            style={{ "background-color": "#EBECF0" }}
+            style={{ "backgroundColor": "#EBECF0" }}
           />
           <label htmlFor="email" className={styles.stuff}>
             Email
@@ -57,7 +84,7 @@ function LoginPage() {
             id="pwd"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            style={{ "background-color": "#EBECF0" }}
+            style={{ "backgroundColor": "#EBECF0" }}
           />
           <label htmlFor="pwd" className={styles.stuff}>
             Password
