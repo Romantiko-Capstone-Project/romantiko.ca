@@ -10,18 +10,19 @@ function GalleryStuff() {
     const fetchImages = async () => {
       try {
         const { data } = await axios.get("http://localhost:3000/api/gallery");
-        setImages(data);
+        if (JSON.stringify(images) !== JSON.stringify(data)) {
+          setImages(data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
     fetchImages();
-  }, []);
+  }, [images]);
 
   return (
     <div className={styles.container}>
       <div className={styles.imagesContainer}>
-        
         {images.map((image) => (
           <div className={styles.imgContainer} key={image._id}>
             <Image
@@ -33,7 +34,6 @@ function GalleryStuff() {
           </div>
         ))}
       </div>
-      
     </div>
   );
 }

@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// import Dropzone from "react-dropzone";
-// import Masonry from "react-masonry-css";
-// import { FaTrash } from "react-icons/fa";
-// import styled from "styled-components";
-
 const GalleryTab = () => {
   const [file, setFile] = useState(null);
   const [msg, setMsg] = useState(false);
@@ -21,11 +16,12 @@ const GalleryTab = () => {
       );
       // console.log(uploadRes.data);
       const { url } = uploadRes.data;
-      const newProduct = {
+      const newGallery = {
         img: url,
       };
+      console.log(newGallery);
 
-      await axios.post("http://localhost:3000/api/gallery", newProduct);
+      await axios.post("http://localhost:3000/api/gallery", newGallery);
       // setClose(true);
       setMsg(true);
     } catch (err) {
@@ -40,8 +36,7 @@ const GalleryTab = () => {
         <label>Choose an image</label>
         <br></br>
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-        {msg ? "The image has been succesfully uploaded." : ""}
-        
+        {msg && <h3>The image has been succesfully uploaded.</h3>}
       </div>
       <button onClick={handleCreate}>Upload</button>
     </div>
@@ -49,6 +44,11 @@ const GalleryTab = () => {
 };
 
 export default GalleryTab;
+
+// import Dropzone from "react-dropzone";
+// import Masonry from "react-masonry-css";
+// import { FaTrash } from "react-icons/fa";
+// import styled from "styled-components";
 
 // const breakpoints = {
 //   default: 3,
