@@ -22,19 +22,39 @@ const handler = async (req, res) => {
       // Get all the weeks from the database
       const weeks = await Week.find();
 
-      // Create a new TimeSlot with the provided day and startTime
-      const slots = await TimeSlot.insertMany(req.body);
+      // Get the day and startTime from the request body
+      const { day, startTime } = req.body;
 
-      // Map over the weeks and update the week field for each TimeSlot object
-      const timeSlots = weeks.map((week) => {
-        const updatedTimeSlot = slots.toObject();
-        updatedTimeSlot.week = week._id;
-        return updatedTimeSlot;
-      });
+      // Loop through each week and create/update the TimeSlots
+      const timeSlots = [];
+      for (const week of weeks) {
+        // Find an existing TimeSlot with the same day and startTime for this week
+        const existingTimeSlot = await TimeSlot.findOne({
+          week: week._id,
+          day,
+          startTime,
+        });
 
-      // Insert the new TimeSlots into the database
+        if (existingTimeSlot) {
+          // If an existing TimeSlot is found, update its fields
+          existingTimeSlot.week = week._id;
+          timeSlots.push(existingTimeSlot);
+        } else {
+          // If no existing TimeSlot is found, create a new one
+          const newTimeSlot = new TimeSlot({
+            week: week._id,
+            day,
+            startTime,
+            // other attributes as needed
+          });
+          timeSlots.push(newTimeSlot);
+        }
+      }
+
+      // Save all the TimeSlots to the database
       await TimeSlot.insertMany(timeSlots);
 
+      // Return the created/updated TimeSlots in the response
       res.status(201).json(timeSlots);
     } catch (err) {
       console.error(err);
