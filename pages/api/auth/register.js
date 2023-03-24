@@ -1,8 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Account from "../../../models/Account";
 import Staff from "../../../models/Staff";
-import TimeSlot from "../../../models/TimeSlot";
-import Reservation from "../../../models/Reservation";
 const CryptoJS = require("crypto-js");
 const { sendConfirmationEmail } = require("../../../config/nodemailer.config");
 const { EmailToken } = require("../../../config/jwt.config");
@@ -56,21 +54,6 @@ const handler = async (req, res) => {
         phoneNumber,
         account: account._id,
       });
-
-      // get all time slots
-      const timeSlots = await TimeSlot.find();
-
-      // create a reservation for each time slot
-      for (const timeSlot of timeSlots) {
-        const reservation = await Reservation.create({
-          staff: staff._id,
-          timeSlot: timeSlot._id,
-        });
-
-        // update the time slot's reservations array with the new reservation
-        timeSlot.reservations.push(reservation._id);
-        await timeSlot.save();
-      }
 
       res.status(201).json(staff);
 

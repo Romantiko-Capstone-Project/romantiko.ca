@@ -1,7 +1,9 @@
 import dbConnect from "../../../util/mongo";
 import TimeSlot from "../../../models/TimeSlot";
-import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+const {
+  initializeWeeks,
+} = require("../../../middlewares/generateTimeSlot");
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -19,43 +21,8 @@ const handler = async (req, res) => {
 
   if (method === "POST") {
     try {
-      // Get all the weeks from the database
-      const weeks = await Week.find();
-
-      // Get the day and startTime from the request body
-      const { day, startTime } = req.body;
-
-      // Loop through each week and create/update the TimeSlots
-      const timeSlots = [];
-      for (const week of weeks) {
-        // Find an existing TimeSlot with the same day and startTime for this week
-        const existingTimeSlot = await TimeSlot.findOne({
-          week: week._id,
-          day,
-          startTime,
-        });
-
-        if (existingTimeSlot) {
-          // If an existing TimeSlot is found, update its fields
-          existingTimeSlot.week = week._id;
-          timeSlots.push(existingTimeSlot);
-        } else {
-          // If no existing TimeSlot is found, create a new one
-          const newTimeSlot = new TimeSlot({
-            week: week._id,
-            day,
-            startTime,
-            // other attributes as needed
-          });
-          timeSlots.push(newTimeSlot);
-        }
-      }
-
-      // Save all the TimeSlots to the database
-      await TimeSlot.insertMany(timeSlots);
-
-      // Return the created/updated TimeSlots in the response
-      res.status(201).json(timeSlots);
+      
+      initializeWeeks()
     } catch (err) {
       console.error(err);
       res.status(500).json({
