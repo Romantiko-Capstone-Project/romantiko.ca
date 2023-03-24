@@ -35,7 +35,12 @@ const GalleryTab = () => {
       <div>
         <label>Choose an image</label>
         <br></br>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+        <input
+          type="file"
+          onChange={(e) => setFile(e.target.files[0])}
+          onClick={() => setMsg(false)}
+        
+        />
         {msg && <h3>The image has been succesfully uploaded.</h3>}
       </div>
       <button onClick={handleCreate}>Upload</button>
