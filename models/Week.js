@@ -1,5 +1,7 @@
+// models/Week.js
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Day = require("./Day");
 
 const Week = new Schema(
   {
@@ -10,6 +12,7 @@ const Week = new Schema(
       min: 1,
       max: 52,
     },
+    days: [Day],
   },
   { timestamps: true }
 );
