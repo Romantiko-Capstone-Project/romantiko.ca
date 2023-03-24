@@ -34,7 +34,8 @@ const GalleryTab = () => {
       <br></br>
       <div>
         <label>Choose an image</label>
-        <br></br>
+        <br></br> 
+        {/* Get rid of br and uses flex-box. */}
         <input
           type="file"
           onChange={(e) => setFile(e.target.files[0])}
