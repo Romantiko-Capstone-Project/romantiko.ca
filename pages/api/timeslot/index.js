@@ -1,5 +1,9 @@
 import dbConnect from "../../../util/mongo";
 import TimeSlot from "../../../models/TimeSlot";
+const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+const {
+  initializeWeeks,
+} = require("../../../middlewares/generateTimeSlot");
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -17,8 +21,8 @@ const handler = async (req, res) => {
 
   if (method === "POST") {
     try {
-      const slot = await TimeSlot.insertMany(req.body);
-      res.status(201).json(slot);
+      
+      initializeWeeks()
     } catch (err) {
       console.error(err);
       res.status(500).json({
