@@ -40,7 +40,7 @@ const StaffTab = ({ staffs }) => {
     setId(account);
   };
 
-  return (~~
+  return (
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.border}>
