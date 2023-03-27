@@ -3,23 +3,41 @@ import { useState, useEffect } from "react";
 import styles from "../../../../styles/PersonalInformation.module.css";
 import axios from "axios";
 
-const PersonalInformation = ({ selectedStaff, data }) => {
+const PersonalInformation = ({ selectedStaff }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstName, setFirstName] = useState(selectedStaff?.firstName);
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phone);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
-  // const toggleEditMode = () => {
-  //   setIsEditMode(!isEditMode);
-  // };
+
+  const [data, setData] = useState({});
+  const id = selectedStaff?.account;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) {
+        console.log("fetchData error: ID not provided");
+        return;
+      }
+
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/api/account/${id}`
+        ); // pass id as a parameter in the URL
+        setData(data);
+      } catch (error) {
+        console.log("fetchData error");
+      }
+    };
+    fetchData();
+  }, [id]);
+
   const toggleEditMode = () => {
     setIsEditMode((prevState) => !prevState);
   };
 
   const handleSaveChanges = async () => {
-    const { isActive } = selectedStaff;
-
     const _staff = {
       firstName,
       lastName,
@@ -40,6 +58,28 @@ const PersonalInformation = ({ selectedStaff, data }) => {
       setIsEditMode(false);
     } catch (error) {
       console.error("Error updating staff:", error);
+    }
+  };
+
+  const handleStatus = () => {
+    const newStatus = !status;
+    setStatus(newStatus);
+    handleChangeStatus(newStatus);
+  };
+
+  const handleChangeStatus = async (newStatus) => {
+    const _staff = {
+      isActive: newStatus ? true : false,
+    };
+
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/staff/${selectedStaff._id}`,
+        _staff
+      );
+      console.log(response.data);
+    } catch (err) {
+      console.error("Error updating status:", err);
     }
   };
   return (
@@ -117,7 +157,9 @@ const PersonalInformation = ({ selectedStaff, data }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              <span className={styles.infoInput}>{data && data.username}</span>
+              <span className={styles.infoInput}>
+                {data ? data.username : "empty"}
+              </span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
@@ -152,7 +194,7 @@ const PersonalInformation = ({ selectedStaff, data }) => {
                 </select>
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff?.isActive ? "Active" : "Inactive"}
+                  {selectedStaff?.isActive ? "Active" : "Inactive" }
                 </span>
               )}
             </div>
@@ -171,7 +213,9 @@ const PersonalInformation = ({ selectedStaff, data }) => {
             <button className={styles.actionButton}>Delete</button>
           </div>
           <div className={styles.action}>
-            <button className={styles.actionButton}>Change Status</button>
+            <button className={styles.actionButton} onClick={handleStatus}>
+              Change Status
+            </button>
           </div>
         </div>
       </div>

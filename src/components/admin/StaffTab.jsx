@@ -9,35 +9,35 @@ const StaffTab = ({ staffs }) => {
   // const [selectedButton, setSelectedButton] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
 
-  const [data, setData] = useState({});
-  const [id, setId] = useState(staffs[0]?.account);
+  // const [data, setData] = useState({});
+  // const [id, setId] = useState(staffs[0]?.account);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!id) {
-        console.log("fetchData error: ID not provided");
-        return;
-      }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (!id) {
+  //       console.log("fetchData error: ID not provided");
+  //       return;
+  //     }
 
-      try {
-        const { data } = await axios.get(
-          `http://localhost:3000/api/account/${id}`
-        ); // pass id as a parameter in the URL
-        setData(data);
-      } catch (error) {
-        console.log("fetchData error");
-      }
-    };
-    fetchData();
-  }, [id]);
+  //     try {
+  //       const { data } = await axios.get(
+  //         `http://localhost:3000/api/account/${id}`
+  //       ); // pass id as a parameter in the URL
+  //       setData(data);
+  //     } catch (error) {
+  //       console.log("fetchData error");
+  //     }
+  //   };
+  //   fetchData();
+  // }, [id]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
   const handleStaffClick = (staffMember) => {
     setSelectedStaff(staffMember);
-    const { account } = staffMember;
-    setId(account);
+    // const { account } = staffMember;
+    // setId(account);
   };
 
   return (
@@ -92,7 +92,7 @@ const StaffTab = ({ staffs }) => {
         </div>
         <div className={styles.content}>
           {activeTab === "tab1" && (
-            <PersonalInformation selectedStaff={selectedStaff} data={data} />
+            <PersonalInformation selectedStaff={selectedStaff} />
           )}
           {activeTab === "tab2" && (
             <PersonalBookings selectedStaff={selectedStaff} />
