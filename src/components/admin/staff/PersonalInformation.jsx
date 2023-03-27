@@ -112,14 +112,12 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
-                  defaultValue={
-                    selectedStaff ? selectedStaff.firstName : "empty"
-                  }
+                  defaultValue={selectedStaff ? selectedStaff.firstName : "N/A"}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff ? selectedStaff.firstName : "empty"}
+                  {selectedStaff ? selectedStaff.firstName : "N/A"}
                 </span>
               )}
             </div>
@@ -129,14 +127,12 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
-                  defaultValue={
-                    selectedStaff ? selectedStaff.lastName : "empty"
-                  }
+                  defaultValue={selectedStaff ? selectedStaff.lastName : "N/A"}
                   onChange={(e) => setLastName(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff ? selectedStaff.lastName : "empty"}
+                  {selectedStaff ? selectedStaff.lastName : "N/A"}
                 </span>
               )}
             </div>
@@ -146,19 +142,19 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
-                  defaultValue={selectedStaff ? selectedStaff.address : "empty"}
+                  defaultValue={selectedStaff ? selectedStaff.address : "N/A"}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff ? selectedStaff.address : "empty"}
+                  {selectedStaff ? selectedStaff.address : "N/A"}
                 </span>
               )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
               <span className={styles.infoInput}>
-                {data ? data.username : "empty"}
+                {data && data.username ? data.username : "N/A"}
               </span>
             </div>
             <div className={styles.infoItem}>
@@ -167,19 +163,21 @@ const PersonalInformation = ({ selectedStaff }) => {
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
                   defaultValue={
-                    selectedStaff ? selectedStaff.phoneNumber : "empty"
+                    selectedStaff ? selectedStaff.phoneNumber : "N/A"
                   }
                   onChange={(e) => setPhone(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff ? selectedStaff.phoneNumber : "empty"}
+                  {selectedStaff ? selectedStaff.phoneNumber : "N/A"}
                 </span>
               )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Email Address:</h4>
-              <span className={styles.infoInput}>{data && data.email}</span>
+              <span className={styles.infoInput}>
+                {data && data.email ? data.email : "N/A"}
+              </span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Status:</h4>
@@ -194,7 +192,11 @@ const PersonalInformation = ({ selectedStaff }) => {
                 </select>
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff?.isActive ? "Active" : "Inactive" }
+                  {selectedStaff
+                    ? selectedStaff.isActive
+                      ? "Active"
+                      : "Inactive"
+                    : "N/A"}
                 </span>
               )}
             </div>
