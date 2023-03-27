@@ -32,10 +32,9 @@ const StaffTab = ({ staffs }) => {
     setSelectedStaff(staffMember);
     const { account } = staffMember;
     setId(account);
-  
   };
 
-  return (~~
+  return (
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.titleContainer}>
