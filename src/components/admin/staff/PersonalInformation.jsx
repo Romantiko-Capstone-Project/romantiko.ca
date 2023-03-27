@@ -4,6 +4,49 @@ import styles from "../../../../styles/PersonalInformation.module.css";
 import axios from "axios";
 
 const PersonalInformation = ({ selectedStaff, data }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [firstName, setFirstName] = useState(selectedStaff?.firstName);
+  const [lastName, setLastName] = useState(selectedStaff?.lastName);
+  const [address, setAddress] = useState(selectedStaff?.address);
+  const [phone, setPhone] = useState(selectedStaff?.phone);
+  const [status, setStatus] = useState(selectedStaff?.isActive);
+
+  const [username, setUsername] = useState(data?.username);
+  const [email, setEmail] = useState(data?.email);
+
+  // const toggleEditMode = () => {
+  //   setIsEditMode(!isEditMode);
+  // };
+
+  const toggleEditMode = () => {
+    setIsEditMode((prevState) => !prevState);
+  };
+
+  const handleSaveChanges = async () => {
+    const { isActive } = selectedStaff;
+
+    const _staff = {
+      firstName,
+      lastName,
+      address,
+      phone,
+      isActive: status || isActive,
+    };
+
+    try {
+      // Replace 'id' with the actual staff id
+      const response = await axios.put(
+        `http://localhost:3000/api/staff/${selectedStaff._id}`,
+        _staff
+      );
+      console.log(response.data);
+
+      // Switch back to view mode
+      setIsEditMode(false);
+    } catch (error) {
+      console.error("Error updating staff:", error);
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -29,31 +72,82 @@ const PersonalInformation = ({ selectedStaff, data }) => {
         <div className={styles.info}>
           <div className={styles.infoList}>
             <div className={styles.infoItem}>
-              <h4 className={styles.infoLabel}>Name:</h4>
-              <span className={styles.infoInput}>
-                {selectedStaff
-                  ? selectedStaff.firstName + " " + selectedStaff.lastName
-                  : "empty"}
-                {/* {staff.firstName} {staff.lastName} */}
-              </span>
+              <h4 className={styles.infoLabel}>First Name:</h4>
+              {isEditMode ? (
+                <input
+                  className={`${styles.infoInput} ${styles.isEditMode}`}
+                  defaultValue={
+                    selectedStaff ? selectedStaff.firstName : "empty"
+                  }
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {selectedStaff ? selectedStaff.firstName : "empty"}
+                </span>
+              )}
             </div>
+
+            <div className={styles.infoItem}>
+              <h4 className={styles.infoLabel}>Last Name:</h4>
+              {isEditMode ? (
+                <input
+                  className={`${styles.infoInput} ${styles.isEditMode}`}
+                  defaultValue={
+                    selectedStaff ? selectedStaff.lastName : "empty"
+                  }
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {selectedStaff ? selectedStaff.lastName : "empty"}
+                </span>
+              )}
+            </div>
+
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Address:</h4>
-              <span className={styles.infoInput}>
-                {/* {staff.address} */}
-                {selectedStaff ? selectedStaff.address : "empty"}
-              </span>
+              {isEditMode ? (
+                <input
+                  className={`${styles.infoInput} ${styles.isEditMode}`}
+                  defaultValue={selectedStaff ? selectedStaff.address : "empty"}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {selectedStaff ? selectedStaff.address : "empty"}
+                </span>
+              )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              <span className={styles.infoInput}>{data && data.username}</span>
+              {isEditMode ? (
+                <input
+                  className={styles.infoInput}
+                  defaultValue={data ? data.username : "empty"}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {data ? data.username : "empty"}
+                </span>
+              )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
-              <span className={styles.infoInput}>
-                {/* {staff.phoneNumber} */}
-                {selectedStaff ? selectedStaff.phoneNumber : "empty"}
-              </span>
+              {isEditMode ? (
+                <input
+                  className={`${styles.infoInput} ${styles.isEditMode}`}
+                  defaultValue={
+                    selectedStaff ? selectedStaff.phoneNumber : "empty"
+                  }
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {selectedStaff ? selectedStaff.phoneNumber : "empty"}
+                </span>
+              )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Email Address:</h4>
@@ -61,16 +155,35 @@ const PersonalInformation = ({ selectedStaff, data }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Status:</h4>
-              <span className={styles.infoInput}>
-                {/* {staff.isActive ? "Currently Working" : "No longer Active"} */}
-                {selectedStaff ? selectedStaff.isActive.toString() : "empty"}
-              </span>
+              {isEditMode ? (
+                <select
+                  className={styles.infoInput}
+                  value={status ? "true" : "false"}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <option value="true">Active</option>
+                  <option value="false">Inactive</option>
+                </select>
+              ) : (
+                <span className={styles.infoInput}>
+                  {selectedStaff
+                    ? selectedStaff.isActive
+                      ? "Active"
+                      : "Inactive"
+                    : "empty"}
+                </span>
+              )}
             </div>
           </div>
         </div>
         <div className={styles.actions}>
           <div className={styles.action}>
-            <button className={styles.actionButton}>Edit</button>
+            <button
+              className={styles.actionButton}
+              onClick={isEditMode ? handleSaveChanges : toggleEditMode}
+            >
+              {isEditMode ? "Save" : "Edit"}
+            </button>
           </div>
           <div className={styles.action}>
             <button className={styles.actionButton}>Delete</button>
@@ -135,27 +248,3 @@ const PersonalInformation = ({ selectedStaff, data }) => {
 };
 
 export default PersonalInformation;
-
-// const [data, setData] = useState({});
-// const [id, setId] = useState(null);
-
-// useEffect(() => {
-//   if (selectedStaff) {
-//     const { account } = selectedStaff;
-//     setId(account);
-//   }
-// }, [selectedStaff]);
-
-// useEffect(() => {
-//   const fetchData = async () => {
-//     try {
-//       const { data } = await axios.get(
-//         `http://localhost:3000/api/account/${id}`
-//       ); // pass id as a parameter in the URL
-//       setData(data);
-//     } catch (error) {
-//       console.log("Error in requesting data from account schema.");
-//     }
-//   };
-//   fetchData();
-// }, [id]);

@@ -14,17 +14,17 @@ const StaffTab = ({ staffs }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!id) {
+        console.log("fetchData error: ID not provided");
+        return;
+      }
+
       try {
         const { data } = await axios.get(
           `http://localhost:3000/api/account/${id}`
         ); // pass id as a parameter in the URL
         setData(data);
       } catch (error) {
-        const error_ = {
-          username: "not found",
-          email: "not found",
-        };
-        setData(error_);
         console.log("fetchData error");
       }
     };
@@ -70,11 +70,6 @@ const StaffTab = ({ staffs }) => {
                     {staff.isActive ? "Currently Working" : "No longer Active"}
                   </h6>
                 </div>
-                {/* <div className={styles.staffSelector}>
-                <div className={styles.buttonSelector}>
-                  <span className={styles.select}>X</span>
-                </div>
-              </div> */}
               </div>
             ))}
           </div>
