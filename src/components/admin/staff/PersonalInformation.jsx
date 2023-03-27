@@ -9,7 +9,7 @@ const PersonalInformation = ({ selectedStaff, data }) => {
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phone);
-  const [status, setStatus] = useState(selectedStaff?.isActive);
+  const [status, setStatus] = useState(!!selectedStaff?.isActive);
   // const toggleEditMode = () => {
   //   setIsEditMode(!isEditMode);
   // };
@@ -144,7 +144,6 @@ const PersonalInformation = ({ selectedStaff, data }) => {
               {isEditMode ? (
                 <select
                   className={styles.infoInput}
-                  defaultValue={"Non-selected"}
                   value={status ? true : false}
                   onChange={(e) => setStatus(e.target.value === "true")}
                 >
