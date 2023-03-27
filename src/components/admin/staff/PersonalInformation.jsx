@@ -10,14 +10,9 @@ const PersonalInformation = ({ selectedStaff, data }) => {
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phone);
   const [status, setStatus] = useState(selectedStaff?.isActive);
-
-  const [username, setUsername] = useState(data?.username);
-  const [email, setEmail] = useState(data?.email);
-
   // const toggleEditMode = () => {
   //   setIsEditMode(!isEditMode);
   // };
-
   const toggleEditMode = () => {
     setIsEditMode((prevState) => !prevState);
   };
@@ -30,7 +25,7 @@ const PersonalInformation = ({ selectedStaff, data }) => {
       lastName,
       address,
       phone,
-      isActive: status || isActive,
+      isActive: status ? true : false,
     };
 
     try {
@@ -73,6 +68,7 @@ const PersonalInformation = ({ selectedStaff, data }) => {
           <div className={styles.infoList}>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>First Name:</h4>
+
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
@@ -121,17 +117,7 @@ const PersonalInformation = ({ selectedStaff, data }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              {isEditMode ? (
-                <input
-                  className={styles.infoInput}
-                  defaultValue={data ? data.username : "empty"}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              ) : (
-                <span className={styles.infoInput}>
-                  {data ? data.username : "empty"}
-                </span>
-              )}
+              <span className={styles.infoInput}>{data && data.username}</span>
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
@@ -158,19 +144,16 @@ const PersonalInformation = ({ selectedStaff, data }) => {
               {isEditMode ? (
                 <select
                   className={styles.infoInput}
-                  value={status ? "true" : "false"}
-                  onChange={(e) => setStatus(e.target.value)}
+                  defaultValue={"Non-selected"}
+                  value={status ? true : false}
+                  onChange={(e) => setStatus(e.target.value === "true")}
                 >
                   <option value="true">Active</option>
                   <option value="false">Inactive</option>
                 </select>
               ) : (
                 <span className={styles.infoInput}>
-                  {selectedStaff
-                    ? selectedStaff.isActive
-                      ? "Active"
-                      : "Inactive"
-                    : "empty"}
+                  {selectedStaff?.isActive ? "Active" : "Inactive"}
                 </span>
               )}
             </div>
