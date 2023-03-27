@@ -8,7 +8,7 @@ const PersonalInformation = ({ selectedStaff }) => {
   const [firstName, setFirstName] = useState(selectedStaff?.firstName);
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
-  const [phone, setPhone] = useState(selectedStaff?.phone);
+  const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
 
   const [data, setData] = useState({});
@@ -33,6 +33,9 @@ const PersonalInformation = ({ selectedStaff }) => {
     fetchData();
   }, [id]);
 
+  const [usr, setUsr] = useState(data?.username);
+  const [email, setEmail] = useState(data?.email);
+
   const toggleEditMode = () => {
     setIsEditMode((prevState) => !prevState);
   };
@@ -42,8 +45,13 @@ const PersonalInformation = ({ selectedStaff }) => {
       firstName,
       lastName,
       address,
-      phone,
+      phoneNumber: phone,
       isActive: status ? true : false,
+    };
+
+    const _extraStaff = {
+      username: usr,
+      email,
     };
 
     try {
@@ -52,7 +60,12 @@ const PersonalInformation = ({ selectedStaff }) => {
         `http://localhost:3000/api/staff/${selectedStaff._id}`,
         _staff
       );
+      const response2 = await axios.put(
+        `http://localhost:3000/api/account/${id}`,
+        _extraStaff
+      );
       console.log(response.data);
+      console.log(response2.data);
 
       // Switch back to view mode
       setIsEditMode(false);
@@ -153,9 +166,17 @@ const PersonalInformation = ({ selectedStaff }) => {
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Username:</h4>
-              <span className={styles.infoInput}>
-                {data && data.username ? data.username : "N/A"}
-              </span>
+              {isEditMode ? (
+                <input
+                  className={`${styles.infoInput} ${styles.isEditMode}`}
+                  defaultValue={data && data.username ? data.username : "N/A"}
+                  onChange={(e) => setUsr(e.target.value)}
+                />
+              ) : (
+                <span className={styles.infoInput}>
+                  {data && data.username ? data.username : "N/A"}
+                </span>
+              )}
             </div>
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Phone Number:</h4>
@@ -176,7 +197,17 @@ const PersonalInformation = ({ selectedStaff }) => {
             <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Email Address:</h4>
               <span className={styles.infoInput}>
-                {data && data.email ? data.email : "N/A"}
+                {isEditMode ? (
+                  <input
+                    className={`${styles.infoInput} ${styles.isEditMode}`}
+                    defaultValue={data && data.email ? data.email : "N/A"}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                ) : (
+                  <span className={styles.infoInput}>
+                    {data && data.email ? data.email : "N/A"}
+                  </span>
+                )}
               </span>
             </div>
             <div className={styles.infoItem}>
