@@ -2,9 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "../../redux/authSlice";
+import { useRouter } from "next/router";
 
 
 const Header = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
 
@@ -12,6 +14,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    router.push('/');
   };
 
   return (
