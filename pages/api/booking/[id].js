@@ -2,6 +2,7 @@ import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
 import TimeSlot from "../../../models/TimeSlot";
 import Schedule from "../../../models/Schedule";
+import Reservation from "../../../models/Reservation";
 
 const handler = async (req, res) => {
   const {
@@ -39,16 +40,33 @@ const handler = async (req, res) => {
       if (!booking) {
         return res.status(404).json({ message: "Booking not found." });
       }
-      await Booking.findByIdAndDelete(id);
-      // update time slot
-      await TimeSlot.updateMany(
-        {
-          bookingId: id,
-        },
+
+      // update reservation
+      await Reservation.updateMany(
+        { bookingId: id },
         { $set: { isBooked: false, bookingId: null } }
       );
+
+      // Get all reservations associated with the booking being deleted
+      const reservations = await Reservation.find({ booking: id });
+
+      // For each reservation, check whether the associated TimeSlot is still full
+      for (const reservation of reservations) {
+        const timeSlot = await TimeSlot.findById(reservation.timeSlot);
+        const isStillFull = await Reservation.exists({
+          timeSlot: timeSlot._id,
+          isBooked: true,
+          _id: { $ne: reservation._id }, // exclude the reservation being deleted
+        });
+        if (!isStillFull) {
+          timeSlot.isFull = false;
+          await timeSlot.save();
+        }
+      }
+
       // delete scheduled booking
-      await Schedule.findOneAndDelete({staffId: booking.barber})
+      await Schedule.findOneAndDelete({ booking: booking._id });
+      await Booking.findByIdAndDelete(id);
       res.status(200).json({ message: "Successfully deleted the booking" });
     } catch (err) {
       res
