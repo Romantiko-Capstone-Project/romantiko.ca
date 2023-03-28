@@ -14,6 +14,10 @@
     max-width: 500px;
 } */
 
+.img{
+    max-width: 200px;
+}
+
 .service_card{
     display: inline-block;
     background-color: #404040;
@@ -28,6 +32,7 @@
 
 .wrapper{
     opacity: 1;
+    max-width: 600px;
 }
 
 .haircut_title{

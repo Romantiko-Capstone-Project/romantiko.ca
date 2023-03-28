@@ -8,7 +8,7 @@ return(
     <div className={styles.container}>
         <div className={styles.service_card}>
           <div className={styles.wrapper}>
-            <img src={haircutImage} alt="Haircut" />
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
             <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
@@ -16,140 +16,85 @@ return(
             </div>     
         </div>
 
-        {/* <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <img src={haircut}/>
-                <button>Book now!</button>
-            </div>     
-        </div> */}
-
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
+        <div className={styles.service_card}>
+          <div className={styles.wrapper}>
+            <img src={haircutImage} alt="Haircut" width="400" height="400" />
+            <h1 className="haircut_title">This is the service title</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
                         <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
                 <button>Book now!</button>
             </div>     
         </div>
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
-                        <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
-                <button>Book now!</button>
-            </div>     
-        </div>
+      
 
-        <div className={styles.service_card}>   
-            <div className={styles.wrapper}>
-                <figure className="haircut1">
-                    <img src="./h1.jpg" alt=""/>
-                    <figcaption>
-                        <h1 className="haircut_title">This is the service title</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
-                        <p><b>$99</b></p>
-                    </figcaption>
-                </figure>
-                <button>Book now!</button>
-            </div>     
-        </div>
         
-        <div className="">
+        
+        
+
+    </div>
+
+    <div className="">
         <input
           className="form-control"
           placeholder="Enter title"
@@ -183,8 +128,6 @@ return(
           Submit
         </button>
       </div>
-
-    </div>
 
 </div>
 );
