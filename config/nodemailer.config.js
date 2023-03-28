@@ -33,7 +33,6 @@ const sendConfirmationEmail = (name, email, id, confirmationCode) => {
 const sendBookingConfirmation = (
   customerName,
   customerEmail,
-  bookingId,
   startTime,
   endTime,
   service,
@@ -46,7 +45,7 @@ const sendBookingConfirmation = (
       subject: "Romantiko Appointment Confirmation",
       html: `
           <h1>Dear ${customerName},</h1><br/>
-          <h2>We are pleased to informed you that your booking ${bookingId} is confirmed.</h2><br/>
+          <h2>We are pleased to informed you that your booking is confirmed.</h2><br/>
           <div>
           <p>From: ${startTime}</p>
           <p>To: ${endTime}</p>

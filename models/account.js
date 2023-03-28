@@ -18,7 +18,7 @@ const Account = new Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     role: {
       type: String,
@@ -26,6 +26,7 @@ const Account = new Schema(
       required: true,
       default: "staff",
     },
+    img: { type: String },
   },
   { timestamps: true }
 );

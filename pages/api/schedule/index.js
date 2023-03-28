@@ -1,6 +1,6 @@
-import dbConnect from "util/mongo";
-import Schedule from "models/Schedule";
-const {verifyTokenAndAdmin} = require("middlewares/verifyToken")
+import dbConnect from "../../../util/mongo";
+import Schedule from "../../../models/Schedule";
+const {verifyTokenAndAdmin} = require("../../../middlewares/verifyToken")
 
 const handler = async (req, res) => {
   const { method } = req;
