@@ -10,8 +10,9 @@ const Dashboard = () => {
 
     const getBookings = async (e) => {
         console.log("found id =" + accountID);
-
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         try {
             const response = await axios.post(
                 "http://localhost:3000/api/schedule/",
