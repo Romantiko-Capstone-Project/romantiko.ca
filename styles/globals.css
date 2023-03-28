@@ -37,6 +37,21 @@ footer {
   
 }
 
+.spinnerWrapper{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: #191919a6;
+  backdrop-filter: blur(7px);
+  z-index: 2;
+}
+.spinner{
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
 .hero{
   color: white;
   position: absolute;
