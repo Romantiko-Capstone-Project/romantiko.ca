@@ -1,0 +1,10 @@
+.imagesContainer {
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: 4px;
+  margin-right: 21px;
+}

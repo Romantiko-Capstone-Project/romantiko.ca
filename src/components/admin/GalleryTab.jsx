@@ -71,8 +71,8 @@ const GalleryTab = () => {
               <Image
                 src={image.img}
                 alt="Haircut img not found"
-                width="500"
-                height="500"
+                width="205"
+                height="200"
               />
             </div>
           ))}

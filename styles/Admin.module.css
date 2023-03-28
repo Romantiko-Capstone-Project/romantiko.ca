@@ -1,9 +1,11 @@
 .container {
   background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
   color: black;
-  height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
+  
+  
 }
 /* .tabMenu,
 .staffList,
@@ -47,3 +49,5 @@
 .tabButton:hover {
   background-color: red;
 }
+
+
