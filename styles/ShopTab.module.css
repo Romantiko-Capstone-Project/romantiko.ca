@@ -1,0 +1,19 @@
+.container {
+    background-color: white;
+    width: 100%;
+    height: 120vh;
+}
+
+.imagesContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.updateForm{
+    z-index: 999;
+}
