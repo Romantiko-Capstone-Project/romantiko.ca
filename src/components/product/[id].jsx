@@ -22,19 +22,6 @@ const Product = ({product}) => {
     );
 }
 
-{/* <div className={styles.left}>
-                <Image src="/img/hairOil.jpg" alt="" height="400" width="300" />
-            </div>
-            <div className={styles.right}>
-            <div className={styles.block}>
-                <div className={styles.containerFluid}>
-                <div className={styles.titleHolder}>
-                    <h2> Frequently Asked Questions</h2>
-                    <p><em>Product can only be purchased in store.</em></p>
-                </div>
-                </div>
-            </div>
-            </div>*/}
 
 export const getServerSideProps = async ({params}) => {
     const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);
