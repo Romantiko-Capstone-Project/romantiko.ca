@@ -43,7 +43,7 @@ const Header = () => {
               <ul className="navbar-nav ms-auto ">
 
                 <li className="nav-item">
-                  <Link href="/booking">
+                  <Link href="/dashboard">
                     <a className="nav-link mx-2">Dashboard</a>
                   </Link>
                 </li>

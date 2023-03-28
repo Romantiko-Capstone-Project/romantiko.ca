@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
 import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';
-import { login,adminLogin,setID } from "../../redux/authSlice";
+import { login, adminLogin, setID } from "../../redux/authSlice";
 
 
 const LoginPage = () => {
@@ -16,21 +16,22 @@ const LoginPage = () => {
   const router = useRouter();
 
 
-  function handleLogin(id){
+  function handleLogin(id) {
 
     dispatch(login());
-    handleID(setID(id));
+    handleID(id);
+
 
   };
-  function handleAdminLogin(id){
+  function handleAdminLogin(id) {
 
     dispatch(adminLogin());
-    handleID(setID(id));
+    handleID(id);
   };
 
-  function handleID(id){
+  function handleID(id) {
     dispatch(setID(id));
-    console.log("dispatched id =" + id);
+    //console.log("dispatched id =" + id);
   }
 
   const handleSubmit = async (e) => {
@@ -41,20 +42,20 @@ const LoginPage = () => {
         { username, password }
       );
 
-      
-
-      if (response.data.message.includes("Admin")) {
-        handleAdminLogin(response.data._id);
+      if (response.data.role === "admin") {
+        handleAdminLogin(response.data.id);
         router.push("/"); // Replace with the actual URL of the admin page
 
-      } else if (response.data.message.includes("Staff")) {
-        console.log(response.data.account._id);
-        handleLogin(response.data.account._id);
+      } else if (response.data.role === "staff") {
+        console.log(response.data.id);
+        handleLogin(response.data.id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
-        
-      }
 
-      console.log(response.data);
+      }
+      /** set name */
+      //handleName(response.data.id);
+
+      //console.log(response.data);
 
     } catch (error) {
       setError(true);
