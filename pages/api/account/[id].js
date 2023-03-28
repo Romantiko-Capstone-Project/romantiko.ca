@@ -41,8 +41,31 @@ const handler = async (req, res) => {
 
     case "DELETE":
       try {
+        
+        const staff = await Staff.findOne({ account: id });
+
+        // Remove staff availability from the time slots
+        await Week.updateMany(
+          {},
+          {
+            $pull: {
+              "days.$[].timeSlots.$[].staffAvailability": { staff: staff._id },
+            },
+          },
+          {
+            arrayFilters: [{ "timeSlot.staffAvailability.staff": staff._id }],
+            multi: true,
+          }
+        );
+
+        // Delete schedules related to the staff
+        await Schedule.deleteMany({ barber: id });
+
+        // remove staff and account
         await Staff.findOneAndDelete({ account: id });
         await Account.findByIdAndDelete(id);
+
+        return res.status(200).json({ message: "account is deleted" });
       } catch (error) {
         res.status(500).json(error);
         console.error(error);

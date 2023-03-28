@@ -10,7 +10,6 @@ const StaffAvailability = new Schema({
   booking: {
     type: Schema.Types.ObjectId,
     ref: "Booking",
-    required: true,
   },
   isBooked: { type: Boolean, required: true, default: false },
 });

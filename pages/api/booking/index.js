@@ -4,7 +4,6 @@ import Week from "../../../models/Week";
 import Schedule from "../../../models/Schedule";
 const { convertToHours } = require("../../../config/convertToHours.config");
 
-
 const handler = async (req, res) => {
   const { method } = req;
 
@@ -62,17 +61,15 @@ const handler = async (req, res) => {
       );
 
       if (!staffAvailability || staffAvailability.isBooked) {
-        return res
-          .status(400)
-          .json({
-            message: "Staff is not available for the selected time slot.",
-          });
+        return res.status(400).json({
+          message: "Staff is not available for the selected time slot.",
+        });
       }
 
-      staffAvailability.isBooked = true;
-      await week.save();
-
       const booking = await Booking.create(req.body);
+      staffAvailability.isBooked = true;
+      staffAvailability.booking = booking._id;
+      await week.save();
 
       // Update staff schedule
       let staffSchedule = await Schedule.findOne({ staff: barber });
@@ -83,7 +80,6 @@ const handler = async (req, res) => {
       await staffSchedule.save();
 
       res.status(201).json(booking);
-
     } catch (err) {
       console.error(err);
       res.status(500).json({
