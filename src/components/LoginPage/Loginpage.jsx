@@ -48,8 +48,8 @@ const LoginPage = () => {
         router.push("/"); // Replace with the actual URL of the admin page
 
       } else if (response.data.message.includes("Staff")) {
-        console.log(response.data._id);
-        handleLogin(response.data._id);
+        console.log(response.data.account._id);
+        handleLogin(response.data.account._id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
         
       }
