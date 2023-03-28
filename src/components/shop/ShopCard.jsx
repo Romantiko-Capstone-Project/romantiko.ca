@@ -1,27 +1,22 @@
 import React from 'react';
 import Image from "next/image";
-import styles from "/styles/ShopCard.module.css"
+import styles from "/styles/ShopCard.module.css";
+import Link from "next/link";
 
-const ShopCard = () => {
+const ShopCard = ({product}) => {
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <Image className={styles.img} src="/img/shavingCream.jpg" alt="" width="400" height="400"/> 
-                    <div className={styles.title}>
-                        Product Name
-                    </div>  
+                <Link href={`/product/${product._id}`} passHref>
+                    <Image src={product.img} alt="" width="200" height="200"/> 
+                </Link>
+                <h1 className={styles.title}>{product.productName}</h1>
+                <span className={styles.price}>${product.price}</span>
+                <p className={styles.desc}>
+                    {product.description}
+                </p>
             </div>
         </div>
-        /*
-
-        <Image src="/img/shavingCream.jpg" alt="" width="400" height="400"/>
-        <h1 className={styles.title}>Product Name</h1>
-        
-        <div className={styles.info}>
-        <span className={styles.description}>Description Here </span>
-        <span className={styles.price}>$20+gst</span>
-        </div>
-        */
     );
 }
 
