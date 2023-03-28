@@ -1,26 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background: #191919;
+  color: white;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  font-size: 1em;
+  
+}
+#mainContainer{
+  min-height: 80vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #191919;
+  color: whitesmoke;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+nav{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  
 }
 
-* {
-  box-sizing: border-box;
+.hero{
+  color: white;
+  position: absolute;
+  margin: auto;
+  margin-top: 10%;
+  padding: 4%;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+
+}
+.vidBG{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  margin: 0;
+}
+.hero button{
+  width: 30%;
+  height: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  background: none;
+  color: white;
+  border-color: white;
+  border-width: 3px;
+  font-weight:bolder;
+  transition: 0.4s;
+  border-style: solid;
+}
+.hero button:hover{
+  background-color: whitesmoke;
+  color:black;
+  
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.hero p{
+  margin-top: 1em;
+  font-size: 1.2em;
+}
+
+.googleSection{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  
+}
+.map{
+  max-width: 50%;
+  padding: 1%;
+  
+}
+.map img{
+  max-width: 100%;
+  transition: 0.3s;
+  border-radius: 12px;
+}
+.map img:hover{
+  scale: 1.05;
+
+}
+.review{
+  width: 50%;
+  padding: 1%;
+  padding-right: 2%;
+}
+::-webkit-scrollbar {
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+.containerC {
+  display: flex;
+  gap: 12px;
+  
+  width: 100%;
+  height: 100%;
+  
+  background: #a3a2a2;
+  border-radius: 12px;
+  padding: 5px;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scroll-padding: 30px;
+  box-shadow: 0 15px 25px rgba(167, 167, 167, 0.1);
+}
+.containerC .card {
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border-radius: 12px;
+  background: #d4d4d4;
+  scroll-snap-align: start;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+.card h2 {
+  margin-top: 5%;
+  color: #3d3d3d;
+  font-size: 2.7em;
+  font-weight: 600;
+}
+.card p {
+  margin-top: 3%;
+  font-size: 1.8em;
+  font-weight: 400;
+  color: #161616;
+  text-align: center;
+}
+ 
+@media screen and (max-width: 830px) {
+  .vidBG{
+    position: relative;
+    width: 100%;
+    height: 100vw;
+    object-fit: cover;
+    
   }
-  body {
-    color: white;
-    background: black;
+
+  .hero{
+    display: block;
+    
+    text-align: left;
+    margin-top:25%;
+  
+  }
+  .hero h1{
+    text-align: left;
+    font-size: 1.6em;
+  }
+  .hero button{
+    width: 50%;
+    margin-top: 15%;
+  }
+  .hero button:hover{
+    background-color: whitesmoke;
+    color:black;
+    
+  }
+  
+  .hero p{
+    margin-top: 1em;
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 1090px){
+  .googleSection{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+  }
+  .map{
+  
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    
+  }
+  .map img{
+    max-height:400px;
+    margin: auto;
+  }
+  .review{
+   width: 100%;
+   margin-top: 3%;
+  }
+  .containerC{
+    min-height: 400px;
+   position: relative;
+   
+  }
+  .containerC h2{
+    font-size: 2.5em;
+  }
+  .containerC p{
+    font-size: 1.7em;
   }
 }

@@ -1,0 +1,26 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 55vh;
+}
+
+.form_component {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px 10px 0px;
+}
+
+.form_field {
+    background-color: rgba(19, 19, 22, 0.919);
+    color: rgb(145, 142, 142);
+    border: none;
+    border-radius: 3px;
+    padding: 10px 30px;
+    margin-top: 3px;
+    width: 50vw;
+}
+
+.text_area {
+    max-height: 200px;
+    min-height: 200px;
+}

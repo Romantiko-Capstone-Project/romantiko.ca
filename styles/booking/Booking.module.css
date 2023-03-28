@@ -1,0 +1,31 @@
+.main {
+    background-color: rgba(242, 242, 242, 0.924);
+}
+
+.service_container {
+    padding: 20px 10px;
+}
+
+.service_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.booking_container {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 65px 50px 65px;
+    border-radius: 5px;
+}
+
+.title {
+    color: black;
+    margin: 15px 10px 15px 65px;
+    padding-right: 14px;
+}
+
