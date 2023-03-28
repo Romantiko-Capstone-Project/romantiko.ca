@@ -45,7 +45,7 @@ const handler = async (req, res) => {
         return res
           .status(200)
           .json({
-            id: account.id,
+            id: account._id,
             username: account.username,
             role: account.role,
             isVerified: account.isVerified,
@@ -55,7 +55,7 @@ const handler = async (req, res) => {
         return res
           .status(200)
           .json({
-            id: account.id,
+            id: account._id,
             username: account.username,
             role: account.role,
             isVerified: account.isVerified,

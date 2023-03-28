@@ -18,7 +18,7 @@ const Account = new Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     role: {
       type: String,

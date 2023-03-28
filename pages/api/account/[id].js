@@ -1,8 +1,8 @@
 import dbConnect from "../../../util/mongo";
 import Account from "../../../models/Account";
 import Staff from "../../../models/Staff";
-import TimeSlot from "../../../models/TimeSlot";
 import Schedule from "../../../models/Schedule";
+import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
@@ -41,7 +41,8 @@ const handler = async (req, res) => {
 
     case "DELETE":
       try {
-        
+        await Staff.findOneAndDelete({ account: id });
+        await Account.findByIdAndDelete(id);
       } catch (error) {
         res.status(500).json(error);
         console.error(error);
