@@ -54,7 +54,6 @@ const LoginPage = () => {
       }
       /** set name */
       //handleName(response.data.id);
-
       //console.log(response.data);
 
     } catch (error) {
