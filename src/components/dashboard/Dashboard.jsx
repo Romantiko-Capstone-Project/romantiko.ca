@@ -11,7 +11,20 @@ const Dashboard = () => {
     const loggedIn = useSelector((state) => state.auth.loggedIn);
     const [errorMess, setErrorMessage] = useState("");
     const [error, setError] = useState(false);
-    
+
+    useEffect(() => {
+       // console.log("getuser..");
+        const getUserName = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
+                console.log(response.data.firstname, response.data.lastname)
+            } catch (error) {
+                console.log("username error")
+                console.error(error);
+            }
+        }
+        getUserName();
+    }, [])
 
     useEffect(() => {
         // getBookings();
