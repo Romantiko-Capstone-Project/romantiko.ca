@@ -29,7 +29,8 @@ function Footer() {
 
             <ul className="fa-ul" style={{ "marginLeft": "1.65em" }}>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-home"></i></span><span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span>
+                <span className="fa-li"><i className="fa fa-home"></i></span> <a style={{color:"white"}} target="_blank"
+                href='https://www.google.com/maps/place/Romantiko+Barber+Shop/@51.2911508,-114.0028717,338m/data=!3m1!1e3!4m6!3m5!1s0x53715f25208d2603:0xe5655ce1b5340234!8m2!3d51.2910039!4d-114.0030376!16s%2Fg%2F11qgyl2v4v'> <span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span> </a>
               </li>
               <li className="mb-3">
                 <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">contact@romantiko.ca</span>
@@ -59,7 +60,7 @@ function Footer() {
                 </tr>
                 <tr>
                 <td colSpan={2}>
-                <Link href="/login">
+                <Link href="/Login" passHref>
                 <a className="btn btn-lg" style={{"width":"100%","backgroundColor": "#808080"}} type="button">Staff Login</a>
                 </Link>
                 </td>
@@ -73,7 +74,7 @@ function Footer() {
 
       <div className="text-center p-3" style={{ "backgroundColor": "#191919" }}>
         © 2023 Copyright:
-        <Link href="/">
+        <Link href="/" passHref>
           <a className="text-white m-2">Romantiko.ca</a>
         </Link>
         

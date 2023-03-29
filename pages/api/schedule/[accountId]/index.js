@@ -11,8 +11,8 @@ const handler = async (req, res) => {
   if (method == "GET") {
     try {
       const staff = await Staff.findOne({account: accountId})
-      const event = await Schedule.findOne({staff: staff._id});
-      res.status(200).json(event);
+      const events = await Schedule.find({staff: staff._id});
+      res.status(200).json(events);
     } catch (err) {
       res.status(500).json(err);
     }

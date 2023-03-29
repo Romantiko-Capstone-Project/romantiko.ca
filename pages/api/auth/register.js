@@ -5,6 +5,9 @@ const CryptoJS = require("crypto-js");
 const { sendConfirmationEmail } = require("../../../config/nodemailer.config");
 const { EmailToken } = require("../../../config/jwt.config");
 const { verifyTokenAndAdmin } = require("/middlewares/verifyToken");
+const {
+  addStaffToAvailability,
+} = require("../../../config/staffAvailability.config");
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -12,7 +15,7 @@ const handler = async (req, res) => {
   await dbConnect();
 
   if (method == "POST") {
-    try {
+    try {addStaffToAvailability
       const {
         firstName,
         lastName,
@@ -55,13 +58,16 @@ const handler = async (req, res) => {
         account: account._id,
       });
 
+      // add staff availability
+      addStaffToAvailability(staff._id);
+
       res.status(201).json(staff);
 
       // generate confirmation code
-      const confirmationCode = EmailToken(account._id);
+      //const confirmationCode = EmailToken(account._id);
 
       // send email verification
-      sendConfirmationEmail(firstName, email, account._id, confirmationCode);
+      //sendConfirmationEmail(firstName, email, account._id, confirmationCode);
     } catch (err) {
       console.error(err);
       res.status(500).json(err);
