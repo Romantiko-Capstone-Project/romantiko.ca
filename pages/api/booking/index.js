@@ -69,6 +69,7 @@ const handler = async (req, res) => {
       const booking = await Booking.create(req.body);
       staffAvailability.isBooked = true;
       staffAvailability.booking = booking._id;
+      week.markModified("days"); // Mark the 'days' path as modified
       await week.save();
 
       // Update staff schedule

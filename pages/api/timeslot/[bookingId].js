@@ -4,7 +4,10 @@ import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
-  const { method } = req;
+  const {
+    method,
+    query: { bookingId },
+  } = req;
 
   await dbConnect();
 
@@ -12,35 +15,42 @@ const handler = async (req, res) => {
     try {
       const booking = await Booking.findById(bookingId);
       if (!booking) {
-        return res.status(404).json({ message: "Booking not found." });
+        throw new Error("Booking not found.");
       }
 
       const startDate = new Date(booking.startTime);
       const weekNumber = Math.ceil(startDate.getDate() / 7);
-      const dayOfWeek = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1; // 0 (Monday) to 6 (Sunday)
 
       const week = await Week.findOne({ weekNumber });
       if (!week) {
-        return res.status(404).json({ message: "Week not found." });
+        throw new Error("Week not found.");
       }
 
-      const day = week.days[dayOfWeek];
-      const startHour =
-        booking.startTime.getHours() + booking.startTime.getMinutes() / 60;
+      let foundTimeSlot;
 
-      const timeSlot = day.timeSlots.find(
-        (slot) => slot.startTime === startHour
-      );
+      outerLoop: for (const day of week.days) {
+        for (const timeSlot of day.timeSlots) {
+          for (const staffAvailability of timeSlot.staffAvailability) {
+            if (
+              staffAvailability.booking &&
+              staffAvailability.booking.toString() === bookingId
+            ) {
+              foundTimeSlot = timeSlot;
+              break outerLoop;
+            }
+          }
+        }
+      }
 
-      if (!timeSlot) {
+      if (!foundTimeSlot) {
         return res.status(404).json({ message: "Time slot not found." });
       }
 
-      res.status(200).json(timeSlot);
+      res.status(200).json(foundTimeSlot);
     } catch (err) {
       console.error(err);
       res.status(500).json({
-        message: "An error occurred while creating a time slot.",
+        message: "An error occurred while getting a time slot.",
         error: err,
       });
     }
