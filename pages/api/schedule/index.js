@@ -21,7 +21,6 @@ const handler = async (req, res) => {
 const handlerWrapper = (req, res) => {
   verifyTokenAndAdmin(req, res, () => {
     handler(req, res);
-  });
-};
+  }) };
 
 export default handlerWrapper;

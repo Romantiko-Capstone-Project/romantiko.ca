@@ -1,25 +1,23 @@
 import dbConnect from "../../../util/mongo";
+import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
-const { initializeWeeks } = require("../../../config/timeslot.config");
 
 const handler = async (req, res) => {
   const { method } = req;
 
   await dbConnect();
 
-  if (method === "POST") {
+  if (method == "GET") {
     try {
-      const dayConfigs = req.body;
+      // Fetch all weeks from the database
+      const weeks = await Week.find();
 
-      // Call the initializeWeeks function with the dayConfigs
-      await initializeWeeks(dayConfigs);
-
-      // Send a success response
-      res.status(200).json({ message: "Weeks initialized successfully." });
+      // Send the weeks as a JSON response
+      res.status(200).json(weeks);
     } catch (err) {
       console.error(err);
       res.status(500).json({
-        message: "An error occurred while creating a time slot.",
+        message: "An error occurred while fetching weeks.",
         error: err,
       });
     }

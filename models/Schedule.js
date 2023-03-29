@@ -1,33 +1,22 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const Schedule = new mongoose.Schema({
-  day: {
-    type: String,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
+const Schedule = new Schema(
+  {
+    staff: {
+      type: Schema.Types.ObjectId,
+      ref: "Staff",
+      required: true,
+    },
+    bookings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Booking",
+      },
     ],
-    required: true,
   },
-  staffId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Staff",
-    required: true,
-  },
-  startTime: {
-    type: String,
-    required: true,
-  },
-  endTime: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 module.exports =
   mongoose.models.Schedule || mongoose.model("Schedule", Schedule);

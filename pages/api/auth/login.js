@@ -44,15 +44,24 @@ const handler = async (req, res) => {
       if (account.role === "admin") {
         return res
           .status(200)
-          .json({ message: "Admin logged in", account, token });
+          .json({
+            id: account._id,
+            username: account.username,
+            role: account.role,
+            isVerified: account.isVerified,
+          });
       }
       if (account.role === "staff") {
         return res
           .status(200)
-          .json({ message: "Staff logged in", account, token });
+          .json({
+            id: account._id,
+            username: account.username,
+            role: account.role,
+            isVerified: account.isVerified,
+          });
       }
-
-      return res.status(200).json({ account, token });
+      
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Error logging in" });

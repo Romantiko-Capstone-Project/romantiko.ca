@@ -22,7 +22,7 @@ const sendConfirmationEmail = (name, email, id, confirmationCode) => {
       html: `<h1>Email Confirmation</h1>
         <h2>Hello ${name}</h2>
         <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-        <a href=http://localhost:3000/api/account/verify/${id}/${confirmationCode}> Click here</a>
+        <a href=http://localhost:3000/api/auth/verify/${id}/${confirmationCode}> Click here</a>
         </div>`,
     })
     .catch((err) => console.log(err));
@@ -32,7 +32,6 @@ const sendConfirmationEmail = (name, email, id, confirmationCode) => {
 const sendBookingConfirmation = (
   customerName,
   customerEmail,
-  bookingId,
   startTime,
   endTime,
   service,
@@ -45,7 +44,7 @@ const sendBookingConfirmation = (
       subject: "Romantiko Appointment Confirmation",
       html: `
           <h1>Dear ${customerName},</h1><br/>
-          <h2>We are pleased to informed you that your booking ${bookingId} is confirmed.</h2><br/>
+          <h2>We are pleased to informed you that your booking is confirmed.</h2><br/>
           <div>
           <p>From: ${startTime}</p>
           <p>To: ${endTime}</p>
