@@ -14,6 +14,8 @@ const PersonalInformation = ({ selectedStaff }) => {
   const [data, setData] = useState({});
   const id = selectedStaff?.account;
 
+  const [isEditPic, setIsEditPic] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!id) {
@@ -69,6 +71,7 @@ const PersonalInformation = ({ selectedStaff }) => {
 
       // Switch back to view mode
       setIsEditMode(false);
+      window.location.reload();
     } catch (error) {
       console.error("Error updating staff:", error);
     }
@@ -91,10 +94,16 @@ const PersonalInformation = ({ selectedStaff }) => {
         _staff
       );
       console.log(response.data);
+      window.location.reload();
     } catch (err) {
       console.error("Error updating status:", err);
     }
   };
+
+  const toggleEditPic = () => {
+    setIsEditPic((prevState) => !prevState);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -111,11 +120,14 @@ const PersonalInformation = ({ selectedStaff }) => {
             </div>
 
             <div className={styles.buttons}>
-              <button className={styles.actionButton}>Change</button>
+              <button className={styles.actionButton} onClick={toggleEditPic}>
+                Change
+              </button>
               <button className={styles.actionButton}>Remove</button>
             </div>
           </div>
         </div>
+        {isEditPic ? <div className={styles.changePicture}> Finally</div> : ""}
 
         <div className={styles.info}>
           <div className={styles.infoList}>
@@ -242,9 +254,9 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? "Save" : "Edit"}
             </button>
           </div>
-          <div className={styles.action}>
+          {/* <div className={styles.action}>
             <button className={styles.actionButton}>Delete</button>
-          </div>
+          </div> */}
           <div className={styles.action}>
             <button className={styles.actionButton} onClick={handleStatus}>
               Change Status
