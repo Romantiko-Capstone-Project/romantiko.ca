@@ -11,38 +11,24 @@ const Booking = () => {
   const [services, setServices] = useState([]);
   const [bookingTime, setBookingTime] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
-  const [timeSlots, setTimeSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [selectedStaff, setSelectedStaff] = useState(null);
+  const [selectedStaffId, setSelectedStaffId] = useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
   useEffect(() => {
     const getServices = async () => {
       try {
         const res = await axios.get("http://localhost:3000/api/services/");
         setServices(res.data);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     };
     getServices();
   }, []);
 
-  useEffect(() => {
-    const getTimeSlotData = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:3000/api/week/${selectedDate.toISOString()}`
-        );
-        setTimeSlots(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (selectedDate) {
-      getTimeSlotData(selectedDate);
-    }
-
-    console.log(getTimeSlotData(selectedDate));
-  }, [selectedDate]);
-
+  
   return (
     <div className={styles.main}>
       <Banner />
@@ -64,7 +50,11 @@ const Booking = () => {
         <TimeSlot
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
-          timeSlots={timeSlots}
+          selectedTimeSlot={selectedTimeSlot}
+          setSelectedTimeSlot={setSelectedTimeSlot}
+          setSelectedStaff={setSelectedStaff}
+          setSelectedStaffId={setSelectedStaffId}
+          setBookingTime={setBookingTime}
         />
       </div>
       <h3 className={styles.title}>Add your details</h3>
@@ -73,6 +63,8 @@ const Booking = () => {
           startTime={bookingTime[0]}
           endTime={bookingTime[1]}
           selectedService={selectedService}
+          selectedStaff={selectedStaff}
+          selectedStaffId={selectedStaffId}
         />
       </div>
     </div>

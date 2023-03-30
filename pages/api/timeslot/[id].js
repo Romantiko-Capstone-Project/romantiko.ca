@@ -1,5 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
+import Staff from "../../../models/staff";
 
 const handler = async (req, res) => {
   const {
@@ -16,7 +17,10 @@ const handler = async (req, res) => {
           { "days.timeSlots._id": id },
           { "days.timeSlots.$": 1 }
         )
-          .populate("days.timeSlots.staffAvailability.staff")
+          .populate({
+            path: "days.timeSlots.staffAvailability.staff",
+            model: Staff, // Pass the Staff model schema here
+          })
           .exec();
 
         if (!timeslot) {
@@ -30,6 +34,7 @@ const handler = async (req, res) => {
         res.status(200).json(staffIds);
       } catch (error) {
         res.status(400).json({ success: false });
+        console.error(error);
       }
       break;
     default:
