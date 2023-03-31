@@ -10,8 +10,7 @@ function Footer() {
             <h5 className="text-uppercase mb-4">About company</h5>
 
             <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-              voluptatum deleniti atque corrupti.
+            We are a cozy and affordable barbershop in Airdrie, dedicated to providing exceptional service and care for our loyal customers.
             </p>
 
 

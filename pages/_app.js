@@ -24,8 +24,9 @@ function MyApp({ Component, pageProps }) {
 
     <Provider store={store}>
       <PersistGate loading={<LoadingScreen />} persistor={persistor}>
+      {/* <LoadingScreen/> */}
         <MainLayout>
-         <> <LoadingScreen/> <Component {...pageProps} /> </>
+         <> <Component {...pageProps} /> </>
         </MainLayout>
       </PersistGate>
     </Provider>

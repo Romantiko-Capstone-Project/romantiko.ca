@@ -5,13 +5,19 @@ const AboutUs = () => {
     return (
         <section className="mt-0">
 
-            <img src={banner} className="bannerAB"/>
+            <img src={banner} className="bannerAB" />
             <div className="container my-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-6">
                         <h2>We are..</h2>
                         <p className="lead">A locally owned business, in the heart if Airdrie</p>
-                        <p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non malesuada ipsum, in dictum lacus. Morbi mattis, felis ut tincidunt maximus, nisl diam maximus tortor, vitae ullamcorper eros magna vitae justo. Sed eu felis arcu. Nulla tincidunt felis eget nisl vulputate, nec pharetra tellus tristique. Praesent nec ante eu nisl vehicula aliquet quis a ipsum. Duis in bibendum risus. Vivamus sit amet tincidunt nisl. Nam rutrum nulla rhoncus turpis lobortis pulvinar. Sed molestie libero sed orci molestie, sit amet commodo velit aliquet. Proin in augue rutrum, scelerisque nisi eu, maximus tellus. Fusce cursus semper lectus. Nulla suscipit metus eu purus tincidunt dictum. Ut sagittis diam sit amet faucibus posuere.</p>
+                        <p className="mb-0">Welcome to our humble barbershop in the heart of Airdrie! We are a team of passionate and experienced barbers who take pride in providing exceptional service and care for our clients. We believe that a trip to the barbershop is not just about getting a haircut, but it's also an opportunity to relax, socialize and leave feeling confident and refreshed.
+
+                            We understand that affordability is important to our clients, which is why we offer competitive prices without compromising on the quality of our services. We strive to create a warm and welcoming environment where everyone feels comfortable and at home.
+
+                            At our barbershop, we listen to your needs and preferences, and work with you to achieve the look that you desire. We use the latest techniques and top-quality products to ensure that you always leave our shop looking and feeling your best.
+
+                            Thank you for choosing us as your go-to barbershop. We look forward to serving you and exceeding your expectations.</p>
                     </div>Ï
                 </div>
             </div>

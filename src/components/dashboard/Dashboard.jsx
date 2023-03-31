@@ -11,9 +11,10 @@ const Dashboard = () => {
     const loggedIn = useSelector((state) => state.auth.loggedIn);
     const [errorMess, setErrorMessage] = useState("");
     const [error, setError] = useState(false);
+    const [staffId, setStaffId] = useState("")
 
     useEffect(() => {
-       // console.log("getuser..");
+        // console.log("getuser..");
         const getUserName = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
@@ -35,7 +36,6 @@ const Dashboard = () => {
 
         const getBookings = async () => {
             console.log("found id =" + accountID);
-
             try {
                 const response = await axios.post(
                     "http://localhost:3000/api/schedule/",
@@ -53,10 +53,19 @@ const Dashboard = () => {
         getBookings();
     }, [])
 
+
+    useEffect(() => {
+        const getStaffId = async (accountID) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    })
+
     return (
         <div className="cont">
-
-
 
             <h1>Dashboard</h1>
             <CalendarView />

@@ -9,9 +9,10 @@ const LoadingScreen = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(()=> {
-        const handleStart = (url) => (url !== router.asPath) && setLoading(true);
-        const handleComplete = (url) => (url === router.asPath) && setTimeout(() => {setLoading(false)},1000); 
         
+        const handleStart = (url) => {console.log('Route change start:', url); (url !== router.asPath) && setLoading(true);}
+        const handleComplete = (url) => {console.log('Route change complete:', url); (url === router.asPath) && setTimeout(() => setLoading(false),500);} 
+        console.log([router.asPath])
         router.events.on('routeChangeStart',handleStart);
         router.events.on('routeChangeComplete',handleComplete);
         router.events.on('routeChangeError',handleComplete);
@@ -21,7 +22,7 @@ const LoadingScreen = () => {
         router.events.off('routeChangeComplete',handleComplete);
         router.events.off('routeChangeError',handleComplete);
         }
-    }, [router.events, router.asPath])
+    }, [router.asPath])
     return (loading && (
         <div className="spinnerWrapper">
             <div className="spinner">
