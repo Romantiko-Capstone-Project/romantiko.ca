@@ -48,3 +48,39 @@ const AddUser = () => {
   );
 };
 
+
+/**<div className="">
+        <input
+          className="form-control"
+          placeholder="Enter title"
+          type="text"
+          name="title"
+          // value=""
+          // onChange={handleChange("name")}
+        />
+      </div>
+      <div className="">
+        <input
+          className="form-control"
+          placeholder="Enter description"
+          type="text"
+          name="description"
+          // value=""
+          // onChange={handleChange("name")}
+        />
+      </div>
+      <div className="">
+        <input
+          className="form-control"
+          type="file"
+          accept="image/*"
+          name="image"
+          // onChange={handleChange("image")}
+        />
+      </div>
+      <div className="text-center">
+        <button className="btn btn-primary">
+          Submit
+        </button>
+      </div>
+ */
