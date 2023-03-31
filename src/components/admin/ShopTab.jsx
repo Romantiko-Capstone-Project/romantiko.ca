@@ -102,7 +102,6 @@ const ShopTab = () => {
             onChange={(e) => setFile(e.target.files[0])}
             onClick={() => setMsg(false)}
           />
-          {msg && <h3>The image has been succesfully uploaded.</h3>}
         </p>
         <p className={styles.p}>
           <label className={styles.label}>Product Name</label>
@@ -112,7 +111,7 @@ const ShopTab = () => {
             className={styles.input}
             placeholder="Product Name..."
             size="25"
-          />
+            />
         </p>
         <p className={styles.p}>
           <label className={styles.label}>Price</label>
@@ -121,7 +120,7 @@ const ShopTab = () => {
             onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
             placeholder="Price..."
-          />
+            />
         </p>
         <p className={styles.p}>
           <label className={styles.label}>Description</label>
@@ -130,8 +129,10 @@ const ShopTab = () => {
             onChange={(e) => setDescription(e.target.value)}
             className={styles.input}
             placeholder="Description..."
-          />
+            />
         </p>
+        <br></br>
+            {msg && <h4>The product has been successfully created.</h4>}
         <button className={styles.uploadButton} onClick={handleCreate}>Create</button>
       </div>
       </div>
@@ -150,7 +151,7 @@ const ShopTab = () => {
               />
               <h2>{product.productName}</h2>
               <p>{product.price}</p>
-              <p>{product.description}</p>
+              <p>{product.description.slice(0, 100)}...</p>
               <div className={styles.createFormButtons}>
                 <button 
                   className={styles.deleteButton} 
