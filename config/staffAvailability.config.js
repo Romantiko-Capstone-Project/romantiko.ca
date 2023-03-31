@@ -13,6 +13,18 @@ async function addStaffToAvailability(staffId) {
   });
 }
 
+const checkAndUpdateIsFull = (timeSlot) => {
+  const allStaffBooked = timeSlot.staffAvailability.every(
+    (availability) => availability.isBooked
+  );
+  if (allStaffBooked) {
+    timeSlot.isFull = true;
+  }
+  return timeSlot;
+};
+
+
 module.exports = {
   addStaffToAvailability,
+  checkAndUpdateIsFull,
 };

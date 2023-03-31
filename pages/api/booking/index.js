@@ -2,6 +2,7 @@ import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
 import Week from "../../../models/Week";
 import Schedule from "../../../models/Schedule";
+import { checkAndUpdateIsFull } from "../../../config/staffAvailability.config";
 const { convertToHours } = require("../../../config/convertToHours.config");
 
 const handler = async (req, res) => {
@@ -66,10 +67,20 @@ const handler = async (req, res) => {
         });
       }
 
+      if (targetTimeSlot.isFull) {
+        return res
+          .status(400)
+          .json({ message: "The time slot is fully booked." });
+      }
+
       const booking = await Booking.create(req.body);
       staffAvailability.isBooked = true;
       staffAvailability.booking = booking._id;
-      week.markModified("days"); // Mark the 'days' path as modified
+
+      // After updating staffAvailability
+      checkAndUpdateIsFull(targetTimeSlot);
+
+      //week.markModified("days"); // Mark the 'days' path as modified
       await week.save();
 
       // Update staff schedule

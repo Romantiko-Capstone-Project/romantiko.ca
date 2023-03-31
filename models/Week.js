@@ -16,6 +16,7 @@ const StaffAvailability = new Schema({
 
 const TimeSlot = new Schema({
   startTime: { type: Number, required: true },
+  isFull: { type: Boolean, required: true, default: false },
   staffAvailability: [StaffAvailability],
 });
 

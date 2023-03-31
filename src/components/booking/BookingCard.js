@@ -4,7 +4,13 @@ import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const BookingCard = ({ startTime, endTime, selectedService, selectedStaff,selectedStaffId }) => {
+const BookingCard = ({
+  startTime,
+  endTime,
+  selectedService,
+  selectedStaff,
+  selectedStaffId,
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -47,13 +53,11 @@ const BookingCard = ({ startTime, endTime, selectedService, selectedStaff,select
         "http://localhost:3000/api/booking/",
         bookingData
       );
-      const booking = response.data;
 
       // Redirect to ConfirmBooking page with the booking details
       router.push({
         pathname: "/booking/confirm-booking",
         query: {
-          bookingId: booking._id,
           startTime,
           endTime,
           serviceName: selectedService.serviceName,
@@ -69,7 +73,6 @@ const BookingCard = ({ startTime, endTime, selectedService, selectedStaff,select
   };
 
   return (
-    
     <form className={styles.container} onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
         <div className={styles.booking_section}>
@@ -82,7 +85,6 @@ const BookingCard = ({ startTime, endTime, selectedService, selectedStaff,select
             onEmailChange={handleEmailChange}
             onPhoneChange={handlePhoneChange}
             onNoteChange={handleNoteChange}
-            
           />
         </div>
         {startTime && endTime ? (
@@ -97,7 +99,7 @@ const BookingCard = ({ startTime, endTime, selectedService, selectedStaff,select
               {selectedService && (
                 <div>Service Type: {selectedService.serviceName}</div>
               )}
-              <div>Barber Name: {selectedStaff}</div>
+              {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
             </div>
           </div>
         ) : null}

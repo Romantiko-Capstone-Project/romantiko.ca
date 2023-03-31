@@ -3,6 +3,7 @@ import axios from "axios";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+import { formatTime } from "/config/convertToHours.config";
 import styles from "/styles/booking/TimeSlot.module.css";
 import dayjs from "dayjs";
 
@@ -107,7 +108,6 @@ const TimeSlot = ({
       .format("YYYY-MM-DD HH:mm:ss");
     return [startTime, endTime];
   };
-  
 
   return (
     <>
@@ -126,11 +126,11 @@ const TimeSlot = ({
         {timeSlots.map((timeSlot) => (
           <button
             key={timeSlot._id}
-            disabled={timeSlot.isBooked}
+            disabled={timeSlot.isFull}
             className={styles.time_button}
             onClick={() => handleTimeSlotClick(timeSlot)}
           >
-            {timeSlot.startTime}
+            {formatTime(timeSlot.startTime)}
           </button>
         ))}
 

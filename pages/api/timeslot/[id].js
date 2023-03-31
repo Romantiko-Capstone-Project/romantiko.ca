@@ -1,6 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-import Staff from "../../../models/staff";
+import Staff from "../../../models/Staff";
 
 const handler = async (req, res) => {
   const {
