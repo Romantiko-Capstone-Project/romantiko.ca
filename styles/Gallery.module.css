@@ -1,6 +1,6 @@
 .container {
-  height: 100%;
   position: relative;
+  min-height: 100vh;
   background-color: white;
 
   /* overflow-y: scroll; */

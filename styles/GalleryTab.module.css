@@ -1,5 +1,5 @@
 .imagesContainer {
-  padding-top: 10px;
+  padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -7,4 +7,37 @@
   max-width: 1200px;
   margin-left: 4px;
   margin-right: 21px;
+  margin-bottom: 21px;
+}
+
+.imgContainer {
+  display:flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deleteButton {
+  position:relative;
+  bottom: 200px;
+  left: 167px;
+  width:fit-content;
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  border: none;
+
+}
+
+.mainContainer1 {
+  min-height: 10%;
+  width: 100%;
+  position: relative;
+
+}
+
+.formContainer {
+  width: 50%;
+  margin-left: 30px;
+  border: 2px dotted black;
+  text-align: center;
 }

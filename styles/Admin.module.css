@@ -26,7 +26,12 @@
   display: flex;
   flex: 8;
   background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+
 }
+
+
+
 .tabMenu {
   /* background-color: white; */
   /* flex: 1; */
