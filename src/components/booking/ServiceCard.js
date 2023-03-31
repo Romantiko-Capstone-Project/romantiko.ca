@@ -15,10 +15,10 @@ const ServiceCard = ({ service, onSelectService }) => {
         </label>
       </div>
       <div className={styles.service_container}>
-          <span className={styles.service_details}>{service.serviceName}</span>
-          <span className={styles.service_details}>${service.price}</span>
-          <span className={styles.service_details}>Duration: 30 mins</span>
-        </div>
+        <span className={styles.service_details}>{service.serviceName}</span>
+        <span className={styles.service_details}>${service.price}</span>
+        <span className={styles.service_details}>Duration: 30 mins</span>
+      </div>
     </div>
   );
 };

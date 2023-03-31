@@ -6,6 +6,7 @@ const pass = process.env.USER_PASSWORD;
 const transport = nodemailer.createTransport({
   service: "hotmail",
   name: "romantiko.ca",
+  secure: true,
   auth: {
     user: user,
     pass: pass,

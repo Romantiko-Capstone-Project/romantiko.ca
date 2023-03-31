@@ -2,6 +2,10 @@
   padding: 0 2rem;
 }
 
+.loggingin {
+  margin-bottom: 8px;
+  text-align: right;
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -108,6 +112,7 @@
   margin-left: 0.5rem;
 }
 
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -127,3 +132,4 @@
     filter: invert(1);
   }
 }
+

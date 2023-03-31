@@ -73,6 +73,7 @@ const BookingCard = ({
   };
 
   return (
+    
     <form className={styles.container} onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
         <div className={styles.booking_section}>
@@ -85,6 +86,7 @@ const BookingCard = ({
             onEmailChange={handleEmailChange}
             onPhoneChange={handlePhoneChange}
             onNoteChange={handleNoteChange}
+            
           />
         </div>
         {startTime && endTime ? (

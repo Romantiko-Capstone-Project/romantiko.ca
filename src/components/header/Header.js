@@ -2,16 +2,19 @@ import React from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "../../redux/authSlice";
+import { useRouter } from "next/router";
 
 
 const Header = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
 
-  
+
 
   const handleLogout = () => {
     dispatch(logout());
+    router.push('/');
   };
 
   return (
@@ -40,16 +43,16 @@ const Header = () => {
               <ul className="navbar-nav ms-auto ">
 
                 <li className="nav-item">
-                  <Link href="/booking">
+                  <Link href="/dashboard">
                     <a className="nav-link mx-2">Dashboard</a>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  
-                    <button className="nav-link mx-2" onClick={handleLogout} style={{background:"none",border:"none"}}>Logout</button>
-                  
+
+                  <button className="nav-link mx-2" onClick={handleLogout} style={{ background: "none", border: "none" }}>Logout</button>
+
                 </li>
-                
+
               </ul>
             </div>
 
@@ -58,24 +61,24 @@ const Header = () => {
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
                 <li className="nav-item">
-                  <Link href="/" aria-current="page">
+                  <Link href="/" aria-current="page" passHref>
                     <a className="nav-link mx-2">Home</a>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2" href="#">
-                    Services
-                  </a>
+                  <Link href="/services" passHref>
+                    <a className="nav-link mx-2" href="#">Services</a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2" href="#">
-                    Gallery
-                  </a>
+                  <Link href="/gallery" passHref>
+                    <a className="nav-link mx-2"> Gallery </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2" href="#">
-                    Shop
-                  </a>
+                  <Link href="/shop" passHref>
+                    <a className="nav-link mx-2"> Shop </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/booking">
@@ -83,7 +86,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/about-us">
+                  <Link href="/about-us" passHref>
                     <a className="nav-link mx2">About Us</a>
                   </Link>
                 </li>
