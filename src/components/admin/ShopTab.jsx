@@ -68,7 +68,6 @@ const ShopTab = () => {
   const toggleUpdate = async (id) => {
     try {
       setIsEditMode((prevState) => !prevState);
-      // await axios.put(`http://localhost:3000/api/products/${id}`);
       const selectedProduct = id;
       console.log(selectedProduct);
     } catch (err) {
