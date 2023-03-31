@@ -28,13 +28,15 @@ const Product = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={selected.img} width="600" height="600" alt="" />
+          <Image src={selected.img} width="600" height="400" alt="" />
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{selected.productName}</h1>
-        <span className={styles.price}>${selected.price}</span>
-        <p className={styles.desc}>{selected.description}</p>
+        <div className={styles.productText}>
+          <h1 className={styles.title}>{selected.productName}</h1>
+          <span className={styles.price}>${selected.price}</span>
+          <p className={styles.desc}>{selected.description}</p>
+        </div>
       </div>
     </div>
   );

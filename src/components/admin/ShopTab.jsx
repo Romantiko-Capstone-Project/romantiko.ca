@@ -89,17 +89,13 @@ const ShopTab = () => {
 
   return (
     <div className={styles.container}>
-      
-      
-
       <h1 className={styles.pageTitle}>Manage Shop</h1>
-      <div className={styles.left}>
+      <div className={styles.left}> 
       <div className={styles.createForm}>
       <div className="update-form">
         <h4>Create a Product</h4>
-        <div>
-          <label>Choose an image</label>
-          <br></br>
+        <p className={styles.p}>
+          <label className={styles.label}>Choose an image</label>
           {/* Get rid of br and uses flex-box. */}
           <input
             type="file"
@@ -107,9 +103,9 @@ const ShopTab = () => {
             onClick={() => setMsg(false)}
           />
           {msg && <h3>The image has been succesfully uploaded.</h3>}
-        </div>
-        <div>
-          <label>Product Name</label>
+        </p>
+        <p className={styles.p}>
+          <label className={styles.label}>Product Name</label>
           <input
             type="text"
             onChange={(e) => setProductName(e.target.value)}
@@ -117,25 +113,25 @@ const ShopTab = () => {
             placeholder="Product Name..."
             size="25"
           />
-        </div>
-        <div>
-          <label>Price</label>
+        </p>
+        <p className={styles.p}>
+          <label className={styles.label}>Price</label>
           <input
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
             placeholder="Price..."
           />
-        </div>
-        <div>
-          <label>Description</label>
+        </p>
+        <p className={styles.p}>
+          <label className={styles.label}>Description</label>
           <input
             type="text"
             onChange={(e) => setDescription(e.target.value)}
             className={styles.input}
             placeholder="Description..."
           />
-        </div>
+        </p>
         <button className={styles.uploadButton} onClick={handleCreate}>Create</button>
       </div>
       </div>
