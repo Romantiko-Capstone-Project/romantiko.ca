@@ -1,7 +1,7 @@
-import dbConnect from "../../../util/mongo";
-import Booking from "../../../models/Booking";
-import Week from "../../../models/Week";
-const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+import dbConnect from "../../../../util/mongo";
+import Booking from "../../../../models/Booking";
+import Week from "../../../../models/Week";
+const { verifyTokenAndAdmin } = require("../../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const {
