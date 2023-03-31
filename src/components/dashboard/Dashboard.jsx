@@ -18,7 +18,6 @@ const Dashboard = () => {
         const getUserName = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
-                console.log(response.data.firstname, response.data.lastname)
             } catch (error) {
                 console.log("username error")
                 console.error(error);
@@ -39,7 +38,7 @@ const Dashboard = () => {
             try {
                 const response = await axios.post(
                     "http://localhost:3000/api/schedule/",
-                    { accountID }
+                    { staffId }
                 );
 
                 console.log(response.data);
@@ -58,10 +57,14 @@ const Dashboard = () => {
         const getStaffId = async (accountID) => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
+                console.log(response.data._id)
+                setStaffId(response.data._id)
             } catch (error) {
                 console.error(error);
             }
         }
+
+        getStaffId(accountID)
     })
 
     return (
