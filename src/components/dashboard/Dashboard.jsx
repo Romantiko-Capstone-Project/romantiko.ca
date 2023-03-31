@@ -9,11 +9,12 @@ const Dashboard = () => {
     const router = useRouter();
     const accountID = useSelector((state) => state.auth.accountID);
     const loggedIn = useSelector((state) => state.auth.loggedIn);
+    const [schedule, setSchedule] = useState([])
     const [errorMess, setErrorMessage] = useState("");
     const [error, setError] = useState(false);
 
     useEffect(() => {
-       // console.log("getuser..");
+        // console.log("getuser..");
         const getUserName = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
@@ -55,12 +56,8 @@ const Dashboard = () => {
 
     return (
         <div className="cont">
-
-
-
             <h1>Dashboard</h1>
             <CalendarView />
-
         </div>
     );
 }

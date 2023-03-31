@@ -7,7 +7,6 @@ import axios from 'axios'
 
 const localizer = momentLocalizer(moment)
 
-
 //hardcoded placeholder
 const events = [
     {
