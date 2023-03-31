@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "../../../styles/AdminServices.module.css";
+import Image from "next/image";
 
 const ServicesTab = () => {
   const [file, setFile] = useState(null);
@@ -7,8 +9,11 @@ const ServicesTab = () => {
   const [servicePrice, setServicePrice] = useState(null);
   const [serviceDescription, setServiceDescription] = useState(null);
   const [msg, setMsg] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([]);
 
   const handleCreate = async () => {
+    setLoading(true);
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "uploads"); //make sure the folder in the cloud is the same
@@ -29,11 +34,35 @@ const ServicesTab = () => {
 
       await axios.post("http://localhost:3000/api/services", newServices);
       // setClose(true);
+      setImages([...images, { img: url }]);
       setMsg(true);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const handleRemove = async (id) => {
+    try {
+      console.log(id)
+      await axios.delete(`http://localhost:3000/api/services/${id}`);
+      setImages(images.filter((image) => image._id !== id));
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3000/api/services");
+        setImages(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchImages();
+  }, [images]);
   return (
     <div>
       <h1>Services Form</h1>
@@ -64,22 +93,35 @@ const ServicesTab = () => {
       <button onClick={handleCreate}>Upload</button>
 
       <div className={styles.container}>
-      <div className={styles.imagesContainer}>
-        {services.map((service) => (
-          <div className={styles.imgContainer} key={service._id}>
-            <Image
-              src={service.img}
-              alt="Service img not found"
-              width="400"
-              height="400"
-            />
-          </div>
-        ))}
+        <div className={styles.imagesContainer}>
+          {images.map((image) => (
+            <div className={styles.imgContainer} key={image._id}>
+              <Image
+                src={image.img}
+                alt="Haircut img not found"
+                width="205"
+                height="205"
+              />
+              
+              <button className={styles.deleteButton} onClick={() => handleRemove(image._id)}>
+                Delete
+              </button>
+              <div>
+                Service Name: {image.serviceName}
+              </div>
+              <div>
+                Price: {image.price}
+              </div>
+              <div>
+                Description: {image.description}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    </div>
 
-    
+
   );
 };
 
