@@ -42,7 +42,8 @@ const PersonalInformation = ({ selectedStaff }) => {
     setIsEditMode((prevState) => !prevState);
   };
 
-  const handleSaveChanges = async () => {
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
     const _staff = {
       firstName,
       lastName,
@@ -102,6 +103,16 @@ const PersonalInformation = ({ selectedStaff }) => {
 
   const toggleEditPic = () => {
     setIsEditPic((prevState) => !prevState);
+  };
+
+  const handleDeleteAccount = () => {
+    try {
+      const response = axios.delete(`http://localhost:3000/api/account/${id}`);
+      console.log(response.data);
+      window.location.reload();
+    } catch (err) {
+      console.error("Error deleting account:", err);
+    }
   };
 
   return (
@@ -227,8 +238,8 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <select
                   className={styles.infoInput}
-                  value={status ? true : false}
-                  onChange={(e) => setStatus(e.target.value === "true")}
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
                 >
                   <option value="true">Active</option>
                   <option value="false">Inactive</option>
@@ -254,12 +265,17 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? "Save" : "Edit"}
             </button>
           </div>
-          {/* <div className={styles.action}>
-            <button className={styles.actionButton}>Delete</button>
-          </div> */}
           <div className={styles.action}>
             <button className={styles.actionButton} onClick={handleStatus}>
               Change Status
+            </button>
+          </div>
+          <div className={styles.action}>
+            <button
+              className={styles.actionButton}
+              onClick={handleDeleteAccount}
+            >
+              Delete
             </button>
           </div>
         </div>
