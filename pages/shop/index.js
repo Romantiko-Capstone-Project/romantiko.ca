@@ -1,6 +1,6 @@
 import React from 'react';
 import ShopList from '../../src/components/shop/ShopList';
-import ShopBanner from '../../src/components/ShopBanner/ShopBanner';
+import ShopBanner from '../../src/components/shopBanner/shopBanner';
 
 const Shop = () => {
     return (

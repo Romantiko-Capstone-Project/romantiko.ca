@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "/styles/Product.module.css";
+import styles from "../../styles/Product.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -28,7 +28,7 @@ const Product = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={selected.img} objectFit="contain" layout="fill" alt="" />
+          <Image src={selected.img} width="600" height="600" alt="" />
         </div>
       </div>
       <div className={styles.right}>
@@ -41,11 +41,4 @@ const Product = () => {
 };
 
 export default Product;
-// export const getServerSideProps = async ({params}) => {
-//     const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);
-//     return{
-//         props:{
-//         product:res.data,
-//         }
-//     };
-// };
+
