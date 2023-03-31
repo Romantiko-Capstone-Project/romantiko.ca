@@ -62,7 +62,24 @@ const ServicesTab = () => {
         {msg && <h3>The image has been succesfully uploaded.</h3>}
       </div>
       <button onClick={handleCreate}>Upload</button>
+
+      <div className={styles.container}>
+      <div className={styles.imagesContainer}>
+        {services.map((service) => (
+          <div className={styles.imgContainer} key={service._id}>
+            <Image
+              src={service.img}
+              alt="Service img not found"
+              width="400"
+              height="400"
+            />
+          </div>
+        ))}
+      </div>
     </div>
+    </div>
+
+    
   );
 };
 
