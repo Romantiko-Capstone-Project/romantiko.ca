@@ -1,18 +1,16 @@
-import styles from '../../../styles/services_style.module.css'
+import styles from "../../../styles/services_style.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const ServicesPage = () => {
-  const [services, setImages] = useState([]);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/api/gallery%22");
-        if (JSON.stringify(services) !== JSON.stringify(data)) {
-          setServices(data);
-        }
+        const { data } = await axios.get("http://localhost:3000/api/services");
+        setServices(data);
       } catch (err) {
         console.log(err);
       }
@@ -40,17 +38,6 @@ const ServicesPage = () => {
 
 export default ServicesPage;
 
-
-
-
-
-
-
-
-
-
-
-
 // import { height } from "@mui/system";
 // import React from "react";
 // import { useState,useEffect } from "react";
@@ -71,14 +58,11 @@ export default ServicesPage;
 //                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla egestas euismod. Nulla sollicitudin felis sagittis, convallis libero eu, egestas dolor. Quisque mi ex, aliquet quis laoreet ut, elementum ac nulla. Quisque varius orci eu ultricies maximus. Praesent turpis purus, egestas et mattis vel, semper a sem. </p>
 //                         <p><b>$99</b></p>
 //                 <button className={styles.button}>Book now!</button>
-//             </div>     
+//             </div>
 //         </div>
-
-        
 
 //     </div>
 
-    
 // </div>
 // );
 // }

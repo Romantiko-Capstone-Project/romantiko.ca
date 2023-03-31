@@ -1,10 +1,11 @@
-import React from 'react'
-import ServicesPage from '../../src/components/services/Services';
-
-function services() {
+import React from "react";
+import ServicesPage from "../../src/components/services/ServicesPage";
+const index = () => {
   return (
-    <ServicesPage/>
-  )
-}
+    <div>
+      <ServicesPage />
+    </div>
+  );
+};
 
-export default services; 
+export default index;

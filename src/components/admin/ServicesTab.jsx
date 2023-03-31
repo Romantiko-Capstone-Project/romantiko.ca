@@ -3,6 +3,9 @@ import axios from "axios";
 
 const ServicesTab = () => {
   const [file, setFile] = useState(null);
+  const [serviceName, setServiceName] = useState(null);
+  const [servicePrice, setServicePrice] = useState(null);
+  const [serviceDescription, setServiceDescription] = useState(null);
   const [msg, setMsg] = useState(false);
 
   const handleCreate = async () => {
@@ -17,11 +20,14 @@ const ServicesTab = () => {
       // console.log(uploadRes.data);
       const { url } = uploadRes.data;
       const newServices = {
+        serviceName,
+        price: servicePrice,
+        description: serviceDescription,
         img: url,
       };
       console.log(newServices);
 
-      await axios.post("http://localhost:3000/api/Services", newServices);
+      await axios.post("http://localhost:3000/api/services", newServices);
       // setClose(true);
       setMsg(true);
     } catch (err) {
@@ -30,12 +36,29 @@ const ServicesTab = () => {
   };
   return (
     <div>
-      <h1>Gallery Form</h1>
+      <h1>Services Form</h1>
       <br></br>
       <div>
-        <label>Choose an image</label>
-        <br></br>
+        <label>Choose an image: </label>
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+        <br></br>
+
+        <label>Service name: </label>
+        <input type="text" onChange={(e) => setServiceName(e.target.value)} />
+        <br></br>
+        <label>Price:</label>
+        <input
+          type="number"
+          onChange={(e) => setServicePrice(e.target.value)}
+        />
+        <br></br>
+        <label>Description: </label>
+
+        <textarea
+          onChange={(e) => setServiceDescription(e.target.value)}
+          placeholder="Description here..."
+        />
+
         {msg && <h3>The image has been succesfully uploaded.</h3>}
       </div>
       <button onClick={handleCreate}>Upload</button>
