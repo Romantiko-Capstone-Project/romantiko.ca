@@ -5,15 +5,13 @@ import styles from "../../../styles/ShopTab.module.css";
 
 const ShopTab = () => {
   const [file, setFile] = useState(null);
-
   const [productName, setProductName] = useState(null);
   const [price, setPrice] = useState(null);
   const [description, setDescription] = useState(null);
   const [msg, setMsg] = useState(false);
-
   const [products, setProducts] = useState([]);
-
   const [isEditMode, setIsEditMode] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const handleCreate = async () => {
     const data = new FormData();
@@ -43,18 +41,17 @@ const ShopTab = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3000/api/products");
+      setProducts(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:3000/api/products");
-        if (JSON.stringify(products) !== JSON.stringify(data)) {
-          setProducts(data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchImages();
+    fetchProducts();
   }, [products]);
 
   const handleClickDelete = async (id) => {
@@ -65,152 +62,155 @@ const ShopTab = () => {
     }
   };
 
-  const toggleUpdate = async (id) => {
+  // set the product attributes
+  const handleEditProduct = async (product) => {
+    setIsEditMode(true);
+    setSelectedProductId(product._id);
+    setProductName(product.productName);
+    setPrice(product.price);
+    setDescription(product.description);
+  };
+
+  const updateButton = async () => {
+    if (!selectedProductId) return;
     try {
-      setIsEditMode((prevState) => !prevState);
-      const selectedProduct = id;
-      console.log(selectedProduct);
+      const _product = {
+        productName,
+        price,
+        description,
+      };
+      await axios.put(
+        `http://localhost:3000/api/products/${selectedProductId}`,
+        _product
+      );
+      setIsEditMode(false);
+      setSelectedProductId(null);
+      setProductName("");
+      setPrice(null);
+      setDescription("");
+      fetchProducts();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
-  const handleClickUpdate = async (id) => {
-
-    
+  const handleCancel = () => {
+    setIsEditMode(false);
+    setSelectedProductId(null);
+    setProductName(null);
+    setPrice(null);
+    setDescription(null);
+    setFile(null);
   };
-
-  const [_file, _setFile] = useState(null);
-  const [_productName, _setProductName] = useState(null);
-  const [_description, _setDescription] = useState(null);
-  const [_price, _setPrice] = useState(null);
-  const [_msg, _setMsg] = useState(false);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Manage Shop</h1>
-      <div className={styles.left}> 
-      <div className={styles.createForm}>
-      <div className="update-form">
-        <h4>Create a Product</h4>
-        <p className={styles.p}>
-          <label className={styles.label}>Choose an image</label>
-          {/* Get rid of br and uses flex-box. */}
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            onClick={() => setMsg(false)}
-          />
-        </p>
-        <p className={styles.p}>
-          <label className={styles.label}>Product Name</label>
-          <input
-            type="text"
-            onChange={(e) => setProductName(e.target.value)}
-            className={styles.input}
-            placeholder="Product Name..."
-            size="25"
-            />
-        </p>
-        <p className={styles.p}>
-          <label className={styles.label}>Price</label>
-          <input
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            className={styles.input}
-            placeholder="Price..."
-            />
-        </p>
-        <p className={styles.p}>
-          <label className={styles.label}>Description</label>
-          <input
-            type="text"
-            onChange={(e) => setDescription(e.target.value)}
-            className={styles.input}
-            placeholder="Description..."
-            />
-        </p>
-        <br></br>
+      <div className={styles.left}>
+        <div className={styles.createForm}>
+          <div className="update-form">
+            {isEditMode ? (
+              <h4>Edit a Product</h4>
+            ) : (
+              <>
+                <h4>Create a Product</h4>
+              </>
+            )}
+
+            <p className={styles.p}>
+              <label className={styles.label}>Choose an image</label>
+              {/* Get rid of br and uses flex-box. */}
+
+              {isEditMode ? (
+                ""
+              ) : (
+                <input
+                  type="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  onClick={() => setMsg(false)}
+                />
+              )}
+            </p>
+            <p className={styles.p}>
+              <label className={styles.label}>Product Name</label>
+              <input
+                type="text"
+                onChange={(e) => setProductName(e.target.value)}
+                className={styles.input}
+                placeholder="Product Name..."
+                size="25"
+                value={productName || ""}
+              />
+            </p>
+            <p className={styles.p}>
+              <label className={styles.label}>Price</label>
+              <input
+                type="number"
+                onChange={(e) => setPrice(e.target.value)}
+                className={styles.input}
+                placeholder="Price..."
+                value={price || ""}
+              />
+            </p>
+            <p className={styles.p}>
+              <label className={styles.label}>Description</label>
+              <input
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+                className={styles.input}
+                placeholder="Description..."
+                value={description || ""}
+              />
+            </p>
+            <br></br>
             {msg && <h4>The product has been successfully created.</h4>}
-        <button className={styles.uploadButton} onClick={handleCreate}>Create</button>
-      </div>
-      </div>
+            {isEditMode && (
+              <button onClick={handleCancel} className={styles.cancelButton}>
+                Cancel
+              </button>
+            )}
+            <button
+              className={styles.uploadButton}
+              onClick={isEditMode ? () => updateButton() : handleCreate}
+            >
+              {isEditMode ? "Modify" : "Create"}
+            </button>
+          </div>
+        </div>
       </div>
       <br></br>
       <div className={styles.right}>
-      <div className={styles.container}>
-        <div className={styles.productsContainer}>
-          {products.map((product) => (
-            <div className={styles.productContainer} key={product._id}>
-              <Image
-                src={product.img}
-                alt="Haircut img not found"
-                width="200"
-                height="200"
-              />
-              <h2>{product.productName}</h2>
-              <p>{product.price}</p>
-              <p>{product.description.slice(0, 100)}...</p>
-              <div className={styles.createFormButtons}>
-                <button 
-                  className={styles.deleteButton} 
-                  onClick={() => handleClickDelete(product._id)}>
+        <div className={styles.container}>
+          <div className={styles.productsContainer}>
+            {products.map((product) => (
+              <div className={styles.productContainer} key={product._id}>
+                <Image
+                  src={product.img}
+                  alt="Haircut img not found"
+                  width="200"
+                  height="200"
+                />
+                <h2>{product.productName}</h2>
+                <p>{product.price}</p>
+                <p>{product.description}</p>
+                <div className={styles.createFormButtons}>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleClickDelete(product._id)}
+                  >
                     Delete
-                </button>
-                <button 
-                  className={styles.updateButton}
-                  onClick={() => toggleUpdate(product._id)}>
+                  </button>
+                  <button
+                    className={styles.updateButton}
+                    onClick={() => handleEditProduct(product)} //,_id?
+                  >
                     Edit
-                </button>
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-        </div>
-        {isEditMode && (
-          <div className={styles.updateForm}>
-            <div className="update-form">
-              <h1>Update Form</h1>
-              <br></br>
-              <div>
-                <label>Choose an image</label>
-                <br></br>
-                {/* Get rid of br and uses flex-box. */}
-                <input
-                  type="file"
-                  onChange={(e) => _setFile(e.target.files[0])}
-                  onClick={() => setMsg(false)}
-                />
-                {msg && <h3>The image has been succesfully uploaded.</h3>}
-              </div>
-              <div>
-                <label>Product Name</label>
-                <input
-                  type="text"
-                  onChange={(e) => _setProductName(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
-              <div>
-                <label>Price</label>
-                <input
-                  type="number"
-                  onChange={(e) => _setPrice(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
-              <div>
-                <label>Description</label>
-                <input
-                  type="text"
-                  onChange={(e) => _setDescription(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
-              <button onClick={handleClickUpdate}>Upload</button>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
