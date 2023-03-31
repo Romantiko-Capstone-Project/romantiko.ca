@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-function GalleryStuff() {
+const GalleryPage = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -36,6 +36,6 @@ function GalleryStuff() {
       </div>
     </div>
   );
-}
+};
 
-export default GalleryStuff;
+export default GalleryPage;
