@@ -11,9 +11,10 @@ body {
   min-width: 100vw;
   overflow-x: hidden;
   font-size: 1em;
-  
+
 }
-#mainContainer{
+
+#mainContainer {
   min-height: 80vh;
   margin: 0;
   display: flex;
@@ -23,21 +24,22 @@ body {
   color: whitesmoke;
 }
 
-nav{
+nav {
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 1;
 }
+
 footer {
   position: relative;
   bottom: 0;
   width: 100%;
   z-index: 1;
-  
+
 }
 
-.spinnerWrapper{
+.spinnerWrapper {
   height: 100%;
   width: 100%;
   top: 0;
@@ -47,12 +49,14 @@ footer {
   backdrop-filter: blur(7px);
   z-index: 2;
 }
-.spinner{
+
+.spinner {
   top: 50%;
   left: 50%;
   position: absolute;
 }
-.hero{
+
+.hero {
   color: white;
   position: absolute;
   margin: auto;
@@ -63,9 +67,10 @@ footer {
   height: 100%;
   display: flex;
   flex-direction: column;
-  
+
 }
-.vidBG{
+
+.vidBG {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -75,7 +80,8 @@ footer {
   z-index: 0;
   margin: 0;
 }
-.hero button{
+
+.hero button {
   width: 30%;
   height: 6%;
   margin-left: auto;
@@ -87,51 +93,61 @@ footer {
   color: white;
   border-color: white;
   border-width: 3px;
-  font-weight:bolder;
+  font-weight: bolder;
   transition: 0.4s;
   border-style: solid;
 }
-.hero button:hover{
+
+.hero button:hover {
   background-color: whitesmoke;
-  color:black;
-  
+  color: black;
+
 }
 
-.hero p{
+.hero p {
   margin-top: 1em;
   font-size: 1.2em;
 }
 
-.reviewCards{
+.reviewCards {
   font-style: italic;
   font-size: 0.6rem;
   margin-top: 5%;
   transition: 0.5s ease-in-out;
   font-family: 'Courier New', Courier, monospace;
-  
+
 }
+
 .review {
   animation: fadeIn 2s;
 }
-.review h2{
+
+.review h2 {
   color: rgb(184, 184, 3);
   font-family: Roboto;
   font-weight: 900;
   font-size: 0.7rem;
 }
-.quotationMark{
+
+.quotationMark {
   color: rgb(184, 184, 3);
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
   font-size: larger;
-  
-}
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+
 }
 
-.bannerAB{
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.bannerAB {
 
   position: relative;
   width: 100%;
@@ -142,110 +158,120 @@ footer {
 ::-webkit-scrollbar {
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #4d4d4d;
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #f1f1f1;
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #808080;
 }
 
- 
-@media screen and (max-width: 830px){
-  .vidBG{
+
+@media screen and (max-width: 830px) {
+  .vidBG {
     position: relative;
     width: 100%;
     height: 100vw;
     object-fit: cover;
-    
+
   }
 
-  .hero{
+  .hero {
     display: block;
-    
+
     text-align: left;
-    margin-top:15%;
-  
+    margin-top: 15%;
+
   }
-  .hero h1{
+
+  .hero h1 {
     text-align: left;
     font-size: 1.6em;
   }
-  .hero button{
+
+  .hero button {
     width: 50%;
     margin-top: 5%;
   }
-  .hero button:hover{
+
+  .hero button:hover {
     background-color: whitesmoke;
-    color:black;
-    
+    color: black;
+
   }
-  
-  .hero p{
+
+  .hero p {
     margin-top: 8%;
     font-size: 1.2em;
   }
 
-  .reviewCards{
+  .reviewCards {
 
     font-size: 0.7rem;
-    
+
   }
-    
+
 }
 
-@media screen and (max-height: 1030px) and (max-width:900px){
-  .vidBG{
+@media screen and (max-height: 1030px) and (max-width:900px) {
+  .vidBG {
     position: relative;
     width: 100%;
     height: 100vw;
     object-fit: cover;
-    
+
   }
 
-  .hero{
+  .hero {
     display: block;
-    
+
     text-align: left;
-    margin-top:10%;
-  
+    margin-top: 10%;
+
   }
-  .hero h1{
+
+  .hero h1 {
     text-align: left;
     font-size: 1.1em;
   }
-  .hero button{
+
+  .hero button {
     width: 50%;
     margin-top: 1%;
     font-size: 0.8rem;
     height: 5%;
   }
-  .hero button:hover{
+
+  .hero button:hover {
     background-color: whitesmoke;
-    color:black;
-    
+    color: black;
+
   }
-  
-  .hero p{
+
+  .hero p {
     margin-top: 6%;
     font-size: 0.8rem;
   }
 
-  .reviewCards{
-    margin-top:8%;
-    
-    
+  .reviewCards {
+    margin-top: 8%;
+
+
   }
-  .review p{
+
+  .review p {
     font-size: 0.7rem;
   }
-  .reviewCards h2{
+
+  .reviewCards h2 {
     font-size: 0.8rem;
   }
-  
-}
 
+}

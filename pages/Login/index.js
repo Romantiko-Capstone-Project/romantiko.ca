@@ -1,10 +1,8 @@
-import React from 'react'
-import LoginPage from '../../src/components/LoginPage/Loginpage';
+import React from "react";
+import LoginPage from "../../src/components/LoginPage/Loginpage";
 
 function loginpage() {
-  return (
-    <LoginPage/>
-  )
+  return <LoginPage />;
 }
 
-export default loginpage; 
+export default loginpage;

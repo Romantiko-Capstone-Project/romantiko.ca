@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
 import { useRouter } from "next/router";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { login, adminLogin, setID } from "../../redux/authSlice";
-
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -15,19 +14,14 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-
   function handleLogin(id) {
-
     dispatch(login());
     handleID(id);
-
-
-  };
+  }
   function handleAdminLogin(id) {
-
     dispatch(adminLogin());
     handleID(id);
-  };
+  }
 
   function handleID(id) {
     dispatch(setID(id));
@@ -45,17 +39,14 @@ const LoginPage = () => {
       if (response.data.role === "admin") {
         handleAdminLogin(response.data.id);
         router.push("/"); // Replace with the actual URL of the admin page
-
       } else if (response.data.role === "staff") {
         console.log(response.data.id);
         handleLogin(response.data.id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
-
       }
       /** set name */
       //handleName(response.data.id);
       //console.log(response.data);
-
     } catch (error) {
       setError(true);
       setErrorMessage("Incorrect username or password.");
@@ -68,8 +59,8 @@ const LoginPage = () => {
       <div className={styles.wrapper}>
         <h4
           style={{
-            "textAlign": "center",
-            "marginTop": "8px",
+            textAlign: "center",
+            marginTop: "8px",
             color: "black",
           }}
         >
@@ -83,7 +74,7 @@ const LoginPage = () => {
             id="email"
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Email"
-            style={{ "backgroundColor": "#EBECF0" }}
+            style={{ backgroundColor: "#EBECF0" }}
           />
           <label htmlFor="email" className={styles.stuff}>
             Email
@@ -97,7 +88,7 @@ const LoginPage = () => {
             id="pwd"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            style={{ "backgroundColor": "#EBECF0" }}
+            style={{ backgroundColor: "#EBECF0" }}
           />
           <label htmlFor="pwd" className={styles.stuff}>
             Password
@@ -126,6 +117,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;
