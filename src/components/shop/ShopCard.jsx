@@ -8,7 +8,7 @@ const ShopCard = ({product}) => {
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 <Link href={`/product/${product._id}`} passHref>
-                    <Image src={product.img} alt="" width="200" height="200"/> 
+                    <Image src={product.img} alt="" width="250" height="250"/> 
                 </Link>
                 <h1 className={styles.title}>{product.productName}</h1>
                 <span className={styles.price}>${product.price}</span>

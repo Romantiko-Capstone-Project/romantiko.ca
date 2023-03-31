@@ -89,9 +89,14 @@ const ShopTab = () => {
 
   return (
     <div className={styles.container}>
+      
+      
+
+      <h1 className={styles.pageTitle}>Manage Shop</h1>
+      <div className={styles.left}>
+      <div className={styles.createForm}>
       <div className="update-form">
-        <h1>Product Form</h1>
-        <br></br>
+        <h4>Create a Product</h4>
         <div>
           <label>Choose an image</label>
           <br></br>
@@ -109,6 +114,8 @@ const ShopTab = () => {
             type="text"
             onChange={(e) => setProductName(e.target.value)}
             className={styles.input}
+            placeholder="Product Name..."
+            size="25"
           />
         </div>
         <div>
@@ -117,6 +124,7 @@ const ShopTab = () => {
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
+            placeholder="Price..."
           />
         </div>
         <div>
@@ -125,31 +133,44 @@ const ShopTab = () => {
             type="text"
             onChange={(e) => setDescription(e.target.value)}
             className={styles.input}
+            placeholder="Description..."
           />
         </div>
-        <button onClick={handleCreate}>Upload</button>
+        <button className={styles.uploadButton} onClick={handleCreate}>Create</button>
       </div>
+      </div>
+      </div>
+      <br></br>
+      <div className={styles.right}>
       <div className={styles.container}>
-        <div className={styles.imagesContainer}>
+        <div className={styles.productsContainer}>
           {products.map((product) => (
-            <div className={styles.imgContainer} key={product._id}>
+            <div className={styles.productContainer} key={product._id}>
               <Image
                 src={product.img}
                 alt="Haircut img not found"
-                width="250"
-                height="250"
+                width="200"
+                height="200"
               />
               <h2>{product.productName}</h2>
               <p>{product.price}</p>
               <p>{product.description}</p>
-              <button onClick={() => handleClickDelete(product._id)}>
-                Delete
-              </button>
-              <button onClick={() => toggleUpdate(product._id)}>Edit</button>
+              <div className={styles.createFormButtons}>
+                <button 
+                  className={styles.deleteButton} 
+                  onClick={() => handleClickDelete(product._id)}>
+                    Delete
+                </button>
+                <button 
+                  className={styles.updateButton}
+                  onClick={() => toggleUpdate(product._id)}>
+                    Edit
+                </button>
+              </div>
             </div>
           ))}
         </div>
-
+        </div>
         {isEditMode && (
           <div className={styles.updateForm}>
             <div className="update-form">
