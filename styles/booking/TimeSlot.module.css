@@ -8,10 +8,8 @@
     padding-right: 14px;
 }
 
-.barber_wrapper {
+.barber {
     margin: 30px 10px 15px 12px;
-    display: flex;
-    padding: auto;
 }
 
 .time_button {
@@ -36,8 +34,4 @@
     background-color: #b4efc4;
     color: black;
     border: none;
-}
-
-.staff_container {
-    margin: 40px 10px 10px 10px;
 }

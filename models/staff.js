@@ -31,5 +31,4 @@ const Staff = new Schema(
   { timestamps: true }
 );
 
-// Register the Staff model
 module.exports = mongoose.models.Staff || mongoose.model("Staff", Staff);

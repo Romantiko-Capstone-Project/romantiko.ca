@@ -1,5 +1,8 @@
 import dbConnect from "../../../util/mongo";
-import Staff from "../../../models/staff";
+import Staff from "../../../models/Staff";
+const {
+  verifyTokenAndAdmin,
+} = require("../../../middlewares/verifyToken");
 
 const handler = async (req, res) => {
   const {
@@ -37,4 +40,10 @@ const handler = async (req, res) => {
   }
 };
 
-export default handler;
+const handlerWrapper = (req, res) => {
+  verifyTokenAndAdmin(req, res, () => {
+    handler(req, res);
+  });
+};
+
+export default handlerWrapper;
