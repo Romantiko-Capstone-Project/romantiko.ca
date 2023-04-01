@@ -12,67 +12,79 @@ const Dashboard = () => {
   const [errorMess, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
   const [staffId, setStaffId] = useState("");
+  const [staffFullName, setStaffFullName] = useState("");
+  const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    // console.log("getuser..");
-    const getUserName = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/staff/account/${accountID}`
-        );
-      } catch (error) {
-        console.log("username error");
-        console.error(error);
-      }
-    };
-    getUserName();
-  }, []);
-
-  useEffect(() => {
-    // getBookings();
-    //login check
+    // check if user is logged in
     if (!loggedIn) {
       router.push("/Login");
     }
 
-    const getBookings = async () => {
-      console.log("found id =" + accountID);
+    const getStaff = async (accountID) => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/schedule/",
-          { staffId }
+        const response = await axios.get(
+          `http://localhost:3000/api/staff/account/${accountID}`
+        );
+        setStaffId(response.data._id);
+        setStaffFullName(
+          response.data.firstName + " " + response.data.lastName
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getStaff(accountID);
+  }, []);
+
+  useEffect(() => {
+    const getBookings = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/schedule/details/${staffId}`
         );
 
-        console.log(response.data);
+        const bookingsWithServiceNames = await Promise.all(
+          response.data.map(async (booking) => {
+            const service = await getService(booking.service);
+            return {
+              ...booking,
+              serviceName: service ? service.name : "Unknown",
+            };
+          })
+        );
+
+        setBookings(bookingsWithServiceNames);
       } catch (error) {
         setError(true);
         setErrorMessage("Failed to get booking");
         console.error(error);
       }
     };
-    getBookings();
-  }, []);
 
-  useEffect(() => {
-    const getStaffId = async (accountID) => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/staff/account/${accountID}`
-        );
-        console.log(response.data._id);
-        setStaffId(response.data._id);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    if (staffId) {
+      getBookings();
+    }
+  }, [staffId]);
 
-    getStaffId(accountID);
-  });
+  const getService = async (serviceId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/services/${serviceId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
 
   return (
     <div className="cont">
+      <div>Hello {staffFullName}</div>
       <h1>Dashboard</h1>
-      <CalendarView />
+      <CalendarView bookings={bookings} />
     </div>
   );
 };

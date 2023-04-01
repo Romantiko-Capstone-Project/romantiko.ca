@@ -62,9 +62,6 @@ const BookingCard = ({
           endTime,
           serviceName: selectedService.serviceName,
           name,
-          email,
-          phone,
-          note,
         },
       });
     } catch (error) {

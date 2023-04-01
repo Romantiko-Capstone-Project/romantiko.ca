@@ -73,15 +73,31 @@ const handler = async (req, res) => {
           .json({ message: "The time slot is fully booked." });
       }
 
+
       const booking = await Booking.create(req.body);
+
+      console.log("staffAvailability.isBooked before update:", staffAvailability.isBooked);
+      console.log("staffAvailability.booking before update:", staffAvailability.booking);
+
       staffAvailability.isBooked = true;
       staffAvailability.booking = booking._id;
+
+      console.log("staffAvailability.isBooked after update:", staffAvailability.isBooked);
+      console.log("staffAvailability.booking after update:", staffAvailability.booking);
 
       // After updating staffAvailability
       checkAndUpdateIsFull(targetTimeSlot);
 
-      //week.markModified("days"); // Mark the 'days' path as modified
+      week.markModified("days"); // Mark the 'days' path as modified
       await week.save();
+
+      const savedWeek = await Week.findOne({ weekNumber }); // Add this line
+      console.log(
+        "Saved week data after save:",
+        JSON.stringify(savedWeek, null, 2)
+      ); // Add this line
+
+      // ...
 
       // Update staff schedule
       let staffSchedule = await Schedule.findOne({ staff: barber });

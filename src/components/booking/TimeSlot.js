@@ -28,6 +28,7 @@ const TimeSlot = ({
           `http://localhost:3000/api/week/${selectedDate.toISOString()}`
         );
         setTimeSlots(res.data);
+        console.log(timeSlots)
       } catch (error) {
         console.error(error);
       }
