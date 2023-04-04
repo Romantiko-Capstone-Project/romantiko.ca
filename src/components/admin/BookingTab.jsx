@@ -73,6 +73,7 @@ const BookingTab = () => {
               <h3>Start Time: {booking.startTime} </h3>
               <h3>End Time: {booking.endTime} </h3>
               <h3>Barber Id: {booking.barber} </h3>
+              <h3>Booking Id: {booking._id} </h3>
             </div>
             <div className={styles.bookingActions}>
               <button
