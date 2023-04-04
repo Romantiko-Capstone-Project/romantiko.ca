@@ -1,33 +1,46 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
+import Staff from "../../../models/Staff";
 
 const handler = async (req, res) => {
-  const { method } = req;
+  const {
+    method,
+    query: { id },
+  } = req;
 
   await dbConnect();
 
-  if (method == "GET") {
-    try {
-      // Fetch all weeks from the database
-      const weeks = await Week.find();
+  switch (method) {
+    case "GET":
+      try {
+        const timeslot = await Week.findOne(
+          { "days.timeSlots._id": id },
+          { "days.timeSlots.$": 1 }
+        )
+          .populate({
+            path: "days.timeSlots.staffAvailability.staff",
+            model: Staff, // Pass the Staff model schema here
+          })
+          .exec();
 
-      // Send the weeks as a JSON response
-      res.status(200).json(weeks);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        message: "An error occurred while fetching weeks.",
-        error: err,
-      });
-    }
+        if (!timeslot) {
+          return res.status(400).json({ success: false });
+        }
+
+        const staffIds = timeslot.days[0].timeSlots[0].staffAvailability.map(
+          (availability) => availability.staff._id
+        );
+
+        res.status(200).json(staffIds);
+      } catch (error) {
+        res.status(400).json({ success: false });
+        console.error(error);
+      }
+      break;
+    default:
+      res.status(400).json({ success: false });
+      break;
   }
 };
 
-const handlerWrapper = (req, res) => {
-  verifyTokenAndAdmin(req, res, () => {
-    handler(req, res);
-  });
-};
-
-export default handlerWrapper;
+export default handler;
