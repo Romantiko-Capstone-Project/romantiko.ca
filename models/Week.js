@@ -16,6 +16,7 @@ const StaffAvailability = new Schema({
 
 const TimeSlot = new Schema({
   startTime: { type: Number, required: true },
+  isFull: { type: Boolean, required: true, default: false },
   staffAvailability: [StaffAvailability],
 });
 
@@ -47,7 +48,8 @@ const Week = new Schema(
     },
     days: [Day],
   },
-  { timestamps: true }
+  { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
+
 
 module.exports = mongoose.models.Week || mongoose.model("Week", Week);

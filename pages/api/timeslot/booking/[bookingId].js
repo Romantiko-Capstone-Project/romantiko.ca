@@ -2,6 +2,7 @@ import dbConnect from "../../../../util/mongo";
 import Booking from "../../../../models/Booking";
 import Week from "../../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../../middlewares/verifyToken");
+import moment from "moment";
 
 const handler = async (req, res) => {
   const {
@@ -19,7 +20,10 @@ const handler = async (req, res) => {
       }
 
       const startDate = new Date(booking.startTime);
-      const weekNumber = Math.ceil(startDate.getDate() / 7);
+      const weekNumber = moment(startDate).isoWeek();
+
+      console.log("startDate:", startDate);
+      console.log("weekNumber:", weekNumber);
 
       const week = await Week.findOne({ weekNumber });
       if (!week) {

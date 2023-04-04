@@ -1,8 +1,8 @@
 import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
-import TimeSlot from "../../../models/TimeSlot";
 import Schedule from "../../../models/Schedule";
-import Reservation from "../../../models/Reservation";
+import Week from "../../../models/Week";
+import moment from "moment";
 
 const handler = async (req, res) => {
   const {
@@ -41,31 +41,59 @@ const handler = async (req, res) => {
         return res.status(404).json({ message: "Booking not found." });
       }
 
-      // update reservation
-      await Reservation.updateMany(
-        { bookingId: id },
-        { $set: { isBooked: false, bookingId: null } }
-      );
+      const startDate = new Date(booking.startTime);
+      const weekNumber = moment(startDate).isoWeek();
+      const dayOfWeek = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1;
 
-      // Get all reservations associated with the booking being deleted
-      const reservations = await Reservation.find({ booking: id });
+      const week = await Week.findOne({ weekNumber });
+      if (!week) {
+        return res.status(404).json({ message: "Week not found." });
+      }
 
-      // For each reservation, check whether the associated TimeSlot is still full
-      for (const reservation of reservations) {
-        const timeSlot = await TimeSlot.findById(reservation.timeSlot);
-        const isStillFull = await Reservation.exists({
-          timeSlot: timeSlot._id,
-          isBooked: true,
-          _id: { $ne: reservation._id }, // exclude the reservation being deleted
-        });
-        if (!isStillFull) {
-          timeSlot.isFull = false;
-          await timeSlot.save();
+      const day = week.days[dayOfWeek];
+
+      let staffAvailabilityUpdated = false;
+      for (const timeSlot of day.timeSlots) {
+        for (const staffAvailability of timeSlot.staffAvailability) {
+          if (
+            staffAvailability.booking &&
+            staffAvailability.booking.toString() === id
+          ) {
+            staffAvailability.isBooked = false;
+            staffAvailability.booking = null;
+
+            // Update isFull for the timeSlot if necessary
+            if (timeSlot.isFull) {
+              timeSlot.isFull = timeSlot.staffAvailability.every(
+                (availability) => availability.isBooked
+              );
+            }
+
+            staffAvailabilityUpdated = true;
+            break;
+          }
+        }
+
+        if (staffAvailabilityUpdated) {
+          break;
         }
       }
 
-      // delete scheduled booking
-      await Schedule.findOneAndDelete({ booking: booking._id });
+      if (staffAvailabilityUpdated) {
+        await week.save();
+      } else {
+        return res
+          .status(404)
+          .json({ message: "Staff availability not found." });
+      }
+
+      // Remove the booking from the staff's schedule
+      await Schedule.findOneAndUpdate(
+        { bookings: booking._id },
+        { $pull: { bookings: booking._id } }
+      );
+
+      // Delete the booking
       await Booking.findByIdAndDelete(id);
       res.status(200).json({ message: "Successfully deleted the booking" });
     } catch (err) {

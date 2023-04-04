@@ -1,68 +1,92 @@
-import React from 'react';
-import CalendarView from './CalendarView';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from "react";
+import CalendarView from "./CalendarView";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
-    const router = useRouter();
-    const accountID = useSelector((state) => state.auth.accountID);
-    const loggedIn = useSelector((state) => state.auth.loggedIn);
-    const [errorMess, setErrorMessage] = useState("");
-    const [error, setError] = useState(false);
+  const router = useRouter();
+  const accountID = useSelector((state) => state.auth.accountID);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const [errorMess, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
+  const [staffId, setStaffId] = useState("");
+  const [staffFullName, setStaffFullName] = useState("");
+  const [bookings, setBookings] = useState([]);
 
-    useEffect(() => {
-       // console.log("getuser..");
-        const getUserName = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3000/api/staff/account/${accountID}`)
-                console.log(response.data.firstname, response.data.lastname)
-            } catch (error) {
-                console.log("username error")
-                console.error(error);
-            }
-        }
-        getUserName();
-    }, [])
+  useEffect(() => {
+    // check if user is logged in
+    if (!loggedIn) {
+      router.push("/Login");
+    }
 
-    useEffect(() => {
-        // getBookings();
-        //login check
-        if (!loggedIn) {
-            router.push("/Login");
-        }
+    const getStaff = async (accountID) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/staff/account/${accountID}`
+        );
+        setStaffId(response.data._id);
+        setStaffFullName(
+          response.data.firstName + " " + response.data.lastName
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        const getBookings = async () => {
-            console.log("found id =" + accountID);
+    getStaff(accountID);
+  }, []);
 
-            try {
-                const response = await axios.post(
-                    "http://localhost:3000/api/schedule/",
-                    { accountID }
-                );
+  useEffect(() => {
+    const getBookings = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/schedule/details/${staffId}`
+        );
 
-                console.log(response.data);
+        const bookingsWithServiceNames = await Promise.all(
+          response.data.map(async (booking) => {
+            const service = await getService(booking.service);
+            return {
+              ...booking,
+              serviceName: service ? service.name : "Unknown",
+            };
+          })
+        );
 
-            } catch (error) {
-                setError(true);
-                setErrorMessage("Failed to get booking");
-                console.error(error);
-            }
-        }
-        getBookings();
-    }, [])
+        setBookings(bookingsWithServiceNames);
+      } catch (error) {
+        setError(true);
+        setErrorMessage("Failed to get booking");
+        console.error(error);
+      }
+    };
 
-    return (
-        <div className="cont">
+    if (staffId) {
+      getBookings();
+    }
+  }, [staffId]);
 
+  const getService = async (serviceId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/services/${serviceId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
 
-
-            <h1>Dashboard</h1>
-            <CalendarView />
-
-        </div>
-    );
-}
+  return (
+    <div className="cont">
+      <div>Hello {staffFullName}</div>
+      <h1>Dashboard</h1>
+      <CalendarView bookings={bookings} />
+    </div>
+  );
+};
 
 export default Dashboard;

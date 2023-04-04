@@ -1,7 +1,9 @@
-import React from "react";
-import GalleryPage from "../../src/components/GalleryPage/GalleryPage";
+import React from 'react'
+import GalleryStuff from '../../src/components/GalleryPage/gallery';
 function gallery() {
-  return <GalleryPage />;
+  return (
+    <GalleryStuff/>
+  )
 }
 
-export default gallery;
+export default gallery; 

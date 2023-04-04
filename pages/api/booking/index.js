@@ -2,7 +2,12 @@ import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
 import Week from "../../../models/Week";
 import Schedule from "../../../models/Schedule";
+import { checkAndUpdateIsFull } from "../../../config/staffAvailability.config";
 const { convertToHours } = require("../../../config/convertToHours.config");
+import moment from "moment";
+import { EventEmitter } from "events";
+
+export const bookingCreatedEvent = new EventEmitter();
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -36,7 +41,7 @@ const handler = async (req, res) => {
 
       const startDate = new Date(startTime);
       const endDate = new Date(endTime);
-      const weekNumber = Math.ceil(startDate.getDate() / 7);
+      const weekNumber = moment(startDate).isoWeek();
       const dayOfWeek = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1; // 0 (Monday) to 6 (Sunday)
 
       const week = await Week.findOne({ weekNumber });
@@ -66,9 +71,34 @@ const handler = async (req, res) => {
         });
       }
 
+      if (targetTimeSlot.isFull) {
+        return res
+          .status(400)
+          .json({ message: "The time slot is fully booked." });
+      }
+
       const booking = await Booking.create(req.body);
-      staffAvailability.isBooked = true;
-      staffAvailability.booking = booking._id;
+
+      // Find the index of the target time slot
+      const targetTimeSlotIndex = day.timeSlots.findIndex(
+        (slot) => slot.startTime >= startHour && slot.startTime < endHour
+      );
+
+      // Find the index of the staff availability
+      const staffAvailabilityIndex = targetTimeSlot.staffAvailability.findIndex(
+        (availability) => availability.staff.toString() === barber
+      );
+
+      week.days[dayOfWeek].timeSlots[targetTimeSlotIndex].staffAvailability[
+        staffAvailabilityIndex
+      ].isBooked = true;
+      week.days[dayOfWeek].timeSlots[targetTimeSlotIndex].staffAvailability[
+        staffAvailabilityIndex
+      ].booking = booking._id;
+
+      // After updating staffAvailability
+      checkAndUpdateIsFull(targetTimeSlot);
+
       week.markModified("days"); // Mark the 'days' path as modified
       await week.save();
 
@@ -79,6 +109,9 @@ const handler = async (req, res) => {
       }
       staffSchedule.bookings.push(booking._id);
       await staffSchedule.save();
+
+      // Emit the booking created event
+      bookingCreatedEvent.emit("created", booking);
 
       res.status(201).json(booking);
     } catch (err) {

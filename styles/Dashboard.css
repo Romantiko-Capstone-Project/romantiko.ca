@@ -1,26 +1,26 @@
-.cont{
-    margin: auto;
-    margin-top: 1%;
-    padding: 2%;
-    width: 80%;
-    background-color: white;
-    color: black;
-    min-height: 800px;
+.cont {
+  margin: auto;
+  margin-top: 1%;
+  padding: 2%;
+  width: 80%;
+  background-color: white;
+  color: black;
+  min-height: 800px;
 }
 
 .rbc-event-content {
-    font-family: 'Roboto';
-    
-  }
+  font-family: 'Roboto';
 
-  body{
-    background-color: white;
-    color: black;
-  }
+}
 
-  h1{
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 3%;
-    
-  }
+body {
+  background-color: white;
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 3%;
+
+}
