@@ -1,6 +1,9 @@
 import dbConnect from "../../../util/mongo";
+import TimeSlot from "../../../models/TimeSlot";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
-const { initializeWeeks } = require("../../../config/timeslot.config");
+const {
+  initializeWeeks,
+} = require("../../../middlewares/generateTimeSlot");
 
 const handler = async (req, res) => {
   const { method } = req;

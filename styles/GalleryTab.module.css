@@ -1,0 +1,63 @@
+.mainContainer {
+  max-width: 100%;
+  text-align: left;
+  overflow-x: scroll;
+  background-color: black;
+
+}
+
+.imagesContainer {
+  padding-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: 4px;
+  margin-right: 21px;
+  margin-bottom: 21px;
+  background-color:  #212529;
+  padding: 7px;
+
+
+
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+}
+
+.deleteButton {
+  position: relative;
+  bottom: 200px;
+  left: 167px;
+  width: fit-content;
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  border: none;
+}
+
+.formContainer {
+  width: 500px;
+  margin: 20px;
+  padding: 8px;
+  text-align: center;
+  border-radius: 4px;
+  color: white;
+  background-color:  #212529;
+
+
+}
+
+.uploadButton {
+  border: 0.9px solid rgb(123, 122, 122);
+  border-radius: 2px;
+}
+
+.uploadButton:hover {
+  background-color: rgb(234, 231, 231);
+}

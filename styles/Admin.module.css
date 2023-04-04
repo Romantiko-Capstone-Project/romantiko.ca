@@ -1,10 +1,15 @@
 .container {
   /* background-color: rgba(255, 255, 255, 0.5); */
-  background-color: black;
+
+  /* background-color: black; */
+  
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
   color: black;
-  height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
+  
+  
 }
 /* .tabMenu,
 .staffList,
@@ -23,12 +28,20 @@
 .item:last-child {
   display: flex;
   flex: 8;
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+
 }
+
+/**
 .border {
-  background-color: #212529;
+background-color: #212529;
   border-radius: 25px;
-  margin: 30px 10px;
+  margin: 30px 10px;  
 }
+*/
+
+
 
 .tabMenu {
   color: white;
@@ -52,3 +65,5 @@
 .tabButton:hover {
   background-color: rgba(0, 0, 0, 0.455);
 }
+
+
