@@ -20,10 +20,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingScreen />} persistor={persistor}>
-        {/* <LoadingScreen/> */}
+
         <MainLayout>
           <>
-            {" "}
+            <LoadingScreen />
             <Component {...pageProps} />{" "}
           </>
         </MainLayout>

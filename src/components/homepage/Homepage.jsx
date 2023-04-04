@@ -10,9 +10,8 @@ const Homepage = () => {
       </video>
 
       <div className="hero">
-        <h1 style={{ fontWeight: "900" }}>
-          Airdrie's Neighborhood Barbershop: Affordable Prices, Exceptional
-          Service
+        <h1 >
+          Romantiko Barbershop
         </h1>
 
         <p>
