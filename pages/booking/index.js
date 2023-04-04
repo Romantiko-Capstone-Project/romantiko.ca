@@ -58,7 +58,7 @@ const Booking = () => {
         />
       </div>
       <h3 className={styles.title}>Add your details</h3>
-      <div className={styles.booking_card}>
+      <div className={styles.booking_container}>
         <BookingCard
           startTime={bookingTime[0]}
           endTime={bookingTime[1]}
