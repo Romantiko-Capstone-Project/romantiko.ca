@@ -5,6 +5,9 @@ import Schedule from "../../../models/Schedule";
 import { checkAndUpdateIsFull } from "../../../config/staffAvailability.config";
 const { convertToHours } = require("../../../config/convertToHours.config");
 import moment from "moment";
+import { EventEmitter } from "events";
+
+export const bookingCreatedEvent = new EventEmitter();
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -41,16 +44,10 @@ const handler = async (req, res) => {
       const weekNumber = moment(startDate).isoWeek();
       const dayOfWeek = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1; // 0 (Monday) to 6 (Sunday)
 
-      console.log("startDate:", startDate);
-      console.log("weekNumber:", weekNumber);
-      console.log("dayOfWeek:", dayOfWeek);
-
       const week = await Week.findOne({ weekNumber });
       if (!week) {
         return res.status(404).json({ message: "Week not found." });
       }
-
-      console.log("week in POST handler:", week);
 
       const day = week.days[dayOfWeek];
       const startHour = convertToHours(startTime);
@@ -82,20 +79,28 @@ const handler = async (req, res) => {
 
       const booking = await Booking.create(req.body);
 
-      staffAvailability.isBooked = true;
-      staffAvailability.booking = booking._id;
+      // Find the index of the target time slot
+      const targetTimeSlotIndex = day.timeSlots.findIndex(
+        (slot) => slot.startTime >= startHour && slot.startTime < endHour
+      );
+
+      // Find the index of the staff availability
+      const staffAvailabilityIndex = targetTimeSlot.staffAvailability.findIndex(
+        (availability) => availability.staff.toString() === barber
+      );
+
+      week.days[dayOfWeek].timeSlots[targetTimeSlotIndex].staffAvailability[
+        staffAvailabilityIndex
+      ].isBooked = true;
+      week.days[dayOfWeek].timeSlots[targetTimeSlotIndex].staffAvailability[
+        staffAvailabilityIndex
+      ].booking = booking._id;
 
       // After updating staffAvailability
       checkAndUpdateIsFull(targetTimeSlot);
 
-      await Week.findOneAndUpdate(
-        { weekNumber },
-        {
-          $set: {
-            [`days.${dayOfWeek}.timeSlots`]: week.days[dayOfWeek].timeSlots,
-          },
-        }
-      );
+      week.markModified("days"); // Mark the 'days' path as modified
+      await week.save();
 
       // Update staff schedule
       let staffSchedule = await Schedule.findOne({ staff: barber });
@@ -104,6 +109,9 @@ const handler = async (req, res) => {
       }
       staffSchedule.bookings.push(booking._id);
       await staffSchedule.save();
+
+      // Emit the booking created event
+      bookingCreatedEvent.emit("created", booking);
 
       res.status(201).json(booking);
     } catch (err) {

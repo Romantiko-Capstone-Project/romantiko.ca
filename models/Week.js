@@ -48,7 +48,8 @@ const Week = new Schema(
     },
     days: [Day],
   },
-  { timestamps: true }
+  { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
+
 
 module.exports = mongoose.models.Week || mongoose.model("Week", Week);

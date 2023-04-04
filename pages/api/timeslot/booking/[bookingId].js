@@ -30,8 +30,6 @@ const handler = async (req, res) => {
         throw new Error("Week not found.");
       }
 
-      console.log("week in GET handler:", week);
-
       let foundTimeSlot;
 
       outerLoop: for (const day of week.days) {

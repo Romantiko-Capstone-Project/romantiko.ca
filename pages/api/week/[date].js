@@ -1,6 +1,7 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-import { startOfWeek, addWeeks } from "date-fns";
+import Staff from "../../../models/Staff";
+import moment from "moment";
 
 const handler = async (req, res) => {
   const { method, query } = req;
@@ -11,10 +12,13 @@ const handler = async (req, res) => {
   if (method === "GET") {
     try {
       const selectedDate = new Date(date);
-      const weekNumber = getWeekNumber(selectedDate);
+      const weekNumber = moment(selectedDate).isoWeek();
       const dayOfWeek = selectedDate.getDay() || 7;
 
-      const weekDocument = await Week.findOne({ weekNumber });
+      const weekDocument = await Week.findOne({ weekNumber }).populate({
+        path: "days.timeSlots.staffAvailability.staff",
+        model: Staff,
+      });
 
       if (!weekDocument) {
         return res.status(404).json({ message: "Week not found" });
@@ -39,16 +43,6 @@ const handler = async (req, res) => {
       });
     }
   }
-};
-
-// Helper function to get the week number of a date
-const getWeekNumber = (date) => {
-  const yearStart = startOfWeek(new Date(date.getFullYear(), 0, 1), {
-    weekStartsOn: 1,
-  });
-  const weekNumber =
-    Math.floor((date - yearStart) / (7 * 24 * 60 * 60 * 1000)) + 1;
-  return weekNumber;
 };
 
 // Helper function to get the name of the day of the week

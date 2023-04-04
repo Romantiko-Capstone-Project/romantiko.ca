@@ -2,6 +2,7 @@ import dbConnect from "../../../util/mongo";
 import Booking from "../../../models/Booking";
 import Schedule from "../../../models/Schedule";
 import Week from "../../../models/Week";
+import moment from "moment";
 
 const handler = async (req, res) => {
   const {
@@ -41,7 +42,7 @@ const handler = async (req, res) => {
       }
 
       const startDate = new Date(booking.startTime);
-      const weekNumber = Math.ceil(startDate.getDate() / 7);
+      const weekNumber = moment(startDate).isoWeek();
       const dayOfWeek = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1;
 
       const week = await Week.findOne({ weekNumber });

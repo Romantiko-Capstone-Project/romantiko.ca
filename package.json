@@ -23,6 +23,7 @@
     "crypto-js": "^4.1.1",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
+    "events": "^3.3.0",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
