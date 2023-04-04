@@ -141,13 +141,13 @@ footer {
     object-fit: cover;
     
   }
-
+   /* responsive hero container */
   .hero{
     display: block;
     
     text-align: left;
     margin-top:15%;
-  
+    
   }
   .hero h1{
     text-align: left;
@@ -184,7 +184,7 @@ footer {
     object-fit: cover;
     
   }
-
+  
   .hero{
     display: block;
     
