@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const Booking = new mongoose.Schema(
+const Booking = new Schema(
   {
     startTime: {
       type: String,
@@ -18,7 +19,6 @@ const Booking = new mongoose.Schema(
     barber: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Staff",
-      default: "63e18181c33b9e146c8e521b",
       required: true,
     },
     customerName: {
@@ -39,7 +39,7 @@ const Booking = new mongoose.Schema(
     status: {
       type: Number,
       required: true,
-      default: 0
+      default: 0,
     },
   },
   { timestamps: true }

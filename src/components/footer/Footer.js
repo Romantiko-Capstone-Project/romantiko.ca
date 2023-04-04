@@ -60,7 +60,7 @@ function Footer() {
                 </tr>
                 <tr>
                 <td colSpan={2}>
-                <Link href="/Login">
+                <Link href="/Login" passHref>
                 <a className="btn btn-lg" style={{"width":"100%","backgroundColor": "#808080"}} type="button">Staff Login</a>
                 </Link>
                 </td>
@@ -74,7 +74,7 @@ function Footer() {
 
       <div className="text-center p-3" style={{ "backgroundColor": "#191919" }}>
         © 2023 Copyright:
-        <Link href="/">
+        <Link href="/" passHref>
           <a className="text-white m-2">Romantiko.ca</a>
         </Link>
         

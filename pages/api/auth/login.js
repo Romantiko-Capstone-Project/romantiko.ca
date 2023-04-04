@@ -27,7 +27,7 @@ const handler = async (req, res) => {
         account.password,
         process.env.PASS_SEC
       );
-      
+
       const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
       // compare password
@@ -42,14 +42,26 @@ const handler = async (req, res) => {
       res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/`);
 
       if (account.role === "admin") {
-        return res.status(200).json({ message: "Admin logged in" });
+        return res
+          .status(200)
+          .json({
+            id: account._id,
+            username: account.username,
+            role: account.role,
+            isVerified: account.isVerified,
+          });
       }
       if (account.role === "staff") {
-        return res.status(200).json({ message: "Staff logged in" });
+        return res
+          .status(200)
+          .json({
+            id: account._id,
+            username: account.username,
+            role: account.role,
+            isVerified: account.isVerified,
+          });
       }
-
-      return res.status(200).json({ account, token });
-
+      
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Error logging in" });

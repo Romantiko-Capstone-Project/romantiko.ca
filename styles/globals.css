@@ -37,11 +37,26 @@ footer {
   
 }
 
+.spinnerWrapper{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: #191919a6;
+  backdrop-filter: blur(7px);
+  z-index: 2;
+}
+.spinner{
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
 .hero{
   color: white;
   position: absolute;
   margin: auto;
-  margin-top: 8%;
+  margin-top: 4%;
   padding: 4%;
   text-align: center;
   width: 100%;
@@ -53,7 +68,7 @@ footer {
 .vidBG{
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   object-fit: cover;
   left: 0;
   top: 0;
@@ -89,8 +104,8 @@ footer {
 
 .reviewCards{
   font-style: italic;
-  font-size: 0.9rem;
-  margin-top: 10%;
+  font-size: 0.6rem;
+  margin-top: 5%;
   transition: 0.5s ease-in-out;
   font-family: 'Courier New', Courier, monospace;
   
@@ -102,6 +117,7 @@ footer {
   color: rgb(184, 184, 3);
   font-family: Roboto;
   font-weight: 900;
+  font-size: 0.7rem;
 }
 .quotationMark{
   color: rgb(184, 184, 3);
@@ -115,7 +131,13 @@ footer {
   100% { opacity: 1; }
 }
 
+.bannerAB{
 
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 ::-webkit-scrollbar {
   height: 8px;
@@ -176,7 +198,7 @@ footer {
     
 }
 
-@media screen and (max-height: 1030px){
+@media screen and (max-height: 1030px) and (max-width:900px){
   .vidBG{
     position: relative;
     width: 100%;
