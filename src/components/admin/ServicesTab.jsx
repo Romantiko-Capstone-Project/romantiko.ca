@@ -87,10 +87,11 @@ const ServicesTab = () => {
           onChange={(e) => setServiceDescription(e.target.value)}
           placeholder="Description here..."
         />
-
+        <br></br>
+        <button onClick={handleCreate}>Upload</button>
         {msg && <h3>The image has been succesfully uploaded.</h3>}
       </div>
-      <button onClick={handleCreate}>Upload</button>
+      
 
       <div className={styles.container}>
         <div className={styles.imagesContainer}>
@@ -102,7 +103,6 @@ const ServicesTab = () => {
                 width="205"
                 height="205"
               />
-              
               <button className={styles.deleteButton} onClick={() => handleRemove(image._id)}>
                 Delete
               </button>

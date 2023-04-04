@@ -1,6 +1,86 @@
-.formContainer{
-    background-color: grey;
-    border-radius: 15px;
-    text-align: center;
+/* .servicesContainer{
+align-items: center;
 }
 
+
+.formContainer{
+    background-color: grey;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.imagesContainer {
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: 4px;
+    margin-right: 21px;
+    margin-bottom: 21px;
+  }
+
+.imgContainer{
+    margin: 10px;
+    border: 3px;
+    background-color: green;
+}
+
+.deleteButton {
+    position:relative;
+    bottom: 200px;
+    left: 167px;
+    width:fit-content;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    border: none;
+  
+  } */
+
+
+  .imagesContainer {
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: 4px;
+    margin-right: 21px;
+    margin-bottom: 21px;
+  }
+  
+  .imgContainer {
+    display:flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .deleteButton {
+    position:relative;
+    bottom: 200px;
+    left: 167px;
+    width:fit-content;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    border: none;
+  
+  }
+  
+  .mainContainer1 {
+    min-height: 10%;
+    width: 100%;
+    position: relative;
+  
+  }
+  
+  /* .formContainer {
+    width: 50%;
+    margin-left: 30px;
+    border: 2px dotted black;
+    text-align: center;
+  } */
