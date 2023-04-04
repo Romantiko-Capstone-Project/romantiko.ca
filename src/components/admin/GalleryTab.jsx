@@ -28,7 +28,7 @@ const GalleryTab = () => {
       await axios.post("http://localhost:3000/api/gallery", newGallery);
       setMsg(true);
       setLoading(false); // set loading state to false when upload process is complete
-      // setFile(null);
+      //setFile(null);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +72,7 @@ const GalleryTab = () => {
         </button>
         {loading && (
           <>
-            <p>Uploading image...</p> <i className="fa fa-spinner fa-spin"></i>
+            <p>Uploading image...</p><i className="fa fa-spinner fa-spin"></i>
           </>
         )}
       </div>
@@ -84,7 +84,7 @@ const GalleryTab = () => {
                 src={image.img}
                 alt="Haircut img not found"
                 width="205"
-                height="200"
+                height="205"
               />
               <button className={styles.deleteButton}>
                 <DeleteIcon onClick={() => handleRemove(image._id)} />
