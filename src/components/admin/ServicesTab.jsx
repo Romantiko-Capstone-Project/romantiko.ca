@@ -64,10 +64,10 @@ const ServicesTab = () => {
     fetchImages();
   }, [images]);
   return (
-    <div>
+    <div className={styles.servicesContainer}>
       <h1>Services Form</h1>
       <br></br>
-      <div>
+      <div className={styles.formContainer}>
         <label>Choose an image: </label>
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         <br></br>
