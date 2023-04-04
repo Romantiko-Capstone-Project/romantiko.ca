@@ -1,7 +1,15 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
 import Staff from "../../../models/Staff";
+import { bookingCreatedEvent } from "../booking/index";
 import moment from "moment";
+
+let timeSlotsCache = {};
+
+bookingCreatedEvent.on("created", async (booking) => {
+  // Clear the cache when a booking is created
+  timeSlotsCache = {};
+});
 
 const handler = async (req, res) => {
   const { method, query } = req;
@@ -33,6 +41,9 @@ const handler = async (req, res) => {
       }
 
       const timeSlots = dayDocument.timeSlots;
+
+      // Store the time slots in the cache
+      timeSlotsCache[date] = timeSlots;
 
       res.status(200).json(timeSlots);
     } catch (err) {

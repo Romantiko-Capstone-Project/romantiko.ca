@@ -80,6 +80,7 @@ const handler = async (req, res) => {
       }
 
       if (staffAvailabilityUpdated) {
+        week.markModified("days");
         await week.save();
       } else {
         return res
@@ -88,13 +89,14 @@ const handler = async (req, res) => {
       }
 
       // Remove the booking from the staff's schedule
-      await Schedule.findOneAndUpdate(
-        { bookings: booking._id },
-        { $pull: { bookings: booking._id } }
-      );
+      const staffSchedule = await Schedule.findOne({ bookings: booking._id });
+      if (staffSchedule) {
+        staffSchedule.bookings.pull(booking._id);
+        await staffSchedule.save();
+      }
 
       // Delete the booking
-      await Booking.findByIdAndDelete(id);
+      await booking.remove();
       res.status(200).json({ message: "Successfully deleted the booking" });
     } catch (err) {
       res
