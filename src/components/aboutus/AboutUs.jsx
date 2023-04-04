@@ -1,11 +1,19 @@
 import React from 'react';
-import Image from 'next/image';
+
 import banner from '../../../public/img/aboutus/banner.png'
+import { useEffect, useState } from 'react';
+import placeholder from '../../../public/img/placeholder.png';
+
 const AboutUs = () => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+      };
     return (
         <section className="mt-0">
 
-            <img src={banner} className="bannerAB"/>
+            <img src={imageLoaded ? banner : placeholder} onLoad={handleImageLoad} className="bannerAB"/>
             <div className="container my-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-6">
