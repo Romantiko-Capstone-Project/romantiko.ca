@@ -1,5 +1,7 @@
+import React from 'react';
+import Banner from '../../src/components/banner/Banner';
+
 import { useEffect, useState } from "react";
-import Banner from "../../src/components/booking/Banner";
 import ServiceCard from "../../src/components/booking/ServiceCard";
 import BookingCard from "../../src/components/booking/BookingCard";
 import TimeSlot from "../../src/components/booking/TimeSlot";

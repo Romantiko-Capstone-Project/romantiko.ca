@@ -17,9 +17,6 @@ function MyApp({ Component, pageProps }) {
       ? require('bootstrap/dist/js/bootstrap')
       : null
   }, [])
-
-
-
   return (
 
     <Provider store={store}>
@@ -29,9 +26,6 @@ function MyApp({ Component, pageProps }) {
         </MainLayout>
       </PersistGate>
     </Provider>
-
-
-
   )
 
 }
