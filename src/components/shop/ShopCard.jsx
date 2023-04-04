@@ -14,7 +14,7 @@ const ShopCard = ({ product }) => {
         </Link>
         <h1 className={styles.title}>{product.productName}</h1>
         <span className={styles.price}>${product.price}</span>
-        <p className={styles.desc}>{product.description}</p>
+        {/* <p className={styles.desc}>{product.description}</p> */}
       </div>
     </div>
   );

@@ -19,12 +19,8 @@
     display: flex;
 }
 
-.price, .desc{
-    font-size: 24px;
-}
-
-.productText{
-    line-height: 100px;
+.price{
+    font-size: 30px;
 }
 
 .imgContainer{
