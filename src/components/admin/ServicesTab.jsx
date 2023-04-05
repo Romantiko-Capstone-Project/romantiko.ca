@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../../../styles/AdminServices.module.css";
 import Image from "next/image";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ServicesTab = () => {
   const [file, setFile] = useState(null);
@@ -65,8 +66,6 @@ const ServicesTab = () => {
   }, [images]);
   return (
     <div className={styles.servicesContainer}>
-      <h1>Services Form</h1>
-      <br></br>
       <div className={styles.formContainer}>
         <label>Choose an image: </label>
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
@@ -103,9 +102,7 @@ const ServicesTab = () => {
                 width="205"
                 height="205"
               />
-              <button className={styles.deleteButton} onClick={() => handleRemove(image._id)}>
-                Delete
-              </button>
+              <button className={styles.deleteButton}><DeleteIcon onClick={() => handleRemove(image._id)}/></button>
               <div>
                 Service Name: {image.serviceName}
               </div>
