@@ -1,42 +1,82 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 function Footer() {
   return (
-    <footer className="text-white text-center text-lg-start" style={{ "backgroundColor": "#23242a" }}>
-
+    <footer
+      className="text-white text-center text-lg-start"
+      style={{ backgroundColor: "#23242a" }}
+    >
       <div className="container p-4">
         <div className="row mt-4">
           <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 className="text-uppercase mb-4">About company</h5>
 
             <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-              voluptatum deleniti atque corrupti.
+              We are a cozy and affordable barbershop in Airdrie, dedicated to
+              providing exceptional service and care for our loyal customers.
             </p>
 
-
-            <div className="mt-4" >
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><span className="fa fa-facebook-f"></span></a>
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><i className="fa fa-instagram"></i></a>
-              <a href="#" type="button" className="btn btn-lg" style={{ "backgroundColor": "#808080", "marginRight": "10px" }}><i className="fa fa-google"></i></a>
+            <div className="mt-4">
+              <a
+                href="https://www.facebook.com/romantikobarbershop"
+                target="_blank"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <span className="fa fa-facebook-f"></span>
+              </a>
+              <a
+                href="https://www.instagram.com/romantikobarbershop/"
+                target="_blank"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <i className="fa fa-instagram"></i>
+              </a>
+              <a
+                href="https://goo.gl/maps/AyNBArYCRZJ4yJGG9"
+                target="_blank"
+                type="button"
+                className="btn btn-lg"
+                style={{ backgroundColor: "#808080", marginRight: "10px" }}
+              >
+                <i className="fa fa-google"></i>
+              </a>
             </div>
-
           </div>
 
           <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
             <h5 className="text-uppercase mb-4 pb-1">Contact Us</h5>
 
-
-            <ul className="fa-ul" style={{ "marginLeft": "1.65em" }}>
+            <ul className="fa-ul" style={{ marginLeft: "1.65em" }}>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-home"></i></span> <a style={{color:"white"}} target="_blank"
-                href='https://www.google.com/maps/place/Romantiko+Barber+Shop/@51.2911508,-114.0028717,338m/data=!3m1!1e3!4m6!3m5!1s0x53715f25208d2603:0xe5655ce1b5340234!8m2!3d51.2910039!4d-114.0030376!16s%2Fg%2F11qgyl2v4v'> <span className="ms-1">513 Centre Ave E #125, Airdrie, AB T4B 1P9</span> </a>
+                <span className="fa-li">
+                  <i className="fa fa-home"></i>
+                </span>{" "}
+                <a
+                  style={{ color: "whitesmoke",textDecoration:"none" }}
+                  target="_blank"
+                  href="https://www.google.com/maps/place/Romantiko+Barber+Shop/@51.2911508,-114.0028717,338m/data=!3m1!1e3!4m6!3m5!1s0x53715f25208d2603:0xe5655ce1b5340234!8m2!3d51.2910039!4d-114.0030376!16s%2Fg%2F11qgyl2v4v"
+                >
+                  {" "}
+                  <span className="ms-1">
+                    513 Centre Ave E #125, Airdrie
+                  </span>{" "}
+                </a>
               </li>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-envelope"></i></span><span className="ms-1">contact@romantiko.ca</span>
+                <span className="fa-li">
+                  <i className="fa fa-envelope"></i>
+                </span>
+                <span className="ms-1">contact@romantiko.ca</span>
               </li>
               <li className="mb-3">
-                <span className="fa-li"><i className="fa fa-phone"></i></span><span className="ms-1">(403) 980 - 2686</span>
+                <span className="fa-li">
+                  <i className="fa fa-phone"></i>
+                </span>
+                <span className="ms-1">(403) 980 - 2686</span>
               </li>
             </ul>
           </div>
@@ -59,12 +99,17 @@ function Footer() {
                   <td>10:00am - 5:00pm</td>
                 </tr>
                 <tr>
-                <td colSpan={2}>
-                <Link href="/login">
-                <a className="btn btn-lg" style={{"width":"100%","backgroundColor": "#808080"}} type="button">Staff Login</a>
-                </Link>
-                </td>
-                
+                  <td colSpan={2}>
+                    <Link href="/Login" passHref>
+                      <a
+                        className="btn btn-lg"
+                        style={{ width: "100%", backgroundColor: "#808080" }}
+                        type="button"
+                      >
+                        Staff Login
+                      </a>
+                    </Link>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -72,15 +117,14 @@ function Footer() {
         </div>
       </div>
 
-      <div className="text-center p-3" style={{ "backgroundColor": "#191919" }}>
+      <div className="text-center p-3" style={{ backgroundColor: "#191919" }}>
         © 2023 Copyright:
-        <Link href="/">
+        <Link href="/" passHref>
           <a className="text-white m-2">Romantiko.ca</a>
         </Link>
-        
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

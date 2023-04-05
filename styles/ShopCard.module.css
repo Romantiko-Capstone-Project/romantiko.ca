@@ -1,0 +1,60 @@
+.container{
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+}
+
+.price, .desc{
+    font-size: 16px;
+    color: black;
+}
+
+.price{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.desc{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info{
+    flex-direction: column;
+    display: flex;
+    padding-bottom: 40px;
+}
+
+.wrapper{
+    padding: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.756);
+}
+
+@media screen and (max-width: 480px){
+    .container{
+        width: 100%;
+    }
+
+    .title{
+        font-style: 30px;
+    }
+
+    .price, .desc{
+        font-style: 24px;
+    }
+}

@@ -1,5 +1,6 @@
 import dbConnect from "../../../util/mongo";
-import TimeSlot from "../../../models/TimeSlot";
+import Week from "../../../models/Week";
+import Staff from "../../../models/Staff";
 
 const handler = async (req, res) => {
   const {
@@ -9,41 +10,37 @@ const handler = async (req, res) => {
 
   await dbConnect();
 
-  if (method == "GET") {
-    try {
-      const slot = await TimeSlot.findById(id);
-      res.status(200).json(slot);
-    } catch (err) {
-      res
-        .status(500)
-        .json(err, { message: "The desired time slot wasn't found." });
-    }
-  }
-  if (method == "PUT") {
-    try {
-      const slot = await TimeSlot.findByIdAndUpdate(id, req.body, {
-        new: true,
-      });
-      res.status(200).json(slot);
-    } catch (err) {
-      res
-        .status(500)
-        .json({ message: "An error occurred while updating the time slot." });
-    }
-  }
-  if (method === "DELETE") {
-    try {
-      const slot = await TimeSlot.findById(id);
-      if (!slot) {
-        return res.status(404).json({ message: "Time slot not found." });
+  switch (method) {
+    case "GET":
+      try {
+        const timeslot = await Week.findOne(
+          { "days.timeSlots._id": id },
+          { "days.timeSlots.$": 1 }
+        )
+          .populate({
+            path: "days.timeSlots.staffAvailability.staff",
+            model: Staff, // Pass the Staff model schema here
+          })
+          .exec();
+
+        if (!timeslot) {
+          return res.status(400).json({ success: false });
+        }
+
+        const staffIds = timeslot.days[0].timeSlots[0].staffAvailability.map(
+          (availability) => availability.staff._id
+        );
+
+        res.status(200).json(staffIds);
+      } catch (error) {
+        res.status(400).json({ success: false });
+        console.error(error);
       }
-      await slot.findByIdAndDelete(id);
-      res.status(200).json({ message: "Successfully deleted the time slot" });
-    } catch (err) {
-      res
-        .status(500)
-        .json(err, { message: "The desired time slot wasn't found." });
-    }
+      break;
+    default:
+      res.status(400).json({ success: false });
+      break;
   }
 };
+
 export default handler;

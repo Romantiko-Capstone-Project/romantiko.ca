@@ -1,46 +1,92 @@
-import React from 'react';
-import CalendarView from './CalendarView';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useEffect,useState } from 'react';
-
+import React from "react";
+import CalendarView from "./CalendarView";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
-    const accountID = useSelector((state) => state.auth.accountID);
+  const router = useRouter();
+  const accountID = useSelector((state) => state.auth.accountID);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const [errorMess, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
+  const [staffId, setStaffId] = useState("");
+  const [staffFullName, setStaffFullName] = useState("");
+  const [bookings, setBookings] = useState([]);
 
-    const getBookings = async (e) => {
-        console.log("found id =" + accountID);
+  useEffect(() => {
+    // check if user is logged in
+    if (!loggedIn) {
+      router.push("/Login");
+    }
 
-        e.preventDefault();
-        try {
-            const response = await axios.post(
-                "http://localhost:3000/api/schedule/",
-                { accountID }
-            );
-
-            console.log(response.data);
-
-        } catch (error) {
-            setError(true);
-            setErrorMessage("Failed to get booking");
-            console.error(error);
-        }
+    const getStaff = async (accountID) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/staff/account/${accountID}`
+        );
+        setStaffId(response.data._id);
+        setStaffFullName(
+          response.data.firstName + " " + response.data.lastName
+        );
+      } catch (error) {
+        console.error(error);
+      }
     };
 
-    useEffect(() => {
-        getBookings();
-    }, [])
+    getStaff(accountID);
+  }, []);
 
-    return (
-        <div className="cont">
+  useEffect(() => {
+    const getBookings = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/schedule/details/${staffId}`
+        );
 
+        const bookingsWithServiceNames = await Promise.all(
+          response.data.map(async (booking) => {
+            const service = await getService(booking.service);
+            return {
+              ...booking,
+              serviceName: service ? service.name : "Unknown",
+            };
+          })
+        );
 
+        setBookings(bookingsWithServiceNames);
+      } catch (error) {
+        setError(true);
+        setErrorMessage("Failed to get booking");
+        console.error(error);
+      }
+    };
 
-            <h1>Dashboard</h1>
-            <CalendarView />
+    if (staffId) {
+      getBookings();
+    }
+  }, [staffId]);
 
-        </div>
-    );
-}
+  const getService = async (serviceId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/services/${serviceId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  return (
+    <div className="cont">
+      <div>Hello {staffFullName}</div>
+      <h1>Dashboard</h1>
+      <CalendarView bookings={bookings} />
+    </div>
+  );
+};
 
 export default Dashboard;

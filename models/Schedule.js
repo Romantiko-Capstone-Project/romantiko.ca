@@ -3,37 +3,17 @@ const Schema = mongoose.Schema;
 
 const Schedule = new Schema(
   {
-    day: {
-      type: String,
-      enum: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      required: true,
-    },
     staff: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Staff",
       required: true,
     },
-    startTime: {
-      type: String,
-      required: true,
-    },
-    endTime: {
-      type: String,
-      required: true,
-    },
-    booking: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Booking",
-      required: true,
-    },
+    bookings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Booking",
+      },
+    ],
   },
   { timestamps: true }
 );

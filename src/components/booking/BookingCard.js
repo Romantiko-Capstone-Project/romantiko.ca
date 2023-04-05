@@ -4,7 +4,13 @@ import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const BookingCard = ({ startTime, endTime, selectedService }) => {
+const BookingCard = ({
+  startTime,
+  endTime,
+  selectedService,
+  selectedStaff,
+  selectedStaffId,
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -35,6 +41,7 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
       startTime: startTime.toString(),
       endTime: endTime.toString(),
       service: selectedService._id,
+      barber: selectedStaffId,
       customerName: name,
       customerEmail: email,
       customerPhone: phone,
@@ -46,20 +53,15 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
         "http://localhost:3000/api/booking/",
         bookingData
       );
-      const booking = response.data;
 
       // Redirect to ConfirmBooking page with the booking details
       router.push({
         pathname: "/booking/confirm-booking",
         query: {
-          bookingId: booking._id,
           startTime,
           endTime,
           serviceName: selectedService.serviceName,
           name,
-          email,
-          phone,
-          note,
         },
       });
     } catch (error) {
@@ -96,6 +98,7 @@ const BookingCard = ({ startTime, endTime, selectedService }) => {
               {selectedService && (
                 <div>Service Type: {selectedService.serviceName}</div>
               )}
+              {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
             </div>
           </div>
         ) : null}

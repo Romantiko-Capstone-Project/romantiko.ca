@@ -6,6 +6,7 @@
   margin-bottom: 8px;
   text-align: right;
 }
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -112,6 +113,26 @@
   margin-left: 0.5rem;
 }
 
+/* Set up the initial state of the typing text */
+.typingText {
+  width: fit-content;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid rgb(116, 116, 116);
+  animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+/* Define the keyframe animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Define the keyframe animation for the caret */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(209, 209, 209) }
+}
 
 @media (max-width: 600px) {
   .grid {
@@ -121,15 +142,17 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
 }
-

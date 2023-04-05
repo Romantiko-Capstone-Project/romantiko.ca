@@ -1,0 +1,84 @@
+.container {
+    width: 100%;
+    background-color: black;
+    height: auto;
+}
+
+.productsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    color: rgba(255, 255, 255, 0.756);
+    padding: 20px;
+}
+
+.productContainer{
+    border: 1px solid white;
+    padding: 10px 15px;
+}
+
+.updateForm{
+    color: black;
+}
+
+/*Create Form*/
+.createForm{
+    display: flex;
+    color: rgba(255, 255, 255, 0.756);
+    background-color: #212529;
+    border-radius: 15px;
+    display: table;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.p{
+    display: table-row;
+}
+
+.label{
+    display: table-cell;
+    padding-right: 10px;
+}
+
+.input{
+    display: table-cell;
+}
+
+.pageTitle{
+    color: white;
+}
+
+.uploadButton, .deleteButton, .updateButton{
+    width: 80px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: rgb(43, 43, 43);
+    color: rgba(255, 255, 255, 0.853);
+    border: none;
+    font-size: 13px;
+}
+
+.uploadButton{
+    float: right;
+    margin-right: 40px;
+    background-color: rgb(43, 43, 43);
+    color: white;
+}
+
+.deleteButton{
+    margin-right: 10px;
+}
+
+.left{
+    flex: 2;
+}
+
+.right{
+    flex: 1;
+}

@@ -36,6 +36,11 @@ const Booking = new Schema(
     notes: {
       type: String,
     },
+    status: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

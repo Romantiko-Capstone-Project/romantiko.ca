@@ -36,8 +36,8 @@ const StaffTab = ({ staffs }) => {
   };
   const handleStaffClick = (staffMember) => {
     setSelectedStaff(staffMember);
-    const { account } = staffMember;
-    setId(account);
+    // const { account } = staffMember;
+    // setId(account);
   };
 
   return (
