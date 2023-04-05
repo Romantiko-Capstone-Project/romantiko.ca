@@ -2,6 +2,7 @@ import styles from "../../../styles/services_style.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
@@ -22,14 +23,19 @@ const ServicesPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imagesContainer}>
+
         {services.map((service) => (
           <div className={styles.imgContainer} key={service._id}>
+            <Link href={`/service/${service._id}`} passHref>
+            <a>
             <Image
               src={service.img}
               alt="Service img not found"
               width="400"
               height="400"
             />
+            </a>
+            </Link>
             <div className={styles.serviceText}>
               <div className={styles.haircutTitle}>
                <h2>{service.serviceName}</h2>

@@ -148,7 +148,7 @@ const ServicesTab = () => {
                         <br></br>
                         <button onClick={updateButton}>Edit</button>
                         {msg && <h3>The image has been succesfully uploaded.</h3>}
-                        <button className="closeButton">CLOSE</button>
+                        <button className="closeButton" onClick={() => setModal(false)}>CLOSE</button>
                       </div>
                     </div>
                   </div>

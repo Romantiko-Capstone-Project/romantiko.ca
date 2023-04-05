@@ -5,9 +5,9 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  margin-left: 4px;
+  /* margin-left: 4px;
   margin-right: 21px;
-  margin-bottom: 21px;
+  margin-bottom: 21px; */
   margin: auto;
 }
 
@@ -15,6 +15,7 @@
   display:flex;
   flex-direction: column;
   gap: 2px;
+  padding: 5px;
 }
 
 .deleteButton {
@@ -33,6 +34,7 @@
   min-height: 10%;
   width: 100%;
   position: relative;
+  background-color: white;
 
 }
 
@@ -44,3 +46,19 @@
   margin: auto;
   margin-top: 20px;
 }
+
+/* .imgContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+   width: 25%; 
+  border: 9px solid gray;
+  margin: 10px;
+} */
+
+/* .imgContainer:hover {
+  transform: scale(1.05);
+  transition: 0.1s transform;
+} */
