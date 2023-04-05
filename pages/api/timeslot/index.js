@@ -1,5 +1,4 @@
 import dbConnect from "../../../util/mongo";
-import TimeSlot from "../../../models/TimeSlot";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 const {
   initializeWeeks,
@@ -15,7 +14,7 @@ const handler = async (req, res) => {
       const dayConfigs = req.body;
 
       // Call the initializeWeeks function with the dayConfigs
-      await initializeWeeks(dayConfigs);
+     // await initializeWeeks(dayConfigs);
 
       // Send a success response
       res.status(200).json({ message: "Weeks initialized successfully." });
