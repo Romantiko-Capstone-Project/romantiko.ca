@@ -12,6 +12,8 @@ const ServicesTab = () => {
   const [msg, setMsg] = useState(false);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [selectedServiceId, setSelectedServiceId] = useState(null)
 
   const handleCreate = async () => {
     setLoading(true);
@@ -64,33 +66,37 @@ const ServicesTab = () => {
     };
     fetchImages();
   }, [images]);
+
+
+  // eidt button
+  const updateButton = async () => {
+
+    if (!selectedServiceId) return;
+    try {
+
+      const _service = {
+        serviceName,
+        price, description
+      }
+
+      await axios.put(`http://localhost:3000/api/services/${selectedServiceId}`);
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // handle edit
+  const handleEditService = async (service) => {
+    setModal(true)
+    setServiceName(service.serviceName)
+    setServicePrice(service.price)
+    setServiceDescription(service.description)
+    setSelectedServiceId(service._id)
+  }
+
   return (
     <div className={styles.servicesContainer}>
-      <div className={styles.formContainer}>
-        <label>Choose an image: </label>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-        <br></br>
-
-        <label>Service name: </label>
-        <input type="text" onChange={(e) => setServiceName(e.target.value)} />
-        <br></br>
-        <label>Price:</label>
-        <input
-          type="number"
-          onChange={(e) => setServicePrice(e.target.value)}
-        />
-        <br></br>
-        <label>Description: </label>
-
-        <textarea
-          onChange={(e) => setServiceDescription(e.target.value)}
-          placeholder="Description here..."
-        />
-        <br></br>
-        <button onClick={handleCreate}>Upload</button>
-        {msg && <h3>The image has been succesfully uploaded.</h3>}
-      </div>
-      
 
       <div className={styles.container}>
         <div className={styles.imagesContainer}>
@@ -102,7 +108,8 @@ const ServicesTab = () => {
                 width="205"
                 height="205"
               />
-              <button className={styles.deleteButton}><DeleteIcon onClick={() => handleRemove(image._id)}/></button>
+              <button className={styles.deleteButton}><DeleteIcon onClick={() => handleRemove(image._id)} /></button>
+              <button className={styles.editButton} onClick={() => handleEditService(image)}>Edit</button>
               <div>
                 Service Name: {image.serviceName}
               </div>
@@ -112,10 +119,53 @@ const ServicesTab = () => {
               <div>
                 Description: {image.description}
               </div>
+              {modal && (
+                <div className={styles.modal}>
+                  <div className={styles.overlay}>
+                    <div className={styles.modalContent}>
+                      <div className={styles.formContainer}>
+                        <label>Choose an image: </label>
+                        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+                        <br></br>
+
+                        <label>Service name: </label>
+                        <input value={serviceName} type="text" placeholder={image.serviceName} onChange={(e) => setServiceName(e.target.value)} />
+                        <br></br>
+                        <label>Price:</label>
+                        <input
+                          value={servicePrice}
+                          type="number"
+                          onChange={(e) => setServicePrice(e.target.value)}
+                        />
+                        <br></br>
+                        <label>Description: </label>
+
+                        <textarea
+                          value={serviceDescription}
+                          onChange={(e) => setServiceDescription(e.target.value)}
+                          placeholder="Description here..."
+                        />
+                        <br></br>
+                        <button onClick={updateButton}>Edit</button>
+                        {msg && <h3>The image has been succesfully uploaded.</h3>}
+                        <button className="closeButton">CLOSE</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
+
+
+
           ))}
         </div>
       </div>
+
+
+
+
+
     </div>
 
 
