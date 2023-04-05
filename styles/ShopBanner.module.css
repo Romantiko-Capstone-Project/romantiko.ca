@@ -11,3 +11,10 @@
     position: relative;
     display: flex;
 }
+
+@media screen and (max-width: 480px){
+    .imgContainer{
+        width: 100%;
+        height: 150px;
+    }
+}

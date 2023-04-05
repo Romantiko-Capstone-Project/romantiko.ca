@@ -4,13 +4,17 @@
     background-color: black;
 }
 
-
 .left{
-    flex: 3;
+    flex: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
 }
 
 .right{
-    flex: 2;
+    flex: 1;
+    padding: 20px;
 }
 
 .title, .price, .desc{
@@ -29,4 +33,35 @@
     justify-content: center;
     padding: 20px 40px;
     padding-bottom: 290px;
+}
+
+@media screen and (max-width: 480px){
+    .container{
+        height: auto;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .imgContainer{
+        width: 70vw;
+        height: 60vw;
+        padding: 0;
+    }
+    .title{
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
+    .desc{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .price, .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .price{
+        font-size: 28px;
+    }
+
 }
