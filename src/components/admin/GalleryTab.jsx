@@ -77,6 +77,7 @@ const GalleryTab = () => {
         )}
       </div>
       <div className={styles.container}>
+        {images.length > 0 ? (
         <div className={styles.imagesContainer}>
           {images.map((image) => (
             <div className={styles.imgContainer} key={image._id}>
@@ -92,6 +93,7 @@ const GalleryTab = () => {
             </div>
           ))}
         </div>
+        ) : null}
       </div>
     </div>
   );
