@@ -26,20 +26,19 @@ const Service = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
-            <div className={styles.left}>
-                <div className={styles.imgContainer}>
-                    <Image src={selected.img} width="500" height="400" alt="" />
+          <div className={styles.left}>
+              <div className={styles.imgContainer}>
+                  <Image src={selected.img} width="600" height="400" alt="" />
+              </div>
+          </div>
+      
+          <div className={styles.right}>
+                <div className={styles.serviceText}>
+                    <h1 className={styles.title}>{selected.serviceName}</h1>
+                    <span className={styles.price}>${selected.price}</span>
+                    <p className={styles.desc}>{selected.description}</p>
                 </div>
-            </div>
-            </div>
-            <div className={styles.right}>
-            <div className={styles.serviceText}>
-                <h1 className={styles.title}>{selected.serviceName}</h1>
-                <span className={styles.price}>${selected.price}</span>
-                <p className={styles.desc}>{selected.description}</p>
-            </div>
-        </div>
+          </div>
     </div>
   );
 };

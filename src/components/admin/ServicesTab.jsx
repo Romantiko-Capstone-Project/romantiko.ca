@@ -112,7 +112,7 @@ const ServicesTab = () => {
               </button>
               <div>Service Name: {image.serviceName}</div>
               <div>Price: {image.price}</div>
-              <div>Description: {image.description}</div>
+              {/* <div>Description: {image.description}</div> */}
             </div>
           ))}
         </div>
