@@ -1,7 +1,32 @@
-.mainContainer {
-  width: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
   background-color: black;
+}
 
+.formContainer {
+  width: 500px;
+  margin: 20px;
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+  background-color: #212529;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.uploadButton {
+  border: 0.9px solid rgb(123, 122, 122);
+  border-radius: 2px;
+}
+
+.uploadButton:hover {
+  background-color: rgb(234, 231, 231);
 }
 
 .imagesContainer {
@@ -11,11 +36,9 @@
   justify-content: space-evenly;
   align-items: center;
   width: 95%;
-  height: 500px;
+  height: 750px;
   overflow-y: scroll;
   gap: 10px;
-
-
 }
 
 .imgContainer {
@@ -27,23 +50,17 @@
   width: 26%;
   margin: 8px;
   background-color: #3c4047;
-
-  
-
 }
 
 .imgContainer:hover {
   transform: scale(1.05);
   transition: 0.1s transform;
-
-  
-
 }
 
 .deleteButton {
   position: relative;
-  bottom: 202px;
-  left: 82%;
+  bottom: 195px;
+  left: 85%;
   width: fit-content;
   border-radius: 8px;
   background-color: red;
@@ -51,23 +68,16 @@
   border: none;
 }
 
-.formContainer {
-  width: 500px;
-  margin: 20px;
-  padding: 8px;
-  text-align: center;
-  border-radius: 4px;
-  color: white;
-  background-color:  #212529;
-
-
-}
-
-.uploadButton {
-  border: 0.9px solid rgb(123, 122, 122);
-  border-radius: 2px;
-}
-
-.uploadButton:hover {
-  background-color: rgb(234, 231, 231);
-}
+/*
+@media screen and (max-width: 2562px) {
+  .deleteButton {
+    position: relative;
+    bottom: 202px;
+    left: 88%;
+    width: fit-content;
+    border-radius: 8px;
+    background-color: white;
+    color: red;
+    border: none;
+  }
+} */

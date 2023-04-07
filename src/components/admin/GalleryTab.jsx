@@ -56,43 +56,50 @@ const GalleryTab = () => {
   }, [images]);
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.formContainer}>
-        <div>
-          <label>Choose an image</label>
-          <br></br>
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            onClick={() => setMsg(false)}
-          />
+    <div className={styles.container}>
+      <div className={styles.top}>
+        <div className={styles.formContainer}>
+          <div className={styles.title}>
+            <h1>Manage Gallery</h1>
+          </div>
+          <div className={styles.form}>
+            <label className={styles.item}>Choose an image: </label>
+            <input
+              className={styles.item}
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              onClick={() => setMsg(false)}
+            />
+            <button onClick={handleCreate} className={styles.uploadButton}>
+              Upload
+            </button>
+          </div>
+          {loading && (
+            <>
+              <p>Uploading image...</p>
+              <i className="fa fa-spinner fa-spin"></i>
+            </>
+          )}
         </div>
-        <button onClick={handleCreate} className={styles.uploadButton}>
-          Upload
-        </button>
-        {loading && (
-          <>
-            <p>Uploading image...</p><i className="fa fa-spinner fa-spin"></i>
-          </>
-        )}
       </div>
-      <div className={styles.container}>
+
+      <div className={styles.bottom}>
         {images.length > 0 ? (
-        <div className={styles.imagesContainer}>
-          {images.map((image) => (
-            <div className={styles.imgContainer} key={image._id}>
-              <Image
-                src={image.img}
-                alt="Haircut img not found"
-                width="205"
-                height="205"
-              />
-              <button className={styles.deleteButton}>
-                <DeleteIcon onClick={() => handleRemove(image._id)} />
-              </button>
-            </div>
-          ))}
-        </div>
+          <div className={styles.imagesContainer}>
+            {images.map((image) => (
+              <div className={styles.imgContainer} key={image._id}>
+                <Image
+                  src={image.img}
+                  alt="Haircut img not found"
+                  width="205"
+                  height="205"
+                />
+                <button className={styles.deleteButton}>
+                  <DeleteIcon onClick={() => handleRemove(image._id)} />
+                </button>
+              </div>
+            ))}
+          </div>
         ) : null}
       </div>
     </div>
