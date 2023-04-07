@@ -11,12 +11,11 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
   const [role, setRole] = useState(selectedStaff?.role);
-
-  const [data, setData] = useState({});
-
+  
   const [isEditPic, setIsEditPic] = useState(false);
-  const [usr, setUsr] = useState(data?.username);
-  const [email, setEmail] = useState(data?.email);
+  const [extraStaff, setExtraStaff] = useState({});
+  const [usr, setUsr] = useState(extraStaff?.username);
+  const [email, setEmail] = useState(extraStaff?.email);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +28,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         const { data } = await axios.get(
           `http://localhost:3000/api/account/${selectedStaff.account}`
         ); // pass id as a parameter in the URL
-        setData(data);
+        setExtraStaff(data);
       } catch (error) {
         console.log("fetchData error");
       }
@@ -209,12 +208,18 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
-                  defaultValue={data && data.username ? data.username : "N/A"}
+                  defaultValue={
+                    extraStaff && extraStaff.username
+                      ? extraStaff.username
+                      : "N/A"
+                  }
                   onChange={(e) => setUsr(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {data && data.username ? data.username : "N/A"}
+                  {extraStaff && extraStaff.username
+                    ? extraStaff.username
+                    : "N/A"}
                 </span>
               )}
             </div>
@@ -240,12 +245,14 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                 {isEditMode ? (
                   <input
                     className={`${styles.infoInput} ${styles.isEditMode}`}
-                    defaultValue={data && data.email ? data.email : "N/A"}
+                    defaultValue={
+                      extraStaff && extraStaff.email ? extraStaff.email : "N/A"
+                    }
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 ) : (
                   <span className={styles.infoInput}>
-                    {data && data.email ? data.email : "N/A"}
+                    {extraStaff && extraStaff.email ? extraStaff.email : "N/A"}
                   </span>
                 )}
               </span>
