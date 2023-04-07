@@ -14,11 +14,9 @@
   border-radius: 20px;
 }
 .photoContainer {
-  /* border: 1px solid black; */
   padding: 20px 20px;
 }
 .imageContainer {
-  /* border: 1px solid black; */
   width: auto;
   height: 200px;
   position: relative;
@@ -42,7 +40,6 @@
 .info {
   color: rgba(255, 255, 255, 0.756);
   background-color: #212529;
-  border: 1px solid black;
   flex: 3;
   display: flex;
   margin-left: 30px;
@@ -72,7 +69,6 @@
   font-size: 20px;
 }
 .actions {
-  /* border: 1px solid black; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -106,7 +102,6 @@
 
 .table {
   margin-right: 20px;
-  width: 100%;
   max-width: 400px;
   margin: 0 auto;
   background-color: #212529;

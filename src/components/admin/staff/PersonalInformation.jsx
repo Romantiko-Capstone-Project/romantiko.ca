@@ -10,6 +10,8 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
+  const [role, setRole] = useState(selectedStaff?.role);
+
   const [data, setData] = useState({});
 
   const [isEditPic, setIsEditPic] = useState(false);
@@ -33,6 +35,12 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       }
     };
     fetchData();
+    setFirstName(selectedStaff?.firstName);
+    setLastName(selectedStaff?.lastName);
+    setAddress(selectedStaff?.address);
+    setPhone(selectedStaff?.phoneNumber);
+    setStatus(!!selectedStaff?.isActive);
+    setRole(selectedStaff?.role);
   }, [selectedStaff]);
 
   const toggleEditMode = () => {
@@ -55,11 +63,11 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     };
 
     try {
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:3000/api/staff/${selectedStaff._id}`,
         _staff
       );
-      const response2 = await axios.put(
+      await axios.put(
         `http://localhost:3000/api/account/${selectedStaff._id}`,
         _extraStaff
       );
@@ -108,6 +116,11 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   };
 
   const handleDeleteAccount = () => {
+    if (role === "admin") {
+      console.log("Cannot delete admin account");
+      return;
+    }
+
     try {
       const response = axios.delete(
         `http://localhost:3000/api/account/${selectedStaff._id}}`

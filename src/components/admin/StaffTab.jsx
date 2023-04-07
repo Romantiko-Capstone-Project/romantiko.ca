@@ -47,6 +47,15 @@ const StaffTab = () => {
           <div className={styles.titleContainer}>
             <h1 className={styles.title}>List of Staff</h1>
           </div>
+          <div className={styles.toggleStaff}>
+            <div className={styles.toggleStaffButton}>
+              <h5>Active</h5>
+            </div>
+            <div className={styles.toggleStaffButton}>
+              <h5>Inactive</h5>
+            </div>
+          </div>
+          <div className={styles.line}></div>
           <div className={styles.cardsContainer}>
             {staffs.map((staff) => (
               <div

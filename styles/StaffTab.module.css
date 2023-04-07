@@ -1,5 +1,4 @@
 .container {
-  /* background-color: white; */
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -10,9 +9,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  text-align: left;
   padding: 0px 10px;
-  /* background-color: blue; */
 }
 .border {
   border-radius: 20px;
@@ -23,20 +20,41 @@
   overflow-y: scroll;
 }
 .titleContainer {
-  height: 75px; /* set a fixed height */
+  margin-top: 20px;
   position: sticky;
   top: 0;
-  
 }
 .title {
-  /* text-align: center; */
-  /* background-color: red; */
   margin-left: 10px;
-  margin-top: 10px;
+  text-align: left;
+}
+
+.toggleStaff {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 25px;
+}
+.toggleStaffButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.756);
+  height: 50px;
+  width: 100px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.line {
+  width: 100%;
+  border: 0.5px solid rgba(255, 255, 255, 0.756);
+  margin: 10px 0px 10px 0px
 }
 
 .cardsContainer {
-  /* overflow-y: scroll; */
+  height: calc(85vh - 72px);
 }
 
 .staffCard {
@@ -63,8 +81,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border-radius: 50px; */
-  /* margin-right: 5px; */
 }
 
 .buttonSelector {
@@ -85,10 +101,6 @@
 }
 
 .right {
-  /* background-color: red; */
-  /* background-color: white; */
-  /* flex: 1; */
-  border-left: 1px black solid;
   flex: 4;
   display: flex;
   flex-direction: column;
@@ -100,7 +112,6 @@
   flex-direction: row;
   gap: 10px;
   height: 75px;
-  /* background-color: rgb(255, 255, 255); */
   color: rgb(0, 0, 0);
 }
 
