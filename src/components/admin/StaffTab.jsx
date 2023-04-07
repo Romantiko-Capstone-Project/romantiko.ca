@@ -6,20 +6,29 @@ import axios from "axios";
 
 const StaffTab = () => {
   const [staffs, setStaffs] = useState([]);
+  const [activeStaff, setActiveStaff] = useState([]); // Add this
+  const [inactiveStaff, setInactiveStaff] = useState([]); // Add this
   const [activeTab, setActiveTab] = useState("tab1");
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
+  const [currentStaffList, setCurrentStaffList] = useState("active"); // Add this
 
   useEffect(() => {
     const fetchStaffs = async () => {
       try {
         const { data } = await axios.get("http://localhost:3000/api/staff");
         setStaffs(data);
+        setActiveStaff(data.filter((staff) => staff.isActive)); // Add this
+        setInactiveStaff(data.filter((staff) => !staff.isActive)); // Add this
       } catch (err) {
         console.log(err);
       }
     };
     fetchStaffs();
   }, [staffs]);
+
+  const handleToggleStaffClick = (list) => {
+    setCurrentStaffList(list);
+  };
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -48,33 +57,43 @@ const StaffTab = () => {
             <h1 className={styles.title}>List of Staff</h1>
           </div>
           <div className={styles.toggleStaff}>
-            <div className={styles.toggleStaffButton}>
+            <div
+              className={styles.toggleStaffButton}
+              onClick={() => handleToggleStaffClick("active")} // Add this
+            >
               <h5>Active</h5>
             </div>
-            <div className={styles.toggleStaffButton}>
+            <div
+              className={styles.toggleStaffButton}
+              onClick={() => handleToggleStaffClick("inactive")} // Add this
+            >
               <h5>Inactive</h5>
             </div>
           </div>
           <div className={styles.line}></div>
           <div className={styles.cardsContainer}>
-            {staffs.map((staff) => (
-              <div
-                key={staff._id}
-                className={styles.staffCard}
-                onClick={() => {
-                  handleStaffClick(staff);
-                }}
-              >
-                <div className={styles.staffInfo}>
-                  <h3 className={styles.name}>
-                    {staff.firstName} {staff.lastName}
-                  </h3>
-                  <h6>
-                    {staff.isActive ? "Currently Working" : "No longer Active"}
-                  </h6>
+            {(currentStaffList === "active" ? activeStaff : inactiveStaff).map(
+              (staff) => (
+                <div
+                  key={staff._id}
+                  className={styles.staffCard}
+                  onClick={() => {
+                    handleStaffClick(staff);
+                  }}
+                >
+                  <div className={styles.staffInfo}>
+                    <h3 className={styles.name}>
+                      {staff.firstName} {staff.lastName}
+                    </h3>
+                    <h6>
+                      {staff.isActive
+                        ? "Currently Working"
+                        : "No longer Active"}
+                    </h6>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </div>

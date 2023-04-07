@@ -147,7 +147,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       );
 
       // Update the extraStaff state with the default picture
-      setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
+      // setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
     } catch (err) {
       console.error("Error deleting picture:", err);
     }
