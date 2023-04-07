@@ -15,7 +15,8 @@ const handler = async (req, res) => {
   await dbConnect();
 
   if (method == "POST") {
-    try {addStaffToAvailability
+    try {
+      addStaffToAvailability;
       const {
         firstName,
         lastName,
@@ -24,6 +25,7 @@ const handler = async (req, res) => {
         username,
         email,
         password,
+        img,
       } = req.body;
 
       // check if username or email already exists
@@ -47,6 +49,7 @@ const handler = async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        img,
       });
 
       // create staff information with account

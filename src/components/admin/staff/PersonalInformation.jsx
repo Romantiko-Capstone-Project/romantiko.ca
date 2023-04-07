@@ -71,7 +71,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         `http://localhost:3000/api/account/${selectedStaff._id}`,
         _extraStaff
       );
-      const updatedStaff = { ...selectedStaff, ..._staff, ..._extraStaff }; // UPDATED: include extraStaff properties
+      const updatedStaff = { ...selectedStaff, ..._staff }; // UPDATED: include extraStaff properties
 
       // Call the callback function to update the parent component state
       onUpdate(updatedStaff);

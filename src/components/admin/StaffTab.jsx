@@ -3,6 +3,7 @@ import styles from "../../../styles/StaffTab.module.css";
 import PersonalBookings from "./staff/PersonalBookings";
 import PersonalInformation from "./staff/PersonalInformation";
 import axios from "axios";
+import AddStaff from "./staff/AddStaff";
 
 const StaffTab = () => {
   const [staffs, setStaffs] = useState([]);
@@ -11,6 +12,8 @@ const StaffTab = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
   const [currentStaffList, setCurrentStaffList] = useState("active"); // Add this
+
+  const [actionTab, setActionTab] = useState("tab1");
 
   useEffect(() => {
     const fetchStaffs = async () => {
@@ -48,84 +51,117 @@ const StaffTab = () => {
     // Update the selectedStaff with the updated staff data
     setSelectedStaff(updatedStaff);
   };
+  const HandleActionTabClick = (tab) => {
+    setActionTab(tab);
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.left}>
-        <div className={styles.border}>
-          <div className={styles.titleContainer}>
-            <h1 className={styles.title}>List of Staff</h1>
-          </div>
-          <div className={styles.toggleStaff}>
-            <div
-              className={styles.toggleStaffButton}
-              onClick={() => handleToggleStaffClick("active")} // Add this
+    <>
+      <div className={styles.container}>
+        <div className={styles.top}>
+          <ul className={styles.list}>
+            <li
+              className={styles.listItem}
+              onClick={() => HandleActionTabClick("tab1")}
             >
-              <h5>Active</h5>
-            </div>
-            <div
-              className={styles.toggleStaffButton}
-              onClick={() => handleToggleStaffClick("inactive")} // Add this
+              View
+            </li>
+            <li
+              className={styles.listItem}
+              onClick={() => HandleActionTabClick("tab2")}
             >
-              <h5>Inactive</h5>
-            </div>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.cardsContainer}>
-            {(currentStaffList === "active" ? activeStaff : inactiveStaff).map(
-              (staff) => (
-                <div
-                  key={staff._id}
-                  className={styles.staffCard}
-                  onClick={() => {
-                    handleStaffClick(staff);
-                  }}
-                >
-                  <div className={styles.staffInfo}>
-                    <h3 className={styles.name}>
-                      {staff.firstName} {staff.lastName}
-                    </h3>
-                    <h6>
-                      {staff.isActive
-                        ? "Currently Working"
-                        : "No longer Active"}
-                    </h6>
+              Add
+            </li>
+          </ul>
+        </div>
+        <>
+          {actionTab === "tab1" && (
+            <div className={styles.bottom}>
+              <div className={styles.left}>
+                <div className={styles.border}>
+                  <div className={styles.titleContainer}>
+                    <h1 className={styles.title}>List of Staff</h1>
+                  </div>
+                  <div className={styles.toggleStaff}>
+                    <div
+                      className={styles.toggleStaffButton}
+                      onClick={() => handleToggleStaffClick("active")} // Add this
+                    >
+                      <h5>Active</h5>
+                    </div>
+                    <div
+                      className={styles.toggleStaffButton}
+                      onClick={() => handleToggleStaffClick("inactive")} // Add this
+                    >
+                      <h5>Inactive</h5>
+                    </div>
+                  </div>
+                  <div className={styles.line}></div>
+                  <div className={styles.cardsContainer}>
+                    {(currentStaffList === "active"
+                      ? activeStaff
+                      : inactiveStaff
+                    ).map((staff) => (
+                      <div
+                        key={staff._id}
+                        className={styles.staffCard}
+                        onClick={() => {
+                          handleStaffClick(staff);
+                        }}
+                      >
+                        <div className={styles.staffInfo}>
+                          <h3 className={styles.name}>
+                            {staff.firstName} {staff.lastName}
+                          </h3>
+                          <h6>
+                            {staff.isActive
+                              ? "Currently Working"
+                              : "No longer Active"}
+                          </h6>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.recordTabMenu}>
-          <div
-            onClick={() => handleTabClick("tab1")}
-            className={styles.recordTabItem}
-          >
-            Personal Information
-          </div>
-          <div
-            onClick={() => handleTabClick("tab2")}
-            className={styles.recordTabItem}
-          >
-            Bookings
-          </div>
-        </div>
-        <div className={styles.content}>
-          {activeTab === "tab1" && (
-            <PersonalInformation
-              selectedStaff={selectedStaff}
-              onUpdate={handleStaffUpdate}
-            />
+              </div>
+              <div className={styles.right}>
+                <div className={styles.recordTabMenu}>
+                  <div
+                    onClick={() => handleTabClick("tab1")}
+                    className={styles.recordTabItem}
+                  >
+                    Personal Information
+                  </div>
+                  <div
+                    onClick={() => handleTabClick("tab2")}
+                    className={styles.recordTabItem}
+                  >
+                    Bookings
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  {activeTab === "tab1" && (
+                    <PersonalInformation
+                      selectedStaff={selectedStaff}
+                      onUpdate={handleStaffUpdate}
+                    />
+                  )}
+                  {activeTab === "tab2" && (
+                    <PersonalBookings selectedStaff={selectedStaff} />
+                  )}
+                  {activeTab === "tab3" && <div>Content for Tab 3</div>}
+                </div>
+              </div>
+            </div>
           )}
-          {activeTab === "tab2" && (
-            <PersonalBookings selectedStaff={selectedStaff} />
+          {actionTab === "tab2" && (
+            <div className={styles.bottom}>
+              <AddStaff />
+            </div>
           )}
-          {activeTab === "tab3" && <div>Content for Tab 3</div>}
-        </div>
+        </>
       </div>
-    </div>
+    </>
   );
 };
 
