@@ -1,7 +1,5 @@
 .mainContainer {
-  max-width: 100%;
-  text-align: left;
-  overflow-x: scroll;
+  width: 100%;
   background-color: black;
 
 }
@@ -10,14 +8,13 @@
   padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  max-width: 1200px;
-  margin-left: 4px;
-  margin-right: 21px;
-  margin-bottom: 21px;
-  background-color:  #212529;
-  padding: 7px;
+  width: 95%;
+  height: 500px;
+  overflow-y: scroll;
+  gap: 10px;
+  background-color: white;
 
 
 
@@ -26,14 +23,29 @@
 .imgContainer {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  background-color: gray;
+  padding: 10px;
+  border-radius: 5px;
+  width: 26%;
+  margin: 8px;
+  background-color: #3c4047;
+
+  
+
+}
+
+.imgContainer:hover {
+  transform: scale(1.05);
+  transition: 0.1s transform;
+
+  
 
 }
 
 .deleteButton {
   position: relative;
-  bottom: 200px;
-  left: 167px;
+  bottom: 202px;
+  left: 82%;
   width: fit-content;
   border-radius: 8px;
   background-color: red;
