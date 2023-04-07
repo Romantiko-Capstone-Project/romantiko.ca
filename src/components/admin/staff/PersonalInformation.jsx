@@ -11,11 +11,12 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
   const [role, setRole] = useState(selectedStaff?.role);
-  
+
   const [isEditPic, setIsEditPic] = useState(false);
   const [extraStaff, setExtraStaff] = useState({});
   const [usr, setUsr] = useState(extraStaff?.username);
   const [email, setEmail] = useState(extraStaff?.email);
+  const [img, setImg] = useState(extraStaff?.img);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +71,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         `http://localhost:3000/api/account/${selectedStaff._id}`,
         _extraStaff
       );
-      const updatedStaff = { ...selectedStaff, ..._staff };
+      const updatedStaff = { ...selectedStaff, ..._staff, ..._extraStaff }; // UPDATED: include extraStaff properties
 
       // Call the callback function to update the parent component state
       onUpdate(updatedStaff);
@@ -131,6 +132,27 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     }
   };
 
+  const HandleDeletePicture = async () => {
+    const defaultPicture =
+      "https://res.cloudinary.com/dyk9lstek/image/upload/v1680847093/default-staff_q8f9pn.jpg";
+
+    const _img = {
+      img: defaultPicture,
+    };
+
+    try {
+      await axios.put(
+        `http://localhost:3000/api/account/${selectedStaff._id}`,
+        _img
+      );
+
+      // Update the extraStaff state with the default picture
+      setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
+    } catch (err) {
+      console.error("Error deleting picture:", err);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -139,10 +161,14 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
             <div className={styles.imageContainer}>
               <Image
                 className={styles.image}
-                src="/img/admin/user-photo.jpeg"
+                src={
+                  extraStaff
+                    ? extraStaff.img
+                    : "https://res.cloudinary.com/dyk9lstek/image/upload/v1680847093/default-staff_q8f9pn.jpg"
+                }
                 alt="Picture of the author"
-                layout="fill"
-                objectFit="contain"
+                width="500"
+                height="500"
               />
             </div>
 
@@ -150,7 +176,12 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
               <button className={styles.actionButton} onClick={toggleEditPic}>
                 Change
               </button>
-              <button className={styles.actionButton}>Remove</button>
+              <button
+                className={styles.actionButton}
+                onClick={HandleDeletePicture}
+              >
+                Remove
+              </button>
             </div>
           </div>
         </div>
