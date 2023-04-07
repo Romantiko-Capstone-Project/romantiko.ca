@@ -9,23 +9,26 @@
   display: flex;
   flex-direction: column;
   width: 40vw;
-  padding: 20px;
+  padding: 50px;
   padding-left: 50px;
 }
 .infoItem {
   display: flex;
   flex-direction: row;
 
-  height: 30px;
+  height: 50px;
   margin-bottom: 30px;
 }
 .infoLabel {
   width: 200px;
+  margin-top: 10px;
 }
 
 .infoInput {
   width: 400px;
   font-size: 20px;
+  border-radius: 20px;
+  padding: 15px;
 }
 
 .action {

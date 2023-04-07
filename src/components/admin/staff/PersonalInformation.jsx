@@ -10,7 +10,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
-  const [role, setRole] = useState(selectedStaff?.role);
+  const [role, setRole] = useState(extraStaff?.role);
 
   const [isEditPic, setIsEditPic] = useState(false);
   const [extraStaff, setExtraStaff] = useState({});
@@ -68,10 +68,10 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         _staff
       );
       await axios.put(
-        `http://localhost:3000/api/account/${selectedStaff._id}`,
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
         _extraStaff
       );
-      const updatedStaff = { ...selectedStaff, ..._staff }; // UPDATED: include extraStaff properties
+      const updatedStaff = { ...selectedStaff, ..._staff}; // UPDATED: include extraStaff properties
 
       // Call the callback function to update the parent component state
       onUpdate(updatedStaff);
@@ -115,18 +115,20 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     setIsEditPic((prevState) => !prevState);
   };
 
-  const handleDeleteAccount = () => {
-    if (role === "admin") {
+  const handleDeleteAccount = async () => {
+    //CODE MISSING FOR ROLE VERIFICATION.
+
+    if (extraStaff.role === "admin") {
       console.log("Cannot delete admin account");
       return;
     }
 
     try {
-      const response = axios.delete(
-        `http://localhost:3000/api/account/${selectedStaff._id}}`
+      const response = await axios.delete(
+        `http://localhost:3000/api/account/${selectedStaff.account}`
       );
       console.log(response.data);
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       console.error("Error deleting account:", err);
     }
@@ -142,7 +144,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
 
     try {
       await axios.put(
-        `http://localhost:3000/api/account/${selectedStaff._id}`,
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
         _img
       );
 
