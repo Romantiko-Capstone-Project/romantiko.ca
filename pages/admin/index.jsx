@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Admin.module.css";
-import Image from "next/image";
-import axios from "axios";
 
 import StaffTab from "../../src/components/admin/StaffTab";
 import ShopTab from "../../src/components/admin/ShopTab";
@@ -16,24 +14,11 @@ import { ImScissors } from "react-icons/im";
 import { TfiGallery } from "react-icons/Tfi";
 
 const Index = () => {
-  const [staffs, setStaffs] = useState([]);
   const [tab, setTab] = useState("tab1");
 
   const handleTabClick = (tab) => {
     setTab(tab);
   };
-
-  useEffect(() => {
-    const fetchStaffs = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:3000/api/staff");
-        setStaffs(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchStaffs();
-  }, [staffs]);
 
   return (
     <div className={styles.container}>
@@ -89,7 +74,7 @@ const Index = () => {
         </div>
       </div>
       <div className={styles.item}>
-        {tab === "tab1" && <StaffTab staffs={staffs} />}
+        {tab === "tab1" && <StaffTab />}
         {tab === "tab2" && <ShopTab />}
         {tab === "tab3" && <BookingTab />}
         {tab === "tab4" && <ServicesTab />}

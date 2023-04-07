@@ -4,15 +4,40 @@ import PersonalBookings from "./staff/PersonalBookings";
 import PersonalInformation from "./staff/PersonalInformation";
 import axios from "axios";
 
-const StaffTab = ({ staffs }) => {
+const StaffTab = () => {
+  const [staffs, setStaffs] = useState([]);
   const [activeTab, setActiveTab] = useState("tab1");
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
+
+  useEffect(() => {
+    const fetchStaffs = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3000/api/staff");
+        setStaffs(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchStaffs();
+  }, [staffs]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
   const handleStaffClick = (staffMember) => {
     setSelectedStaff(staffMember);
+  };
+
+  const handleStaffUpdate = (updatedStaff) => {
+    // Update the staffs array with the updated staff data
+    setStaffs(
+      staffs.map((staff) =>
+        staff._id === updatedStaff._id ? updatedStaff : staff
+      )
+    );
+
+    // Update the selectedStaff with the updated staff data
+    setSelectedStaff(updatedStaff);
   };
 
   return (
@@ -61,7 +86,10 @@ const StaffTab = ({ staffs }) => {
         </div>
         <div className={styles.content}>
           {activeTab === "tab1" && (
-            <PersonalInformation selectedStaff={selectedStaff} />
+            <PersonalInformation
+              selectedStaff={selectedStaff}
+              onUpdate={handleStaffUpdate}
+            />
           )}
           {activeTab === "tab2" && (
             <PersonalBookings selectedStaff={selectedStaff} />

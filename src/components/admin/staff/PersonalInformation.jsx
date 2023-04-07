@@ -3,22 +3,22 @@ import { useState, useEffect } from "react";
 import styles from "../../../../styles/PersonalInformation.module.css";
 import axios from "axios";
 
-const PersonalInformation = ({ selectedStaff }) => {
+const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstName, setFirstName] = useState(selectedStaff?.firstName);
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
-
   const [data, setData] = useState({});
-  const id = selectedStaff?.account;
 
   const [isEditPic, setIsEditPic] = useState(false);
+  const [usr, setUsr] = useState(data?.username);
+  const [email, setEmail] = useState(data?.email);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!id) {
+      if (!selectedStaff) {
         console.log("fetchData error: ID not provided");
         return;
       }
@@ -33,10 +33,7 @@ const PersonalInformation = ({ selectedStaff }) => {
       }
     };
     fetchData();
-  }, [id, selectedStaff]);
-
-  const [usr, setUsr] = useState(data?.username);
-  const [email, setEmail] = useState(data?.email);
+  }, [selectedStaff]);
 
   const toggleEditMode = () => {
     setIsEditMode((prevState) => !prevState);
@@ -58,17 +55,18 @@ const PersonalInformation = ({ selectedStaff }) => {
     };
 
     try {
-      // Replace 'id' with the actual staff id
       const response = await axios.put(
         `http://localhost:3000/api/staff/${selectedStaff._id}`,
         _staff
       );
       const response2 = await axios.put(
-        `http://localhost:3000/api/account/${id}`,
+        `http://localhost:3000/api/account/${selectedStaff._id}`,
         _extraStaff
       );
-      console.log(response.data);
-      console.log(response2.data);
+      const updatedStaff = { ...selectedStaff, ..._staff };
+
+      // Call the callback function to update the parent component state
+      onUpdate(updatedStaff);
 
       // Switch back to view mode
       setIsEditMode(false);
@@ -95,6 +93,10 @@ const PersonalInformation = ({ selectedStaff }) => {
         _staff
       );
       console.log(response.data);
+
+      // Update the parent component state
+      onUpdate({ ...selectedStaff, ..._staff });
+
       // window.location.reload();
     } catch (err) {
       console.error("Error updating status:", err);
@@ -107,7 +109,9 @@ const PersonalInformation = ({ selectedStaff }) => {
 
   const handleDeleteAccount = () => {
     try {
-      const response = axios.delete(`http://localhost:3000/api/account/${id}`);
+      const response = axios.delete(
+        `http://localhost:3000/api/account/${selectedStaff._id}}`
+      );
       console.log(response.data);
       window.location.reload();
     } catch (err) {
