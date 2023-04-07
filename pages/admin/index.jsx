@@ -33,7 +33,7 @@ const Index = () => {
       }
     };
     fetchStaffs();
-  }, []);
+  }, [staffs]);
 
   return (
     <div className={styles.container}>

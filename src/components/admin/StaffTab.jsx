@@ -6,38 +6,13 @@ import axios from "axios";
 
 const StaffTab = ({ staffs }) => {
   const [activeTab, setActiveTab] = useState("tab1");
-  // const [selectedButton, setSelectedButton] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
-
-  // const [data, setData] = useState({});
-  // const [id, setId] = useState(staffs[0]?.account);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (!id) {
-  //       console.log("fetchData error: ID not provided");
-  //       return;
-  //     }
-
-  //     try {
-  //       const { data } = await axios.get(
-  //         `http://localhost:3000/api/account/${id}`
-  //       ); // pass id as a parameter in the URL
-  //       setData(data);
-  //     } catch (error) {
-  //       console.log("fetchData error");
-  //     }
-  //   };
-  //   fetchData();
-  // }, [id]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
   const handleStaffClick = (staffMember) => {
     setSelectedStaff(staffMember);
-    // const { account } = staffMember;
-    // setId(account);
   };
 
   return (
@@ -55,12 +30,6 @@ const StaffTab = ({ staffs }) => {
                 onClick={() => {
                   handleStaffClick(staff);
                 }}
-                // style={{
-                //   backgroundColor:
-                //   selectedStaff === staff ? "#00000076" : "white",
-                //   color:
-                //   selectedStaff === staff ? "white": "black",
-                // }}
               >
                 <div className={styles.staffInfo}>
                   <h3 className={styles.name}>

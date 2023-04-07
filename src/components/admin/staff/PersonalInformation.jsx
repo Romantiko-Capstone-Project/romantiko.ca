@@ -25,7 +25,7 @@ const PersonalInformation = ({ selectedStaff }) => {
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/account/${id}`
+          `http://localhost:3000/api/account/${selectedStaff.account}`
         ); // pass id as a parameter in the URL
         setData(data);
       } catch (error) {
@@ -33,7 +33,7 @@ const PersonalInformation = ({ selectedStaff }) => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, selectedStaff]);
 
   const [usr, setUsr] = useState(data?.username);
   const [email, setEmail] = useState(data?.email);
@@ -72,7 +72,7 @@ const PersonalInformation = ({ selectedStaff }) => {
 
       // Switch back to view mode
       setIsEditMode(false);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error updating staff:", error);
     }
@@ -95,7 +95,7 @@ const PersonalInformation = ({ selectedStaff }) => {
         _staff
       );
       console.log(response.data);
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error("Error updating status:", err);
     }
