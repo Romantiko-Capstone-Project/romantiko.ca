@@ -15,6 +15,7 @@ const Booking = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const getServices = async () => {
@@ -28,46 +29,99 @@ const Booking = () => {
     getServices();
   }, []);
 
+  const handleSelectService = () => {
+    if (selectedService) {
+      setCurrentStep(1);
+    } else {
+      alert("Please select a service first");
+    }
+  };
+
+  const handleSelectTimeSlot = () => {
+    if (selectedDate  && selectedTimeSlot  && selectedStaff ) {
+      setCurrentStep(2);
+    } else {
+      alert("Please select a Date, Time, and Staff");
+    }
+  };
+
   
+
   return (
     <div className={styles.main}>
       <Banner />
-      <div className={styles.service_container}>
-        <h3 className={styles.title}>Select Service</h3>
-        <div className={styles.service_wrapper}>
-          {services.map((service) => (
-            <ServiceCard
-              service={service}
-              key={service._id}
-              onSelectService={setSelectedService}
-            />
-          ))}
-        </div>
-      </div>
 
-      <h3 className={styles.title}>Select Time</h3>
-      <div className={styles.booking_container}>
-        <TimeSlot
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-          selectedTimeSlot={selectedTimeSlot}
-          setSelectedTimeSlot={setSelectedTimeSlot}
-          setSelectedStaff={setSelectedStaff}
-          setSelectedStaffId={setSelectedStaffId}
-          setBookingTime={setBookingTime}
-        />
-      </div>
-      <h3 className={styles.title}>Add your details</h3>
-      <div className={styles.booking_container}>
-        <BookingCard
-          startTime={bookingTime[0]}
-          endTime={bookingTime[1]}
-          selectedService={selectedService}
-          selectedStaff={selectedStaff}
-          selectedStaffId={selectedStaffId}
-        />
-      </div>
+      {currentStep == 0 && (
+
+        <div className={styles.service_container}>
+          <h3 className={styles.title}>Select Service</h3>
+          <div className={styles.service_wrapper}>
+
+            {services.map((service) => (
+              <ServiceCard
+                service={service}
+                key={service._id}
+                onSelectService={setSelectedService}
+              />
+            ))}
+          </div>
+
+          <div>
+            <button onClick={handleSelectService}>Next</button>
+          </div>
+
+        </div>
+
+      )}
+
+
+
+
+      {currentStep == 1 && (
+        <>
+          <h3 className={styles.title}>Select Time</h3>
+          <div className={styles.booking_container}>
+            <TimeSlot
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              selectedTimeSlot={selectedTimeSlot}
+              setSelectedTimeSlot={setSelectedTimeSlot}
+              setSelectedStaff={setSelectedStaff}
+              setSelectedStaffId={setSelectedStaffId}
+              setBookingTime={setBookingTime}
+            />
+          </div>
+          <div>
+            <button onClick={setCurrentStep(0)}>Back</button>
+            <button onClick={handleSelectTimeSlot}>Next</button>
+          </div>
+        </>
+      )}
+
+
+
+
+      {currentStep == 2 && (
+        <>
+          <h3 className={styles.title}>Add your details</h3>
+          <div className={styles.booking_container}>
+            <BookingCard
+              startTime={bookingTime[0]}
+              endTime={bookingTime[1]}
+              selectedService={selectedService}
+              selectedStaff={selectedStaff}
+              selectedStaffId={selectedStaffId}
+            />
+          </div>
+        </>
+      )}
+
+
+
+
+
     </div>
+
   );
 };
 
