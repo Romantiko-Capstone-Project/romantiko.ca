@@ -1,15 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-import Staff from "../../../models/Staff";
-import { bookingCreatedEvent } from "../booking/index";
 import moment from "moment";
-
-let timeSlotsCache = {};
-
-bookingCreatedEvent.on("created", async (booking) => {
-  // Clear the cache when a booking is created
-  timeSlotsCache = {};
-});
 
 const handler = async (req, res) => {
   const { method, query } = req;
@@ -23,27 +14,37 @@ const handler = async (req, res) => {
       const weekNumber = moment(selectedDate).isoWeek();
       const dayOfWeek = selectedDate.getDay() || 7;
 
-      const weekDocument = await Week.findOne({ weekNumber }).populate({
-        path: "days.timeSlots.staffAvailability.staff",
-        model: Staff,
-      });
+      const dayOfWeekName = getDayOfWeekName(dayOfWeek);
 
-      if (!weekDocument) {
-        return res.status(404).json({ message: "Week not found" });
-      }
+      const result = await Week.aggregate([
+        { $match: { weekNumber: weekNumber } },
+        {
+          $project: {
+            day: {
+              $arrayElemAt: [
+                {
+                  $filter: {
+                    input: "$days",
+                    as: "day",
+                    cond: { $eq: ["$$day.day", dayOfWeekName] },
+                  },
+                },
+                0,
+              ],
+            },
+          },
+        },
+        { $unwind: "$day" },
+        { $replaceRoot: { newRoot: "$day" } },
+      ]).exec();
 
-      const dayDocument = weekDocument.days.find(
-        (day) => day.day === getDayOfWeekName(dayOfWeek)
-      );
+      const dayDocument = result[0];
 
       if (!dayDocument) {
         return res.status(404).json({ message: "Day not found" });
       }
 
       const timeSlots = dayDocument.timeSlots;
-
-      // Store the time slots in the cache
-      timeSlotsCache[date] = timeSlots;
 
       res.status(200).json(timeSlots);
     } catch (err) {

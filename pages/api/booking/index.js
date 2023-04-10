@@ -5,9 +5,6 @@ import Schedule from "../../../models/Schedule";
 import { checkAndUpdateIsFull } from "../../../config/staffAvailability.config";
 const { convertToHours } = require("../../../config/convertToHours.config");
 import moment from "moment";
-import { EventEmitter } from "events";
-
-export const bookingCreatedEvent = new EventEmitter();
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -109,9 +106,6 @@ const handler = async (req, res) => {
       }
       staffSchedule.bookings.push(booking._id);
       await staffSchedule.save();
-
-      // Emit the booking created event
-      bookingCreatedEvent.emit("created", booking);
 
       res.status(201).json(booking);
     } catch (err) {
