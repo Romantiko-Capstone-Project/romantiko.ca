@@ -1,7 +1,8 @@
 .form {
     display: flex;
     flex-direction: column;
-    height: 55vh;
+    height: 100%;
+    width: 100%;
 }
 
 .form_component {

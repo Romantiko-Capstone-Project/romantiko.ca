@@ -13,32 +13,51 @@
 .wrapper {
     display: flex;
     justify-content: space-around;
+    height: 100%;
+    width: 65%;
 
 }
 
-.booking_section {
-    margin-top: 5%;
-}
+
 
 .booking_info {
-    background-color: rgba(83, 82, 82, 0.3);
-    color: rgb(151, 149, 149);
-    padding: 20px 30px 20px 30px;
-    border-radius: 7px;
+    height: 100%;
+    width: 30%;
+    background-color: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    
+    
 }
 
 .submit_button {
-    margin-left: 45%;
-    margin-bottom: 40px;
-    margin-top: 5%;
-    width: 7%;
+    position: relative;
+    margin: auto;
+    margin-top: 4%;
+    width: 20%;
+    min-width: fit-content;
     border: none;
     padding: 5px;
     border-radius: 3px;
     opacity: 0.7;
     background-color: rgb(0, 145, 255);
+    color: whitesmoke;
 }
 
 .submit_button:hover {
     color: white;
+}
+
+.bCardWrap{
+    height: 100%;
+    min-width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
+
 }

@@ -21,7 +21,9 @@ const UserForm = ({
           type="text"
           value={name}
           onChange={onNameChange}
-          placeholder="Madame Michu"
+          placeholder="Name Lastname"
+          pattern="^^[a-zA-Z]{1,30}(\s[a-zA-Z]{1,30}){0,3}$"
+          required
         />
       </div>
 
@@ -32,7 +34,8 @@ const UserForm = ({
           type="email"
           value={email}
           onChange={onEmailChange}
-          placeholder="michum@gmail.com"
+          placeholder="name@email.com"
+          required
         />
       </div>
 
@@ -44,6 +47,7 @@ const UserForm = ({
           value={phone}
           onChange={onPhoneChange}
           placeholder="000-000-000"
+          required
         />
       </div>
 
@@ -53,7 +57,8 @@ const UserForm = ({
           className={`${styles.form_field} ${styles.text_area}`}
           value={note}
           onChange={onNoteChange}
-          placeholder="Additional details..."
+          
+          placeholder="Additional details you want the barber to know..."
         />
       </div>
     </div>

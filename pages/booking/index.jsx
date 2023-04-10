@@ -30,15 +30,13 @@ const Booking = () => {
     getServices();
   }, []);
 
-  useEffect(() => {
-    console.log(currentStep); 
-  }, [currentStep]);
+
 
 
   const handleSelectService = () => {
 
     if (selectedService) {
-      console.log(currentStep);
+      //console.log(currentStep);
       setCurrentStep(1);
 
     } else {
@@ -108,9 +106,9 @@ const Booking = () => {
               setBookingTime={setBookingTime}
             />
           </div>
-          <div>
-            <button onClick={() => setCurrentStep(0)}>Back</button>
-            <button onClick={handleSelectTimeSlot}>Next</button>
+          <div style={{width:"60%",display:"flex",flexDirection:"row",justifyContent:"center",marginTop:"2%"}}>
+            <button onClick={() => setCurrentStep(0)} className={styles.btn1}>Back</button>
+            <button onClick={handleSelectTimeSlot} className={styles.btn1}>Next</button>
           </div>
         </>
       )}

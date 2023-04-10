@@ -111,56 +111,87 @@ const TimeSlot = ({
   };
 
   return (
-    <>
+    <div className={styles.selectTimeWrapper}>
+
       <div className={styles.date_wrapper}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker
             orientation="landscape"
-            className={styles.date_picker}
+
             onChange={(newDate) => setSelectedDate(newDate.$d)}
           />
         </LocalizationProvider>
       </div>
 
-      <div className={styles.time_wrapper}>
-        <h4>Availability</h4>
-        {timeSlots.map((timeSlot) => (
-          <button
-            key={timeSlot._id}
-            disabled={timeSlot.isFull}
-            className={styles.time_button}
-            onClick={() => handleTimeSlotClick(timeSlot)}
-          >
-            {formatTime(timeSlot.startTime)}
-          </button>
-        ))}
+      <div className={styles.child2}>
+        <div className={styles.time_wrapper}>
+          <h4>Availability</h4>
 
-        {selectedTimeSlotId && (
-          <div className={styles.barber_wrapper}>
-            <span>Choose a barber</span>
-            {staffs.map((staff) => {
-              return (
-                <div className={styles.staff_container}>
-                  <div className={styles.staff_radio_button}>
-                    <label key={staff._id}>
+          <div className={styles.timesContainer}>
+          {timeSlots.map((timeSlot) => (
+            // <button
+            //   key={timeSlot._id}
+            //   disabled={timeSlot.isFull}
+            //   className={styles.time_button}
+            //   onClick={() => handleTimeSlotClick(timeSlot)}
+            // >
+            //   {formatTime(timeSlot.startTime)}
+            // </button>
+
+            <div className={styles.radioL}>
+
+              <input
+                type="radio"
+                name="time"
+                id={timeSlot._id}
+                value={timeSlot._id}
+                onChange={() => handleTimeSlotClick(timeSlot)}
+                className={styles.radioButton}
+              />
+
+              <label for={timeSlot._id} className={styles.buttonLabel}>
+                {formatTime(timeSlot.startTime)}
+              </label>
+            </div>
+
+          ))}
+          </div>
+
+          {selectedTimeSlotId && (
+            <div className={styles.barber_wrapper}>
+              <h4>Choose a barber</h4>
+
+              <div className={styles.staff_container}>
+
+
+                {staffs.map((staff) => {
+                  return (
+                    <div className={styles.radioL}>
+
                       <input
                         type="radio"
                         name="staff"
+                        id={staff._id}
                         value={staff._id}
                         onChange={handleStaffSelection}
+                        className={styles.radioButton}
                       />
-                    </label>
-                  </div>
-                  <div className={styles.staff_detail}>
-                    {staff.firstName} {staff.lastName}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
+
+                      <label for={staff._id} className={styles.buttonLabel}>
+                        {staff.firstName} {staff.lastName}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+          )}
+        </div>
       </div>
-    </>
+
+
+    </div>
   );
 };
 
