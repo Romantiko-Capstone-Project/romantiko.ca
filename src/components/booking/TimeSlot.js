@@ -9,6 +9,7 @@ import {
   convertToHours,
 } from "/config/convertToHours.config";
 import styles from "/styles/booking/TimeSlot.module.css";
+import dayjs from "dayjs";
 
 const TimeSlot = ({
   selectedDate,
@@ -22,9 +23,14 @@ const TimeSlot = ({
   const [staffsId, setStaffsId] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedTimeSlotId, setSelectedTimeSlotId] = useState([]);
+  const [isToday, setIsToday] = useState(false);
 
   // get time slots
   useEffect(() => {
+    const today = dayjs();
+    const isTodaySelected = selectedDate && dayjs(selectedDate).isSame(today, "day");
+    setIsToday(isTodaySelected);
+
     const getTimeSlotData = async () => {
       try {
         const res = await axios.get(
@@ -124,26 +130,51 @@ const TimeSlot = ({
 
           <div className={styles.timesContainer}>
             {timeSlots.map((timeSlot) => {
-              
               const currentTime = convertToHours(new Date());
               const isTimePassed = timeSlot.startTime <= currentTime;
 
-              return !isTimePassed ? (
-                <div className={styles.radioL}>
-                  <input
-                    type="radio"
-                    name="time"
-                    id={timeSlot._id}
-                    value={timeSlot._id}
-                    onChange={() => handleTimeSlotClick(timeSlot)}
-                    className={styles.radioButton}
-                  />
-
-                  <label htmlFor={timeSlot._id} className={styles.buttonLabel}>
-                    {formatTime(timeSlot.startTime)}
-                  </label>
-                </div>
-              ) : null;
+              if (isToday) {
+                if (!isTimePassed) {
+                  return (
+                    <div className={styles.radioL}>
+                      <input
+                        type="radio"
+                        name="time"
+                        id={timeSlot._id}
+                        value={timeSlot._id}
+                        onChange={() => handleTimeSlotClick(timeSlot)}
+                        className={styles.radioButton}
+                      />
+                      <label
+                        htmlFor={timeSlot._id}
+                        className={styles.buttonLabel}
+                      >
+                        {formatTime(timeSlot.startTime)}
+                      </label>
+                    </div>
+                  );
+                }
+              } else {
+                return (
+                  <div className={styles.radioL}>
+                    <input
+                      type="radio"
+                      name="time"
+                      id={timeSlot._id}
+                      value={timeSlot._id}
+                      onChange={() => handleTimeSlotClick(timeSlot)}
+                      className={styles.radioButton}
+                    />
+                    <label
+                      htmlFor={timeSlot._id}
+                      className={styles.buttonLabel}
+                    >
+                      {formatTime(timeSlot.startTime)}
+                    </label>
+                  </div>
+                );
+              }
+              return null;
             })}
           </div>
 
