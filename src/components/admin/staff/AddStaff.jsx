@@ -44,6 +44,7 @@ const AddStaff = () => {
   return (
     <div className={styles.container}>
       <div className={styles.form}>
+        <h1 className={styles.title}>Add a New Staff</h1>
         <div className={styles.infoItem}>
           <h4 className={styles.infoLabel}>First Name:</h4>
           <input

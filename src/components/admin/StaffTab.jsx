@@ -10,9 +10,8 @@ const StaffTab = () => {
   const [activeStaff, setActiveStaff] = useState([]); // Add this
   const [inactiveStaff, setInactiveStaff] = useState([]); // Add this
   const [activeTab, setActiveTab] = useState("tab1");
-  const [selectedStaff, setSelectedStaff] = useState(staffs[1]);
+  const [selectedStaff, setSelectedStaff] = useState({});
   const [currentStaffList, setCurrentStaffList] = useState("active"); // Add this
-
   const [actionTab, setActionTab] = useState("tab1");
 
   useEffect(() => {
@@ -61,13 +60,17 @@ const StaffTab = () => {
         <div className={styles.top}>
           <ul className={styles.list}>
             <li
-              className={styles.listItem}
+              className={`${styles.listItem} ${
+                actionTab === "tab1" ? styles.activeButton2 : ""
+              }`}
               onClick={() => HandleActionTabClick("tab1")}
             >
               View
             </li>
             <li
-              className={styles.listItem}
+              className={`${styles.listItem} ${
+                actionTab === "tab2" ? styles.activeButton2 : ""
+              }`}
               onClick={() => HandleActionTabClick("tab2")}
             >
               Add
@@ -84,14 +87,18 @@ const StaffTab = () => {
                   </div>
                   <div className={styles.toggleStaff}>
                     <div
-                      className={styles.toggleStaffButton}
-                      onClick={() => handleToggleStaffClick("active")} // Add this
+                      className={`${styles.toggleStaffButton} ${
+                        currentStaffList === "active" && styles.activeButton
+                      }`}
+                      onClick={() => handleToggleStaffClick("active")}
                     >
                       <h5>Active</h5>
                     </div>
                     <div
-                      className={styles.toggleStaffButton}
-                      onClick={() => handleToggleStaffClick("inactive")} // Add this
+                      className={`${styles.toggleStaffButton} ${
+                        currentStaffList === "inactive" && styles.activeButton
+                      }`}
+                      onClick={() => handleToggleStaffClick("inactive")}
                     >
                       <h5>Inactive</h5>
                     </div>
@@ -104,7 +111,11 @@ const StaffTab = () => {
                     ).map((staff) => (
                       <div
                         key={staff._id}
-                        className={styles.staffCard}
+                        className={`${styles.staffCard} ${
+                          selectedStaff._id === staff._id
+                            ? styles.activeStaffCard
+                            : ""
+                        }`}
                         onClick={() => {
                           handleStaffClick(staff);
                         }}

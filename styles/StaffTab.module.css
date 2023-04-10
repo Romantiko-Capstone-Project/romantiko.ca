@@ -35,16 +35,25 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0px 10px;
+  /* padding: 0px 0px 0px 10px; */
+
+  border-radius: 20px;
+  /* padding: 0px 10px; */
+  background-color: #212529;
+  color: rgba(255, 255, 255, 0.756);
+  /* margin: 0px 0px 30px 0px; */
+  overflow-y: scroll;
+  margin-left: 25px;
+  padding-left: 20px;
 }
-.border {
+/* .border {
   border-radius: 20px;
   padding: 0px 10px;
   background-color: #212529;
   color: rgba(255, 255, 255, 0.756);
   margin: 0px 0px 30px 0px;
   overflow-y: scroll;
-}
+} */
 .titleContainer {
   margin-top: 20px;
   position: sticky;
@@ -73,15 +82,25 @@
   border-radius: 15px;
   cursor: pointer;
 }
+
+.activeButton {
+  background-color: rgba(255, 255, 255, 0.191);
+}
+
+.activeButton2 {
+  background-color: #212529;
+  color: white;
+}
+
 .line {
   width: 100%;
   border: 0.5px solid rgba(255, 255, 255, 0.756);
   margin: 10px 0px 10px 0px;
 }
 
-.cardsContainer {
+/* .cardsContainer {
   height: calc(85vh - 72px);
-}
+} */
 
 .staffCard {
   display: flex;
@@ -109,6 +128,10 @@
   justify-content: center;
 }
 
+.activeStaffCard {
+  background-color: rgba(255, 255, 255, 0.191);
+}
+
 .buttonSelector {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 50%;
@@ -130,6 +153,12 @@
   flex: 4;
   display: flex;
   flex-direction: column;
+  padding-left: 10px;
+  margin-right: 50px;
+
+  border-radius: 0px 20px 20px 0px;
+  background-color: #212529;
+  height: calc(90vh - 70px);
 }
 
 .recordTabMenu {
@@ -138,6 +167,7 @@
   gap: 10px;
   height: 50px;
   color: rgb(0, 0, 0);
+  margin-top: 20px;
 }
 
 .recordTabItem {
@@ -150,7 +180,7 @@
   margin: 0px 10px 0px 10px;
   font-size: 15px;
   border-radius: 50px;
-  background-color: #212529;
+  background-color: #2b2b2b;
   color: rgba(255, 255, 255, 0.756);
 }
 .recordTabItem:hover {
@@ -160,7 +190,6 @@
 .content {
   width: 100%;
   padding-top: 20px;
-  height: 100%;
 }
 
 .recordTabButton:hover {

@@ -17,6 +17,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [usr, setUsr] = useState(extraStaff?.username);
   const [email, setEmail] = useState(extraStaff?.email);
   const [img, setImg] = useState(extraStaff?.img);
+  const [pwd, setPwd] = useState(extraStaff?.password);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,6 +61,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     const _extraStaff = {
       username: usr,
       email,
+      password: pwd,
     };
 
     try {
@@ -71,7 +73,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         `http://localhost:3000/api/account/${selectedStaff.account}`,
         _extraStaff
       );
-      const updatedStaff = { ...selectedStaff, ..._staff}; // UPDATED: include extraStaff properties
+      const updatedStaff = { ...selectedStaff, ..._staff }; // UPDATED: include extraStaff properties
 
       // Call the callback function to update the parent component state
       onUpdate(updatedStaff);
@@ -155,6 +157,37 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     }
   };
 
+  const handleFileChange = (e) => {
+    setImg(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", img);
+    data.append("upload_preset", "uploads");
+
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dyk9lstek/image/upload",
+        data
+      );
+      const { url } = uploadRes.data;
+      console.log(uploadRes.data);
+      const newPicture = {
+        img: url,
+      };
+      const updateRes = await axios.put(
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
+        newPicture
+      );
+      console.log("New updated picture: ", updateRes.data);
+      // setExtraStaff((prevState) => ({ ...prevState, img: url }));
+    } catch (err) {
+      console.error("Error uploading image:", err);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -187,7 +220,16 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
             </div>
           </div>
         </div>
-        {isEditPic ? <div className={styles.changePicture}> Finally</div> : ""}
+        {isEditPic ? (
+          <div className={styles.changePicture}>
+            <form onSubmit={handleSubmit}>
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={styles.info}>
           <div className={styles.infoList}>
@@ -310,6 +352,26 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                     : "N/A"}
                 </span>
               )}
+            </div>
+            <div className={styles.infoItem}>
+              <h4 className={styles.infoLabel}>Password:</h4>
+              <span className={styles.infoInput}>
+                {isEditMode ? (
+                  <input
+                    className={`${styles.infoInput} ${styles.isEditMode}`}
+                    defaultValue={
+                      extraStaff && extraStaff.password
+                        ? extraStaff.password
+                        : "N/A"
+                    }
+                    onChange={(e) => setPwd(e.target.value)}
+                  />
+                ) : (
+                  <span className={styles.infoInput}>
+                    {extraStaff && extraStaff.password ? "********" : "N/A"}
+                  </span>
+                )}
+              </span>
             </div>
           </div>
         </div>
