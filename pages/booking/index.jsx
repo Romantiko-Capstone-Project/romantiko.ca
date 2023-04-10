@@ -67,8 +67,9 @@ const Booking = () => {
       )}
       {currentStep == 0 && (
         <>
+        <h3 className={styles.title}>Please Select Service</h3>
         <div className={styles.service_container}>
-          <h3 className={styles.title}>Please Select Service</h3>
+          
           <div className={styles.service_wrapper}>
 
             {services.map((service) => (
@@ -94,7 +95,7 @@ const Booking = () => {
 
       {currentStep == 1 && (
         <>
-          <h3 className={styles.title}>Select Time</h3>
+          <h3 className={styles.title}>Please Select Time</h3>
           <div className={styles.booking_container}>
             <TimeSlot
               selectedDate={selectedDate}
