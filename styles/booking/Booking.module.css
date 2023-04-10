@@ -1,5 +1,12 @@
 .main {
-    background-color: rgba(242, 242, 242, 0.924);
+    background-color:black;
+    color: whitesmoke;
+    min-height:  80vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0;
 }
 
 .service_container {
@@ -15,8 +22,7 @@
 }
 
 .booking_container {
-    background-color: white;
-    color: black;
+    
     display: flex;
     justify-content: space-around;
     margin: 30px 65px 50px 65px;
@@ -24,7 +30,7 @@
 }
 
 .title {
-    color: black;
+    
     margin: 15px 10px 15px 65px;
     padding-right: 14px;
 }

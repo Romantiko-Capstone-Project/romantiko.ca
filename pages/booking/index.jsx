@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import Banner from "../../src/components/booking/Banner";
 import ServiceCard from "../../src/components/booking/ServiceCard";
@@ -15,7 +16,7 @@ const Booking = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(-1);
 
   useEffect(() => {
     const getServices = async () => {
@@ -29,32 +30,47 @@ const Booking = () => {
     getServices();
   }, []);
 
+  useEffect(() => {
+    console.log(currentStep); 
+  }, [currentStep]);
+
+
   const handleSelectService = () => {
+
     if (selectedService) {
+      console.log(currentStep);
       setCurrentStep(1);
+
     } else {
       alert("Please select a service first");
     }
   };
 
   const handleSelectTimeSlot = () => {
-    if (selectedDate  && selectedTimeSlot  && selectedStaff ) {
+    if (selectedDate && selectedTimeSlot && selectedStaff) {
       setCurrentStep(2);
     } else {
       alert("Please select a Date, Time, and Staff");
     }
   };
 
-  
+  const handleNextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
 
   return (
     <div className={styles.main}>
-      <Banner />
-
+      
+      {currentStep == -1 && (
+        <>
+        <Banner handleNextStep={handleNextStep}/>
+        </>
+      )}
       {currentStep == 0 && (
 
         <div className={styles.service_container}>
-          <h3 className={styles.title}>Select Service</h3>
+          <h3 className={styles.title}>Please Select Service</h3>
           <div className={styles.service_wrapper}>
 
             {services.map((service) => (
@@ -68,6 +84,7 @@ const Booking = () => {
 
           <div>
             <button onClick={handleSelectService}>Next</button>
+            
           </div>
 
         </div>
@@ -92,7 +109,7 @@ const Booking = () => {
             />
           </div>
           <div>
-            <button onClick={setCurrentStep(0)}>Back</button>
+            <button onClick={() => setCurrentStep(0)}>Back</button>
             <button onClick={handleSelectTimeSlot}>Next</button>
           </div>
         </>
