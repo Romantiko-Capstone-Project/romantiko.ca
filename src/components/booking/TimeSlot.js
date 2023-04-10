@@ -3,9 +3,12 @@ import axios from "axios";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { formatTime } from "/config/convertToHours.config";
+import {
+  formatTime,
+  calculateBookingTime,
+  convertToHours,
+} from "/config/convertToHours.config";
 import styles from "/styles/booking/TimeSlot.module.css";
-import dayjs from "dayjs";
 
 const TimeSlot = ({
   selectedDate,
@@ -28,7 +31,7 @@ const TimeSlot = ({
           `http://localhost:3000/api/week/${selectedDate.toISOString()}`
         );
         setTimeSlots(res.data);
-        console.log(timeSlots)
+        console.log(timeSlots);
       } catch (error) {
         console.error(error);
       }
@@ -97,28 +100,20 @@ const TimeSlot = ({
     setSelectedStaffId(selectedStaffId);
   };
 
-  const calculateBookingTime = (selectedDate, selectedTimeSlot) => {
-    const hour = Math.floor(selectedTimeSlot);
-    const minute = (selectedTimeSlot - hour) * 60;
-    const startTime = dayjs(selectedDate)
-      .set("hour", hour)
-      .set("minute", minute)
-      .format("YYYY-MM-DD HH:mm:ss");
-    const endTime = dayjs(startTime)
-      .add(30, "minute")
-      .format("YYYY-MM-DD HH:mm:ss");
-    return [startTime, endTime];
-  };
-
   return (
     <div className={styles.selectTimeWrapper}>
-
       <div className={styles.date_wrapper}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker
+            defaultValue={selectedDate}
+            disablePast
             orientation="landscape"
-
             onChange={(newDate) => setSelectedDate(newDate.$d)}
+            componentsProps={{
+              actionBar: {
+                actions: ["today"],
+              },
+            }}
           />
         </LocalizationProvider>
       </div>
@@ -128,33 +123,28 @@ const TimeSlot = ({
           <h4>Availability</h4>
 
           <div className={styles.timesContainer}>
-          {timeSlots.map((timeSlot) => (
-            // <button
-            //   key={timeSlot._id}
-            //   disabled={timeSlot.isFull}
-            //   className={styles.time_button}
-            //   onClick={() => handleTimeSlotClick(timeSlot)}
-            // >
-            //   {formatTime(timeSlot.startTime)}
-            // </button>
+            {timeSlots.map((timeSlot) => {
+              
+              const currentTime = convertToHours(new Date());
+              const isTimePassed = timeSlot.startTime <= currentTime;
 
-            <div className={styles.radioL}>
+              return !isTimePassed ? (
+                <div className={styles.radioL}>
+                  <input
+                    type="radio"
+                    name="time"
+                    id={timeSlot._id}
+                    value={timeSlot._id}
+                    onChange={() => handleTimeSlotClick(timeSlot)}
+                    className={styles.radioButton}
+                  />
 
-              <input
-                type="radio"
-                name="time"
-                id={timeSlot._id}
-                value={timeSlot._id}
-                onChange={() => handleTimeSlotClick(timeSlot)}
-                className={styles.radioButton}
-              />
-
-              <label for={timeSlot._id} className={styles.buttonLabel}>
-                {formatTime(timeSlot.startTime)}
-              </label>
-            </div>
-
-          ))}
+                  <label htmlFor={timeSlot._id} className={styles.buttonLabel}>
+                    {formatTime(timeSlot.startTime)}
+                  </label>
+                </div>
+              ) : null;
+            })}
           </div>
 
           {selectedTimeSlotId && (
@@ -162,12 +152,9 @@ const TimeSlot = ({
               <h4>Choose a barber</h4>
 
               <div className={styles.staff_container}>
-
-
                 {staffs.map((staff) => {
                   return (
                     <div className={styles.radioL}>
-
                       <input
                         type="radio"
                         name="staff"
@@ -185,12 +172,9 @@ const TimeSlot = ({
                 })}
               </div>
             </div>
-
           )}
         </div>
       </div>
-
-
     </div>
   );
 };

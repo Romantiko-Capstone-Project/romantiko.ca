@@ -4,27 +4,22 @@ import React from "react";
 const ServiceCard = ({ service, onSelectService }) => {
   return (
     <div className={styles.container}>
-      
-        <div className={styles.service_container}>
-          <input
-            type="radio"
-            name="service"
-            id={service._id}
-            value={service._id}
-            onChange={() => onSelectService(service)}
-            className={styles.radioButton}
-          />
-        
-      
-      
-        <label for={service._id} className={styles.buttonLabel}>
-        <p className={styles.service_title}>{service.serviceName}</p>
-        <p className={styles.service_details}>${service.price}</p>
-        <p className={styles.service_details}>Duration: 30 mins</p>
-        </label>
+      <div className={styles.service_container}>
+        <input
+          type="radio"
+          name="service"
+          id={service._id}
+          value={service._id}
+          onChange={() => onSelectService(service)}
+          className={styles.radioButton}
+        />
 
-        </div>
-      
+        <label for={service._id} className={styles.buttonLabel}>
+          <p className={styles.service_title}>{service.serviceName}</p>
+          <p className={styles.service_details}>${service.price}</p>
+          <p className={styles.service_details}>Duration: 30 mins</p>
+        </label>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import UserForm from "./UserForm";
 import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { formattedDate } from "../../../config/convertToHours.config";
 
 const BookingCard = ({
   startTime,
@@ -73,7 +74,6 @@ const BookingCard = ({
     <div className={styles.bCardWrap}>
       <div className={styles.wrapper}>
         <form className={styles.container} onSubmit={handleSubmit}>
-
           <div className={styles.booking_section}>
             <UserForm
               name={name}
@@ -84,40 +84,30 @@ const BookingCard = ({
               onEmailChange={handleEmailChange}
               onPhoneChange={handlePhoneChange}
               onNoteChange={handleNoteChange}
-
             />
           </div>
-
-
 
           <button className={styles.submit_button} type="submit">
             Submit
           </button>
-
         </form>
       </div>
 
       {startTime && endTime ? (
-        
-          <div className={styles.booking_info}>
-            <div>
-              <h2>Booking Details</h2>
-              <div>Start Time: {startTime}</div>
-              <div>End Time: {endTime}</div>
-            </div>
-
-            {selectedService && (
-              <div>Service Type: {selectedService.serviceName}</div>
-            )}
-            {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
+        <div className={styles.booking_info}>
+          <div>
+            <h2>Booking Details</h2>
+            <div>Start Time: {formattedDate(startTime)}</div>
+            <div>End Time: {formattedDate(endTime)}</div>
           </div>
-        
+
+          {selectedService && (
+            <div>Service Type: {selectedService.serviceName}</div>
+          )}
+          {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
+        </div>
       ) : null}
-
-
     </div>
-
-
   );
 };
 

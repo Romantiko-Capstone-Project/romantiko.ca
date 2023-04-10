@@ -54,7 +54,6 @@ async function initializeWeeks(dayConfigs) {
 }
 
 
-
 module.exports = {
   generateTimeSlots,
   generateDayWithTimeSlots,
