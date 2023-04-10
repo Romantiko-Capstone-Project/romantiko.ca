@@ -1,7 +1,6 @@
 .container {
   color: white;
 }
-
 .top {
   flex: 2;
   display: flex;
@@ -14,16 +13,10 @@
   background-color: #212529;
   border-radius: 20px;
 }
-
 .photoContainer {
-  /* border: 1px solid black; */
   padding: 20px 20px;
 }
-
 .imageContainer {
-  /* border: 1px solid black; */
-  width: auto;
-  height: 200px;
   position: relative;
   /* padding: 0px 10px; */
 }
@@ -42,17 +35,14 @@
 .titleRecord {
   margin-left: 10px;
 }
-
 .info {
   color: rgba(255, 255, 255, 0.756);
   background-color: #212529;
-  border: 1px solid black;
   flex: 3;
   display: flex;
   margin-left: 30px;
   border-radius: 15px;
 }
-
 .infoList {
   /* border: 1px solid black; */
   display: flex;
@@ -61,7 +51,6 @@
   padding: 20px;
   padding-left: 50px;
 }
-
 .infoItem {
   display: flex;
   flex-direction: row;
@@ -69,7 +58,6 @@
   height: 30px;
   margin-bottom: 30px;
 }
-
 .infoLabel {
   width: 200px;
 }
@@ -78,9 +66,7 @@
   width: 400px;
   font-size: 20px;
 }
-
 .actions {
-  /* border: 1px solid black; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -93,7 +79,6 @@
   justify-content: center;
   margin-bottom: 30px;
 }
-
 .actionButton {
   width: 100px;
   padding: 20px 10px;
@@ -102,6 +87,45 @@
   color: rgba(255, 255, 255, 0.853);
   border: none;
   font-size: 13px;
+}
+.changePicture {
+  position: absolute;
+  top: 100;
+  left: 100;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.changePicture form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.changePicture input[type="file"] {
+  font-size: 14px;
+}
+
+.changePicture button {
+  background-color: #40a9ff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 16px;
+  transition: background-color 0.3s;
+}
+
+.changePicture button:hover {
+  background-color: #1890ff;
 }
 
 .bottom {
@@ -116,7 +140,6 @@
 
 .table {
   margin-right: 20px;
-  width: 100%;
   max-width: 400px;
   margin: 0 auto;
   background-color: #212529;
@@ -144,14 +167,12 @@
 .itemTitle {
   margin-left: 10px;
 }
-
 .itemContainer {
   margin: 20px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
 }
-
 .item {
   margin: 0px 5px;
   border: 1px solid black;
@@ -177,6 +198,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  background-color: black;
 }
 
 @media screen and (max-width: 768px) {

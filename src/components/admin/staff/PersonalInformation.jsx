@@ -3,46 +3,53 @@ import { useState, useEffect } from "react";
 import styles from "../../../../styles/PersonalInformation.module.css";
 import axios from "axios";
 
-const PersonalInformation = ({ selectedStaff }) => {
+const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstName, setFirstName] = useState(selectedStaff?.firstName);
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
-
-  const [data, setData] = useState({});
-  const id = selectedStaff?.account;
+  const [role, setRole] = useState(extraStaff?.role);
 
   const [isEditPic, setIsEditPic] = useState(false);
+  const [extraStaff, setExtraStaff] = useState({});
+  const [usr, setUsr] = useState(extraStaff?.username);
+  const [email, setEmail] = useState(extraStaff?.email);
+  const [img, setImg] = useState(extraStaff?.img);
+  const [pwd, setPwd] = useState(extraStaff?.password);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!id) {
+      if (!selectedStaff) {
         console.log("fetchData error: ID not provided");
         return;
       }
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/account/${id}`
+          `http://localhost:3000/api/account/${selectedStaff.account}`
         ); // pass id as a parameter in the URL
-        setData(data);
+        setExtraStaff(data);
       } catch (error) {
         console.log("fetchData error");
       }
     };
     fetchData();
-  }, [id]);
-
-  const [usr, setUsr] = useState(data?.username);
-  const [email, setEmail] = useState(data?.email);
+    setFirstName(selectedStaff?.firstName);
+    setLastName(selectedStaff?.lastName);
+    setAddress(selectedStaff?.address);
+    setPhone(selectedStaff?.phoneNumber);
+    setStatus(!!selectedStaff?.isActive);
+    setRole(selectedStaff?.role);
+  }, [selectedStaff]);
 
   const toggleEditMode = () => {
     setIsEditMode((prevState) => !prevState);
   };
 
-  const handleSaveChanges = async () => {
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
     const _staff = {
       firstName,
       lastName,
@@ -54,24 +61,26 @@ const PersonalInformation = ({ selectedStaff }) => {
     const _extraStaff = {
       username: usr,
       email,
+      password: pwd,
     };
 
     try {
-      // Replace 'id' with the actual staff id
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:3000/api/staff/${selectedStaff._id}`,
         _staff
       );
-      const response2 = await axios.put(
-        `http://localhost:3000/api/account/${id}`,
+      await axios.put(
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
         _extraStaff
       );
-      console.log(response.data);
-      console.log(response2.data);
+      const updatedStaff = { ...selectedStaff, ..._staff }; // UPDATED: include extraStaff properties
+
+      // Call the callback function to update the parent component state
+      onUpdate(updatedStaff);
 
       // Switch back to view mode
       setIsEditMode(false);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error updating staff:", error);
     }
@@ -94,7 +103,11 @@ const PersonalInformation = ({ selectedStaff }) => {
         _staff
       );
       console.log(response.data);
-      window.location.reload();
+
+      // Update the parent component state
+      onUpdate({ ...selectedStaff, ..._staff });
+
+      // window.location.reload();
     } catch (err) {
       console.error("Error updating status:", err);
     }
@@ -102,6 +115,77 @@ const PersonalInformation = ({ selectedStaff }) => {
 
   const toggleEditPic = () => {
     setIsEditPic((prevState) => !prevState);
+  };
+
+  const handleDeleteAccount = async () => {
+    //CODE MISSING FOR ROLE VERIFICATION.
+
+    if (extraStaff.role === "admin") {
+      console.log("Cannot delete admin account");
+      return;
+    }
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/account/${selectedStaff.account}`
+      );
+      console.log(response.data);
+      //window.location.reload();
+    } catch (err) {
+      console.error("Error deleting account:", err);
+    }
+  };
+
+  const HandleDeletePicture = async () => {
+    const defaultPicture =
+      "https://res.cloudinary.com/dyk9lstek/image/upload/v1680847093/default-staff_q8f9pn.jpg";
+
+    const _img = {
+      img: defaultPicture,
+    };
+
+    try {
+      await axios.put(
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
+        _img
+      );
+
+      // Update the extraStaff state with the default picture
+      // setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
+    } catch (err) {
+      console.error("Error deleting picture:", err);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setImg(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", img);
+    data.append("upload_preset", "uploads");
+
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dyk9lstek/image/upload",
+        data
+      );
+      const { url } = uploadRes.data;
+      console.log(uploadRes.data);
+      const newPicture = {
+        img: url,
+      };
+      const updateRes = await axios.put(
+        `http://localhost:3000/api/account/${selectedStaff.account}`,
+        newPicture
+      );
+      console.log("New updated picture: ", updateRes.data);
+      // setExtraStaff((prevState) => ({ ...prevState, img: url }));
+    } catch (err) {
+      console.error("Error uploading image:", err);
+    }
   };
 
   return (
@@ -112,10 +196,14 @@ const PersonalInformation = ({ selectedStaff }) => {
             <div className={styles.imageContainer}>
               <Image
                 className={styles.image}
-                src="/img/admin/user-photo.jpeg"
+                src={
+                  extraStaff
+                    ? extraStaff.img
+                    : "https://res.cloudinary.com/dyk9lstek/image/upload/v1680847093/default-staff_q8f9pn.jpg"
+                }
                 alt="Picture of the author"
-                layout="fill"
-                objectFit="contain"
+                width="500"
+                height="500"
               />
             </div>
 
@@ -123,11 +211,25 @@ const PersonalInformation = ({ selectedStaff }) => {
               <button className={styles.actionButton} onClick={toggleEditPic}>
                 Change
               </button>
-              <button className={styles.actionButton}>Remove</button>
+              <button
+                className={styles.actionButton}
+                onClick={HandleDeletePicture}
+              >
+                Remove
+              </button>
             </div>
           </div>
         </div>
-        {isEditPic ? <div className={styles.changePicture}> Finally</div> : ""}
+        {isEditPic ? (
+          <div className={styles.changePicture}>
+            <form onSubmit={handleSubmit}>
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={styles.info}>
           <div className={styles.infoList}>
@@ -181,12 +283,18 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <input
                   className={`${styles.infoInput} ${styles.isEditMode}`}
-                  defaultValue={data && data.username ? data.username : "N/A"}
+                  defaultValue={
+                    extraStaff && extraStaff.username
+                      ? extraStaff.username
+                      : "N/A"
+                  }
                   onChange={(e) => setUsr(e.target.value)}
                 />
               ) : (
                 <span className={styles.infoInput}>
-                  {data && data.username ? data.username : "N/A"}
+                  {extraStaff && extraStaff.username
+                    ? extraStaff.username
+                    : "N/A"}
                 </span>
               )}
             </div>
@@ -212,12 +320,14 @@ const PersonalInformation = ({ selectedStaff }) => {
                 {isEditMode ? (
                   <input
                     className={`${styles.infoInput} ${styles.isEditMode}`}
-                    defaultValue={data && data.email ? data.email : "N/A"}
+                    defaultValue={
+                      extraStaff && extraStaff.email ? extraStaff.email : "N/A"
+                    }
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 ) : (
                   <span className={styles.infoInput}>
-                    {data && data.email ? data.email : "N/A"}
+                    {extraStaff && extraStaff.email ? extraStaff.email : "N/A"}
                   </span>
                 )}
               </span>
@@ -227,8 +337,8 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? (
                 <select
                   className={styles.infoInput}
-                  value={status ? true : false}
-                  onChange={(e) => setStatus(e.target.value === "true")}
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
                 >
                   <option value="true">Active</option>
                   <option value="false">Inactive</option>
@@ -243,6 +353,26 @@ const PersonalInformation = ({ selectedStaff }) => {
                 </span>
               )}
             </div>
+            <div className={styles.infoItem}>
+              <h4 className={styles.infoLabel}>Password:</h4>
+              <span className={styles.infoInput}>
+                {isEditMode ? (
+                  <input
+                    className={`${styles.infoInput} ${styles.isEditMode}`}
+                    defaultValue={
+                      extraStaff && extraStaff.password
+                        ? extraStaff.password
+                        : "N/A"
+                    }
+                    onChange={(e) => setPwd(e.target.value)}
+                  />
+                ) : (
+                  <span className={styles.infoInput}>
+                    {extraStaff && extraStaff.password ? "********" : "N/A"}
+                  </span>
+                )}
+              </span>
+            </div>
           </div>
         </div>
         <div className={styles.actions}>
@@ -254,12 +384,17 @@ const PersonalInformation = ({ selectedStaff }) => {
               {isEditMode ? "Save" : "Edit"}
             </button>
           </div>
-          {/* <div className={styles.action}>
-            <button className={styles.actionButton}>Delete</button>
-          </div> */}
           <div className={styles.action}>
             <button className={styles.actionButton} onClick={handleStatus}>
               Change Status
+            </button>
+          </div>
+          <div className={styles.action}>
+            <button
+              className={styles.actionButton}
+              onClick={handleDeleteAccount}
+            >
+              Delete
             </button>
           </div>
         </div>

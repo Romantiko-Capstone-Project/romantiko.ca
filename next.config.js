@@ -1,13 +1,10 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   swcMinify: true,
-};
-
-module.exports = {
   images: {
-    disableStaticImages: true
-},
+    disableStaticImages: true,
+    domains: ["res.cloudinary.com"],
+  },
   webpack: (config, { isServer }) => {
     // Add support for mp4 files
     config.module.rules.push({
@@ -19,5 +16,7 @@ module.exports = {
     });
 
     return config;
-  },
+  }
 };
+
+module.exports = nextConfig;

@@ -62,8 +62,8 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services" passHref>
-                    <a className="nav-link mx-2" href="#">
+                  <Link href="/Services" passHref>
+                    <a className="nav-link mx-2">
                       Services
                     </a>
                   </Link>

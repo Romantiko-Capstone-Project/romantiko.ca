@@ -1,0 +1,67 @@
+.container {
+    padding: 20px;
+    background-color: #212529;
+    color: rgb(0, 0, 0);
+
+  }
+  
+  .booking {
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .booking h3 {
+    margin: 0;
+  }
+  
+  .booking__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .booking__button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #17a2b8;
+  }
+  
+  .booking__button--delete {
+    background-color: #dc3545;
+  }
+  
+  .booking__form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .booking__form input[type="text"],
+  .booking__form input[type="email"],
+  .booking__form input[type="tel"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .booking__form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .booking__form button[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #17a2b8;
+  }
+  

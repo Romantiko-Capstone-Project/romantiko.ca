@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    padding: 50px;
+    background-color: black;
+}
+
+
+.left{
+    flex: 3;
+}
+
+.right{
+    flex: 2;
+}
+
+.title, .price, .desc{
+    color: white;
+    align-items: center;
+    display: flex;
+}
+
+.price{
+    font-size: 30px;
+}
+
+.imgContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px 40px;
+    padding-bottom: 290px;
+}

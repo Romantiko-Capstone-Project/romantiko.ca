@@ -1,0 +1,40 @@
+
+.container{
+display: flex;
+padding: 50px;
+width: 100%;
+background-color: black;
+}
+
+
+.left{
+    display: flex;
+    flex:50%;
+    margin: auto;
+    padding: 20px 40px;
+    justify-content: center;
+    margin: 20px;
+    margin-right: 80px;
+}
+
+.right{
+    display: flex;
+    flex: 50%;
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+}
+
+.imgContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px 40px;
+    padding-bottom: 290px;
+}
+
+/* .serviceText{
+display: block;
+
+text-align: left;
+} */
