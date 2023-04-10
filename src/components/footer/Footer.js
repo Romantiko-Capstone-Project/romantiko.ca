@@ -18,7 +18,8 @@ function Footer() {
 
             <div className="mt-4">
               <a
-                href="#"
+                href="https://www.facebook.com/romantikobarbershop"
+                target="_blank"
                 type="button"
                 className="btn btn-lg"
                 style={{ backgroundColor: "#808080", marginRight: "10px" }}
@@ -26,7 +27,8 @@ function Footer() {
                 <span className="fa fa-facebook-f"></span>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/romantikobarbershop/"
+                target="_blank"
                 type="button"
                 className="btn btn-lg"
                 style={{ backgroundColor: "#808080", marginRight: "10px" }}
@@ -34,7 +36,8 @@ function Footer() {
                 <i className="fa fa-instagram"></i>
               </a>
               <a
-                href="#"
+                href="https://goo.gl/maps/AyNBArYCRZJ4yJGG9"
+                target="_blank"
                 type="button"
                 className="btn btn-lg"
                 style={{ backgroundColor: "#808080", marginRight: "10px" }}
@@ -53,13 +56,13 @@ function Footer() {
                   <i className="fa fa-home"></i>
                 </span>{" "}
                 <a
-                  style={{ color: "white" }}
+                  style={{ color: "whitesmoke",textDecoration:"none" }}
                   target="_blank"
                   href="https://www.google.com/maps/place/Romantiko+Barber+Shop/@51.2911508,-114.0028717,338m/data=!3m1!1e3!4m6!3m5!1s0x53715f25208d2603:0xe5655ce1b5340234!8m2!3d51.2910039!4d-114.0030376!16s%2Fg%2F11qgyl2v4v"
                 >
                   {" "}
                   <span className="ms-1">
-                    513 Centre Ave E #125, Airdrie, AB T4B 1P9
+                    513 Centre Ave E #125, Airdrie
                   </span>{" "}
                 </a>
               </li>
