@@ -13,7 +13,7 @@ const Banner = (props) => {
           Set an appointment for haircut now, with this free and easy online
           booking
         </p>
-        <button onClick={handleNextStep}>Start</button>
+        <button onClick={handleNextStep} className={styles.btn1}>Start</button>
       </div>
       </>
     

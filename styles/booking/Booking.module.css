@@ -35,3 +35,23 @@
     padding-right: 14px;
 }
 
+.btn1 {
+    width: 20%;
+    height: 6%;
+    left: 50%;
+    margin-bottom: 2em;
+    border-radius: 1em;
+    background: none;
+    color: white;
+    border-color: white;
+    border-width: 3px;
+    font-weight: bolder;
+    transition: 0.4s;
+    border-style: solid;
+  }
+  
+  .btn1:hover {
+    background-color: whitesmoke;
+    color: black;
+  
+  }

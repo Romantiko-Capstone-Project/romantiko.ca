@@ -68,7 +68,7 @@ const Booking = () => {
         </>
       )}
       {currentStep == 0 && (
-
+        <>
         <div className={styles.service_container}>
           <h3 className={styles.title}>Please Select Service</h3>
           <div className={styles.service_wrapper}>
@@ -82,12 +82,12 @@ const Booking = () => {
             ))}
           </div>
 
-          <div>
-            <button onClick={handleSelectService}>Next</button>
-            
           </div>
+            <button onClick={handleSelectService} className={styles.btn1}>Next</button>
+            
+            </>
 
-        </div>
+        
 
       )}
 
