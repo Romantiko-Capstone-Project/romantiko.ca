@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import styles from "../../styles/Admin.module.css";
 import Image from "next/image";
 import axios from "axios";
@@ -16,6 +18,9 @@ import { ImScissors } from "react-icons/im";
 import { TfiGallery } from "react-icons/Tfi";
 
 const Index = () => {
+  const router = useRouter();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
   const [staffs, setStaffs] = useState([]);
   const [tab, setTab] = useState("tab1");
 
@@ -24,6 +29,10 @@ const Index = () => {
   };
 
   useEffect(() => {
+    if (!loggedIn) {
+      router.push("/Login");
+    }
+
     const fetchStaffs = async () => {
       try {
         const { data } = await axios.get("http://localhost:3000/api/staff");
