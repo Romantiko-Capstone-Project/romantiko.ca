@@ -1,9 +1,15 @@
 import styles from "/styles/booking/ServiceCard.module.css";
 import React from "react";
+import { useState, useEffect } from "react";
 
 const ServiceCard = ({ service, onSelectService }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isVisible ? styles.isVisible : ""}`}>
       
         <div className={styles.service_container}>
           <input

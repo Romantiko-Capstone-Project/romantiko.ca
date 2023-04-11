@@ -16,6 +16,7 @@ const Booking = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  
   const [currentStep, setCurrentStep] = useState(-1);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ const Booking = () => {
       )}
       {currentStep == 0 && (
         <>
+        
         <h3 className={styles.title}>Please Select Service</h3>
         <div className={styles.service_container}>
           
