@@ -100,11 +100,11 @@ const BookingCard = ({
 
 
           <div className={styles.buttonCont}>
-          <button className={styles.submit_button} type="submit">
-            Submit
-          </button>
           <button className={styles.submit_button} onClick={handlePrevStep1}>
             Back
+          </button>
+          <button className={styles.submit_button} type="submit">
+            Submit
           </button>
           </div>
 
