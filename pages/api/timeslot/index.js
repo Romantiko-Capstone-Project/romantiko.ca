@@ -1,8 +1,8 @@
 import dbConnect from "../../../util/mongo";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
-// const {
-//   initializeWeeks,
-// } = require("../../../middlewares/");
+const {
+  initializeWeeks,
+} = require("../../../middlewares/");
 
 const handler = async (req, res) => {
   const { method } = req;

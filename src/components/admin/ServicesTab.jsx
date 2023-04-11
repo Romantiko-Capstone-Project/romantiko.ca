@@ -90,7 +90,42 @@ const ServicesTab = () => {
   };
 
   return (
+    
     <div className={styles.servicesContainer}>
+      <div className={styles.uploadBox}>
+        <div className={styles.uploadContainer}>
+            <label>Choose an image</label>
+            <div className={styles.fileInput}>
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                onClick={() => setMsg(false)}
+                className="inputFile"
+              />
+            </div>
+          <label>Service name: </label>
+                <input
+                  value={serviceName}
+                  type="text"
+                  onChange={(e) => setServiceName(e.target.value)}
+                />
+                <label>Price:</label>
+                <input
+                  value={servicePrice}
+                  type="number"
+                  onChange={(e) => setServicePrice(e.target.value)}
+                />
+                <label>Description: </label>
+                <textarea
+                  value={serviceDescription}
+                  onChange={(e) => setServiceDescription(e.target.value)}
+                  placeholder="Description here..."
+                />
+           <button onClick={handleCreate} className={styles.uploadButton}>
+            Upload
+          </button>
+        </div>
+      </div>
       <div className={styles.container}>
         <div className={styles.imagesContainer}>
           {images.map((image) => (
@@ -100,8 +135,9 @@ const ServicesTab = () => {
                 alt="Haircut img not found"
                 width="205"
                 height="205"
+                style={{ borderRadius: "10px" }} 
               />
-              <button className={styles.deleteButton}>
+               <button className={styles.deleteButton}>
                 <DeleteIcon onClick={() => handleRemove(image._id)} />
               </button>
               <button
@@ -116,6 +152,7 @@ const ServicesTab = () => {
             </div>
           ))}
         </div>
+        
       </div>
       {modal && (
         <div className={styles.modal}>
@@ -144,9 +181,9 @@ const ServicesTab = () => {
                 />
                 <br></br>
                 <button onClick={updateButton}>Edit</button>
-                {msg && (
+                {/* {msg && (
                   <h3>The image has been successfully uploaded.</h3>
-                )}
+                )} */}
                 <button
                   className="closeButton"
                   onClick={() => {
@@ -154,7 +191,7 @@ const ServicesTab = () => {
                     setSelectedServiceId(null);
                   }}
                 >
-                  CLOSE
+                  Close
                 </button>
               </div>
             </div>
