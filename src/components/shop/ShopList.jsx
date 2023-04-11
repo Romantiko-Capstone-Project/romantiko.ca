@@ -23,10 +23,8 @@ const ShopList = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>SHOP PRODUCTS</h1>
       <p className={styles.desc}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        Shop from a wide range of hair care products, all available
+        for purchase in-store.
       </p>
       <div className={styles.wrapper}>
         {productList.map((product) => (

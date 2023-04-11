@@ -1,23 +1,34 @@
 .container {
-    width: 100%;
     background-color: black;
-    height: auto;
 }
 
 .productsContainer {
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
+    align-items: left;
+    justify-content: start;
     color: rgba(255, 255, 255, 0.756);
-    padding: 20px;
+    flex-wrap: wrap;
 }
 
 .productContainer{
-    border: 1px solid white;
-    padding: 10px 15px;
+    padding: 15px 15px;
+    margin: 10px 20px;
+    background-color: #212529;
+    border-radius: 25px;
+}
+
+.prodImg{
+    border-radius:25px;
+}
+
+.prodName{
+    font-size: 20px;
+}
+
+.prodPrice{
+    font-size: 18px;
 }
 
 .updateForm{
@@ -35,6 +46,7 @@
     justify-content: center;
     display: inline-block;
     padding: 10px 20px;
+    margin: 0px 20px;
 }
 
 .p{
@@ -52,6 +64,7 @@
 
 .pageTitle{
     color: white;
+    padding-top: 20px;
 }
 
 .uploadButton, .deleteButton, .updateButton{
@@ -76,9 +89,19 @@
 }
 
 .left{
-    flex: 2;
+    flex: 1;
 }
 
 .right{
     flex: 1;
+}
+
+@media screen and (max-width: 480px){
+    .container{
+        width: 100%;
+    }
+
+    .title{
+        font-style: 30px;
+    }
 }

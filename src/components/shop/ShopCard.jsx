@@ -9,12 +9,11 @@ const ShopCard = ({ product }) => {
       <div className={styles.wrapper}>
         <Link href={`/product/${product._id}`} passHref>
           <a>
-            <Image src={product.img} alt="" width="250" height="250" />
+            <Image src={product.img} alt="" width="300" height="300" />
           </a>
         </Link>
         <h1 className={styles.title}>{product.productName}</h1>
         <span className={styles.price}>${product.price}</span>
-        {/* <p className={styles.desc}>{product.description}</p> */}
       </div>
     </div>
   );
