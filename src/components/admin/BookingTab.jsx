@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/BookingTab.module.css";
+import tableStyles from "../../../styles/BookingTab.module.css";
 import axios from "axios";
-// import BookingModal from "./BookingModal";
 
 const BookingTab = () => {
   const [bookings, setBookings] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalData, setModalData] = useState({});
+  const [barbers, setBarbers] = useState([]);
+  const [services, setServices] = useState([]);
+  const [searchInput, setSearchInput] = useState(""); // Add this state for search input
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/api/booking");
-        setBookings(data);
+        const bookingData = await axios.get(
+          "http://localhost:3000/api/booking"
+        );
+        setBookings(bookingData.data);
+
+        const barberData = await axios.get("http://localhost:3000/api/staff");
+        setBarbers(barberData.data);
+
+        const serviceData = await axios.get(
+          "http://localhost:3000/api/services"
+        );
+        setServices(serviceData.data);
       } catch (error) {
         console.log(error);
       }
@@ -30,76 +40,67 @@ const BookingTab = () => {
     }
   };
 
-  const handleUpdate = async (id, data) => {
-    try {
-      await axios.put(`http://localhost:3000/api/booking/${id}`, data);
-      const newBookings = bookings.map((booking) => {
-        if (booking._id === id) {
-          return { ...booking, ...data };
-        }
-        return booking;
-      });
-      setBookings(newBookings);
-    } catch (error) {
-      console.log(error);
-    }
+  const getBarberName = (id) => {
+    const barber = barbers.find((barber) => barber._id === id);
+    return barber ? `${barber.firstName} ${barber.lastName}` : "N/A";
   };
 
-  const handleModalOpen = (data) => {
-    setModalOpen(true);
-    setModalData(data);
+  const getServiceName = (id) => {
+    const service = services.find((service) => service._id === id);
+    return service ? service.serviceName : "N/A";
   };
 
-  const handleModalClose = () => {
-    setModalOpen(false);
-    setModalData({});
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
   };
+
+  const filteredBookings = bookings.filter((booking) =>
+    booking._id.slice(-5).toLowerCase().includes(searchInput.toLowerCase())
+  );
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Booking Dashboard</h1>
-      <div className={styles.buttonContainer}>
-        <button
-          className={styles.addButton}
-          onClick={() => handleModalOpen({})}
-        >
-          Add Booking
-        </button>
-      </div>
-      <div className={styles.bookingsContainer}>
-        {bookings.map((booking) => (
-          <div className={styles.booking} key={booking._id}>
-            <div className={styles.bookingInfo}>
-              <h3>Start Time: {booking.startTime} </h3>
-              <h3>End Time: {booking.endTime} </h3>
-              <h3>Barber Id: {booking.barber} </h3>
-              <h3>Booking Id: {booking._id} </h3>
-            </div>
-            <div className={styles.bookingActions}>
-              <button
-                className={styles.editButton}
-                onClick={() => handleModalOpen(booking)}
-              >
-                Edit
-              </button>
-              <button
-                className={styles.deleteButton}
-                onClick={() => handleDelete(booking._id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      {/* {modalOpen && (
-        <BookingModal
-          data={modalData}
-          handleModalClose={handleModalClose}
-          handleCreate={handleCreate}
-          handleUpdate={handleUpdate}
+    <div>
+      <div className={tableStyles.searchContainer}>
+        <input
+          className={tableStyles.searchInput}
+          type="text"
+          placeholder="Search by last 5 characters of ID"
+          value={searchInput}
+          onChange={handleSearchInputChange}
         />
-      )} */}
+      </div>
+      <table className={tableStyles.table}>
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Client Name</th>
+            <th>Barber Name</th>
+            <th>Booking Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Service</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredBookings.map((booking) => (
+            <tr key={booking._id}>
+              <td>{"..." + booking._id.slice(-5)}</td>
+              <td>{booking.customerName}</td>
+              <td>{getBarberName(booking.barber)}</td>
+              <td>{new Date(booking.startTime).toLocaleDateString()}</td>
+              <td>{new Date(booking.startTime).toLocaleTimeString()}</td>
+              <td>{new Date(booking.endTime).toLocaleTimeString()}</td>
+              <td>{getServiceName(booking.service)}</td>
+              <td>
+                <button onClick={() => handleDelete(booking._id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
