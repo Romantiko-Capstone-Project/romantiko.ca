@@ -8,6 +8,7 @@ const ServiceCard = ({ service, onSelectService }) => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+  
   return (
     <div className={`${styles.container} ${isVisible ? styles.isVisible : ""}`}>
       

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import UserForm from "./UserForm";
 import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
@@ -15,6 +15,7 @@ const BookingCard = ({
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
   const router = useRouter();
 
@@ -69,8 +70,12 @@ const BookingCard = ({
     }
   };
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className={styles.bCardWrap}>
+    <div className={`${styles.bCardWrap} ${isVisible ? styles.isVisible : ""}`}>
       <div className={styles.wrapper}>
         <form className={styles.container} onSubmit={handleSubmit}>
 

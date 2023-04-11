@@ -70,4 +70,12 @@
     gap: 1em;
     background-color: rgba(83, 83, 83, 0.212);
     padding-bottom: 1.5em;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
+
+.isVisible {
+    opacity: 1;
+    transform: translateX(0);
+  }
