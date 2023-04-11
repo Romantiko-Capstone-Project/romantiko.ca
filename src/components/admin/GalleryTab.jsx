@@ -84,7 +84,7 @@ const GalleryTab = () => {
                 src={image.img}
                 alt="Haircut img not found"
                 width="205"
-                height="205"
+                height="220"
               />
               <button className={styles.deleteButton}>
                 <DeleteIcon onClick={() => handleRemove(image._id)} />

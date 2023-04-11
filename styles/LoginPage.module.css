@@ -1,7 +1,8 @@
 .container {
     display: flex;
-    height: 100%;
-    background-image: url('../public/img/login/barberPic.png');
+    min-height: 80vh;
+    background-image: url('/img/login/barberPic.jpg');
+    background-size: cover;
     position: relative;
 }
 
@@ -12,10 +13,10 @@
     margin-right: auto;
     flex-direction: column;
     width: 350px;
-    height: 68vh;
+    height: 55vh;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0 0 30px 10px #626262;
+    box-shadow: 0 0 30px 10px #1b1b1b;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
@@ -106,7 +107,7 @@
     .container {
         display: flex;
         height: calc(100vh);
-        background-image: url('../public/img/login/barberPic.png');
+        background-image: url('../public/img/login/barberPic.jpg');
         background-size: cover;
     }
 
@@ -158,7 +159,7 @@
     .container {
         display: flex;
         height: calc(100vh);
-        background-image: url('../public/img/login/barberPic.png');
+        background-image: url('../public/img/login/barberPic.jpg');
         background-size: 1500px auto;
     }
 
@@ -215,7 +216,7 @@
     .container {
         display: flex;
         height: calc(100vh);
-        background-image: url('../public/img/login/barberPic.png');
+        background-image: url('../public/img/login/barberPic.jpg');
         background-size: cover;
     }
 
@@ -268,7 +269,7 @@
     .container {
         display: flex;
         height: calc(100vh);
-        background-image: url('../public/img/login/barberPic.png');
+        background-image: url('../public/img/login/barberPic.jpg');
         background-size: 1500px auto;
     }
 
@@ -320,7 +321,7 @@
     .container {
         display: flex;
         height: calc(100vh);
-        background-image: url('../public/img/login/barberPic.png');
+        background-image: url('../public/img/login/barberPic.jpg');
         background-size: 1500px auto;
     }
 

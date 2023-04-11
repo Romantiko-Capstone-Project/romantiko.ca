@@ -73,11 +73,11 @@ const LoginPage = () => {
             type="text"
             id="email"
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Email"
+            placeholder="Username"
             style={{ backgroundColor: "#EBECF0" }}
           />
           <label htmlFor="email" className={styles.stuff}>
-            Email
+            Username
           </label>
         </div>
 
