@@ -1,5 +1,6 @@
 .form {
     display: flex;
+    background-color:none;
     flex-direction: column;
     height: 100%;
     width: 100%;
@@ -13,7 +14,7 @@
 }
 
 .form_field {
-    background-color: rgba(32, 32, 32, 0.919);
+    background-color: rgba(32, 32, 32, 0.658);
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 3px;
