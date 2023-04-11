@@ -118,8 +118,11 @@ const ShopTab = () => {
             )}
 
             <p className={styles.p}>
-              <label className={styles.label}>Choose an image</label>
-              {/* Get rid of br and uses flex-box. */}
+            {isEditMode ? (
+                ""
+              ) : (
+                <label className={styles.label}>Choose an image</label>
+              )}
 
               {isEditMode ? (
                 ""
@@ -154,8 +157,10 @@ const ShopTab = () => {
             </p>
             <p className={styles.p}>
               <label className={styles.label}>Description</label>
-              <input
-                type="text"
+              <textarea
+                rows="4"
+                cols="50"
+                // type="text"
                 onChange={(e) => setDescription(e.target.value)}
                 className={styles.input}
                 placeholder="Description..."
@@ -187,12 +192,15 @@ const ShopTab = () => {
                 <Image
                   src={product.img}
                   alt="Haircut img not found"
-                  width="200"
+                  width="250"
                   height="200"
+                  className={styles.prodImg}
                 />
-                <h2>{product.productName}</h2>
-                <p>{product.price}</p>
-                <p>{product.description}</p>
+                <h2 className={styles.prodName}>{product.productName}</h2>
+                <p className={styles.prodPrice}>{product.price}</p>
+                {/* <div className={styles.prodDesc}>
+                  <p>{product.description}</p>
+                </div> */}
                 <div className={styles.createFormButtons}>
                   <button
                     className={styles.deleteButton}
