@@ -54,6 +54,10 @@ const ShopTab = () => {
     fetchProducts();
   }, [products]);
 
+  const handleDelete = async (id) =>{
+    //popup to confirm delete function
+  };
+
   const handleClickDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/api/products/${id}`);
@@ -101,6 +105,7 @@ const ShopTab = () => {
     setPrice(null);
     setDescription(null);
     setFile(null);
+    setMsg(false);
   };
 
   return (

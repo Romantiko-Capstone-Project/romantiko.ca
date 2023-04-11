@@ -6,14 +6,15 @@
     padding: 10px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: start;
     color: rgba(255, 255, 255, 0.756);
+    flex-wrap: wrap;
 }
 
 .productContainer{
     padding: 15px 15px;
-    margin: 0px 10px;
+    margin: 10px 20px;
     background-color: #212529;
     border-radius: 25px;
 }
@@ -63,6 +64,7 @@
 
 .pageTitle{
     color: white;
+    padding-top: 20px;
 }
 
 .uploadButton, .deleteButton, .updateButton{
