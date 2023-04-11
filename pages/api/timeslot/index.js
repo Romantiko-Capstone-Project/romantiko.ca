@@ -2,7 +2,7 @@ import dbConnect from "../../../util/mongo";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");
 const {
   initializeWeeks,
-} = require("../../../middlewares/generateTimeSlot");
+// } = require("../../../middlewares/generateTimeSlot");
 
 const handler = async (req, res) => {
   const { method } = req;
