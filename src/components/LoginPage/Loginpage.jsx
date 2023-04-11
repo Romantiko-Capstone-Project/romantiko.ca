@@ -53,6 +53,7 @@ const LoginPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
+      <button onClick={toggleModal}>Open Login Modal</button>
         <h4
           style={{
             "textAlign": "center",
