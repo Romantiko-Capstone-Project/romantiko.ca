@@ -5,18 +5,11 @@
 }
 
 .left{
-    flex: 1;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 100%;
+    flex: 3;
 }
 
 .right{
     flex: 2;
-    padding: 20px;
-    justify-content: center;
-    display: flex;
 }
 
 .title, .price, .desc{
