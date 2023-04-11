@@ -19,7 +19,6 @@ const Booking = new Schema(
     barber: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Staff",
-      default: "63e18181c33b9e146c8e521b",
       required: true,
     },
     customerName: {
@@ -36,6 +35,11 @@ const Booking = new Schema(
     },
     notes: {
       type: String,
+    },
+    status: {
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   { timestamps: true }
