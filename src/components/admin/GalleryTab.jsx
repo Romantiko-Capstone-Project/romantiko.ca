@@ -24,7 +24,6 @@ const GalleryTab = () => {
       const newGallery = {
         img: url,
       };
-
       await axios.post("http://localhost:3000/api/gallery", newGallery);
       setMsg(true);
       setLoading(false); // set loading state to false when upload process is complete

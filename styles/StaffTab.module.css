@@ -1,43 +1,106 @@
 .container {
-  /* background-color: white; */
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+}
+.list {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  color: black;
+  font-size: 20px;
+}
+
+.listItem {
+  margin: 20px 20px 0px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid black;
+  padding: 10px 100px;
+  border-radius: 20px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
 }
 
 .left {
   flex: 1;
   display: flex;
   flex-direction: column;
-  text-align: left;
-  padding: 0px 10px;
-  /* background-color: blue; */
+  /* padding: 0px 0px 0px 10px; */
+
+  border-radius: 20px;
+  /* padding: 0px 10px; */
+  background-color: #212529;
+  color: rgba(255, 255, 255, 0.756);
+  /* margin: 0px 0px 30px 0px; */
+  overflow-y: scroll;
+  margin-left: 25px;
+  padding-left: 20px;
 }
-.border {
+/* .border {
   border-radius: 20px;
   padding: 0px 10px;
   background-color: #212529;
   color: rgba(255, 255, 255, 0.756);
-  margin: 30px 0px;
+  margin: 0px 0px 30px 0px;
   overflow-y: scroll;
-}
+} */
 .titleContainer {
-  height: 75px; /* set a fixed height */
+  margin-top: 20px;
   position: sticky;
   top: 0;
-  
 }
 .title {
-  /* text-align: center; */
-  /* background-color: red; */
   margin-left: 10px;
-  margin-top: 10px;
+  text-align: left;
 }
 
-.cardsContainer {
-  /* overflow-y: scroll; */
+.toggleStaff {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 25px;
 }
+.toggleStaffButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.756);
+  height: 50px;
+  width: 100px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.activeButton {
+  background-color: rgba(255, 255, 255, 0.191);
+}
+
+.activeButton2 {
+  background-color: #212529;
+  color: white;
+}
+
+.line {
+  width: 100%;
+  border: 0.5px solid rgba(255, 255, 255, 0.756);
+  margin: 10px 0px 10px 0px;
+}
+
+/* .cardsContainer {
+  height: calc(85vh - 72px);
+} */
 
 .staffCard {
   display: flex;
@@ -63,8 +126,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border-radius: 50px; */
-  /* margin-right: 5px; */
+}
+
+.activeStaffCard {
+  background-color: rgba(255, 255, 255, 0.191);
 }
 
 .buttonSelector {
@@ -85,23 +150,24 @@
 }
 
 .right {
-  /* background-color: red; */
-  /* background-color: white; */
-  /* flex: 1; */
-  border-left: 1px black solid;
   flex: 4;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  padding-left: 10px;
+  margin-right: 50px;
+
+  border-radius: 0px 20px 20px 0px;
+  background-color: #212529;
+  height: calc(90vh - 70px);
 }
 
 .recordTabMenu {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  height: 75px;
-  /* background-color: rgb(255, 255, 255); */
+  height: 50px;
   color: rgb(0, 0, 0);
+  margin-top: 20px;
 }
 
 .recordTabItem {
@@ -111,10 +177,10 @@
   text-align: center;
   cursor: pointer;
   padding: 0px 20px;
-  margin: 10px;
+  margin: 0px 10px 0px 10px;
   font-size: 15px;
   border-radius: 50px;
-  background-color: #212529;
+  background-color: #2b2b2b;
   color: rgba(255, 255, 255, 0.756);
 }
 .recordTabItem:hover {
@@ -124,7 +190,6 @@
 .content {
   width: 100%;
   padding-top: 20px;
-  height: 100%;
 }
 
 .recordTabButton:hover {
