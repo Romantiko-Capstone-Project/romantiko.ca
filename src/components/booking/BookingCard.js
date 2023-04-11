@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import UserForm from "./UserForm";
 import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { formattedDate } from "../../../config/convertToHours.config";
 
 const BookingCard = ({
   startTime,
@@ -10,11 +11,17 @@ const BookingCard = ({
   selectedService,
   selectedStaff,
   selectedStaffId,
+  handlePrevStep
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handlePrevStep1 = () => {
+    handlePrevStep();
+    }
 
   const router = useRouter();
 
@@ -69,45 +76,55 @@ const BookingCard = ({
     }
   };
 
-  return (
-    
-    <form className={styles.container} onSubmit={handleSubmit}>
-      <div className={styles.wrapper}>
-        <div className={styles.booking_section}>
-          <UserForm
-            name={name}
-            email={email}
-            phone={phone}
-            note={note}
-            onNameChange={handleNameChange}
-            onEmailChange={handleEmailChange}
-            onPhoneChange={handlePhoneChange}
-            onNoteChange={handleNoteChange}
-            
-          />
-        </div>
-        {startTime && endTime ? (
-          <div className={styles.booking_section}>
-            <div className={styles.booking_info}>
-              <div>
-                <h2>Booking Info</h2>
-                <div>Start Time: {startTime}</div>
-                <div>End Time: {endTime}</div>
-              </div>
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
-              {selectedService && (
-                <div>Service Type: {selectedService.serviceName}</div>
-              )}
-              {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
-            </div>
+  return (
+    <div className={`${styles.bCardWrap} ${isVisible ? styles.isVisible : ""}`}>
+      <div className={styles.wrapper}>
+        <form className={styles.container} onSubmit={handleSubmit}>
+          <div className={styles.booking_section}>
+            <UserForm
+              name={name}
+              email={email}
+              phone={phone}
+              note={note}
+              onNameChange={handleNameChange}
+              onEmailChange={handleEmailChange}
+              onPhoneChange={handlePhoneChange}
+              onNoteChange={handleNoteChange}
+            />
           </div>
-        ) : null}
+
+
+          <div className={styles.buttonCont}>
+          <button className={styles.submit_button} onClick={handlePrevStep1}>
+            Back
+          </button>
+          <button className={styles.submit_button} type="submit">
+            Submit
+          </button>
+          </div>
+
+        </form>
       </div>
 
-      <button className={styles.submit_button} type="submit">
-        Submit
-      </button>
-    </form>
+      {startTime && endTime ? (
+        <div className={styles.booking_info}>
+          <div>
+            <h2>Booking Details</h2>
+            <div>Start Time: {formattedDate(startTime)}</div>
+            <div>End Time: {formattedDate(endTime)}</div>
+          </div>
+
+          {selectedService && (
+            <div>Service Type: {selectedService.serviceName}</div>
+          )}
+          {selectedStaff && <div>Barber Name: {selectedStaff}</div>}
+        </div>
+      ) : null}
+    </div>
   );
 };
 

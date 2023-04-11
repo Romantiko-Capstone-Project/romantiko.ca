@@ -4,10 +4,12 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .top {
   display: flex;
   flex-direction: row;
 }
+
 .list {
   padding: 0;
   display: flex;
@@ -46,6 +48,7 @@
   margin-left: 25px;
   padding-left: 20px;
 }
+
 /* .border {
   border-radius: 20px;
   padding: 0px 10px;
@@ -59,6 +62,7 @@
   position: sticky;
   top: 0;
 }
+
 .title {
   margin-left: 10px;
   text-align: left;
@@ -70,6 +74,7 @@
   justify-content: flex-start;
   gap: 25px;
 }
+
 .toggleStaffButton {
   display: flex;
   flex-direction: row;
@@ -112,16 +117,19 @@
   border-radius: 15px;
   margin-bottom: 10px;
 }
+
 .staffCard:hover {
   background-color: #00000076;
   cursor: pointer;
 }
+
 .staffInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 15px;
 }
+
 .staffSelector {
   display: flex;
   align-items: center;
@@ -183,6 +191,7 @@
   background-color: #2b2b2b;
   color: rgba(255, 255, 255, 0.756);
 }
+
 .recordTabItem:hover {
   text-decoration: underline;
 }

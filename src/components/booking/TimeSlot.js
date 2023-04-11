@@ -3,7 +3,11 @@ import axios from "axios";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { formatTime } from "/config/convertToHours.config";
+import {
+  formatTime,
+  calculateBookingTime,
+  convertToHours,
+} from "/config/convertToHours.config";
 import styles from "/styles/booking/TimeSlot.module.css";
 import dayjs from "dayjs";
 
@@ -19,16 +23,29 @@ const TimeSlot = ({
   const [staffsId, setStaffsId] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedTimeSlotId, setSelectedTimeSlotId] = useState([]);
+  const [isToday, setIsToday] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   // get time slots
   useEffect(() => {
+
+    console.log(selectedDate)
+    
+    const today = dayjs();
+    const isTodaySelected = selectedDate && dayjs(selectedDate).isSame(today, "day");
+    setIsToday(isTodaySelected);
+
     const getTimeSlotData = async () => {
       try {
         const res = await axios.get(
           `http://localhost:3000/api/week/${selectedDate.toISOString()}`
         );
         setTimeSlots(res.data);
-        console.log(timeSlots)
+        console.log(timeSlots);
       } catch (error) {
         console.error(error);
       }
@@ -97,70 +114,108 @@ const TimeSlot = ({
     setSelectedStaffId(selectedStaffId);
   };
 
-  const calculateBookingTime = (selectedDate, selectedTimeSlot) => {
-    const hour = Math.floor(selectedTimeSlot);
-    const minute = (selectedTimeSlot - hour) * 60;
-    const startTime = dayjs(selectedDate)
-      .set("hour", hour)
-      .set("minute", minute)
-      .format("YYYY-MM-DD HH:mm:ss");
-    const endTime = dayjs(startTime)
-      .add(30, "minute")
-      .format("YYYY-MM-DD HH:mm:ss");
-    return [startTime, endTime];
-  };
-
   return (
-    <>
+    <div className={`${styles.selectTimeWrapper} ${isVisible ? styles.isVisible : ""}`}>
+
       <div className={styles.date_wrapper}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker
+            defaultValue={selectedDate}
+            disablePast
             orientation="landscape"
-            className={styles.date_picker}
             onChange={(newDate) => setSelectedDate(newDate.$d)}
+            componentsProps={{
+              actionBar: {
+                actions: ["today"],
+              },
+            }}
           />
         </LocalizationProvider>
       </div>
 
-      <div className={styles.time_wrapper}>
-        <h4>Availability</h4>
-        {timeSlots.map((timeSlot) => (
-          <button
-            key={timeSlot._id}
-            disabled={timeSlot.isFull}
-            className={styles.time_button}
-            onClick={() => handleTimeSlotClick(timeSlot)}
-          >
-            {formatTime(timeSlot.startTime)}
-          </button>
-        ))}
+      <div className={styles.child2}>
+        <div className={styles.time_wrapper}>
+          <h4>Availability</h4>
 
-        {selectedTimeSlotId && (
-          <div className={styles.barber_wrapper}>
-            <span>Choose a barber</span>
-            {staffs.map((staff) => {
-              return (
-                <div className={styles.staff_container}>
-                  <div className={styles.staff_radio_button}>
-                    <label key={staff._id}>
+          <div className={styles.timesContainer}>
+            {timeSlots.map((timeSlot) => {
+              const currentTime = convertToHours(new Date());
+              const isTimePassed = timeSlot.startTime <= currentTime;
+
+              if (isToday) {
+                if (!isTimePassed) {
+                  return (
+                    <div className={styles.radioL}>
+                      <input
+                        type="radio"
+                        name="time"
+                        id={timeSlot._id}
+                        value={timeSlot._id}
+                        onChange={() => handleTimeSlotClick(timeSlot)}
+                        className={styles.radioButton}
+                      />
+                      <label
+                        htmlFor={timeSlot._id}
+                        className={styles.buttonLabel}
+                      >
+                        {formatTime(timeSlot.startTime)}
+                      </label>
+                    </div>
+                  );
+                }
+              } else {
+                return (
+                  <div className={styles.radioL}>
+                    <input
+                      type="radio"
+                      name="time"
+                      id={timeSlot._id}
+                      value={timeSlot._id}
+                      onChange={() => handleTimeSlotClick(timeSlot)}
+                      className={styles.radioButton}
+                    />
+                    <label
+                      htmlFor={timeSlot._id}
+                      className={styles.buttonLabel}
+                    >
+                      {formatTime(timeSlot.startTime)}
+                    </label>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+
+          {selectedTimeSlotId && (
+            <div className={styles.barber_wrapper}>
+              <h4>Choose a barber</h4>
+
+              <div className={styles.staff_container}>
+                {staffs.map((staff) => {
+                  return (
+                    <div className={styles.radioL}>
                       <input
                         type="radio"
                         name="staff"
+                        id={staff._id}
                         value={staff._id}
                         onChange={handleStaffSelection}
+                        className={styles.radioButton}
                       />
-                    </label>
-                  </div>
-                  <div className={styles.staff_detail}>
-                    {staff.firstName} {staff.lastName}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
+
+                      <label for={staff._id} className={styles.buttonLabel}>
+                        {staff.firstName} {staff.lastName}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
