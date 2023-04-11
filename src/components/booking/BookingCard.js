@@ -10,12 +10,17 @@ const BookingCard = ({
   selectedService,
   selectedStaff,
   selectedStaffId,
+  handlePrevStep
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+
+  const handlePrevStep1 = () => {
+    handlePrevStep();
+    }
 
   const router = useRouter();
 
@@ -94,10 +99,14 @@ const BookingCard = ({
           </div>
 
 
-
+          <div className={styles.buttonCont}>
           <button className={styles.submit_button} type="submit">
             Submit
           </button>
+          <button className={styles.submit_button} onClick={handlePrevStep1}>
+            Back
+          </button>
+          </div>
 
         </form>
       </div>

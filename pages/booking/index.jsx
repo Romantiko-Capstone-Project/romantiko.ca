@@ -56,6 +56,9 @@ const Booking = () => {
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
   };
+  const handlePrevStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
 
 
   return (
@@ -129,6 +132,7 @@ const Booking = () => {
               selectedService={selectedService}
               selectedStaff={selectedStaff}
               selectedStaffId={selectedStaffId}
+              handlePrevStep={handlePrevStep}
             />
           </div>
         </>
