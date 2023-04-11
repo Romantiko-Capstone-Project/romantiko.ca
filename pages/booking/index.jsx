@@ -16,6 +16,7 @@ const Booking = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  
   const [currentStep, setCurrentStep] = useState(-1);
 
   useEffect(() => {
@@ -50,6 +51,9 @@ const Booking = () => {
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
   };
+  const handlePrevStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
 
   return (
     <div className={styles.main}>
@@ -60,21 +64,24 @@ const Booking = () => {
       )}
       {currentStep == 0 && (
         <>
-          <h3 className={styles.title}>Please Select Service</h3>
-          <div className={styles.service_container}>
-            <div className={styles.service_wrapper}>
-              {services.map((service) => (
-                <ServiceCard
-                  service={service}
-                  key={service._id}
-                  onSelectService={setSelectedService}
-                />
-              ))}
-            </div>
+        
+        <h3 className={styles.title}>Please Select Service</h3>
+        <div className={styles.service_container}>
+          
+          <div className={styles.service_wrapper}>
+
+            {services.map((service) => (
+              <ServiceCard
+                service={service}
+                key={service._id}
+                onSelectService={setSelectedService}
+              />
+            ))}
           </div>
           <button onClick={handleSelectService} className={styles.btn1}>
             Next
           </button>
+          </div>
         </>
       )}
 
@@ -108,6 +115,7 @@ const Booking = () => {
               Next
             </button>
           </div>
+          
         </>
       )}
 
@@ -120,6 +128,7 @@ const Booking = () => {
               selectedService={selectedService}
               selectedStaff={selectedStaff}
               selectedStaffId={selectedStaffId}
+              handlePrevStep={handlePrevStep}
             />
           </div>
         </>

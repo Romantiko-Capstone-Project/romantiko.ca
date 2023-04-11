@@ -24,6 +24,11 @@ const TimeSlot = ({
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedTimeSlotId, setSelectedTimeSlotId] = useState([]);
   const [isToday, setIsToday] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   // get time slots
   useEffect(() => {
@@ -110,7 +115,8 @@ const TimeSlot = ({
   };
 
   return (
-    <div className={styles.selectTimeWrapper}>
+    <div className={`${styles.selectTimeWrapper} ${isVisible ? styles.isVisible : ""}`}>
+
       <div className={styles.date_wrapper}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker

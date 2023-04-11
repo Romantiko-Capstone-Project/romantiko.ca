@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import UserForm from "./UserForm";
 import styles from "/styles/booking/BookingCard.module.css";
 import axios from "axios";
@@ -11,11 +11,17 @@ const BookingCard = ({
   selectedService,
   selectedStaff,
   selectedStaffId,
+  handlePrevStep
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handlePrevStep1 = () => {
+    handlePrevStep();
+    }
 
   const router = useRouter();
 
@@ -70,8 +76,12 @@ const BookingCard = ({
     }
   };
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className={styles.bCardWrap}>
+    <div className={`${styles.bCardWrap} ${isVisible ? styles.isVisible : ""}`}>
       <div className={styles.wrapper}>
         <form className={styles.container} onSubmit={handleSubmit}>
           <div className={styles.booking_section}>
@@ -87,9 +97,16 @@ const BookingCard = ({
             />
           </div>
 
+
+          <div className={styles.buttonCont}>
+          <button className={styles.submit_button} onClick={handlePrevStep1}>
+            Back
+          </button>
           <button className={styles.submit_button} type="submit">
             Submit
           </button>
+          </div>
+
         </form>
       </div>
 
