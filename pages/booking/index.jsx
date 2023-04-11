@@ -16,7 +16,6 @@ const Booking = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-  
   const [currentStep, setCurrentStep] = useState(-1);
 
   useEffect(() => {
@@ -31,15 +30,10 @@ const Booking = () => {
     getServices();
   }, []);
 
-
-
-
   const handleSelectService = () => {
-
     if (selectedService) {
       //console.log(currentStep);
       setCurrentStep(1);
-
     } else {
       alert("Please select a service first");
     }
@@ -56,47 +50,33 @@ const Booking = () => {
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
   };
-  const handlePrevStep = () => {
-    setCurrentStep(currentStep - 1);
-  };
-
 
   return (
     <div className={styles.main}>
-      
       {currentStep == -1 && (
         <>
-        <Banner handleNextStep={handleNextStep}/>
+          <Banner handleNextStep={handleNextStep} />
         </>
       )}
       {currentStep == 0 && (
         <>
-        
-        <h3 className={styles.title}>Please Select Service</h3>
-        <div className={styles.service_container}>
-          
-          <div className={styles.service_wrapper}>
-
-            {services.map((service) => (
-              <ServiceCard
-                service={service}
-                key={service._id}
-                onSelectService={setSelectedService}
-              />
-            ))}
+          <h3 className={styles.title}>Please Select Service</h3>
+          <div className={styles.service_container}>
+            <div className={styles.service_wrapper}>
+              {services.map((service) => (
+                <ServiceCard
+                  service={service}
+                  key={service._id}
+                  onSelectService={setSelectedService}
+                />
+              ))}
+            </div>
           </div>
-
-          </div>
-            <button onClick={handleSelectService} className={styles.btn1}>Next</button>
-            
-            </>
-
-        
-
+          <button onClick={handleSelectService} className={styles.btn1}>
+            Next
+          </button>
+        </>
       )}
-
-
-
 
       {currentStep == 1 && (
         <>
@@ -112,19 +92,27 @@ const Booking = () => {
               setBookingTime={setBookingTime}
             />
           </div>
-          <div style={{width:"60%",display:"flex",flexDirection:"row",justifyContent:"center",marginTop:"2%"}}>
-            <button onClick={() => setCurrentStep(0)} className={styles.btn1}>Back</button>
-            <button onClick={handleSelectTimeSlot} className={styles.btn1}>Next</button>
+          <div
+            style={{
+              width: "60%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              marginTop: "2%",
+            }}
+          >
+            <button onClick={() => setCurrentStep(0)} className={styles.btn1}>
+              Back
+            </button>
+            <button onClick={handleSelectTimeSlot} className={styles.btn1}>
+              Next
+            </button>
           </div>
         </>
       )}
 
-
-
-
       {currentStep == 2 && (
         <>
-          
           <div className={styles.booking_container}>
             <BookingCard
               startTime={bookingTime[0]}
@@ -132,18 +120,11 @@ const Booking = () => {
               selectedService={selectedService}
               selectedStaff={selectedStaff}
               selectedStaffId={selectedStaffId}
-              handlePrevStep={handlePrevStep}
             />
           </div>
         </>
       )}
-
-
-
-
-
     </div>
-
   );
 };
 

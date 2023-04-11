@@ -6,7 +6,6 @@
 .time_wrapper {
     margin: 30px 10px 15px 30px;
     padding-right: 14px;
-    
 }
 
 .barber_wrapper {
@@ -70,9 +69,6 @@
     justify-content: center;
     margin: 0;
     padding: 0;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .child2 {
@@ -97,15 +93,9 @@
     background-color: #fff;
     color: #333;
     cursor: pointer;
-    transition: 0.2s linear;
 }
 
 .radioButton:checked+.buttonLabel {
-    background-color: #333;
-    color: #fff;
-    border-color: rgb(101, 184, 184);
-}
-.radioButton:hover+.buttonLabel {
     background-color: #333;
     color: #fff;
     border-color: rgb(101, 184, 184);
@@ -117,8 +107,3 @@
     flex-wrap: wrap;
     gap:1em
 }
-
-.isVisible {
-    opacity: 1;
-    transform: translateX(0);
-  }

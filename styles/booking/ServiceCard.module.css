@@ -2,10 +2,7 @@
     display: flex;
     border-radius: 5px;
     width: 18%;
-    margin: 0 10px 10px 10px;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    margin: 0 10px 10px 10px
 }
 .service_container {
     font-size: 1rem;
@@ -27,7 +24,9 @@
     padding: 0;
     margin-bottom: 5px;
 }
-
+.service_details {
+    
+}
 
 .radioButton {
     display: none;
@@ -39,7 +38,7 @@
     padding: 8px 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #29292950;
+    background-color: #b6b6b63d;
     color: #bebebe;
     cursor: pointer;
     width: 100%
@@ -48,22 +47,11 @@
 .buttonLabel p {
     margin: 0;
     padding: 0;
-    transition: 0.4s linear;
-}
-.radioButton:hover+.buttonLabel {
-    background-color: #080808;
-    color: #b8b8b8;
-    border-color: rgb(74, 160, 160);
-    
-}
-.radioButton:checked+.buttonLabel {
-    background-color: #080808;
-    color: #b8b8b8;
-    border-color: rgb(74, 160, 160);
-    border-width: 2px;
 }
 
-  .isVisible {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.radioButton:checked+.buttonLabel {
+    background-color: #7e7e7e;
+    color: #b8b8b8;
+    border-color: rgb(74, 160, 160);
+    border-width: 3px;
+}

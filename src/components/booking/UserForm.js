@@ -13,7 +13,7 @@ const UserForm = ({
 }) => {
   return (
     <div className={styles.form}>
-      <h2 style={{color:"whitesmoke"}}>Contact Information</h2>
+      <h2>Contact Information</h2>
       <div className={styles.form_component}>
         <span>Full Name</span>
         <input
