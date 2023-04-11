@@ -6,7 +6,8 @@ const BookingTab = () => {
   const [bookings, setBookings] = useState([]);
   const [barbers, setBarbers] = useState([]);
   const [services, setServices] = useState([]);
-  const [searchInput, setSearchInput] = useState(""); // Add this state for search input
+  const [searchInput, setSearchInput] = useState("");
+  const [searchBy, setSearchBy] = useState("id"); // Add this state for search filter
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,17 +55,37 @@ const BookingTab = () => {
     setSearchInput(event.target.value);
   };
 
-  const filteredBookings = bookings.filter((booking) =>
-    booking._id.slice(-5).toLowerCase().includes(searchInput.toLowerCase())
-  );
+  const toggleSearchBy = () => {
+    setSearchBy(searchBy === "id" ? "barber" : "id");
+  };
+
+  const filteredBookings =
+    searchBy === "id"
+      ? bookings.filter((booking) =>
+          booking._id
+            .slice(-5)
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+        )
+      : bookings.filter((booking) => {
+          const barberName = getBarberName(booking.barber).toLowerCase();
+          return barberName.includes(searchInput.toLowerCase());
+        });
 
   return (
     <div>
       <div className={tableStyles.searchContainer}>
+        <button className={tableStyles.filterButton} onClick={toggleSearchBy}>
+          {searchBy === "id" ? "Search by Barber Name" : "Search by ID"}
+        </button>
         <input
           className={tableStyles.searchInput}
           type="text"
-          placeholder="Search by last 5 characters of ID"
+          placeholder={
+            searchBy === "id"
+              ? "Search by last 5 characters of ID"
+              : "Search by Barber Name"
+          }
           value={searchInput}
           onChange={handleSearchInputChange}
         />
@@ -72,7 +93,7 @@ const BookingTab = () => {
       <table className={tableStyles.table}>
         <thead>
           <tr>
-            <th>Booking ID</th>
+            <th>Booking ID (Last 5 Digits)</th>
             <th>Client Name</th>
             <th>Barber Name</th>
             <th>Booking Date</th>
