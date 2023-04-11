@@ -1,5 +1,9 @@
 .main {
-    background-color:black;
+    background-color:rgb(0, 0, 0);
+    background-image: url("/img/bookingBannerVintage.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: whitesmoke;
     min-height:  80vh;
     display:flex;
@@ -28,6 +32,7 @@
     justify-content: space-around;
     margin: 30px 65px 50px 65px;
     border-radius: 5px;
+    
 }
 
 .title {
