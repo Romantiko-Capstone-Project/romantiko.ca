@@ -27,6 +27,9 @@ const TimeSlot = ({
 
   // get time slots
   useEffect(() => {
+
+    console.log(selectedDate)
+    
     const today = dayjs();
     const isTodaySelected = selectedDate && dayjs(selectedDate).isSame(today, "day");
     setIsToday(isTodaySelected);

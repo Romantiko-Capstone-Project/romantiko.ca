@@ -1,6 +1,5 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-import Staff from "../../../models/Staff";
 import moment from "moment";
 
 const handler = async (req, res) => {
@@ -13,12 +12,9 @@ const handler = async (req, res) => {
     try {
       const selectedDate = new Date(date);
       const weekNumber = moment(selectedDate).isoWeek();
-      const dayOfWeek = selectedDate.getDay() || 7;
 
-      const weekDocument = await Week.findOne({ weekNumber }).populate({
-        path: "days.timeSlots.staffAvailability.staff",
-        model: Staff,
-      });
+      const dayOfWeek = selectedDate.getDay() || 7;
+      const weekDocument = await Week.findOne({ weekNumber });
 
       if (!weekDocument) {
         return res.status(404).json({ message: "Week not found" });

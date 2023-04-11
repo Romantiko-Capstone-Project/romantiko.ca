@@ -38,7 +38,7 @@ const LoginPage = () => {
 
       if (response.data.role === "admin") {
         handleAdminLogin(response.data.id);
-        router.push("/"); // Replace with the actual URL of the admin page
+        router.push("/admin"); // Replace with the actual URL of the admin page
       } else if (response.data.role === "staff") {
         console.log(response.data.id);
         handleLogin(response.data.id);
