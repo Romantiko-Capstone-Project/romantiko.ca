@@ -10,8 +10,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  width: 95%;
-  height: 500px;
+  width: 100%;
   overflow-y: scroll;
   gap: 10px;
 
@@ -25,7 +24,7 @@
   background-color: gray;
   padding: 10px;
   border-radius: 5px;
-  width: 26%;
+  width: 20%;
   margin: 8px;
   background-color: #3c4047;
 
@@ -43,8 +42,8 @@
 
 .deleteButton {
   position: relative;
-  bottom: 202px;
-  left: 82%;
+  bottom: 212px;
+  left: 87%;
   width: fit-content;
   border-radius: 8px;
   background-color: red;
