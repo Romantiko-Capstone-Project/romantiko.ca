@@ -12,9 +12,12 @@ const handler = async (req, res) => {
     try {
       const selectedDate = new Date(date);
       const weekNumber = moment(selectedDate).isoWeek();
+      
 
       const dayOfWeek = selectedDate.getDay() || 7;
       const weekDocument = await Week.findOne({ weekNumber });
+
+      //console.log(weekDocument)
 
       if (!weekDocument) {
         return res.status(404).json({ message: "Week not found" });
@@ -24,11 +27,18 @@ const handler = async (req, res) => {
         (day) => day.day === getDayOfWeekName(dayOfWeek)
       );
 
+      //console.log(dayDocument.day)
+
       if (!dayDocument) {
         return res.status(404).json({ message: "Day not found" });
       }
 
+      //console.log(dayDocument)
+
       const timeSlots = dayDocument.timeSlots;
+
+      //console.log(timeSlots)
+     
 
       res.status(200).json(timeSlots);
     } catch (err) {
@@ -52,7 +62,7 @@ const getDayOfWeekName = (dayOfWeek) => {
     "Friday",
     "Saturday",
   ];
-  return dayOfWeekNames[dayOfWeek - 1];
+  return dayOfWeekNames[dayOfWeek];
 };
 
 export default handler;
