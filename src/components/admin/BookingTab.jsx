@@ -69,6 +69,54 @@ const BookingTab = () => {
     setSearchInput(event.target.value);
   };
 
+  const handleServiceDropdownChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const renderSearchInput = () => {
+    if (searchBy === "service") {
+      return (
+        <select
+          className={styles.serviceDropdown}
+          value={searchInput}
+          onChange={handleServiceDropdownChange}
+        >
+          <option value="">Select a Service</option>
+          {services.map((service) => (
+            <option key={service._id} value={service.serviceName}>
+              {service.serviceName}
+            </option>
+          ))}
+        </select>
+      );
+    } else if (searchBy === "barber") {
+      return (
+        <select
+          className={styles.serviceDropdown}
+          value={searchInput}
+          onChange={handleServiceDropdownChange}
+        >
+          <option value="">Select a Barber</option>
+          {barbers.map((barber) => (
+            <option key={barber._id} value={barber.firstName}>
+              {barber.firstName}
+            </option>
+          ))}
+        </select>
+      );
+    } else {
+      return (
+        <input
+          className={styles.searchInput}
+          type="text"
+          placeholder={getPlaceholderText()}
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+      );
+    }
+  };
+
   const filteredBookings = () => {
     if (searchBy === "id") {
       return bookings.filter((booking) =>
@@ -122,28 +170,22 @@ const BookingTab = () => {
         {error && <div className={styles.errorMessage}>{error}</div>}
         {success && <div className={styles.successMessage}>{success}</div>}
         <div className={styles.searchContainer}>
-          <input
-            className={styles.searchInput}
-            type="text"
-            placeholder={getPlaceholderText()}
-            value={searchInput}
-            onChange={handleSearchInputChange}
-          />
+          {renderSearchInput()}
           <div className={styles.dropdown}>
-            <button className={styles.filterButton}>▼</button>
+            <button className={styles.filterButton}>Filter by ▼</button>
             <div className={styles.dropdownContent}>
-              <a onClick={() => setSearchBy("id")}>Search by ID</a>
-              <a onClick={() => setSearchBy("barber")}>Search by Barber Name</a>
-              <a onClick={() => setSearchBy("client")}>Search by Client Name</a>
-              <a onClick={() => setSearchBy("date")}>Search by Booking Date</a>
-              <a onClick={() => setSearchBy("service")}>Search by Service</a>
+              <a onClick={() => setSearchBy("id")}>ID</a>
+              <a onClick={() => setSearchBy("barber")}>Barber Name</a>
+              <a onClick={() => setSearchBy("client")}>Client Name</a>
+              <a onClick={() => setSearchBy("date")}>Booking Date</a>
+              <a onClick={() => setSearchBy("service")}>Service</a>
             </div>
           </div>
         </div>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Booking ID (Last 5 Digits)</th>
+              <th>Booking ID</th>
               <th>Client Name</th>
               <th>Barber Name</th>
               <th>Booking Date</th>
@@ -156,7 +198,7 @@ const BookingTab = () => {
           <tbody>
             {displayedBookings.map((booking) => (
               <tr key={booking._id}>
-                <td>{"..." + booking._id.slice(-5)}</td>
+                <td>{booking._id}</td>
                 <td>{booking.customerName}</td>
                 <td>{getBarberName(booking.barber)}</td>
                 <td>{new Date(booking.startTime).toLocaleDateString()}</td>
@@ -164,7 +206,10 @@ const BookingTab = () => {
                 <td>{new Date(booking.endTime).toLocaleTimeString()}</td>
                 <td>{getServiceName(booking.service)}</td>
                 <td>
-                  <button className={styles.deleteButton} onClick={() => handleDelete(booking._id)}>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDelete(booking._id)}
+                  >
                     Delete
                   </button>
                 </td>

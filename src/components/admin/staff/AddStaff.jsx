@@ -11,6 +11,7 @@ const AddStaff = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [picture, setPicture] = useState(null);
+  const [statusMessage, setStatusMessage] = useState(null);
 
   const handleCreate = async () => {
     const data = new FormData();
@@ -36,8 +37,10 @@ const AddStaff = () => {
       };
 
       await axios.post("http://localhost:3000/api/auth/register", newStaff);
+      setStatusMessage("New staff member created successfully!");
     } catch (error) {
       console.log(error);
+      setStatusMessage("Error creating staff member. Please try again.");
     }
   };
 
@@ -108,13 +111,24 @@ const AddStaff = () => {
             onChange={(e) => setPicture(e.target.files[0])}
           />
         </div>
-
+        <div
+        className={styles.statusMessage}
+        style={{
+          color:
+            statusMessage && statusMessage.startsWith("Error")
+              ? "red"
+              : "inherit",
+        }}
+      >
+        {statusMessage}
+      </div>
         <div className={styles.action}>
           <button className={styles.actionButton} onClick={handleCreate}>
             Create
           </button>
         </div>
       </div>
+      
     </div>
   );
 };

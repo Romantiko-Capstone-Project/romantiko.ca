@@ -46,7 +46,6 @@ const StaffTab = () => {
         staff._id === updatedStaff._id ? updatedStaff : staff
       )
     );
-
     // Update the selectedStaff with the updated staff data
     setSelectedStaff(updatedStaff);
   };
@@ -58,9 +57,9 @@ const StaffTab = () => {
     <>
       <div className={styles.container}>
         <div className={styles.top}>
-          <ul className={styles.list}>
+          <ul className={styles.tabContainer}>
             <li
-              className={`${styles.listItem} ${
+              className={`${styles.tabButton} ${
                 actionTab === "tab1" ? styles.activeButton2 : ""
               }`}
               onClick={() => HandleActionTabClick("tab1")}
@@ -68,7 +67,7 @@ const StaffTab = () => {
               View
             </li>
             <li
-              className={`${styles.listItem} ${
+              className={`${styles.tabButton} ${
                 actionTab === "tab2" ? styles.activeButton2 : ""
               }`}
               onClick={() => HandleActionTabClick("tab2")}
@@ -76,63 +75,62 @@ const StaffTab = () => {
               Add
             </li>
           </ul>
+          <div className={styles.lineTop}></div>
         </div>
         <>
           {actionTab === "tab1" && (
             <div className={styles.bottom}>
               <div className={styles.left}>
-                <div className={styles.border}>
-                  <div className={styles.titleContainer}>
-                    <h1 className={styles.title}>List of Staff</h1>
+                <div className={styles.titleContainer}>
+                  <h1 className={styles.title}>List of Staff</h1>
+                </div>
+                <div className={styles.toggleStaff}>
+                  <div
+                    className={`${styles.toggleStaffButton} ${
+                      currentStaffList === "active" && styles.activeButton
+                    }`}
+                    onClick={() => handleToggleStaffClick("active")}
+                  >
+                    <h5>Active</h5>
                   </div>
-                  <div className={styles.toggleStaff}>
-                    <div
-                      className={`${styles.toggleStaffButton} ${
-                        currentStaffList === "active" && styles.activeButton
-                      }`}
-                      onClick={() => handleToggleStaffClick("active")}
-                    >
-                      <h5>Active</h5>
-                    </div>
-                    <div
-                      className={`${styles.toggleStaffButton} ${
-                        currentStaffList === "inactive" && styles.activeButton
-                      }`}
-                      onClick={() => handleToggleStaffClick("inactive")}
-                    >
-                      <h5>Inactive</h5>
-                    </div>
+                  <div
+                    className={`${styles.toggleStaffButton} ${
+                      currentStaffList === "inactive" && styles.activeButton
+                    }`}
+                    onClick={() => handleToggleStaffClick("inactive")}
+                  >
+                    <h5>Inactive</h5>
                   </div>
-                  <div className={styles.line}></div>
-                  <div className={styles.cardsContainer}>
-                    {(currentStaffList === "active"
-                      ? activeStaff
-                      : inactiveStaff
-                    ).map((staff) => (
-                      <div
-                        key={staff._id}
-                        className={`${styles.staffCard} ${
-                          selectedStaff._id === staff._id
-                            ? styles.activeStaffCard
-                            : ""
-                        }`}
-                        onClick={() => {
-                          handleStaffClick(staff);
-                        }}
-                      >
-                        <div className={styles.staffInfo}>
-                          <h3 className={styles.name}>
-                            {staff.firstName} {staff.lastName}
-                          </h3>
-                          <h6>
-                            {staff.isActive
-                              ? "Currently Working"
-                              : "No longer Active"}
-                          </h6>
-                        </div>
+                </div>
+                <div className={styles.line}></div>
+                <div className={styles.cardsContainer}>
+                  {(currentStaffList === "active"
+                    ? activeStaff
+                    : inactiveStaff
+                  ).map((staff) => (
+                    <div
+                      key={staff._id}
+                      className={`${styles.staffCard} ${
+                        selectedStaff._id === staff._id
+                          ? styles.activeStaffCard
+                          : ""
+                      }`}
+                      onClick={() => {
+                        handleStaffClick(staff);
+                      }}
+                    >
+                      <div className={styles.staffInfo}>
+                        <h3 className={styles.name}>
+                          {staff.firstName} {staff.lastName}
+                        </h3>
+                        <h6>
+                          {staff.isActive
+                            ? "Currently Working"
+                            : "No longer Active"}
+                        </h6>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className={styles.right}>
