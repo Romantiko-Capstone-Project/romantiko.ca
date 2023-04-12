@@ -1,4 +1,5 @@
-import React from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import styles from "../../styles/Admin.module.css";
 import { TiBusinessCard } from "react-icons/ti";
@@ -8,6 +9,13 @@ import { ImScissors } from "react-icons/im";
 import { TfiGallery } from "react-icons/Tfi";
 
 const Index = ({ children }) => {
+
+  const router = useRouter();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
+  if (!loggedIn) {
+    router.push("/Login");
+  }
 
   return (
     <div className={styles.container}>

@@ -197,7 +197,15 @@ footer {
   background: #808080;
 }
 
-
+.MuiTypography-root {
+  color: Black;
+}
+.MuiPickersCalendarHeader-root {
+  color: #191919;
+}
+.MuiPickersLayout-root {
+  border-radius: 10px;
+}
 @media screen and (max-width: 830px) {
   .vidBG {
     position: relative;

@@ -400,54 +400,6 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.tablesContainer}>
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr className={styles.trTitle}>
-                <th>Most Recent Bookings:</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tbody}>
-              <tr>
-                <td>Booking 1: Joe Doe</td>
-              </tr>
-              <tr>
-                <td>Booking 1: Joe Doe</td>
-              </tr>
-            </tbody>
-          </table>
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr>
-                <th>Availability:</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tbody}>
-              <tr>
-                <td>Time 1: MONDAY, 10:30A.M - 5:00P.M</td>
-              </tr>
-              <tr>
-                <td>Time 2: FRIDAY, 9:30A.M - 4:00P.M</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr>
-                <th>Statistics:</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tbody}>
-              <tr>
-                <td>Number of bookings for this week: 10</td>
-              </tr>
-              <tr>
-                <td>Number of bookings for previos week: 8</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   );

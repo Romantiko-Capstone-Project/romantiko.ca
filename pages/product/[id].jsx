@@ -26,9 +26,11 @@ const Product = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.left}>
-        <div className={styles.imgContainer}>
-          <Image src={selected.img} width="600" height="400" alt="" />
+      <div className={styles.wrapper}>
+        <div className={styles.left}>
+          <div className={styles.imgContainer}>
+            <Image src={selected.img} width="600" height="600" alt="" />
+          </div>
         </div>
       </div>
       <div className={styles.right}>

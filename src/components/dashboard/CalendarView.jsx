@@ -22,6 +22,7 @@ export default function CalendarView({ bookings }) {
         events={events}
         startAccessor="start"
         endAccessor="end"
+        tooltipAccessor="desc"
       />
     </div>
   );
