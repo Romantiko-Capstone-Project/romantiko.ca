@@ -40,27 +40,28 @@
     display: flex;
     color: rgba(255, 255, 255, 0.756);
     background-color: #212529;
-    border-radius: 15px;
-    display: table;
+    border-radius: 25px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 0px 20px;
+    /* display: inline-block; */
+    padding: 40px 0px;
+    margin: 0px 520px;
 }
 
-.p{
+/* .p{
     display: table-row;
-}
+} */
 
 .label{
     display: table-cell;
     padding-right: 10px;
 }
 
-.input{
+/* .input{
     display: table-cell;
-}
+    margin-top: 15px;
+} */
 
 .pageTitle{
     color: white;

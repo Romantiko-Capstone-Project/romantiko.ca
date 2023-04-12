@@ -167,7 +167,7 @@ const ShopTab = () => {
                 cols="50"
                 // type="text"
                 onChange={(e) => setDescription(e.target.value)}
-                className={styles.input}
+                className={styles.textInput}
                 placeholder="Description..."
                 value={description || ""}
               />
