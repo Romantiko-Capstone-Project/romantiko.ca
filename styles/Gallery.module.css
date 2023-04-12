@@ -1,7 +1,7 @@
 .container {
   position: relative;
   min-height: 100vh;
-  background-color: white;
+  background-color: black;
 
   /* overflow-y: scroll; */
 }
@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -23,6 +23,8 @@
   width: calc(33.33% - 20px);
   height: auto;
   position: relative;
+  background-color: #3c4047;
+  padding: 20px;
 }
 
 .imgContainer:last-child {
@@ -33,6 +35,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.imgContainer:hover {
+  transform: scale(1.05);
+  transition: 0.1s transform;
+
+  
+
 }
 /* .container::-webkit-scrollbar {
   display: none;
