@@ -117,59 +117,62 @@ const BookingTab = () => {
 
   return (
     <div className={styles.container}>
-      {error && <div className={styles.errorMessage}>{error}</div>}
-      {success && <div className={styles.successMessage}>{success}</div>}
-      <div className={styles.searchContainer}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder={getPlaceholderText()}
-          value={searchInput}
-          onChange={handleSearchInputChange}
-        />
-        <div className={styles.dropdown}>
-          <button className={styles.filterButton}>▼</button>
-          <div className={styles.dropdownContent}>
-            <a onClick={() => setSearchBy("id")}>Search by ID</a>
-            <a onClick={() => setSearchBy("barber")}>Search by Barber Name</a>
-            <a onClick={() => setSearchBy("client")}>Search by Client Name</a>
-            <a onClick={() => setSearchBy("date")}>Search by Booking Date</a>
-            <a onClick={() => setSearchBy("service")}>Search by Service</a>
+      <div className={styles.content}>
+        <h1 className={styles.title}>List of Bookings</h1>
+        {error && <div className={styles.errorMessage}>{error}</div>}
+        {success && <div className={styles.successMessage}>{success}</div>}
+        <div className={styles.searchContainer}>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder={getPlaceholderText()}
+            value={searchInput}
+            onChange={handleSearchInputChange}
+          />
+          <div className={styles.dropdown}>
+            <button className={styles.filterButton}>▼</button>
+            <div className={styles.dropdownContent}>
+              <a onClick={() => setSearchBy("id")}>Search by ID</a>
+              <a onClick={() => setSearchBy("barber")}>Search by Barber Name</a>
+              <a onClick={() => setSearchBy("client")}>Search by Client Name</a>
+              <a onClick={() => setSearchBy("date")}>Search by Booking Date</a>
+              <a onClick={() => setSearchBy("service")}>Search by Service</a>
+            </div>
           </div>
         </div>
-      </div>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Booking ID (Last 5 Digits)</th>
-            <th>Client Name</th>
-            <th>Barber Name</th>
-            <th>Booking Date</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Service</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {displayedBookings.map((booking) => (
-            <tr key={booking._id}>
-              <td>{"..." + booking._id.slice(-5)}</td>
-              <td>{booking.customerName}</td>
-              <td>{getBarberName(booking.barber)}</td>
-              <td>{new Date(booking.startTime).toLocaleDateString()}</td>
-              <td>{new Date(booking.startTime).toLocaleTimeString()}</td>
-              <td>{new Date(booking.endTime).toLocaleTimeString()}</td>
-              <td>{getServiceName(booking.service)}</td>
-              <td>
-                <button onClick={() => handleDelete(booking._id)}>
-                  Delete
-                </button>
-              </td>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Booking ID (Last 5 Digits)</th>
+              <th>Client Name</th>
+              <th>Barber Name</th>
+              <th>Booking Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Service</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {displayedBookings.map((booking) => (
+              <tr key={booking._id}>
+                <td>{"..." + booking._id.slice(-5)}</td>
+                <td>{booking.customerName}</td>
+                <td>{getBarberName(booking.barber)}</td>
+                <td>{new Date(booking.startTime).toLocaleDateString()}</td>
+                <td>{new Date(booking.startTime).toLocaleTimeString()}</td>
+                <td>{new Date(booking.endTime).toLocaleTimeString()}</td>
+                <td>{getServiceName(booking.service)}</td>
+                <td>
+                  <button className={styles.deleteButton} onClick={() => handleDelete(booking._id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
