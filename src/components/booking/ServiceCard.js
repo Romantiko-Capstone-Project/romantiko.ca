@@ -30,11 +30,8 @@ const ServiceCard = ({ service, onSelectService }) => {
         <p className={styles.service_details}>Duration: 30 mins</p>
         </label>
 
-        <label for={service._id} className={styles.buttonLabel}>
-          <p className={styles.service_title}>{service.serviceName}</p>
-          <p className={styles.service_details}>${service.price}</p>
-          <p className={styles.service_details}>Duration: 30 mins</p>
-        </label>
+        
+        
       </div>
     </div>
   );
