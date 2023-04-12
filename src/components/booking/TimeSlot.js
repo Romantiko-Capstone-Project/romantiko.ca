@@ -19,10 +19,9 @@ const TimeSlot = ({
   setSelectedStaffId,
   setBookingTime,
 }) => {
-  const [staffs, setStaffs] = useState([]);
-  const [staffsId, setStaffsId] = useState([]);
+  const [staffsAvailability, setStaffsAvailability] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
-  const [selectedTimeSlotId, setSelectedTimeSlotId] = useState([]);
+  const [selectedTimeSlotId, setSelectedTimeSlotId] = useState(null);
   const [isToday, setIsToday] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,11 +31,11 @@ const TimeSlot = ({
 
   // get time slots
   useEffect(() => {
+    console.log(selectedDate);
 
-    console.log(selectedDate)
-    
     const today = dayjs();
-    const isTodaySelected = selectedDate && dayjs(selectedDate).isSame(today, "day");
+    const isTodaySelected =
+      selectedDate && dayjs(selectedDate).isSame(today, "day");
     setIsToday(isTodaySelected);
 
     const getTimeSlotData = async () => {
@@ -45,59 +44,39 @@ const TimeSlot = ({
           `http://localhost:3000/api/week/${selectedDate.toISOString()}`
         );
         setTimeSlots(res.data);
-        console.log(timeSlots);
+        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    if (selectedDate) {
-      getTimeSlotData(selectedDate);
-    }
-
-    console.log(getTimeSlotData(selectedDate));
+    getTimeSlotData();
   }, [selectedDate]);
 
-  // get staff id
+  // get staff availability and booked status
   useEffect(() => {
-    const getStaffIds = async (timeSlotId) => {
+    const getStaffAvailability = async (timeSlotId) => {
       try {
         const res = await axios.get(
           `http://localhost:3000/api/timeslot/${timeSlotId}`
         );
-        setStaffsId(res.data);
+        console.log("Received staff availability data:", res.data); // Add this line
+        setStaffsAvailability(res.data);
       } catch (error) {
         console.error(error);
       }
     };
 
     if (selectedTimeSlotId) {
-      getStaffIds(selectedTimeSlotId);
+      getStaffAvailability(selectedTimeSlotId);
     }
   }, [selectedTimeSlotId]);
-
-  // return staffs
-  useEffect(() => {
-    const getStaff = async (id) => {
-      try {
-        const res = await axios.get(`http://localhost:3000/api/staff/${id}`);
-        return res.data;
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    Promise.all(staffsId.map((staffId) => getStaff(staffId)))
-      .then((staffArray) => {
-        setStaffs(staffArray);
-      })
-      .catch((err) => console.error(err));
-  }, [staffsId]);
 
   // handle time slot selection
   const handleTimeSlotClick = (timeSlot) => {
     setSelectedTimeSlotId(timeSlot._id);
     setSelectedTimeSlot(timeSlot.startTime);
+
     const [startTime, endTime] = calculateBookingTime(
       selectedDate,
       timeSlot.startTime
@@ -108,19 +87,24 @@ const TimeSlot = ({
   // handle staff selection
   const handleStaffSelection = (event) => {
     const selectedStaffId = event.target.value;
-    const selectedStaff = staffs.find((staff) => staff._id === selectedStaffId);
-    const staffName = `${selectedStaff.firstName} ${selectedStaff.lastName}`;
+    const selectedStaff = staffsAvailability.find(
+      (staffAvail) => staffAvail.staff._id === selectedStaffId
+    );
+    const staffName = `${selectedStaff.staff.firstName} ${selectedStaff.staff.lastName}`;
     setSelectedStaff(staffName);
     setSelectedStaffId(selectedStaffId);
   };
 
   return (
-    <div className={`${styles.selectTimeWrapper} ${isVisible ? styles.isVisible : ""}`}>
-
+    <div
+      className={`${styles.selectTimeWrapper} ${
+        isVisible ? styles.isVisible : ""
+      }`}
+    >
       <div className={styles.date_wrapper}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker
-            defaultValue={selectedDate}
+            defaultValue={dayjs()}
             disablePast
             orientation="landscape"
             onChange={(newDate) => setSelectedDate(newDate.$d)}
@@ -145,12 +129,13 @@ const TimeSlot = ({
               if (isToday) {
                 if (!isTimePassed) {
                   return (
-                    <div className={styles.radioL}>
+                    <div key={timeSlot._id} className={styles.radioL}>
                       <input
                         type="radio"
                         name="time"
                         id={timeSlot._id}
                         value={timeSlot._id}
+                        disabled={timeSlot.isFull}
                         onChange={() => handleTimeSlotClick(timeSlot)}
                         className={styles.radioButton}
                       />
@@ -165,12 +150,13 @@ const TimeSlot = ({
                 }
               } else {
                 return (
-                  <div className={styles.radioL}>
+                  <div key={timeSlot._id} className={styles.radioL}>
                     <input
                       type="radio"
                       name="time"
                       id={timeSlot._id}
                       value={timeSlot._id}
+                      disabled={timeSlot.isFull}
                       onChange={() => handleTimeSlotClick(timeSlot)}
                       className={styles.radioButton}
                     />
@@ -192,20 +178,27 @@ const TimeSlot = ({
               <h4>Choose a barber</h4>
 
               <div className={styles.staff_container}>
-                {staffs.map((staff) => {
+                {staffsAvailability.map((staffAvail) => {
+
+                  console.log("staff isbooked ", staffAvail.isBooked)
                   return (
-                    <div className={styles.radioL}>
+                    <div key={staffAvail._id} className={styles.radioL}>
                       <input
                         type="radio"
                         name="staff"
-                        id={staff._id}
-                        value={staff._id}
+                        id={staffAvail._id}
+                        value={staffAvail.staff._id}
+                        disabled={staffAvail.isBooked}
                         onChange={handleStaffSelection}
                         className={styles.radioButton}
                       />
 
-                      <label for={staff._id} className={styles.buttonLabel}>
-                        {staff.firstName} {staff.lastName}
+                      <label
+                        htmlFor={staffAvail._id}
+                        className={styles.buttonLabel}
+                        disabled={staffAvail.isBooked}
+                      >
+                        {staffAvail.staff.firstName} {staffAvail.staff.lastName}
                       </label>
                     </div>
                   );
