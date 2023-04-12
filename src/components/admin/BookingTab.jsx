@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import tableStyles from "../../../styles/BookingTab.module.css";
+import styles from "../../../styles/BookingTab.module.css";
 import axios from "axios";
 
 const BookingTab = () => {
@@ -55,42 +55,74 @@ const BookingTab = () => {
     setSearchInput(event.target.value);
   };
 
-  const toggleSearchBy = () => {
-    setSearchBy(searchBy === "id" ? "barber" : "id");
+  const filteredBookings = () => {
+    if (searchBy === "id") {
+      return bookings.filter((booking) =>
+        booking._id.slice(-5).toLowerCase().includes(searchInput.toLowerCase())
+      );
+    } else if (searchBy === "barber") {
+      return bookings.filter((booking) => {
+        const barberName = getBarberName(booking.barber).toLowerCase();
+        return barberName.includes(searchInput.toLowerCase());
+      });
+    } else if (searchBy === "client") {
+      return bookings.filter((booking) =>
+        booking.customerName.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    } else if (searchBy === "date") {
+      return bookings.filter((booking) => {
+        const bookingDate = new Date(booking.startTime).toLocaleDateString();
+        return bookingDate.includes(searchInput);
+      });
+    } else if (searchBy === "service") {
+      return bookings.filter((booking) => {
+        const serviceName = getServiceName(booking.service).toLowerCase();
+        return serviceName.includes(searchInput.toLowerCase());
+      });
+    }
   };
 
-  const filteredBookings =
-    searchBy === "id"
-      ? bookings.filter((booking) =>
-          booking._id
-            .slice(-5)
-            .toLowerCase()
-            .includes(searchInput.toLowerCase())
-        )
-      : bookings.filter((booking) => {
-          const barberName = getBarberName(booking.barber).toLowerCase();
-          return barberName.includes(searchInput.toLowerCase());
-        });
+  const getPlaceholderText = () => {
+    switch (searchBy) {
+      case "id":
+        return "Search by last 5 characters of ID";
+      case "barber":
+        return "Search by Barber Name";
+      case "client":
+        return "Search by Client Name";
+      case "date":
+        return "Search by Booking Date";
+      case "service":
+        return "Search by Service";
+      default:
+        return "";
+    }
+  };
+
+  const displayedBookings = filteredBookings();
 
   return (
-    <div>
-      <div className={tableStyles.searchContainer}>
-        <button className={tableStyles.filterButton} onClick={toggleSearchBy}>
-          {searchBy === "id" ? "Search by Barber Name" : "Search by ID"}
-        </button>
+    <div className={styles.container}>
+      <div className={styles.searchContainer}>
         <input
-          className={tableStyles.searchInput}
+          className={styles.searchInput}
           type="text"
-          placeholder={
-            searchBy === "id"
-              ? "Search by last 5 characters of ID"
-              : "Search by Barber Name"
-          }
+          placeholder={getPlaceholderText()}
           value={searchInput}
           onChange={handleSearchInputChange}
         />
+        <div className={styles.dropdown}>
+          <button className={styles.filterButton}>▼</button>
+          <div className={styles.dropdownContent}>
+            <a onClick={() => setSearchBy("id")}>Search by ID</a>
+            <a onClick={() => setSearchBy("barber")}>Search by Barber Name</a>
+            <a onClick={() => setSearchBy("client")}>Search by Client Name</a>
+            <a onClick={() => setSearchBy("date")}>Search by Booking Date</a>
+            <a onClick={() => setSearchBy("service")}>Search by Service</a>
+          </div>
+        </div>
       </div>
-      <table className={tableStyles.table}>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Booking ID (Last 5 Digits)</th>
@@ -104,7 +136,7 @@ const BookingTab = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredBookings.map((booking) => (
+          {displayedBookings.map((booking) => (
             <tr key={booking._id}>
               <td>{"..." + booking._id.slice(-5)}</td>
               <td>{booking.customerName}</td>
