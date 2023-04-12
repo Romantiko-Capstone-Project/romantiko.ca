@@ -10,6 +10,9 @@
   flex-direction: column;
   width: 80vw;
 }
+.title {
+  margin-top: 20px;
+}
 .infoItem {
   display: flex;
   flex-direction: row;
@@ -34,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-bottom: 40px;
   margin-left: 500px;
 }
 
