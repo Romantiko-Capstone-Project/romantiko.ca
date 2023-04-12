@@ -8,6 +8,8 @@ const BookingTab = () => {
   const [services, setServices] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchBy, setSearchBy] = useState("id"); // Add this state for search filter
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,10 +38,22 @@ const BookingTab = () => {
       await axios.delete(`http://localhost:3000/api/booking/${id}`);
       const newBookings = bookings.filter((booking) => booking._id !== id);
       setBookings(newBookings);
+      setSuccess("Booking deleted successfully.");
+      setError("");
     } catch (error) {
       console.log(error);
+      setError("An error occurred while deleting the booking.");
+      setSuccess("");
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError("");
+      setSuccess("");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [error, success]);
 
   const getBarberName = (id) => {
     const barber = barbers.find((barber) => barber._id === id);
@@ -103,6 +117,8 @@ const BookingTab = () => {
 
   return (
     <div className={styles.container}>
+      {error && <div className={styles.errorMessage}>{error}</div>}
+      {success && <div className={styles.successMessage}>{success}</div>}
       <div className={styles.searchContainer}>
         <input
           className={styles.searchInput}
