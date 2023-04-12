@@ -1,18 +1,21 @@
 .form {
     display: flex;
+    background-color:none;
     flex-direction: column;
-    height: 55vh;
+    height: 100%;
+    width: 100%;
 }
 
 .form_component {
     display: flex;
     flex-direction: column;
     margin: 10px 0px 10px 0px;
+    color: whitesmoke;
 }
 
 .form_field {
-    background-color: rgba(19, 19, 22, 0.919);
-    color: rgb(145, 142, 142);
+    background-color: rgba(32, 32, 32, 0.658);
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 3px;
     padding: 10px 30px;

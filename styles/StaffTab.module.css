@@ -3,27 +3,39 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #212529;
 }
+
 .top {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
-.list {
+
+.tabContainer {
   padding: 0;
   display: flex;
   align-items: center;
   list-style: none;
   color: black;
   font-size: 20px;
+  margin-left: 50px;
 }
 
-.listItem {
+.tabButton {
   margin: 20px 20px 0px 20px;
   font-weight: 500;
   cursor: pointer;
-  border: 0.5px solid black;
+  border: none;
   padding: 10px 100px;
   border-radius: 20px;
+  border: 1px solid rgb(242, 237, 237);
+  color: white;
+}
+.lineTop {
+  border: 0.5px solid rgba(255, 255, 255, 0.756);
+  align-self: left;
+  margin-left: 50px;
+  width: 90%;
 }
 
 .bottom {
@@ -35,33 +47,25 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* padding: 0px 0px 0px 10px; */
-
   border-radius: 20px;
-  /* padding: 0px 10px; */
   background-color: #212529;
   color: rgba(255, 255, 255, 0.756);
-  /* margin: 0px 0px 30px 0px; */
   overflow-y: scroll;
   margin-left: 25px;
   padding-left: 20px;
+  padding-right: 20px;
 }
-/* .border {
-  border-radius: 20px;
-  padding: 0px 10px;
-  background-color: #212529;
-  color: rgba(255, 255, 255, 0.756);
-  margin: 0px 0px 30px 0px;
-  overflow-y: scroll;
-} */
+
 .titleContainer {
   margin-top: 20px;
   position: sticky;
   top: 0;
 }
+
 .title {
-  margin-left: 10px;
+ 
   text-align: left;
+  font-size: 45px;
 }
 
 .toggleStaff {
@@ -70,6 +74,7 @@
   justify-content: flex-start;
   gap: 25px;
 }
+
 .toggleStaffButton {
   display: flex;
   flex-direction: row;
@@ -88,8 +93,8 @@
 }
 
 .activeButton2 {
-  background-color: #212529;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
 
 .line {
@@ -98,9 +103,6 @@
   margin: 10px 0px 10px 0px;
 }
 
-/* .cardsContainer {
-  height: calc(85vh - 72px);
-} */
 
 .staffCard {
   display: flex;
@@ -112,16 +114,19 @@
   border-radius: 15px;
   margin-bottom: 10px;
 }
+
 .staffCard:hover {
   background-color: #00000076;
   cursor: pointer;
 }
+
 .staffInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 15px;
 }
+
 .staffSelector {
   display: flex;
   align-items: center;
@@ -163,9 +168,7 @@
 
 .recordTabMenu {
   display: flex;
-  flex-direction: row;
   gap: 10px;
-  height: 50px;
   color: rgb(0, 0, 0);
   margin-top: 20px;
 }
@@ -176,13 +179,16 @@
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  padding: 0px 20px;
+  height: 50px;
+  padding: 10px 50px;
   margin: 0px 10px 0px 10px;
   font-size: 15px;
-  border-radius: 50px;
-  background-color: #2b2b2b;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.756);
+  /* background-color: #2b2b2b; */
   color: rgba(255, 255, 255, 0.756);
 }
+
 .recordTabItem:hover {
   text-decoration: underline;
 }

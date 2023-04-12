@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import styles from "/styles/booking/ConfirmBooking.module.css";
+import { formattedDate } from "../../config/convertToHours.config";
 
 const ConfirmBooking = () => {
   const router = useRouter();
@@ -24,8 +25,12 @@ const ConfirmBooking = () => {
           <div className={styles.booking_content}>
             Service Type: {serviceName}
           </div>
-          <div className={styles.booking_content}>Start Time: {startTime}</div>
-          <div className={styles.booking_content}>End Time: {endTime}</div>
+          <div className={styles.booking_content}>
+            Start Time: {formattedDate(startTime)}
+          </div>
+          <div className={styles.booking_content}>
+            End Time: {formattedDate(endTime)}
+          </div>
           <div className={styles.booking_content}>Name: {name}</div>
 
           <p className={styles.booking_message2}>
