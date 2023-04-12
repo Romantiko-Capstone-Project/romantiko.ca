@@ -16,7 +16,6 @@ const handler = async (req, res) => {
       const dayOfWeek = selectedDate.getDay() || 7;
       const weekDocument = await Week.findOne({ weekNumber });
 
-
       if (!weekDocument) {
         return res.status(404).json({ message: "Week not found" });
       }
@@ -25,18 +24,16 @@ const handler = async (req, res) => {
         (day) => day.day === getDayOfWeekName(dayOfWeek)
       );
 
-
       if (!dayDocument) {
         return res.status(404).json({ message: "Day not found" });
       }
 
-
       const timeSlots = dayDocument.timeSlots.map((timeSlot) => ({
         _id: timeSlot._id,
         startTime: timeSlot.startTime,
+        isFull: timeSlot.isFull,
         staffAvailability: timeSlot.staffAvailability,
       }));
-
 
       res.status(200).json(timeSlots);
     } catch (err) {
