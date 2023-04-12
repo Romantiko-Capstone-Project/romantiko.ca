@@ -191,6 +191,7 @@ const ShopTab = () => {
       <br></br>
       <div className={styles.right}>
         <div className={styles.container}>
+          <h1 className={styles.secondTitle}>Current Products</h1>
           <div className={styles.productsContainer}>
             {products.map((product) => (
               <div className={styles.productContainer} key={product._id}>

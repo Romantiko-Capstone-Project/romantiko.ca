@@ -2,6 +2,11 @@
     background-color: black;
 }
 
+.secondTitle{
+    color:white;
+    display: flex;
+}
+
 .productsContainer {
     padding: 10px;
     display: flex;
@@ -10,6 +15,7 @@
     justify-content: start;
     color: rgba(255, 255, 255, 0.756);
     flex-wrap: wrap;
+    background-color: black;
 }
 
 .productContainer{
@@ -47,6 +53,12 @@
     /* display: inline-block; */
     padding: 40px 0px;
     margin: 0px 520px;
+    border: 1px solid rgb(0, 0, 0);
+    transition: 0.5s;
+}
+
+.createForm:hover{
+    border-color: white;
 }
 
 /* .p{
@@ -65,24 +77,36 @@
 
 .pageTitle{
     color: rgb(255, 255, 255);
-    padding-top: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background-color: black;
 }
 
-.uploadButton, .deleteButton, .updateButton{
+.uploadButton, .deleteButton, .updateButton, .cancelButton{
     width: 80px;
     padding: 10px 10px;
     border-radius: 5px;
-    background-color: rgb(43, 43, 43);
-    color: rgba(255, 255, 255, 0.853);
+    background-color: rgb(191, 191, 191);
+    color: black;
     border: none;
     font-size: 13px;
+    transition: 0.2s;
 }
 
 .uploadButton{
     float: right;
     margin-right: 40px;
-    background-color: rgb(43, 43, 43);
-    color: white;
+    background-color: rgb(191, 191, 191);
+    color: black;
+}
+
+.cancelButton{
+    float: left;
+    color:black;
+}
+
+.deleteButton:hover, .uploadButton:hover, .updateButton:hover, .cancelButton:hover{
+    background-color: #7A7A7A;
 }
 
 .deleteButton{
