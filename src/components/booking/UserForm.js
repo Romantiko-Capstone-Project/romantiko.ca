@@ -21,7 +21,7 @@ const UserForm = ({
           type="text"
           value={name}
           onChange={onNameChange}
-          placeholder="Name Lastname"
+          placeholder="Fisrstname Lastname"
           pattern="^^[a-zA-Z]{1,30}(\s[a-zA-Z]{1,30}){0,3}$"
           required
         />

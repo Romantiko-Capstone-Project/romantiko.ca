@@ -31,8 +31,6 @@ const TimeSlot = ({
 
   // get time slots
   useEffect(() => {
-    console.log(selectedDate);
-
     const today = dayjs();
     const isTodaySelected =
       selectedDate && dayjs(selectedDate).isSame(today, "day");
@@ -44,7 +42,6 @@ const TimeSlot = ({
           `http://localhost:3000/api/week/${selectedDate.toISOString()}`
         );
         setTimeSlots(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
@@ -179,8 +176,6 @@ const TimeSlot = ({
 
               <div className={styles.staff_container}>
                 {staffsAvailability.map((staffAvail) => {
-
-                  console.log("staff isbooked ", staffAvail.isBooked)
                   return (
                     <div key={staffAvail._id} className={styles.radioL}>
                       <input

@@ -66,10 +66,12 @@ const BookingCard = ({
       router.push({
         pathname: "/booking/confirm-booking",
         query: {
+          name,
+          selectedStaff,
           startTime,
           endTime,
           serviceName: selectedService.serviceName,
-          name,
+          
         },
       });
     } catch (error) {

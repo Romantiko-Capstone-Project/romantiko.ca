@@ -18,8 +18,6 @@ const Dashboard = ({ staffId }) => {
         const bookingsWithServiceNames = await Promise.all(
           response.data.map(async (booking) => {
             const service = await getService(booking.service);
-            console.log("booking.service:", booking.service); // Add this log
-            console.log("service:", service); // Add this log
             return {
               ...booking,
               serviceName: service ? service.serviceName : "Unknown",
@@ -45,7 +43,6 @@ const Dashboard = ({ staffId }) => {
       const response = await axios.get(
         `http://localhost:3000/api/services/${serviceId}`
       );
-      console.log("response.data:", response.data); // Add this log
       return response.data;
     } catch (error) {
       console.error(error);
