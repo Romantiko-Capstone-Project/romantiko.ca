@@ -99,32 +99,35 @@ const ServicesTab = () => {
               <input
                 type="file"
                 onChange={(e) => setFile(e.target.files[0])}
-                onClick={() => setMsg(false)}
+                // onClick={() => setMsg(false)}
                 className="inputFile"
               />
             </div>
           <label>Service name: </label>
                 <input
-                  value={serviceName}
+                  // value={serviceName}
                   type="text"
                   onChange={(e) => setServiceName(e.target.value)}
                 />
                 <label>Price:</label>
                 <input
-                  value={servicePrice}
+                  // value={servicePrice}
                   type="number"
                   onChange={(e) => setServicePrice(e.target.value)}
                 />
                 <label>Description: </label>
                 <textarea
-                  value={serviceDescription}
+                  // value={serviceDescription}
                   onChange={(e) => setServiceDescription(e.target.value)}
                   placeholder="Description here..."
-                  rows="7" cols="50"
+                  rows="5" cols="40"
                 />
            <button onClick={handleCreate} className={styles.uploadButton}>
             Upload
           </button>
+     {msg && (
+                  <h4>The image has been successfully uploaded.</h4>
+                )}
         </div>
       </div>
       <div className={styles.container}>
@@ -179,6 +182,7 @@ const ServicesTab = () => {
                   value={serviceDescription}
                   onChange={(e) => setServiceDescription(e.target.value)}
                   placeholder="Description here..."
+                  rows="5" cols="40"
                 />
                 <br></br>
                 <button onClick={updateButton}>Edit</button>

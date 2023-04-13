@@ -35,7 +35,7 @@ const Service = () => {
           <div className={styles.right}>
                 <div className={styles.serviceText}>
                     <h1 className={styles.title}>{selected.serviceName}</h1>
-                    <span className={styles.price}>${selected.price}</span>
+                    <p className={styles.price}>${selected.price}</p>
                     <p className={styles.desc}>{selected.description}</p>
                 </div>
           </div>
