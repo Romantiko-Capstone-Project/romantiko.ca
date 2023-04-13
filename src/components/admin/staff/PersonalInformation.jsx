@@ -5,17 +5,17 @@ import axios from "axios";
 
 const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [firstName, setFirstName] = useState(selectedStaff?.firstName);
+  const [firstName, setFirstName] = useState(selectedStaff.firstName);
   const [lastName, setLastName] = useState(selectedStaff?.lastName);
   const [address, setAddress] = useState(selectedStaff?.address);
   const [phone, setPhone] = useState(selectedStaff?.phoneNumber);
   const [status, setStatus] = useState(!!selectedStaff?.isActive);
-  const [role, setRole] = useState(extraStaff?.role);
 
   const [isEditPic, setIsEditPic] = useState(false);
   const [extraStaff, setExtraStaff] = useState({});
   const [usr, setUsr] = useState(extraStaff?.username);
   const [email, setEmail] = useState(extraStaff?.email);
+  const [role, setRole] = useState(extraStaff?.role);
   const [img, setImg] = useState(extraStaff?.img);
   const [pwd, setPwd] = useState(extraStaff?.password);
 
@@ -41,7 +41,6 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     setAddress(selectedStaff?.address);
     setPhone(selectedStaff?.phoneNumber);
     setStatus(!!selectedStaff?.isActive);
-    setRole(selectedStaff?.role);
   }, [selectedStaff]);
 
   const toggleEditMode = () => {

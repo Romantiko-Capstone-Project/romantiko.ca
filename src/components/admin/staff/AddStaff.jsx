@@ -112,23 +112,22 @@ const AddStaff = () => {
           />
         </div>
         <div
-        className={styles.statusMessage}
-        style={{
-          color:
-            statusMessage && statusMessage.startsWith("Error")
-              ? "red"
-              : "inherit",
-        }}
-      >
-        {statusMessage}
-      </div>
+          className={styles.statusMessage}
+          style={{
+            color:
+              statusMessage && statusMessage.startsWith("Error")
+                ? "red"
+                : "lime",
+          }}
+        >
+          {statusMessage}
+        </div>
         <div className={styles.action}>
           <button className={styles.actionButton} onClick={handleCreate}>
             Create
           </button>
         </div>
       </div>
-      
     </div>
   );
 };
