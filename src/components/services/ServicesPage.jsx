@@ -51,9 +51,6 @@ const ServicesPage = () => {
               <div className={styles.haircutTitle}>
                <h2>{service.serviceName}</h2>
               </div>
-              {/* <div className={styles.haircutDescription}>
-              {service.description}
-              </div> */}
               <div className={styles.haircutPrice}>
                <h5>&#36;{service.price}</h5>
               </div>
