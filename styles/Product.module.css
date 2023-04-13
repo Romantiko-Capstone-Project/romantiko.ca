@@ -7,6 +7,7 @@
     margin: auto;
     flex-direction: row;
     flex-wrap: wrap;
+    
 }
 
 .left{
@@ -20,6 +21,37 @@
     width: 40%;
 }
 
+.modal{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close{
+    width: 50px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 80px;
+    right: 580px;
+    transition: 0.2s;
+}
+
+.close:hover{
+    background-color: rgb(61, 61, 61);
+}
+
 .title, .price, .desc{
     color: white;
     align-items: center;
@@ -31,8 +63,24 @@
   height: auto;
   border-radius: 10px;
 }
+
+.title{
+    padding-top: 10px;
+}
+
 .price{
+    font-weight: 400;
+    color: rgb(255, 255, 255);
     font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.desc{
+    padding-right: 100px;
+    padding-left: 0px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
 }
 
 .imgContainer{
@@ -41,8 +89,12 @@
     justify-content: center;
     padding: 20px 40px;
     max-width: 100%;
-    
-    
+    transition: 0.3s;
+}
+
+.imgContainer:hover{
+    cursor:pointer;
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 600px){

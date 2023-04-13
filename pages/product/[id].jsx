@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 const Product = () => {
   const [selected, setSelected] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -24,12 +25,18 @@ const Product = () => {
     fetchProduct();
   }, [id]);
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div className={styles.container}>
       
         <div className={styles.left}>
-          <div className={styles.imgContainer}>
-            <img src={selected.img} className={styles.img} alt=""/>
+          
+            
+          <div className={styles.imgContainer} onClick={toggleModal}>
+          <img src={selected.img} className={styles.img} alt=""/>
           </div>
         </div>
       
@@ -40,6 +47,12 @@ const Product = () => {
           <p className={styles.desc}>{selected.description}</p>
         </div>
       </div>
+      {showModal && (
+        <div className={styles.modal}>
+          <Image src={selected.img} alt="" width="800" height="800"/>
+          <button onClick={toggleModal} className={styles.close}>X</button>
+        </div>
+      )}
     </div>
   );
 };
