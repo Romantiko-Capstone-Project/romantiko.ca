@@ -115,3 +115,7 @@
     color: white; /* Set the color of the text */
   }
   
+  .banner img {
+    filter: blur(2px); /* Add a blur filter to the image */
+  }
+  
