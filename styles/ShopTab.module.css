@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: row;
     align-items: left;
-    justify-content: start;
+    justify-content: flex-start;
     color: rgba(255, 255, 255, 0.756);
     flex-wrap: wrap;
     background-color: black;
@@ -50,11 +50,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* display: inline-block; */
     padding: 40px 0px;
-    margin: 0px 520px;
     border: 1px solid rgb(0, 0, 0);
     transition: 0.5s;
+    width: 40vw;
+    margin: auto;
 }
 
 .createForm:hover{
@@ -128,5 +128,10 @@
 
     .title{
         font-style: 30px;
+    }
+
+    .createForm{
+        padding-right: 20px;
+        padding-left: 20px;
     }
 }
