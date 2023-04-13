@@ -26,13 +26,13 @@ const Product = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
+      
         <div className={styles.left}>
           <div className={styles.imgContainer}>
-            <Image src={selected.img} width="600" height="600" alt="" />
+            <img src={selected.img} className={styles.img} alt=""/>
           </div>
         </div>
-      </div>
+      
       <div className={styles.right}>
         <div className={styles.productText}>
           <h1 className={styles.title}>{selected.productName}</h1>
