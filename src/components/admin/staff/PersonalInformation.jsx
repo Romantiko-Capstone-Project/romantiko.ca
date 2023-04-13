@@ -133,6 +133,8 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       );
       console.log(response.data);
       //window.location.reload();
+
+      alert("Staff account successfully deleted.");
     } catch (err) {
       console.error("Error deleting account:", err);
     }
@@ -151,11 +153,10 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         `http://localhost:3000/api/account/${selectedStaff.account}`,
         _img
       );
-
-      // Update the extraStaff state with the default picture
+      alert("Picture successfully deleted");
       // setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
     } catch (err) {
-      console.error("Error deleting picture:", err);
+      alert("Error deleting picture:", err);
     }
   };
 
@@ -225,8 +226,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         </div>
         {isEditPic ? (
           <div className={styles.changePicture}>
-          <form onSubmit={handleChangePicture}>
-            
+            <form onSubmit={handleChangePicture}>
               <h3 className={styles.title}>Change Profile Picture</h3>
               <div className={styles.input}>
                 <label htmlFor="fileInput" className={styles.customFileInput}>
@@ -246,8 +246,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                   Close
                 </button>
               </div>
-            
-          </form>
+            </form>
           </div>
         ) : (
           ""
