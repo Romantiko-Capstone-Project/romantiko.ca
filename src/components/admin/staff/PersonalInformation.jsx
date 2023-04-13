@@ -224,8 +224,9 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
           </div>
         </div>
         {isEditPic ? (
+          <div className={styles.changePicture}>
           <form onSubmit={handleChangePicture}>
-            <div className={styles.changePicture}>
+            
               <h3 className={styles.title}>Change Profile Picture</h3>
               <div className={styles.input}>
                 <label htmlFor="fileInput" className={styles.customFileInput}>
@@ -245,8 +246,9 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                   Close
                 </button>
               </div>
-            </div>
+            
           </form>
+          </div>
         ) : (
           ""
         )}

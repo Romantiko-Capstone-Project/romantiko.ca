@@ -47,6 +47,7 @@ const Product = () => {
           <p className={styles.desc}>{selected.description}</p>
         </div>
       </div>
+      
       {showModal && (
         <div className={styles.modal}>
           <Image src={selected.img} alt="" width="800" height="800"/>
