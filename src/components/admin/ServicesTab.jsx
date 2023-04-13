@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styles from '../../../styles/AdminServices.module.css';
-import Image from 'next/image';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styles from "../../../styles/AdminServices.module.css";
+import Image from "next/image";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ServicesTab = () => {
   const [file, setFile] = useState(null);
-  const [serviceName, setServiceName] = useState('');
-  const [servicePrice, setServicePrice] = useState('');
-  const [serviceDescription, setServiceDescription] = useState('');
+  const [serviceName, setServiceName] = useState("");
+  const [servicePrice, setServicePrice] = useState("");
+  const [serviceDescription, setServiceDescription] = useState("");
   const [msg, setMsg] = useState(false);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
@@ -18,11 +18,11 @@ const ServicesTab = () => {
   const handleCreate = async () => {
     setLoading(true);
     const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', 'uploads'); //make sure the folder in the cloud is the same
+    data.append("file", file);
+    data.append("upload_preset", "uploads"); //make sure the folder in the cloud is the same
     try {
       const uploadRes = await axios.post(
-        'https://api.cloudinary.com/v1_1/dyk9lstek/image/upload',
+        "https://api.cloudinary.com/v1_1/dyk9lstek/image/upload",
         data
       );
       const { url } = uploadRes.data;
@@ -33,7 +33,7 @@ const ServicesTab = () => {
         img: url,
       };
 
-      await axios.post('http://localhost:3000/api/services', newServices);
+      await axios.post("http://localhost:3000/api/services", newServices);
       setImages([...images, { img: url }]);
       setMsg(true);
     } catch (err) {
@@ -54,7 +54,7 @@ const ServicesTab = () => {
 
   const fetchImages = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/services');
+      const { data } = await axios.get("http://localhost:3000/api/services");
       setImages(data);
     } catch (err) {
       console.log(err);
@@ -73,7 +73,10 @@ const ServicesTab = () => {
         price: servicePrice,
         description: serviceDescription,
       };
-      await axios.put(`http://localhost:3000/api/services/${selectedServiceId}`, _service);
+      await axios.put(
+        `http://localhost:3000/api/services/${selectedServiceId}`,
+        _service
+      );
       fetchImages();
       setModal(false);
     } catch (error) {
@@ -90,38 +93,37 @@ const ServicesTab = () => {
   };
 
   return (
-    
     <div className={styles.servicesContainer}>
       <div className={styles.uploadBox}>
         <div className={styles.uploadContainer}>
-            <label>Choose an image</label>
-            <div className={styles.fileInput}>
-              <input
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                onClick={() => setMsg(false)}
-                className="inputFile"
-              />
-            </div>
+          <label>Choose an image</label>
+          <div className={styles.fileInput}>
+            <input
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              onClick={() => setMsg(false)}
+              className="inputFile"
+            />
+          </div>
           <label>Service name: </label>
-                <input
-                  value={serviceName}
-                  type="text"
-                  onChange={(e) => setServiceName(e.target.value)}
-                />
-                <label>Price:</label>
-                <input
-                  value={servicePrice}
-                  type="number"
-                  onChange={(e) => setServicePrice(e.target.value)}
-                />
-                <label>Description: </label>
-                <textarea
-                  value={serviceDescription}
-                  onChange={(e) => setServiceDescription(e.target.value)}
-                  placeholder="Description here..."
-                />
-           <button onClick={handleCreate} className={styles.uploadButton}>
+          <input
+            value={serviceName}
+            type="text"
+            onChange={(e) => setServiceName(e.target.value)}
+          />
+          <label>Price:</label>
+          <input
+            value={servicePrice}
+            type="number"
+            onChange={(e) => setServicePrice(e.target.value)}
+          />
+          <label>Description: </label>
+          <textarea
+            value={serviceDescription}
+            onChange={(e) => setServiceDescription(e.target.value)}
+            placeholder="Description here..."
+          />
+          <button onClick={handleCreate} className={styles.uploadButton}>
             Upload
           </button>
         </div>
@@ -135,9 +137,9 @@ const ServicesTab = () => {
                 alt="Haircut img not found"
                 width="205"
                 height="205"
-                style={{ borderRadius: "10px" }} 
+                style={{ borderRadius: "10px" }}
               />
-               <button className={styles.deleteButton}>
+              <button className={styles.deleteButton}>
                 <DeleteIcon onClick={() => handleRemove(image._id)} />
               </button>
               <button
@@ -152,7 +154,6 @@ const ServicesTab = () => {
             </div>
           ))}
         </div>
-        
       </div>
       {modal && (
         <div className={styles.modal}>

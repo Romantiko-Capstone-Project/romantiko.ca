@@ -36,6 +36,9 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       }
     };
     fetchData();
+  }, [selectedStaff, extraStaff]);
+
+  useEffect(() => {
     setFirstName(selectedStaff?.firstName);
     setLastName(selectedStaff?.lastName);
     setAddress(selectedStaff?.address);
@@ -120,7 +123,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     //CODE MISSING FOR ROLE VERIFICATION.
 
     if (extraStaff.role === "admin") {
-      console.log("Cannot delete admin account");
+      alert("Cannot delete admin account");
       return;
     }
 
@@ -160,7 +163,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     setImg(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+  const handleChangePicture = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("file", img);
@@ -182,6 +185,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       );
       console.log("New updated picture: ", updateRes.data);
       // setExtraStaff((prevState) => ({ ...prevState, img: url }));
+      setIsEditPic(false);
     } catch (err) {
       console.error("Error uploading image:", err);
     }
@@ -220,12 +224,29 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
           </div>
         </div>
         {isEditPic ? (
-          <div className={styles.changePicture}>
-            <form onSubmit={handleSubmit}>
-              <input type="file" accept="image/*" onChange={handleFileChange} />
-              <button type="submit">Upload</button>
-            </form>
-          </div>
+          <form onSubmit={handleChangePicture}>
+            <div className={styles.changePicture}>
+              <h3 className={styles.title}>Change Profile Picture</h3>
+              <div className={styles.input}>
+                <label htmlFor="fileInput" className={styles.customFileInput}>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+                  />
+                  Click here to select an image
+                </label>
+              </div>
+              <div className={styles.buttons}>
+                <button type="submit">Upload</button>
+                <button type="button" onClick={() => setIsEditPic(false)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </form>
         ) : (
           ""
         )}
@@ -398,8 +419,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
           </div>
         </div>
       </div>
-      <div className={styles.bottom}>
-      </div>
+      <div className={styles.bottom}></div>
     </div>
   );
 };
