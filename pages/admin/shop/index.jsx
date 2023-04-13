@@ -4,14 +4,14 @@ import Index from "..";
 import ShopTab from "../../../src/components/admin/ShopTab";
 
 const Shop = () => {
-
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const role = useSelector((state) => state.auth.role);
 
-  if (!loggedIn) {
+  if (!loggedIn || role !== "admin") {
     router.push("/Login");
   }
-  
+
   return (
     <Index>
       <ShopTab />

@@ -12,16 +12,17 @@ import { useEffect } from "react";
 const Index = ({ children }) => {
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const role = useSelector((state) => state.auth.role);
+
+  if (!loggedIn && role !== "admin") {
+    router.push("/Login");
+  }
 
   useEffect(() => {
     if (router.pathname === "/admin") {
       router.replace("/admin/staff");
     }
   }, [router]);
-
-  if (!loggedIn) {
-    router.push("/Login");
-  }
 
   return (
     <div className={styles.container}>

@@ -44,6 +44,7 @@ const LoginPage = () => {
         handleLogin(response.data.id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
       }
+
       /** set name */
       //handleName(response.data.id);
       //console.log(response.data);

@@ -6,8 +6,9 @@ import StaffTab from "../../../src/components/admin/StaffTab";
 const Staff = () => {
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const role = useSelector((state) => state.auth.role);
 
-  if (!loggedIn) {
+  if (!loggedIn || role !== "admin") {
     router.push("/Login");
   }
 
