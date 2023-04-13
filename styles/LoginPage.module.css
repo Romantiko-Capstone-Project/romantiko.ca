@@ -1,41 +1,53 @@
 .container {
     display: flex;
-    min-height: 80vh;
-    background-image: url('/img/login/barberPic.jpg');
+    height: 80vh;
+    max-height: fit-content;
+    background-image: url('/img/retroBarber.png');
     background-size: cover;
     position: relative;
+    
 }
-
+.overlay{
+    background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 20%, rgba(0,0,0,0.7) 100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+}
 .wrapper {
     display: flex;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+    
     flex-direction: column;
-    width: 350px;
-    height: 45vh;
-    background-color: white;
+    width: 550px;
+    height: 400px;
+    background-color: rgba(61, 61, 61, 0.493);
     box-shadow: 0 0 30px 10px #1b1b1b;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 15px;
+    padding-left:3%;
+    padding-right:3%;
+    justify-content: center;
+    border-radius: 20px;
+    color: whitesmoke;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.wrapper h2{
+    font-weight: lighter;
+    
+    font-size: 2rem;
 
 }
-
 .button {
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 12px;
-    margin-left: 98px;
-    margin-right: auto;
+    margin-top: 4%;
     padding: 12px;
-    width: 130px;
+    width: 100%;
     border: none;
-    background-color: rgb(220, 216, 216);
+    background-color: rgb(31, 82, 112);
     font-size: 1.1rem;
     text-align: center;
-
+    color: whitesmoke;
 
 }
 
@@ -51,278 +63,34 @@
     color: black;
 }
 
-.mylink {
-    margin-top: 60px;
-    color: #6082B6;
-}
+.wrapper.loaded {
+    opacity: 1;
+  }
 
 
 
-
-
-
-@media screen and (max-width: 912px) {
+  @media screen and (max-width: 890px){
+    
     .wrapper {
-        background-color: white;
         display: flex;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
+        
         flex-direction: column;
-        width: 312px;
-        height: 32vh;
-        opacity: 80;
+        width: 550px;
+        height: 400px;
+        background-color: rgba(61, 61, 61, 0.493);
         box-shadow: 0 0 30px 10px #1b1b1b;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 28px;
-
-
-
+        padding-left:3%;
+        padding-right:3%;
+        justify-content: center;
+        border-radius: 20px;
+        color: whitesmoke;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
     }
-
-    .button {
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        margin-left: 90px;
-        margin-right: auto;
-        padding: 9px;
-        width: 100px;
-        border: none;
-        background-color: rgb(237, 233, 233);
-        font-size: 1.1rem;
-
-
+    .wrapper h2{
+        font-weight: lighter;
+        
+        font-size: 2rem;
+    
     }
-
-    .button:hover {
-        background-color: rgb(159, 157, 157);
-        transition: background-color 0.2s;
-    }
-
-    .container {
-        display: flex;
-        min-height: 80vh;
-        background-image: url('/img/login/barberPic.jpg');
-        background-size: cover;
-    }
-
-}
-
-
-@media screen and (max-width: 768px) {
-    .wrapper {
-        background-color: white;
-        display: flex;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
-        flex-direction: column;
-        width: 252px;
-        height: 35vh;
-        opacity: 80;
-        box-shadow: 0 0 30px 10px #1b1b1b;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 15px;
-
-
-
-    }
-
-    .button {
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        margin-left: 60px;
-        margin-right: auto;
-        padding: 9px;
-        width: 100px;
-        border: none;
-        background-color: rgb(237, 233, 233);
-        font-size: 1.1rem;
-        text-align: center;
-
-
-    }
-
-    .button:hover {
-        background-color: rgb(159, 157, 157);
-        transition: background-color 0.2s;
-    }
-
-    .container {
-        display: flex;
-        min-height: 80vh;
-        background-image: url('/img/login/barberPic.jpg');
-        background-size: cover;
-        position: relative;
-    }
-
-
-
-
-
-
-}
-
-@media screen and (max-width: 481px) {
-    .wrapper {
-        background-color: white;
-        display: flex;
-        margin-top: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
-        flex-direction: column;
-        width: 252px;
-        height: 44vh;
-        opacity: 80;
-        box-shadow: 0 0 30px 10px #1b1b1b;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 17px;
-
-
-
-    }
-
-    .button {
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        margin-left: 60px;
-        margin-right: auto;
-        padding: 9px;
-        width: 100px;
-        border: none;
-        background-color: rgb(237, 233, 233);
-        font-size: 1.1rem;
-        text-align: center;
-
-
-    }
-
-    .button:hover {
-        background-color: rgb(159, 157, 157);
-        transition: background-color 0.2s;
-    }
-
-    .container {
-        display: flex;
-        min-height: 80vh;
-        background-image: url('/img/login/barberPic.jpg');
-        background-size: cover;
-        position: relative;
-    }
-
-}
-
-
-@media screen and (max-width: 391px) {
-    .wrapper {
-        background-color: white;
-        display: flex;
-        margin-top: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
-        flex-direction: column;
-        width: 252px;
-        height: 46vh;
-        opacity: 80;
-        box-shadow: 0 0 30px 10px #1b1b1b;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 15px;
-
-
-
-    }
-
-    .button {
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        margin-left: 60px;
-        margin-right: auto;
-        padding: 9px;
-        width: 100px;
-        border: none;
-        background-color: rgb(237, 233, 233);
-        font-size: 1.1rem;
-        text-align: center;
-
-
-    }
-
-    .button:hover {
-        background-color: rgb(159, 157, 157);
-        transition: background-color 0.2s;
-    }
-
-    .container {
-        display: flex;
-        min-height: 80vh;
-        background-image: url('/img/login/barberPic.jpg');
-        background-size: cover;
-        position: relative;
-    }
-
-}
-
-
-@media screen and (max-width: 376px) {
-    .wrapper {
-        background-color: white;
-        display: flex;
-        margin-top: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
-        flex-direction: column;
-        width: 252px;
-        height: 56.6vh;
-        opacity: 80;
-        box-shadow: 0 0 30px 10px #1b1b1b;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-
-
-
-    }
-
-    .button {
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        margin-left: 60px;
-        margin-right: auto;
-        padding: 9px;
-        width: 100px;
-        border: none;
-        background-color: rgb(237, 233, 233);
-        font-size: 1.1rem;
-        text-align: center;
-
-
-    }
-
-    .button:hover {
-        background-color: rgb(159, 157, 157);
-        transition: background-color 0.2s;
-    }
-
-    .container {
-        display: flex;
-        min-height: 80vh;
-        background-image: url('/img/login/barberPic.jpg');
-        background-size: 1000px auto;
-        position: relative;
-    }
-
 }
