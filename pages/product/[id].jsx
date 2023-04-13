@@ -4,6 +4,7 @@ import styles from "../../styles/Product.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Product = () => {
   const [selected, setSelected] = useState([]);
@@ -41,11 +42,15 @@ const Product = () => {
         </div>
       
       <div className={styles.right}>
-        <div className={styles.productText}>
+        
           <h1 className={styles.title}>{selected.productName}</h1>
           <span className={styles.price}>${selected.price}</span>
           <p className={styles.desc}>{selected.description}</p>
-        </div>
+          <Link href="/shop">
+          <button className={styles.btn1}>
+              Back
+            </button>
+            </Link>
       </div>
       
       {showModal && (
