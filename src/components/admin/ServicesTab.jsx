@@ -120,6 +120,7 @@ const ServicesTab = () => {
                   value={serviceDescription}
                   onChange={(e) => setServiceDescription(e.target.value)}
                   placeholder="Description here..."
+                  rows="7" cols="50"
                 />
            <button onClick={handleCreate} className={styles.uploadButton}>
             Upload

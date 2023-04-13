@@ -22,8 +22,15 @@ const ServicesPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.banner}>
+        <Image
+          src="/img/banner.jpg"
+          alt="Banner image"
+          width="1890"
+          height="400"
+        />
+      </div>
       <div className={styles.imagesContainer}>
-
         {services.map((service) => (
           <div className={styles.imgContainer} key={service._id}>
             <Link href={`/service/${service._id}`} passHref>

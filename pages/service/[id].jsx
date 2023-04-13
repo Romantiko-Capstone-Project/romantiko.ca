@@ -28,7 +28,7 @@ const Service = () => {
     <div className={styles.container}>
           <div className={styles.left}>
               <div className={styles.imgContainer}>
-                  <Image src={selected.img} width="600" height="400" alt="" />
+                  <Image src={selected.img} width="600" height="600" alt="" />
               </div>
           </div>
       
