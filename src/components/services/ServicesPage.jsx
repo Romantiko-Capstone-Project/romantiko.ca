@@ -23,17 +23,12 @@ const ServicesPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
-        <Image
-          src="/img/banner.jpg"
-          alt="Banner image"
-          width="2400"
-          height="500"
-          objectFit="cover"
-        />
-        <div className={styles.bannerText}>
-          <h1>Our Services</h1>
-        </div>
+        {/* <img className={styles.img}
+          src="/img/serviceBanner.png"
+          
+        /> */}
       </div>
+      <h1 className={styles.title}>Our Services</h1>
       {/* <h1 className={styles.title}>SERVICES</h1> */}
       <div className={styles.imagesContainer}>
 

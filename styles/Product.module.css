@@ -126,7 +126,7 @@
     color: black;
     
   }
-@media screen and (max-width: 860px){
+@media screen and (max-width: 890px){
     .container{
         height: auto;
         text-align: center;
