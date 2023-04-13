@@ -101,17 +101,17 @@ const Booking = () => {
           </div>
           <div
             style={{
-              width: "60%",
+              width: "40%",
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               marginTop: "2%",
             }}
           >
-            <button onClick={() => setCurrentStep(0)} className={styles.btn1}>
+            <button onClick={() => setCurrentStep(0)} className={styles.btn1} style={{width:"100%"}}>
               Back
             </button>
-            <button onClick={handleSelectTimeSlot} className={styles.btn1}>
+            <button onClick={handleSelectTimeSlot} className={styles.btn1} style={{width:"100%"}}>
               Next
             </button>
           </div>

@@ -2,7 +2,7 @@
   margin: auto;
   margin-top: 1%;
   padding: 2%;
-  width: 80%;
+  width: 100%;
   background-color: white;
   color: black;
   min-height: 800px;
@@ -20,7 +20,13 @@ body {
 
 h1 {
   text-align: center;
-  font-weight: bold;
+  font-weight: lighter;
   margin-bottom: 3%;
 
+}
+
+.rbc-toolbar-label{
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
 }

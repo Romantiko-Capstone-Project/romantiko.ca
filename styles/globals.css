@@ -206,6 +206,8 @@ footer {
 .MuiPickersLayout-root {
   border-radius: 10px;
 }
+
+
 @media screen and (max-width: 830px) {
   .vidBG {
     position: relative;
