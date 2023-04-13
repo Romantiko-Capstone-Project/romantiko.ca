@@ -8,7 +8,7 @@ const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-
+  const role = useSelector((state) => state.auth.role);
   const handleLogout = () => {
     dispatch(logout());
     router.push("/");
@@ -37,6 +37,13 @@ const Header = () => {
           {loggedIn ? (
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
+                {role === "admin" && (
+                  <li className="nav-item">
+                    <Link href="/admin">
+                      <a className="nav-link mx-2">Admin</a>
+                    </Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link href="/dashboard">
                     <a className="nav-link mx-2">Dashboard</a>

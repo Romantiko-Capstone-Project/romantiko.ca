@@ -187,6 +187,7 @@ const ShopTab = () => {
             </button>
           </div>
         </div>
+        
       </div>
       <br></br>
       <div className={styles.right}>
