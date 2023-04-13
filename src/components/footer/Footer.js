@@ -102,9 +102,11 @@ function Footer() {
                   <td colSpan={2}>
                     <Link href="/Login" passHref>
                       <a
-                        className="btn btn-lg"
-                        style={{ width: "100%", backgroundColor: "#808080" }}
+                        
+                        style={{ width: "100%", color:"whitesmoke",
+                        textDecoration:"none"  }}
                         type="button"
+                        
                       >
                         Staff Login
                       </a>

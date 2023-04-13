@@ -111,9 +111,7 @@ const LoginPage = () => {
           </button>
           <br />
 
-          <a href="https://www.google.com/?hl=en-US" className={styles.mylink}>
-            Forgot password?
-          </a>
+          
         </div>
       </div>
     </div>
