@@ -102,3 +102,16 @@
     background-size: cover;
     position: relative;
   }
+
+  .bannerText {
+    position: absolute; /* Set the position property to absolute */
+    top: 50%; /* Position the text 50% from the top */
+    left: 50%; /* Position the text 50% from the left */
+    transform: translate(-50%, -50%); /* Center the text vertically and horizontally */
+  }
+  
+  .bannerText h1 {
+    font-size: 10rem; /* Set the font size of the text */
+    color: white; /* Set the color of the text */
+  }
+  
