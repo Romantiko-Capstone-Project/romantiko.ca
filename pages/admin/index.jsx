@@ -27,49 +27,47 @@ const Index = ({ children }) => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
-        <div className={styles.border}>
-          <div className={styles.tabMenu}>
-            <Link href="/admin/staff">
-              <div className={styles.tabButtonContainer}>
-                <div className={styles.tabButton}>
-                  <TiBusinessCard size={30} />
-                  <a>Staff</a>
-                </div>
+        <div className={styles.tabMenu}>
+          <Link href="/admin/staff">
+            <div className={styles.tabButtonContainer}>
+              <div className={styles.tabButton}>
+                <TiBusinessCard size={30} />
+                <a>Staff</a>
               </div>
-            </Link>
-            <Link href="/admin/shop">
-              <div className={styles.tabButtonContainer}>
-                <div className={styles.tabButton}>
-                  <BsShop size={30} />
-                  <a>Shop</a>
-                </div>
+            </div>
+          </Link>
+          <Link href="/admin/shop">
+            <div className={styles.tabButtonContainer}>
+              <div className={styles.tabButton}>
+                <BsShop size={30} />
+                <a>Shop</a>
               </div>
-            </Link>
-            <Link href="/admin/booking">
-              <div className={styles.tabButtonContainer}>
-                <div className={styles.tabButton}>
-                  <VscCalendar size={30} />
-                  <a>Booking</a>
-                </div>
+            </div>
+          </Link>
+          <Link href="/admin/booking">
+            <div className={styles.tabButtonContainer}>
+              <div className={styles.tabButton}>
+                <VscCalendar size={30} />
+                <a>Booking</a>
               </div>
-            </Link>
-            <Link href="/admin/services">
-              <div className={styles.tabButtonContainer}>
-                <div className={styles.tabButton}>
-                  <ImScissors size={30} />
-                  <a>Services</a>
-                </div>
+            </div>
+          </Link>
+          <Link href="/admin/services">
+            <div className={styles.tabButtonContainer}>
+              <div className={styles.tabButton}>
+                <ImScissors size={30} />
+                <a>Services</a>
               </div>
-            </Link>
-            <Link href="/admin/gallery">
-              <div className={styles.tabButtonContainer}>
-                <div className={styles.tabButton}>
-                  <TfiGallery size={30} />
-                  <a>Gallery</a>
-                </div>
+            </div>
+          </Link>
+          <Link href="/admin/gallery">
+            <div className={styles.tabButtonContainer}>
+              <div className={styles.tabButton}>
+                <TfiGallery size={30} />
+                <a>Gallery</a>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.item}>{children}</div>

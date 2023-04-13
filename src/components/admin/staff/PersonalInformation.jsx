@@ -28,7 +28,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/account/${selectedStaff.account}`
+          `http://localhost:3000/api/account/${selectedStaff?.account}`
         ); // pass id as a parameter in the URL
         setExtraStaff(data);
       } catch (error) {
@@ -36,7 +36,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       }
     };
     fetchData();
-  }, [selectedStaff, extraStaff]);
+  }, [selectedStaff]);
 
   useEffect(() => {
     setFirstName(selectedStaff?.firstName);
