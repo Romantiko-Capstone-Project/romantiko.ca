@@ -8,7 +8,13 @@ const mapBookingsToEvents = (bookings) => {
     title: booking.customerName,
     start: new Date(booking.startTime),
     end: new Date(booking.endTime),
-    desc: booking.serviceName,
+    desc: (
+      <>
+        Service Name: {booking.serviceName}
+        <br />
+        Customer notes: {booking.notes}
+      </>
+    ),
   }));
 };
 
@@ -22,7 +28,17 @@ export default function CalendarView({ bookings }) {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        tooltipAccessor="desc"
+        components={{
+          agenda: {
+            event: ({ event }) => (
+              <div>
+                <strong>{event.title}</strong>
+                <br />
+                {event.desc}
+              </div>
+            ),
+          },
+        }}
       />
     </div>
   );

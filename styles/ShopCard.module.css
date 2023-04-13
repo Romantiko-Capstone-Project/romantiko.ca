@@ -11,13 +11,13 @@
 .title{
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: whitesmoke;
     text-transform: uppercase;
 }
 
 .price, .desc{
     font-size: 16px;
-    color: black;
+    color: whitesmoke
 }
 
 .price{
@@ -41,9 +41,11 @@
     padding: 10px;
     justify-content: space-between;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.756);
+    background-color: #333333a4;
+    color: whitesmoke;
     cursor: pointer;
     transition: transform .2s;
+    border-radius: 10px;
 }
 
 .wrapper:hover{

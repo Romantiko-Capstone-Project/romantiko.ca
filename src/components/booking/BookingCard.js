@@ -56,7 +56,8 @@ const BookingCard = ({
     };
 
     try {
-      const response = await axios.post(
+
+      await axios.post(
         "http://localhost:3000/api/booking/",
         bookingData
       );
@@ -65,10 +66,12 @@ const BookingCard = ({
       router.push({
         pathname: "/booking/confirm-booking",
         query: {
+          name,
+          selectedStaff,
           startTime,
           endTime,
           serviceName: selectedService.serviceName,
-          name,
+          
         },
       });
     } catch (error) {

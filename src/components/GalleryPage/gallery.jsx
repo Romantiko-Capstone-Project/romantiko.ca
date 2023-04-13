@@ -22,6 +22,7 @@ function GalleryStuff() {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>GALLERY</h1>
       <div className={styles.imagesContainer}>
         {images.map((image) => (
           <div className={styles.imgContainer} key={image._id}>

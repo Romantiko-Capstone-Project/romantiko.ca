@@ -1,6 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Week from "../../../models/Week";
-import Staff from "../../../models/Staff";
+import Staff from "../../../models/staff";
 
 const handler = async (req, res) => {
   const {
@@ -13,25 +13,42 @@ const handler = async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const timeslot = await Week.findOne(
-          { "days.timeSlots._id": id },
-          { "days.timeSlots.$": 1 }
-        )
+        const week = await Week.findOne({ "days.timeSlots._id": id })
           .populate({
             path: "days.timeSlots.staffAvailability.staff",
-            model: Staff, // Pass the Staff model schema here
+            model: Staff,
           })
           .exec();
 
-        if (!timeslot) {
+        if (!week) {
           return res.status(400).json({ success: false });
         }
 
-        const staffIds = timeslot.days[0].timeSlots[0].staffAvailability.map(
-          (availability) => availability.staff._id
+        const day = week.days.find((day) =>
+          day.timeSlots.some((timeSlot) => timeSlot._id.toString() === id)
         );
 
-        res.status(200).json(staffIds);
+        if (!day) {
+          return res.status(400).json({ success: false });
+        }
+
+        const timeSlot = day.timeSlots.find(
+          (timeSlot) => timeSlot._id.toString() === id
+        );
+
+        if (!timeSlot) {
+          return res.status(400).json({ success: false });
+        }
+
+        const staffAvailabilities = timeSlot.staffAvailability.map(
+          (availability) => ({
+            _id: availability._id,
+            staff: availability.staff,
+            isBooked: availability.isBooked,
+          })
+        );
+
+        res.status(200).json(staffAvailabilities);
       } catch (error) {
         res.status(400).json({ success: false });
         console.error(error);

@@ -7,11 +7,17 @@ import { BsShop } from "react-icons/bs";
 import { VscCalendar } from "react-icons/vsc";
 import { ImScissors } from "react-icons/im";
 import { TfiGallery } from "react-icons/Tfi";
+import { useEffect } from "react";
 
 const Index = ({ children }) => {
-
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+
+  useEffect(() => {
+    if (router.pathname === "/admin") {
+      router.replace("/admin/staff");
+    }
+  }, [router]);
 
   if (!loggedIn) {
     router.push("/Login");

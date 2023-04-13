@@ -10,7 +10,7 @@ const StaffTab = () => {
   const [activeStaff, setActiveStaff] = useState([]); // Add this
   const [inactiveStaff, setInactiveStaff] = useState([]); // Add this
   const [activeTab, setActiveTab] = useState("tab1");
-  const [selectedStaff, setSelectedStaff] = useState({});
+  const [selectedStaff, setSelectedStaff] = useState(null);
   const [currentStaffList, setCurrentStaffList] = useState("active"); // Add this
   const [actionTab, setActionTab] = useState("tab1");
 
@@ -19,14 +19,26 @@ const StaffTab = () => {
       try {
         const { data } = await axios.get("http://localhost:3000/api/staff");
         setStaffs(data);
-        setActiveStaff(data.filter((staff) => staff.isActive)); // Add this
-        setInactiveStaff(data.filter((staff) => !staff.isActive)); // Add this
+        const activeStaffData = data.filter((staff) => staff.isActive);
+        const inactiveStaffData = data.filter((staff) => !staff.isActive);
+        setActiveStaff(activeStaffData);
+        setInactiveStaff(inactiveStaffData);
       } catch (err) {
         console.log(err);
       }
     };
     fetchStaffs();
   }, [staffs]);
+
+  useEffect(() => {
+    if (selectedStaff === null) {
+      if (activeStaff.length > 0 && currentStaffList === "active") {
+        setSelectedStaff(activeStaff[0]);
+      } else if (inactiveStaff.length > 0 && currentStaffList === "inactive") {
+        setSelectedStaff(inactiveStaff[0]);
+      }
+    }
+  }, [selectedStaff, activeStaff, inactiveStaff, currentStaffList]);
 
   const handleToggleStaffClick = (list) => {
     setCurrentStaffList(list);
@@ -41,18 +53,30 @@ const StaffTab = () => {
 
   const handleStaffUpdate = (updatedStaff) => {
     // Update the staffs array with the updated staff data
-    setStaffs(
-      staffs.map((staff) =>
-        staff._id === updatedStaff._id ? updatedStaff : staff
-      )
+    const newStaffs = staffs.map((staff) =>
+      staff._id === updatedStaff._id ? updatedStaff : staff
     );
-    // Update the selectedStaff with the updated staff data
-    setSelectedStaff(updatedStaff);
+    setStaffs(newStaffs);
+
+    // Update the activeStaff and inactiveStaff arrays
+    const activeStaffData = newStaffs.filter((staff) => staff.isActive);
+    const inactiveStaffData = newStaffs.filter((staff) => !staff.isActive);
+    setActiveStaff(activeStaffData);
+    setInactiveStaff(inactiveStaffData);
+
+    // If the selectedStaff is the one being updated, update its reference
+    if (selectedStaff._id === updatedStaff._id) {
+      const newSelectedStaff = updatedStaff.isActive
+        ? activeStaffData.find((staff) => staff._id === updatedStaff._id)
+        : inactiveStaffData.find((staff) => staff._id === updatedStaff._id);
+      setSelectedStaff(newSelectedStaff);
+    }
   };
+
   const HandleActionTabClick = (tab) => {
     setActionTab(tab);
   };
-
+  console.log(selectedStaff);
   return (
     <>
       <div className={styles.container}>
@@ -111,7 +135,7 @@ const StaffTab = () => {
                     <div
                       key={staff._id}
                       className={`${styles.staffCard} ${
-                        selectedStaff._id === staff._id
+                        selectedStaff?._id === staff._id
                           ? styles.activeStaffCard
                           : ""
                       }`}
@@ -149,16 +173,15 @@ const StaffTab = () => {
                   </div>
                 </div>
                 <div className={styles.content}>
-                  {activeTab === "tab1" && (
+                  {activeTab === "tab1" && selectedStaff && (
                     <PersonalInformation
                       selectedStaff={selectedStaff}
                       onUpdate={handleStaffUpdate}
                     />
                   )}
-                  {activeTab === "tab2" && (
+                  {activeTab === "tab2" && selectedStaff && (
                     <PersonalBookings selectedStaff={selectedStaff} />
                   )}
-                  {activeTab === "tab3" && <div>Content for Tab 3</div>}
                 </div>
               </div>
             </div>

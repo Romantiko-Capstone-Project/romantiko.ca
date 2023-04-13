@@ -9,6 +9,7 @@ const ConfirmBooking = () => {
   const startTime = router.query.startTime;
   const endTime = router.query.endTime;
   const serviceName = router.query.serviceName;
+  const barberName = router.query.selectedStaff;
 
   const name = router.query.name;
   return (
@@ -22,8 +23,12 @@ const ConfirmBooking = () => {
         </div>
 
         <div className={styles.booking_details}>
+          <div className={styles.booking_content}>Name: {name}</div>
           <div className={styles.booking_content}>
             Service Type: {serviceName}
+          </div>
+          <div className={styles.booking_content}>
+            Barber Name: {barberName}
           </div>
           <div className={styles.booking_content}>
             Start Time: {formattedDate(startTime)}
@@ -31,7 +36,6 @@ const ConfirmBooking = () => {
           <div className={styles.booking_content}>
             End Time: {formattedDate(endTime)}
           </div>
-          <div className={styles.booking_content}>Name: {name}</div>
 
           <p className={styles.booking_message2}>
             We look forward to seeing you!

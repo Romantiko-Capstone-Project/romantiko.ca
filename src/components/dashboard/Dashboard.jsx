@@ -3,11 +3,10 @@ import CalendarView from "./CalendarView";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Dashboard = ({staffId}) => {
+const Dashboard = ({ staffId }) => {
   const [errorMess, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
   const [bookings, setBookings] = useState([]);
-
 
   useEffect(() => {
     const getBookings = async () => {
@@ -21,7 +20,7 @@ const Dashboard = ({staffId}) => {
             const service = await getService(booking.service);
             return {
               ...booking,
-              serviceName: service ? service.name : "Unknown",
+              serviceName: service ? service.serviceName : "Unknown",
             };
           })
         );

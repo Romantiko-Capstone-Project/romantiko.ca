@@ -22,6 +22,7 @@ const ServicesPage = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>SERVICES</h1>
       <div className={styles.imagesContainer}>
 
         {services.map((service) => (
