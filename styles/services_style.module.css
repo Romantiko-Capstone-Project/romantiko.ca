@@ -43,7 +43,8 @@
     position: relative;
     min-height: 100vh;
     background: #191919;
-  
+    margin-bottom: 3%;
+    
     /* overflow-y: scroll; */
   }
   
