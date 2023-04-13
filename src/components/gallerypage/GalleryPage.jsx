@@ -22,6 +22,7 @@ const GalleryPage = () => {
 
   return (
     <div className={styles.container}>
+      
       <div className={styles.imagesContainer}>
         {images.map((image) => (
           <div className={styles.imgContainer} key={image._id}>
