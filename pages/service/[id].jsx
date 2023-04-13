@@ -28,14 +28,14 @@ const Service = () => {
     <div className={styles.container}>
           <div className={styles.left}>
               <div className={styles.imgContainer}>
-                  <Image src={selected.img} width="600" height="400" alt="" />
+                  <Image src={selected.img} width="600" height="600" alt="" />
               </div>
           </div>
       
           <div className={styles.right}>
                 <div className={styles.serviceText}>
                     <h1 className={styles.title}>{selected.serviceName}</h1>
-                    <span className={styles.price}>${selected.price}</span>
+                    <p className={styles.price}>${selected.price}</p>
                     <p className={styles.desc}>{selected.description}</p>
                 </div>
           </div>
