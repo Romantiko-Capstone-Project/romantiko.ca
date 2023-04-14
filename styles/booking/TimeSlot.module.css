@@ -122,3 +122,16 @@
     opacity: 1;
     transform: translateX(0);
   }
+
+  .radioButton:disabled +.buttonLabel {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .radioButton:disabled:hover +.buttonLabel {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transition: none;
+    background-color: #fff;
+    color: #333;
+  }
+  

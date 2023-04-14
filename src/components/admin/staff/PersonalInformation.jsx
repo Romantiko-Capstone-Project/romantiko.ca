@@ -17,7 +17,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [email, setEmail] = useState(extraStaff?.email);
   const [role, setRole] = useState(extraStaff?.role);
   const [img, setImg] = useState(extraStaff?.img);
-  const [pwd, setPwd] = useState(extraStaff?.password);
+  // const [pwd, setPwd] = useState(extraStaff?.password);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/account/${selectedStaff.account}`
+          `http://localhost:3000/api/account/${selectedStaff?.account}`
         ); // pass id as a parameter in the URL
         setExtraStaff(data);
       } catch (error) {
@@ -36,7 +36,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       }
     };
     fetchData();
-  }, [selectedStaff, extraStaff]);
+  }, [selectedStaff]);
 
   useEffect(() => {
     setFirstName(selectedStaff?.firstName);
@@ -63,7 +63,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     const _extraStaff = {
       username: usr,
       email,
-      password: pwd,
+      // password: pwd,
     };
 
     try {
@@ -374,7 +374,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                 </span>
               )}
             </div>
-            <div className={styles.infoItem}>
+            {/* <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Password:</h4>
               <span className={styles.infoInput}>
                 {isEditMode ? (
@@ -393,7 +393,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                   </span>
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.actions}>

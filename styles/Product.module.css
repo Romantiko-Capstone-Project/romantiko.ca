@@ -69,9 +69,11 @@
     font-size: 2rem;
 }
 .img{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 600px;
+  border-radius: 10px;
 }
 
 .title{
@@ -126,7 +128,7 @@
     color: black;
     
   }
-@media screen and (max-width: 860px){
+@media screen and (max-width: 890px){
     .container{
         height: auto;
         text-align: center;

@@ -22,7 +22,14 @@ const ServicesPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>SERVICES</h1>
+      <div className={styles.banner}>
+        {/* <img className={styles.img}
+          src="/img/serviceBanner.png"
+          
+        /> */}
+      </div>
+      <h1 className={styles.title}>Our Services</h1>
+      {/* <h1 className={styles.title}>SERVICES</h1> */}
       <div className={styles.imagesContainer}>
 
         {services.map((service) => (
