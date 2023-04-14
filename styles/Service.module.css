@@ -141,8 +141,8 @@
   .btn1:hover {
     background-color: whitesmoke;
     color: black;
-    
   }
+
 @media screen and (max-width: 890px){
     .container{
         height: auto;

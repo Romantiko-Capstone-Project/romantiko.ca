@@ -94,9 +94,10 @@ const ServicesTab = () => {
 
   return (
     <div className={styles.servicesContainer}>
-      <h1 className={styles.servicesTitle}></h1>
+      <h1 className={styles.servicesTitle}>Manage Services</h1>
       <div className={styles.uploadBox}>
         <div className={styles.uploadContainer}>
+        <h4 className={styles.addTitle}>Add a service</h4>
             <label>Choose an image</label>
             <div className={styles.fileInput}>
               <input
@@ -133,6 +134,7 @@ const ServicesTab = () => {
                 )}
         </div>
       </div>
+      <h1 className={styles.currentServices}>Current Services</h1>
       <div className={styles.container}>
         <div className={styles.imagesContainer}>
           {images.map((image) => (
