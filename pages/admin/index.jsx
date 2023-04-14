@@ -46,7 +46,7 @@ const Index = ({ children }) => {
           </Link>
           <Link href="/admin/booking">
             <div className={styles.tabButtonContainer}>
-              <div className={styles.tabButton}>
+              <div className={styles.tabButton}> 
                 <VscCalendar size={30} />
                 <a>Booking</a>
               </div>
