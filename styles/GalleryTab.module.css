@@ -35,9 +35,6 @@
 .imgContainer:hover {
   transform: scale(1.05);
   transition: 0.1s transform;
-
-  
-
 }
 
 .deleteButton {
@@ -54,16 +51,29 @@
 .formContainer {
   width: 500px;
   margin: 20px;
-  padding: 8px;
+  padding: 20px;
   text-align: center;
   border-radius: 4px;
   color: white;
   background-color:  #212529;
+  padding-bottom: 50px;
 }
 
 .uploadButton {
-  border: 0.9px solid rgb(123, 122, 122);
-  border-radius: 2px;
+  /* border: 0.9px solid rgb(123, 122, 122);
+  border-radius: 2px; */
+    width: 80px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: rgb(191, 191, 191);
+    color: black;
+    border: none;
+    font-size: 13px;
+    transition: 0.2s;
+    float: right;
+    display: flex;
+    align-items: right;
+    justify-content: center;
 }
 
 .uploadButton:hover {
