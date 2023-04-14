@@ -94,6 +94,7 @@ const ServicesTab = () => {
 
   return (
     <div className={styles.servicesContainer}>
+      <h1 className={styles.servicesTitle}></h1>
       <div className={styles.uploadBox}>
         <div className={styles.uploadContainer}>
             <label>Choose an image</label>
