@@ -13,7 +13,7 @@ function MainLayout({ children }) {
           content="Romantiko Barbershop's Official Website"
         />
         {/** Need to change ico - lenard */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favico.png" />
       </Head>
 
       <Header />
