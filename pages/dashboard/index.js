@@ -35,8 +35,8 @@ function dashboard() {
 
   return (
     <div>
-      <div>Hello {staffFullName}</div>
-      <Dashboard staffId={staffId} />;
+      
+      <Dashboard staffId={staffId} staffName={staffFullName}/>;
     </div>
   );
 }

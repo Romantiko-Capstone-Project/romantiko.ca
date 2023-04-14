@@ -3,7 +3,7 @@ import CalendarView from "./CalendarView";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Dashboard = ({ staffId }) => {
+const Dashboard = ({ staffId,staffName }) => {
   const [errorMess, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
   const [bookings, setBookings] = useState([]);
@@ -52,7 +52,7 @@ const Dashboard = ({ staffId }) => {
 
   return (
     <div className="cont">
-      <h1>Dashboard</h1>
+      <h1>{staffName} - Dashboard</h1>
       <CalendarView bookings={bookings} />
     </div>
   );

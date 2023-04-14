@@ -4,11 +4,11 @@ import Index from "..";
 import ServicesTab from "../../../src/components/admin/ServicesTab";
 
 const Shop = () => {
-
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const role = useSelector((state) => state.auth.role);
 
-  if (!loggedIn) {
+  if (!loggedIn || role !== "admin") {
     router.push("/Login");
   }
   return (

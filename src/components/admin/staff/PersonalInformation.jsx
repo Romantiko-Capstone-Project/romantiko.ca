@@ -17,7 +17,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
   const [email, setEmail] = useState(extraStaff?.email);
   const [role, setRole] = useState(extraStaff?.role);
   const [img, setImg] = useState(extraStaff?.img);
-  const [pwd, setPwd] = useState(extraStaff?.password);
+  // const [pwd, setPwd] = useState(extraStaff?.password);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
 
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/account/${selectedStaff.account}`
+          `http://localhost:3000/api/account/${selectedStaff?.account}`
         ); // pass id as a parameter in the URL
         setExtraStaff(data);
       } catch (error) {
@@ -36,7 +36,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       }
     };
     fetchData();
-  }, [selectedStaff, extraStaff]);
+  }, [selectedStaff]);
 
   useEffect(() => {
     setFirstName(selectedStaff?.firstName);
@@ -63,7 +63,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
     const _extraStaff = {
       username: usr,
       email,
-      password: pwd,
+      // password: pwd,
     };
 
     try {
@@ -133,6 +133,8 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
       );
       console.log(response.data);
       //window.location.reload();
+
+      alert("Staff account successfully deleted.");
     } catch (err) {
       console.error("Error deleting account:", err);
     }
@@ -151,11 +153,10 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
         `http://localhost:3000/api/account/${selectedStaff.account}`,
         _img
       );
-
-      // Update the extraStaff state with the default picture
+      alert("Picture successfully deleted");
       // setExtraStaff((prevState) => ({ ...prevState, img: defaultPicture }));
     } catch (err) {
-      console.error("Error deleting picture:", err);
+      alert("Error deleting picture:", err);
     }
   };
 
@@ -224,8 +225,8 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
           </div>
         </div>
         {isEditPic ? (
-          <form onSubmit={handleChangePicture}>
-            <div className={styles.changePicture}>
+          <div className={styles.changePicture}>
+            <form onSubmit={handleChangePicture}>
               <h3 className={styles.title}>Change Profile Picture</h3>
               <div className={styles.input}>
                 <label htmlFor="fileInput" className={styles.customFileInput}>
@@ -245,8 +246,8 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                   Close
                 </button>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         ) : (
           ""
         )}
@@ -373,7 +374,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                 </span>
               )}
             </div>
-            <div className={styles.infoItem}>
+            {/* <div className={styles.infoItem}>
               <h4 className={styles.infoLabel}>Password:</h4>
               <span className={styles.infoInput}>
                 {isEditMode ? (
@@ -392,7 +393,7 @@ const PersonalInformation = ({ selectedStaff, onUpdate }) => {
                   </span>
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.actions}>

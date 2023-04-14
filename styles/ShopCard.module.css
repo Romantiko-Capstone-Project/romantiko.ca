@@ -1,23 +1,24 @@
 .container{
-    width: 22%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0px 0px;
-    margin: 20px;
+    
+    min-width: 250px;
 }
 
 .title{
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: whitesmoke;
     text-transform: uppercase;
 }
 
 .price, .desc{
     font-size: 16px;
-    color: black;
+    color: whitesmoke
 }
 
 .price{
@@ -41,14 +42,16 @@
     padding: 10px;
     justify-content: space-between;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.756);
+    background-color: #333333a4;
+    color: whitesmoke;
     cursor: pointer;
     transition: transform .2s;
+    border-radius: 10px;
 }
 
 .wrapper:hover{
     transform: scale(1.07);
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: rgba(54, 54, 54, 0.89);
 }
 
 @media screen and (max-width: 480px){

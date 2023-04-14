@@ -6,8 +6,9 @@ import BookingTab from "../../../src/components/admin/BookingTab";
 const Booking = () => {
   const router = useRouter();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const role = useSelector((state) => state.auth.role);
 
-  if (!loggedIn) {
+  if (!loggedIn || role !== "admin") {
     router.push("/Login");
   }
 

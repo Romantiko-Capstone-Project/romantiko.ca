@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import styles from "../../../styles/LoginPage.module.css";
 import { useRouter } from "next/router";
@@ -14,6 +14,8 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const [loaded, setLoaded] = useState(false);
+
   function handleLogin(id) {
     dispatch(login());
     handleID(id);
@@ -27,6 +29,10 @@ const LoginPage = () => {
     dispatch(setID(id));
     //console.log("dispatched id =" + id);
   }
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +50,7 @@ const LoginPage = () => {
         handleLogin(response.data.id);
         router.push("/dashboard"); // Replace with the actual URL of the staff page
       }
+
       /** set name */
       //handleName(response.data.id);
       //console.log(response.data);
@@ -56,16 +63,12 @@ const LoginPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <h4
-          style={{
-            textAlign: "center",
-            marginTop: "8px",
-            color: "black",
-          }}
+      <div className={styles.overlay}>
+      <div className={`${styles.wrapper} ${loaded ? styles.loaded : ''}`}>
+        <h2
         >
           Staff Login
-        </h4>
+        </h2>
 
         <div className="form-floating mb-3 mt-3">
           <input
@@ -110,10 +113,9 @@ const LoginPage = () => {
           </button>
           <br />
 
-          <a href="https://www.google.com/?hl=en-US" className={styles.mylink}>
-            Forgot password?
-          </a>
+          
         </div>
+      </div>
       </div>
     </div>
   );

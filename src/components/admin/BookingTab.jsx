@@ -185,7 +185,7 @@ const BookingTab = () => {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Booking ID</th>
+              <th>Booking ID (Last 5 Digits)</th>
               <th>Client Name</th>
               <th>Barber Name</th>
               <th>Booking Date</th>
@@ -198,7 +198,7 @@ const BookingTab = () => {
           <tbody>
             {displayedBookings.map((booking) => (
               <tr key={booking._id}>
-                <td>{booking._id}</td>
+                <td>...{booking._id.slice(-5)}</td>
                 <td>{booking.customerName}</td>
                 <td>{getBarberName(booking.barber)}</td>
                 <td>{new Date(booking.startTime).toLocaleDateString()}</td>
