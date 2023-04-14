@@ -96,7 +96,8 @@ const ServicesTab = () => {
     <div className={styles.servicesContainer}>
       <div className={styles.uploadBox}>
         <div className={styles.uploadContainer}>
-          <label>Choose an image</label>
+          <h4>Add a Service</h4>
+          <label className={styles.label}>Choose an image</label>
           <div className={styles.fileInput}>
             <input
               type="file"
@@ -105,19 +106,19 @@ const ServicesTab = () => {
               className="inputFile"
             />
           </div>
-          <label>Service name: </label>
+          <label className={styles.label}>Service name: </label>
           <input
             value={serviceName}
             type="text"
             onChange={(e) => setServiceName(e.target.value)}
           />
-          <label>Price:</label>
+          <label className={styles.label}>Price:</label>
           <input
             value={servicePrice}
             type="number"
             onChange={(e) => setServicePrice(e.target.value)}
           />
-          <label>Description: </label>
+          <label className={styles.label}>Description: </label>
           <textarea
             value={serviceDescription}
             onChange={(e) => setServiceDescription(e.target.value)}
