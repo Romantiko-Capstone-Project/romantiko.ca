@@ -1,5 +1,5 @@
 import dbConnect from "../../../../util/mongo";
-import Staff from "../../../../models/Staff";
+import Staff from "../../../../models/staff";
 
 const handler = async (req, res) => {
   const {

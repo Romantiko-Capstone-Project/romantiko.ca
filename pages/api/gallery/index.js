@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongo";
-import Gallery from "../../../models/Gallery";
+import Gallery from "../../../models/gallery";
 
 const handler = async (req, res) => {
   const { method } = req;
