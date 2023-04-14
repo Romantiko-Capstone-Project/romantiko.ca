@@ -20,6 +20,14 @@
   border-radius: 15px;
 }
 
+.servName{
+  font-size: 20px;
+}
+
+.servPrice{
+  font-size: 18px;
+}
+
 .deleteButton {
   position:relative;
   bottom: 200px;
@@ -37,9 +45,11 @@
   left: 1.5px;
   width:fit-content;
   border-radius: 8px;
-  background-color: white;
+  background-color: rgb(191, 191, 191);
   color: black;
   border: none;
+  padding: 0px 10px;
+  font-size: 14px;
 }
 
 .servicesContainer {
@@ -126,16 +136,14 @@
 }
 
 .uploadContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #212529;
-  color: white;
-  border-radius: 10px;
-  margin: 0px auto;
-  justify-content: center;
-  padding: 10px;
-  max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #212529;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
 }
 
  .uploadBox {
@@ -155,13 +163,14 @@
 
 .uploadButton {
   margin-top: 10px;
-  background-color: #0077c0;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin: 10px;
+    width: 80px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: rgb(191, 191, 191);
+    color: black;
+    border: none;
+    font-size: 13px;
+    transition: 0.2s;
 }
 
 .overlay{
