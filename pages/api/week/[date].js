@@ -13,7 +13,8 @@ const handler = async (req, res) => {
       const selectedDate = new Date(date);
       const weekNumber = moment(selectedDate).isoWeek();
 
-      const dayOfWeek = selectedDate.getDay() || 7;
+      const dayOfWeek = selectedDate.getDay();
+
       const weekDocument = await Week.findOne({ weekNumber });
 
       if (!weekDocument) {
