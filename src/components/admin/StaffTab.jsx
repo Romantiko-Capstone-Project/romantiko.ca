@@ -105,28 +105,31 @@ const StaffTab = () => {
           {actionTab === "tab1" && (
             <div className={styles.bottom}>
               <div className={styles.left}>
-                <div className={styles.titleContainer}>
-                  <h1 className={styles.title}>List of Staff</h1>
-                </div>
-                <div className={styles.toggleStaff}>
-                  <div
-                    className={`${styles.toggleStaffButton} ${
-                      currentStaffList === "active" && styles.activeButton
-                    }`}
-                    onClick={() => handleToggleStaffClick("active")}
-                  >
-                    <h5>Active</h5>
+                <div className={styles.listTopContainer}>
+                  <div className={styles.titleContainer}>
+                    <h1 className={styles.title}>List of Staff</h1>
                   </div>
-                  <div
-                    className={`${styles.toggleStaffButton} ${
-                      currentStaffList === "inactive" && styles.activeButton
-                    }`}
-                    onClick={() => handleToggleStaffClick("inactive")}
-                  >
-                    <h5>Inactive</h5>
+                  <div className={styles.toggleStaff}>
+                    <div
+                      className={`${styles.toggleStaffButton} ${
+                        currentStaffList === "active" && styles.activeButton
+                      }`}
+                      onClick={() => handleToggleStaffClick("active")}
+                    >
+                      <h5>Active</h5>
+                    </div>
+                    <div
+                      className={`${styles.toggleStaffButton} ${
+                        currentStaffList === "inactive" && styles.activeButton
+                      }`}
+                      onClick={() => handleToggleStaffClick("inactive")}
+                    >
+                      <h5>Inactive</h5>
+                    </div>
                   </div>
+
+                  <div className={styles.line}></div>
                 </div>
-                <div className={styles.line}></div>
                 <div className={styles.cardsContainer}>
                   {(currentStaffList === "active"
                     ? activeStaff
