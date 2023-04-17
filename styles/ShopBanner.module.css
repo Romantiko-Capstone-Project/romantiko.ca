@@ -26,22 +26,22 @@
     
 }
 
-.imgContainer:hover .overlay{
+/* .imgContainer:hover .overlay{
     opacity: 1;
     filter: brightness(100%);
     color: white;
-}
+} */
 
-.imgContainer:hover .overlay h2{
+/* .imgContainer:hover .overlay h2{
     color: white;
-}
-
+} */
+/* 
 .overlay h2{
     font-size: 30px;
     color: #444;
     font-weight: 300;
     transition: 0.3s;
-}
+} */
 
 @media screen and (max-width: 480px){
     .imgContainer{
