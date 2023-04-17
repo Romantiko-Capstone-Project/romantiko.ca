@@ -31,7 +31,6 @@ const ServicesPage = () => {
       <h1 className={styles.title}>Our Services</h1>
       {/* <h1 className={styles.title}>SERVICES</h1> */}
       <div className={styles.imagesContainer}>
-
         {services.map((service) => (
           <div className={styles.imgContainer} key={service._id}>
             <Link href={`/service/${service._id}`} passHref>

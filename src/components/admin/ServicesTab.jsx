@@ -94,41 +94,47 @@ const ServicesTab = () => {
 
   return (
     <div className={styles.servicesContainer}>
+      <h1 className={styles.servicesTitle}>Manage Services</h1>
       <div className={styles.uploadBox}>
         <div className={styles.uploadContainer}>
-          <h4>Add a Service</h4>
-          <label className={styles.label}>Choose an image</label>
-          <div className={styles.fileInput}>
-            <input
-              type="file"
-              onChange={(e) => setFile(e.target.files[0])}
-              onClick={() => setMsg(false)}
-              className="inputFile"
-            />
-          </div>
-          <label className={styles.label}>Service name: </label>
-          <input
-            value={serviceName}
-            type="text"
-            onChange={(e) => setServiceName(e.target.value)}
-          />
-          <label className={styles.label}>Price:</label>
-          <input
-            value={servicePrice}
-            type="number"
-            onChange={(e) => setServicePrice(e.target.value)}
-          />
-          <label className={styles.label}>Description: </label>
-          <textarea
-            value={serviceDescription}
-            onChange={(e) => setServiceDescription(e.target.value)}
-            placeholder="Description here..."
-          />
-          <button onClick={handleCreate} className={styles.uploadButton}>
+        <h4 className={styles.addTitle}>Add a service</h4>
+            <label>Choose an image</label>
+            <div className={styles.fileInput}>
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                // onClick={() => setMsg(false)}
+                className="inputFile"
+              />
+            </div>
+          <label>Service name: </label>
+                <input
+                  // value={serviceName}
+                  type="text"
+                  onChange={(e) => setServiceName(e.target.value)}
+                />
+                <label>Price:</label>
+                <input
+                  // value={servicePrice}
+                  type="number"
+                  onChange={(e) => setServicePrice(e.target.value)}
+                />
+                <label>Description: </label>
+                <textarea
+                  // value={serviceDescription}
+                  onChange={(e) => setServiceDescription(e.target.value)}
+                  placeholder="Description here..."
+                  rows="5" cols="40"
+                />
+           <button onClick={handleCreate} className={styles.uploadButton}>
             Upload
           </button>
+     {msg && (
+                  <h4>The image has been successfully uploaded.</h4>
+                )}
         </div>
       </div>
+      <h1 className={styles.currentServices}>Current Services</h1>
       <div className={styles.container}>
         <div className={styles.imagesContainer}>
           {images.map((image) => (
@@ -180,6 +186,7 @@ const ServicesTab = () => {
                   value={serviceDescription}
                   onChange={(e) => setServiceDescription(e.target.value)}
                   placeholder="Description here..."
+                  rows="5" cols="40"
                 />
                 <br></br>
                 <button onClick={updateButton}>Edit</button>

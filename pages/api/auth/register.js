@@ -1,6 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Account from "../../../models/Account";
-import Staff from "../../../models/Staff";
+import Staff from "../../../models/staff";
 const CryptoJS = require("crypto-js");
 const { sendConfirmationEmail } = require("../../../config/nodemailer.config");
 const { EmailToken } = require("../../../config/jwt.config");

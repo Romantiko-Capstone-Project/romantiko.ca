@@ -95,6 +95,19 @@
     line-height: 1.7;
 }
 
+.title{
+    font-size: 70px;
+}
+
+.price{
+    font-size: 50px;
+    text-align: center;
+}
+
+.desc{
+    font-size: 30px;
+}
+
 .imgContainer{
     align-items: center;
     display: flex;
@@ -128,8 +141,8 @@
   .btn1:hover {
     background-color: whitesmoke;
     color: black;
-    
   }
+
 @media screen and (max-width: 890px){
     .container{
         height: auto;

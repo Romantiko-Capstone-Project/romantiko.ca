@@ -1,6 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Account from "../../../models/Account";
-import Staff from "../../../models/Staff";
+import Staff from "../../../models/staff";
 import Schedule from "../../../models/Schedule";
 import Week from "../../../models/Week";
 const { verifyTokenAndAdmin } = require("../../../middlewares/verifyToken");

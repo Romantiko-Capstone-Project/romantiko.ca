@@ -57,7 +57,7 @@ const TimeSlot = ({
         const res = await axios.get(
           `http://localhost:3000/api/timeslot/${timeSlotId}`
         );
-        console.log("Received staff availability data:", res.data); // Add this line
+        //console.log("Received staff availability data:", res.data); // Add this line
         setStaffsAvailability(res.data);
       } catch (error) {
         console.error(error);

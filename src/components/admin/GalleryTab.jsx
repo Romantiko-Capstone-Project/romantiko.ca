@@ -56,10 +56,10 @@ const GalleryTab = () => {
 
   return (
     <div className={styles.mainContainer}>
+      <h1 className={styles.pageTitle}>Manage Gallery</h1>
       <div className={styles.formContainer}>
-        <div>
-          <label>Choose an image</label>
-          <br></br>
+        <div className={styles.item}>
+          <label>Choose an image:</label>
           <input
             type="file"
             onChange={(e) => setFile(e.target.files[0])}
@@ -71,27 +71,29 @@ const GalleryTab = () => {
         </button>
         {loading && (
           <>
-            <p>Uploading image...</p><i className="fa fa-spinner fa-spin"></i>
+            <p>Uploading image...</p>
+            <i className="fa fa-spinner fa-spin"></i>
           </>
         )}
       </div>
+      <h1 className={styles.pageTitle}>Current Pictures</h1>
       <div className={styles.container}>
         {images.length > 0 ? (
-        <div className={styles.imagesContainer}>
-          {images.map((image) => (
-            <div className={styles.imgContainer} key={image._id}>
-              <Image
-                src={image.img}
-                alt="Haircut img not found"
-                width="205"
-                height="220"
-              />
-              <button className={styles.deleteButton}>
-                <DeleteIcon onClick={() => handleRemove(image._id)} />
-              </button>
-            </div>
-          ))}
-        </div>
+          <div className={styles.imagesContainer}>
+            {images.map((image) => (
+              <div className={styles.imgContainer} key={image._id}>
+                <Image
+                  src={image.img}
+                  alt="Haircut img not found"
+                  width="205"
+                  height="220"
+                />
+                <button className={styles.deleteButton}>
+                  <DeleteIcon onClick={() => handleRemove(image._id)} />
+                </button>
+              </div>
+            ))}
+          </div>
         ) : null}
       </div>
     </div>
