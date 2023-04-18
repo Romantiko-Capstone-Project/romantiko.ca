@@ -5,9 +5,9 @@ const ShopBanner = () => {
   return (
     <div className={styles.imgContainer}>
       <div className={styles.banner_text}>
-        <p>
+        {/* <h2>
           Tranform your look and shop from a range of excellent products.  
-        </p>
+        </h2> */}
       </div>
     </div>
   );
